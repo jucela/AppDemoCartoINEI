@@ -1,27 +1,38 @@
 package com.inei.appcartoinei.fragments;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.InputFilter;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.inei.appcartoinei.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link Capa2.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link Capa2#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class Capa2 extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
+    private FloatingActionButton fab;
+    private TextView txt;
+    public String dato;
+
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -35,15 +46,6 @@ public class Capa2 extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Capa2.
-     */
-    // TODO: Rename and change types and number of parameters
     public static Capa2 newInstance(String param1, String param2) {
         Capa2 fragment = new Capa2();
         Bundle args = new Bundle();
@@ -67,6 +69,57 @@ public class Capa2 extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_capa2, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        fab =  (FloatingActionButton) view.findViewById(R.id.fab);
+        txt = (TextView) view.findViewById(R.id.txt_dato);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+                final View dialogView = getActivity().getLayoutInflater().inflate(R.layout.layout_formdialog, null);
+                final LinearLayout lytDialog = (LinearLayout) dialogView.findViewById(R.id.dialog_lyt);
+                final EditText edtUbigeo = (EditText) dialogView.findViewById(R.id.id_edtUbigeo);
+                final EditText edtZona = (EditText) dialogView.findViewById(R.id.id_edtZona);
+                final EditText edtManzana = (EditText) dialogView.findViewById(R.id.id_edtmanzana);
+
+
+                edtUbigeo.setFilters(new InputFilter[]{new InputFilter.LengthFilter(4)});
+                edtZona.setFilters(new InputFilter[]{new InputFilter.LengthFilter(4)});
+                edtManzana.setFilters(new InputFilter[]{new InputFilter.LengthFilter(4)});
+                alert.setTitle("Datos");
+                alert.setView(dialogView);
+                alert.setPositiveButton("OK",null);
+                alert.setNegativeButton("Cancelar",null);
+
+                final AlertDialog alertDialog = alert.create();
+
+                alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                    @Override
+                    public void onShow(DialogInterface dialogInterface) {
+                        Button b = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                        b.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                // TODO Do something
+                                if(!edtUbigeo.getText().toString().equals("") && !edtZona.getText().toString().equals("")&&!edtManzana.getText().toString().equals("0")){
+                                    dato = edtUbigeo.getText().toString();
+                                    txt.setText(dato);
+                                    alertDialog.dismiss();
+                                }else{
+                                    Toast.makeText(getActivity().getApplicationContext(), "DEBE LLENAR TODOS LOS CAMPOS", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+                    }
+                });
+                alertDialog.show();
+            }
+        });
     }
 
     // TODO: Rename method, update argument and hook method into UI event

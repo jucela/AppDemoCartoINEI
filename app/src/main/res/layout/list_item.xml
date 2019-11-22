@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="12dp"
+    android:background="#ffffff">
+    <TextView
+        android:id="@+id/id_check_item"
+        android:text="opcion de maracado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:paddingLeft="40dp"
+        android:paddingRight="20dp"
+        android:textAlignment="textStart"
+        android:textColor="#000000"
+        android:textSize="13sp"
+        tools:ignore="RtlCompat" />
+</LinearLayout>

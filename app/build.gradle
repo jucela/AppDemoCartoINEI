@@ -5,7 +5,7 @@ android {
     buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "com.inei.appcartoinei"
-        minSdkVersion 21
+        minSdkVersion 19
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -28,5 +28,9 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
     implementation 'com.google.android.material:material:1.0.0'
-    implementation 'com.google.android.gms:play-services:8.3.0'
+    implementation 'com.google.maps.android:android-maps-utils:0.5'
+    implementation 'com.google.android.gms:play-services-maps:16.1.0'
+    implementation 'com.github.sevar83:android-spatialite:2.0.0'
+    implementation 'com.cocoahero.android:geojson:1.0.1@jar'
+    implementation 'com.android.volley:volley:1.1.1'
 }

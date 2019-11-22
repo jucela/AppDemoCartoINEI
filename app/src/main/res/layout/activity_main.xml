@@ -7,13 +7,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="0dp"
-    tools:context=".MainActivity">
+    tools:context=".activities.MainActivity">
     <FrameLayout
         android:id="@+id/contedor_fragments"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#c2c200"/>
-    <com.google.android.material.navigation.NavigationView
+        <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation_drawer"
         app:headerLayout="@layout/header"
         android:layout_width="wrap_content"
@@ -21,7 +21,15 @@
         android:background="#ffffff"
         app:itemTextColor="#000000"
         app:itemIconTint="#000000"
-        app:menu="@menu/drawermenu"
         android:layout_gravity="start">
+<!--            app:menu="@menu/drawermenu"-->
+            <ExpandableListView
+                android:id="@+id/expandable_principal1"
+                android:layoutDirection="rtl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="80dp"
+                android:childIndicatorLeft="10dp"
+                android:divider="@null"/>
     </com.google.android.material.navigation.NavigationView>
 </androidx.drawerlayout.widget.DrawerLayout>
