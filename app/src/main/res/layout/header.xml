@@ -6,18 +6,15 @@
     android:background="@color/colorPrimaryDark"
     android:padding="10dp"
     android:orientation="horizontal">
-    <Button
-        android:id="@+id/boton"
-        android:layout_width="50dp"
-        android:layout_height="40dp"
-        android:text="entrar"/>
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1">
         <ImageView
+            android:id="@+id/img_add_capa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:clickable="true"
             android:layout_gravity="center"
             android:src="@drawable/ic_layers_36"/>
 

@@ -46,11 +46,16 @@ import com.google.android.gms.maps.model.PolygonOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.inei.appcartoinei.R;
 import com.inei.appcartoinei.modelo.ConexionSpatiaLiteHelper;
+import com.inei.appcartoinei.modelo.DAO.Data;
+import com.inei.appcartoinei.modelo.DAO.DataBaseHelper;
+import com.inei.appcartoinei.modelo.pojos.Capa;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.spatialite.database.SQLiteDatabase;
+import org.spatialite.database.SQLiteOpenHelper;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -77,8 +82,11 @@ public class Capa3 extends Fragment implements OnMapReadyCallback,GoogleMap.OnMa
     private FloatingActionButton fab3;
 
     private SQLiteDatabase db ;
+    private DataBaseHelper op;
     private ConexionSpatiaLiteHelper conn;
     private RequestQueue mQueue;
+    Data    data;
+    Context context;
 
 
     private OnFragmentInteractionListener mListener;
@@ -112,8 +120,9 @@ public class Capa3 extends Fragment implements OnMapReadyCallback,GoogleMap.OnMa
         fab2 =  (FloatingActionButton) view.findViewById(R.id.fab2);
         fab3 =  (FloatingActionButton) view.findViewById(R.id.fab3);
 
-        conn = new ConexionSpatiaLiteHelper(getContext());
-        db = conn.getWritableDatabase();
+        //conn = new ConexionSpatiaLiteHelper(getContext());
+        //op = new DataBaseHelper(getContext());
+        //db = op.getWritableDatabase();
         mQueue = Volley.newRequestQueue(getContext());
 
         if(mapView!=null){
@@ -200,7 +209,8 @@ public class Capa3 extends Fragment implements OnMapReadyCallback,GoogleMap.OnMa
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                exportarDatos();
+                insertarDatosCapa();
+                //exportarDatos();
             }
         });
 
@@ -209,7 +219,7 @@ public class Capa3 extends Fragment implements OnMapReadyCallback,GoogleMap.OnMa
             @Override
             public void onClick(View view) {
                 //agregarPoligono(newListPoints);
-                agregarPoligono(listPoints);
+                //agregarPoligono(listPoints);
 
             }
         });
@@ -224,7 +234,6 @@ public class Capa3 extends Fragment implements OnMapReadyCallback,GoogleMap.OnMa
                 final EditText edtUbigeo = (EditText) dialogView.findViewById(R.id.id_edtUbigeo);
                 final EditText edtZona = (EditText) dialogView.findViewById(R.id.id_edtZona);
                 final EditText edtManzana = (EditText) dialogView.findViewById(R.id.id_edtmanzana);
-
 
                 edtUbigeo.setFilters(new InputFilter[]{new InputFilter.LengthFilter(4)});
                 edtZona.setFilters(new InputFilter[]{new InputFilter.LengthFilter(4)});
@@ -295,198 +304,211 @@ public class Capa3 extends Fragment implements OnMapReadyCallback,GoogleMap.OnMa
 //        }
 //    }
 
-    public String formatGeom(ArrayList<LatLng> poligono){
-
-        String format ="";
-
-        for (int i = 0; i <poligono.size() ; i++) {
-            if (i >0){
-                format = format +"," + poligono.get(i).longitude+ " "+poligono.get(i).latitude;
-
-            }
-            else{
-                format = poligono.get(i).longitude+ " "+poligono.get(i).latitude;
-            }
-
+//    public String formatGeom(ArrayList<LatLng> poligono){
+//
+//        String format ="";
+//
+//        for (int i = 0; i <poligono.size() ; i++) {
+//            if (i >0){
+//                format = format +"," + poligono.get(i).longitude+ " "+poligono.get(i).latitude;
+//
+//            }
+//            else{
+//                format = poligono.get(i).longitude+ " "+poligono.get(i).latitude;
+//            }
+//
+//        }
+//
+//        return format;
+//
+//    }
+//
+//    public  void agregarPoligono(ArrayList<LatLng> poligono){
+//        Polygon poligonAdd = mgoogleMap.addPolygon(new PolygonOptions().add(new LatLng(0, 0), new LatLng(0, 0), new LatLng(0, 0)).fillColor(COLOR_FILL_POLYGON_GREEN).strokeWidth(8));
+//        if(valores.size()>0)
+//        {  if(listPoints.size()>0) {
+//            poligonAdd.setPoints(poligono);
+//            String query = "INSERT INTO poligonos(geometry_column,export,ubigeo,zona,manzana) VALUES ( GeomFromText('POLYGON(("+formatGeom(poligono)+"))',4326),0,'"+valores.get(0)+"','"+valores.get(1)+"','"+valores.get(2)+"');" ;
+//            db.execSQL(query);
+//            Toast.makeText(getContext(),"Se Registro Información",Toast.LENGTH_SHORT).show();
+//            listPoints.clear();
+//            valores.clear();
+//            Log.d("query",query);
+//        }
+//        else
+//        {Toast.makeText(getContext(),"Ingrese Poligono!",Toast.LENGTH_SHORT).show();}
+//        }
+//        else{Toast.makeText(getContext(),"Ingrese valores (Ubigeo,Manzana,Zona)!",Toast.LENGTH_SHORT).show();}
+//
+//    }
+//
+//    public void exportarDatos(){
+//
+//        String queryJson = "SELECT AsGeoJSON(geometry_column) geom,ubigeo,zona,manzana from poligonos where export=0;" ;
+//        Cursor res = db.rawQuery( queryJson, null );
+//        int contador = res.getCount();
+//        if(contador>0)
+//        {
+//            Log.i("contador",""+contador);
+//            res.moveToFirst();
+//
+//            while(res.isAfterLast() == false) {
+//
+//                Log.i("contador1",""+contador);
+//
+//                String campoGeom=res.getString(res.getColumnIndex("geom"));
+//                String campoUbigeo=res.getString(res.getColumnIndex("ubigeo"));
+//                String campoZona=res.getString(res.getColumnIndex("zona"));
+//                String campoManzana=res.getString(res.getColumnIndex("manzana"));
+//
+//
+//                String stringJsonFinal = "";
+//
+//                try {
+//                    Log.i("contador2",""+contador);
+//                    JSONObject geom = new JSONObject(campoGeom);
+//                    String rings=geom.get("coordinates").toString();
+//                    stringJsonFinal = "{\"geometry\":{\"rings\":"+ rings+", \"spatialReference\" : {\"wkid\" : 4326}},\"attributes\":{\"UBIGEO\":"+campoUbigeo+",\"ZONA\":"+campoZona+",\"MANZANA\":"+campoManzana+"}}";
+//                    JSONArray arrayGeom = new JSONArray();
+//                    //arrayGeom.put();
+//                    JSONObject obj = new JSONObject(stringJsonFinal);
+//                    arrayGeom.put(obj);
+//                    Log.d("My App", arrayGeom.toString());
+//                    insertarServicio(arrayGeom);
+//                } catch (Throwable tx) {
+//                    Log.e("My App", "Could not parse malformed JSON: \"" + stringJsonFinal + "\"");
+//                }
+//                res.moveToNext();
+//
+//            }
+//        }
+//        else
+//        {
+//            Toast.makeText(getContext(),"No hay Registros para subir",Toast.LENGTH_SHORT).show();
+//        }
+//
+//
+//    }
+//
+//    public void insertarServicio( final JSONArray arrayGeom)
+//    {
+//        String url = "http://arcgis4.inei.gob.pe:6080/arcgis/rest/services/DESARROLLO/servicio_prueba_captura/FeatureServer/0/addFeatures";
+//        StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+//            @Override
+//            public void onResponse(String response) {
+//                Log.i("SUCCESS", response);
+//                String queryJsonUpdate = "UPDATE poligonos SET export =1  where export=0;" ;
+//                db.execSQL(queryJsonUpdate);
+//                Toast.makeText(getContext(),"Se Inserto en el Servidor Correctamente!",Toast.LENGTH_SHORT).show();
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                Log.i("ERROR", error.toString());
+//                Toast.makeText(getContext(),"Error al Insertar en el Servidor",Toast.LENGTH_SHORT).show();
+//            }
+//        }){
+//
+//            @Override
+//            public String getBodyContentType() {
+//                return "application/x-www-form-urlencoded; charset=utf-8";
+//            }
+//
+//
+//            @Override
+//            protected Map<String, String> getParams() throws AuthFailureError {
+//                Map<String, String> params = new HashMap<String, String>();
+//                params.put("features", arrayGeom.toString());
+//                params.put("f", "json");
+//                return params;
+//            }
+//
+//            /*@Override
+//            public byte[] getBody() throws AuthFailureError{
+//                try {
+//                    return requestBody == null ? null : requestBody.getBytes("utf-8");
+//                } catch (UnsupportedEncodingException uee) {
+//                    VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", requestBody, "utf-8");
+//                    return null;
+//                }
+//            }*/
+//
+//            /*@Override
+//            protected Response<String> parseNetworkResponse(NetworkResponse response) {
+//                String responseString = "";
+//                if (response != null) {
+//                    responseString = String.valueOf(response.statusCode);
+//                    // can get more details such as response.headers
+//                }
+//                return Response.success(responseString, HttpHeaderParser.parseCacheHeaders(response));
+//            }*/
+//
+//
+//
+//
+//        };
+//
+//
+//
+//
+//
+//
+///*
+//        JsonArrayRequest request = new JsonArrayRequest(Request.Method.POST, url, arrayGeom,
+//                new Response.Listener<JSONArray>() {
+//                    @Override
+//                    public void onResponse(JSONArray response) {
+//                        Log.i("SUCCESS", response.toString());
+//                    }
+//                }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                Log.i("ERROR", error.toString());
+//            }
+//        }
+//        );*/
+//
+//       /* JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+//                new Response.Listener<JSONObject>() {
+//                    @Override
+//                    public void onResponse(JSONObject response) {
+//                        try {
+//                            JSONArray jsonArray = response.getJSONArray("employees");
+//
+//                            for (int i = 0; i < jsonArray.length(); i++) {
+//                                JSONObject employee = jsonArray.getJSONObject(i);
+//
+//                                String firstName = employee.getString("firstname");
+//                                int age = employee.getInt("age");
+//                                String mail = employee.getString("mail");
+//
+//                                mTextViewResult.append(firstName + ", " + String.valueOf(age) + ", " + mail + "\n\n");
+//                            }
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                error.printStackTrace();
+//            }
+//        });*/
+//
+//        mQueue.add(request);
+//
+//    }
+//
+    public void insertarDatosCapa(){
+        try {
+            data = new Data(context);
+            data.open();
+            data.insertarDatos(new Capa(1,"juxe","Lavado","poligono",1,2,3,4,5));
+            data.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
-        return format;
-
-    }
-
-    public  void agregarPoligono(ArrayList<LatLng> poligono){
-        Polygon poligonAdd = mgoogleMap.addPolygon(new PolygonOptions().add(new LatLng(0, 0), new LatLng(0, 0), new LatLng(0, 0)).fillColor(COLOR_FILL_POLYGON_GREEN).strokeWidth(8));
-        if(valores.size()>0)
-        {  if(listPoints.size()>0) {
-            poligonAdd.setPoints(poligono);
-            String query = "INSERT INTO poligonos(geometry_column,export,ubigeo,zona,manzana) VALUES ( GeomFromText('POLYGON(("+formatGeom(poligono)+"))',4326),0,'"+valores.get(0)+"','"+valores.get(1)+"','"+valores.get(2)+"');" ;
-            db.execSQL(query);
-            Toast.makeText(getContext(),"Se Registro Información",Toast.LENGTH_SHORT).show();
-            listPoints.clear();
-            valores.clear();
-            Log.d("query",query);
-        }
-        else
-        {Toast.makeText(getContext(),"Ingrese Poligono!",Toast.LENGTH_SHORT).show();}
-        }
-        else{Toast.makeText(getContext(),"Ingrese valores (Ubigeo,Manzana,Zona)!",Toast.LENGTH_SHORT).show();}
-
-    }
-
-    public void exportarDatos(){
-
-        String queryJson = "SELECT AsGeoJSON(geometry_column) geom,ubigeo,zona,manzana from poligonos where export=0;" ;
-        Cursor res = db.rawQuery( queryJson, null );
-        int contador = res.getCount();
-        if(contador>0)
-        {
-            Log.i("contador",""+contador);
-            res.moveToFirst();
-
-            while(res.isAfterLast() == false) {
-
-                Log.i("contador1",""+contador);
-
-                String campoGeom=res.getString(res.getColumnIndex("geom"));
-                String campoUbigeo=res.getString(res.getColumnIndex("ubigeo"));
-                String campoZona=res.getString(res.getColumnIndex("zona"));
-                String campoManzana=res.getString(res.getColumnIndex("manzana"));
-
-
-                String stringJsonFinal = "";
-
-                try {
-                    Log.i("contador2",""+contador);
-                    JSONObject geom = new JSONObject(campoGeom);
-                    String rings=geom.get("coordinates").toString();
-                    stringJsonFinal = "{\"geometry\":{\"rings\":"+ rings+", \"spatialReference\" : {\"wkid\" : 4326}},\"attributes\":{\"UBIGEO\":"+campoUbigeo+",\"ZONA\":"+campoZona+",\"MANZANA\":"+campoManzana+"}}";
-                    JSONArray arrayGeom = new JSONArray();
-                    //arrayGeom.put();
-                    JSONObject obj = new JSONObject(stringJsonFinal);
-                    arrayGeom.put(obj);
-                    Log.d("My App", arrayGeom.toString());
-                    insertarServicio(arrayGeom);
-                } catch (Throwable tx) {
-                    Log.e("My App", "Could not parse malformed JSON: \"" + stringJsonFinal + "\"");
-                }
-                res.moveToNext();
-
-            }
-        }
-        else
-        {
-            Toast.makeText(getContext(),"No hay Registros para subir",Toast.LENGTH_SHORT).show();
-        }
-
-
-    }
-
-    public void insertarServicio( final JSONArray arrayGeom)
-    {
-        String url = "http://arcgis4.inei.gob.pe:6080/arcgis/rest/services/DESARROLLO/servicio_prueba_captura/FeatureServer/0/addFeatures";
-        StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Log.i("SUCCESS", response);
-                String queryJsonUpdate = "UPDATE poligonos SET export =1  where export=0;" ;
-                db.execSQL(queryJsonUpdate);
-                Toast.makeText(getContext(),"Se Inserto en el Servidor Correctamente!",Toast.LENGTH_SHORT).show();
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.i("ERROR", error.toString());
-                Toast.makeText(getContext(),"Error al Insertar en el Servidor",Toast.LENGTH_SHORT).show();
-            }
-        }){
-
-            @Override
-            public String getBodyContentType() {
-                return "application/x-www-form-urlencoded; charset=utf-8";
-            }
-
-
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("features", arrayGeom.toString());
-                params.put("f", "json");
-                return params;
-            }
-
-            /*@Override
-            public byte[] getBody() throws AuthFailureError{
-                try {
-                    return requestBody == null ? null : requestBody.getBytes("utf-8");
-                } catch (UnsupportedEncodingException uee) {
-                    VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", requestBody, "utf-8");
-                    return null;
-                }
-            }*/
-
-            /*@Override
-            protected Response<String> parseNetworkResponse(NetworkResponse response) {
-                String responseString = "";
-                if (response != null) {
-                    responseString = String.valueOf(response.statusCode);
-                    // can get more details such as response.headers
-                }
-                return Response.success(responseString, HttpHeaderParser.parseCacheHeaders(response));
-            }*/
-
-
-
-
-        };
-
-
-
-
-
-
-/*
-        JsonArrayRequest request = new JsonArrayRequest(Request.Method.POST, url, arrayGeom,
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        Log.i("SUCCESS", response.toString());
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.i("ERROR", error.toString());
-            }
-        }
-        );*/
-
-       /* JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            JSONArray jsonArray = response.getJSONArray("employees");
-
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                JSONObject employee = jsonArray.getJSONObject(i);
-
-                                String firstName = employee.getString("firstname");
-                                int age = employee.getInt("age");
-                                String mail = employee.getString("mail");
-
-                                mTextViewResult.append(firstName + ", " + String.valueOf(age) + ", " + mail + "\n\n");
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-            }
-        });*/
-
-        mQueue.add(request);
 
     }
 

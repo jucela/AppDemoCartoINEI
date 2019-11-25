@@ -9,22 +9,34 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ExpandableListView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
+import com.inei.appcartoinei.NumericKeyBoardTransformationMethod;
 import com.inei.appcartoinei.R;
 import com.inei.appcartoinei.adapters.ExpandListAdapter;
 import com.inei.appcartoinei.fragments.Capa1;
 import com.inei.appcartoinei.fragments.Capa2;
 import com.inei.appcartoinei.fragments.Capa3;
+import com.inei.appcartoinei.modelo.DAO.Data;
+import com.inei.appcartoinei.modelo.DAO.DataBaseHelper;
+import com.inei.appcartoinei.modelo.pojos.Capa;
 
+import org.spatialite.database.SQLiteDatabase;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -42,14 +54,18 @@ public class MainActivity extends AppCompatActivity  {
     private ExpandListAdapter listAdapter;
     private MenuItem menuItems;
 
+    private SQLiteDatabase db ;
+    private DataBaseHelper op;
+
+    Data    data;
+    Context context;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         drawerLayout =(DrawerLayout)findViewById(R.id.drawer);
-
-        boton =(Button) findViewById(R.id.boton);
 
         actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,R.string.open,R.string.close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
@@ -59,7 +75,73 @@ public class MainActivity extends AppCompatActivity  {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setupDrawerContent(navigationView);
 
+        //NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View headerView = navigationView.getHeaderView(0);
+        ImageView img_add_capa = (ImageView) headerView.findViewById(R.id.img_add_capa);
+        //accountButton.setOnClickListener(this);
 
+
+
+
+        img_add_capa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this,R.style.ThemeOverlay_MaterialComponents_Dialog);
+                final View dialogView = MainActivity.this.getLayoutInflater().inflate(R.layout.layout_form_capa, null);
+                final LinearLayout lytDialog = (LinearLayout) dialogView.findViewById(R.id.dialog_lyt);
+                final EditText nombre       = (EditText) dialogView.findViewById(R.id.id_edtNombre);
+                final EditText descripcion  = (EditText) dialogView.findViewById(R.id.id_edtDescripcion);
+                final EditText tipo         = (EditText) dialogView.findViewById(R.id.id_edtTipo);
+                final EditText srid         = (EditText) dialogView.findViewById(R.id.id_edtSRID);
+                final EditText escalamin    = (EditText) dialogView.findViewById(R.id.id_edtEscalaMin);
+                final EditText escalamax    = (EditText) dialogView.findViewById(R.id.id_edtEscalaMax);
+                final EditText escalamineti = (EditText) dialogView.findViewById(R.id.id_edtEscalaMinEti);
+                final EditText escalamaxeti = (EditText) dialogView.findViewById(R.id.id_edtEscalaMaxEti);
+
+                //srid.setTransformationMethod(new NumericKeyBoardTransformationMethod());
+
+                alert.setTitle("Crear Capa Vectorial");
+                alert.setIcon(R.drawable.ic_layers_36);
+                alert.setView(dialogView);
+                alert.setPositiveButton("OK",null);
+                alert.setNegativeButton("Cancelar",null);
+
+                final AlertDialog alertDialog = alert.create();
+
+                alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                    @Override
+                    public void onShow(DialogInterface dialogInterface) {
+                        Button b = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                        b.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                // TODO Do something
+                                try {
+                                    data = new Data(context);
+                                    data.open();
+                                    data.insertarDatos(new Capa(1,
+                                            nombre.getText().toString(),
+                                            descripcion.getText().toString(),
+                                            tipo.getText().toString(),
+                                            Integer.parseInt(srid.getText().toString()),
+                                            Integer.parseInt(escalamin.getText().toString()),
+                                            Integer.parseInt(escalamax.getText().toString()),
+                                            Integer.parseInt(escalamineti.getText().toString()),
+                                            Integer.parseInt(escalamaxeti.getText().toString())));
+                                    data.close();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                                alertDialog.dismiss();
+                            }
+                        });
+                    }
+                });
+                alertDialog.show();
+            }
+        });
+
+     createDB();
     }
 
 
@@ -127,7 +209,6 @@ public class MainActivity extends AppCompatActivity  {
             public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
                 Fragment fragment = null;
                 Class fragmentClass=null;
-
                 switch (groupPosition) {
                     case 0:
                         fragmentClass = Capa1.class;
@@ -166,8 +247,6 @@ public class MainActivity extends AppCompatActivity  {
             }
         });
         expListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
-
-
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, final int groupPosition, final int childPosition, long id) {
 
@@ -268,5 +347,10 @@ public class MainActivity extends AppCompatActivity  {
         listDataChild.put(listDataHeader.get(1),grupo2);
         listDataChild.put(listDataHeader.get(2),grupo3);
         listDataChild.put(listDataHeader.get(3),grupo4);
+    }
+
+    private void createDB(){
+        op = new DataBaseHelper(this);
+        db = op.getWritableDatabase();
     }
 }

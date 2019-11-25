@@ -19,6 +19,6 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="15dp"
         android:tint="#ffffff"
-        app:srcCompat="@drawable/ic_cloud_download"/>
+        app:srcCompat="@drawable/ic_cloud_upload"/>
 
 </FrameLayout>
