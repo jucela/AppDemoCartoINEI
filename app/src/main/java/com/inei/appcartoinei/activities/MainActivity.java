@@ -66,11 +66,13 @@ public class MainActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         drawerLayout =(DrawerLayout)findViewById(R.id.drawer);
+        createDB();
+
 
         actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,R.string.open,R.string.close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
-        enableExpandableList();
+
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_drawer);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setupDrawerContent(navigationView);
@@ -79,6 +81,15 @@ public class MainActivity extends AppCompatActivity  {
         View headerView = navigationView.getHeaderView(0);
         ImageView img_add_capa = (ImageView) headerView.findViewById(R.id.img_add_capa);
         //accountButton.setOnClickListener(this);
+        listDataHeader = new ArrayList<String>();
+        listDataChild = new HashMap<String, List<String>>();
+        expListView = (ExpandableListView) findViewById(R.id.expandable_principal1);
+        //prepareListData(listDataHeader, listDataChild);
+        //listAdapter = new ExpandListAdapter(this, listDataHeader, listDataChild);
+//        listAdapter.notifyDataSetChanged();
+        listAdapter = new ExpandListAdapter(this,obtenerListDataHeader(),obtenerListDataChild(),expListView);
+        expListView.setAdapter(listAdapter);
+        enableExpandableList();
 
 
 
@@ -128,10 +139,12 @@ public class MainActivity extends AppCompatActivity  {
                                             Integer.parseInt(escalamax.getText().toString()),
                                             Integer.parseInt(escalamineti.getText().toString()),
                                             Integer.parseInt(escalamaxeti.getText().toString())));
+                                    listAdapter.notifyDataSetChanged();
                                     data.close();
                                 } catch (IOException e) {
                                     e.printStackTrace();
                                 }
+
                                 alertDialog.dismiss();
                             }
                         });
@@ -141,7 +154,7 @@ public class MainActivity extends AppCompatActivity  {
             }
         });
 
-     createDB();
+
     }
 
 
@@ -196,13 +209,6 @@ public class MainActivity extends AppCompatActivity  {
 
 
     private void enableExpandableList() {
-        listDataHeader = new ArrayList<String>();
-        listDataChild = new HashMap<String, List<String>>();
-        expListView = (ExpandableListView) findViewById(R.id.expandable_principal1);
-
-        prepareListData(listDataHeader, listDataChild);
-        listAdapter = new ExpandListAdapter(this, listDataHeader, listDataChild);
-        expListView.setAdapter(listAdapter);
 
         expListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
             @Override
@@ -314,43 +320,103 @@ public class MainActivity extends AppCompatActivity  {
         });
     }
 
+
     private void prepareListData(List<String> listDataHeader, Map<String, List<String>> listDataChild) {
-        listDataHeader.add(0,"Capa 01");
-        listDataHeader.add(1,"Capa 02");
-        listDataHeader.add(2,"Capa 03");
-        listDataHeader.add(3,"Capa 04");
+        ArrayList<String> items = new ArrayList<>();
+        items.add("Juxe");
+        items.add("Jorge");
+        items.add("Luis");
+        items.add("Pedro");
 
-        // Adding child data
-        List<String> grupo1 = new ArrayList<String>();
-        grupo1.add(0,"Agregar");
-        grupo1.add(1,"Editar");
-        grupo1.add(2,"Eliminar");
+        List<String> subItems = new ArrayList<String>();
+        subItems.add(0,"Agregar");
+        subItems.add(1,"Editar");
+        subItems.add(2,"Eliminar");
 
-        List<String> grupo2 = new ArrayList<String>();
-        grupo2.add(0,"Agregar");
-        grupo2.add(1,"Editar");
-        grupo2.add(2,"Eliminar");
+        for(int i=0;i<obtenerAllCapa().size();i++){
+            listDataHeader.add(i,obtenerAllCapa().get(i).getNombre());
+        }
 
-
-        List<String> grupo3 = new ArrayList<String>();
-        grupo3.add(0,"Agregar");
-        grupo3.add(1,"Editar");
-        grupo3.add(2,"Eliminar");
-
-        List<String> grupo4 = new ArrayList<String>();
-        grupo4.add(0,"Agregar");
-        grupo4.add(1,"Editar");
-        grupo4.add(2,"Eliminar");
+        for(int i=0;i<obtenerAllCapa().size();i++){
+            listDataChild.put(listDataHeader.get(i),subItems);
+        }
 
 
-        listDataChild.put(listDataHeader.get(0),grupo1);// Header, Child data
-        listDataChild.put(listDataHeader.get(1),grupo2);
-        listDataChild.put(listDataHeader.get(2),grupo3);
-        listDataChild.put(listDataHeader.get(3),grupo4);
+
+//        listDataHeader.add(0,"Capa 01");
+//        listDataHeader.add(1,"Capa 02");
+//        listDataHeader.add(2,"Capa 03");
+//        listDataHeader.add(3,"Capa 04");
+//
+//         //Adding child data
+//        List<String> grupo1 = new ArrayList<String>();
+//        grupo1.add(0,"Agregar");
+//        grupo1.add(1,"Editar");
+//        grupo1.add(2,"Eliminar");
+//
+//        List<String> grupo2 = new ArrayList<String>();
+//        grupo2.add(0,"Agregar");
+//        grupo2.add(1,"Editar");
+//        grupo2.add(2,"Eliminar");
+//
+//
+//        List<String> grupo3 = new ArrayList<String>();
+//        grupo3.add(0,"Agregar");
+//        grupo3.add(1,"Editar");
+//        grupo3.add(2,"Eliminar");
+//
+//        List<String> grupo4 = new ArrayList<String>();
+//        grupo4.add(0,"Agregar");
+//        grupo4.add(1,"Editar");
+//        grupo4.add(2,"Eliminar");
+//
+//
+//        listDataChild.put(listDataHeader.get(0),subItems);// Header, Child data
+//        listDataChild.put(listDataHeader.get(1),subItems);
+//        listDataChild.put(listDataHeader.get(2),subItems);
+//        listDataChild.put(listDataHeader.get(3),subItems);
     }
 
     private void createDB(){
         op = new DataBaseHelper(this);
         db = op.getWritableDatabase();
     }
+
+    public ArrayList<Capa> obtenerAllCapa()
+    { ArrayList<Capa> capas = new ArrayList<>();
+        try {
+            Data data = new Data(context);
+            data.open();
+            capas = data.getAllCapa();
+            data.close();
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+        return capas;
+    }
+
+    public ArrayList<String> obtenerListDataHeader() {
+       ArrayList<String> header = new ArrayList<>();
+        for (int i = 0; i < obtenerAllCapa().size(); i++) {
+            header.add(i, obtenerAllCapa().get(i).getNombre());
+        }
+        return header;
+    }
+
+    public HashMap<String, List<String>> obtenerListDataChild(){
+        HashMap<String, List<String>> child = new HashMap<String, List<String>>();
+        ArrayList<String> subItems = new ArrayList<>();
+        subItems.add(0,"Agregar");
+        subItems.add(1,"Editar");
+        subItems.add(2,"Eliminar");
+
+
+        for(int i=0;i<obtenerAllCapa().size();i++){
+            child.put(obtenerListDataHeader().get(i),subItems);
+        }
+        return child;
+    }
+
+
 }

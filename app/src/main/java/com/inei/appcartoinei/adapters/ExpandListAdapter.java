@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,11 +26,14 @@ public class ExpandListAdapter extends BaseExpandableListAdapter {
     // child data in format of header title, child title
     private HashMap<String, List<String>> _listDataChild;
     ArrayList<ArrayList<Boolean>> checkStates = new ArrayList<ArrayList<Boolean>>();
+    ExpandableListView expandList;
 
-    public ExpandListAdapter(Context context, List<String> listDataHeader, HashMap<String, List<String>> listDataChild) {
+    public ExpandListAdapter(Context context, List<String> listDataHeader, HashMap<String, List<String>> listDataChild, ExpandableListView mView) {
         this._context = context;
         this._listDataHeader = listDataHeader;
         this._listDataChild = listDataChild;
+        this.expandList = mView;
+        notifyDataSetChanged();
 
     }
 
@@ -116,7 +120,7 @@ public class ExpandListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public boolean hasStableIds() {
-        return false;
+        return true;
     }
 
     @Override

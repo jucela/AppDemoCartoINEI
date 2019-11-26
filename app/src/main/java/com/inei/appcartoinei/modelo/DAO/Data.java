@@ -13,6 +13,7 @@ import org.spatialite.database.SQLiteOpenHelper;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Data {
     Context          contexto;
@@ -67,6 +68,31 @@ public class Data {
     }
 
     /*METODOS*/
+    public ArrayList<Capa> getAllCapa(){
+        ArrayList<Capa> capa = new ArrayList<>();
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.rawQuery("SELECT id,nombre,descripcion,tipo,srid,escalamin,escalamax,escalamineti,escalamaxeti FROM capa ",null);
+            while(cursor.moveToNext()){
+                Capa capas = new Capa();
+                capas.setId(cursor.getInt(cursor.getColumnIndex("id")));
+                capas.setNombre(cursor.getString(cursor.getColumnIndex("nombre")));
+                capas.setDescripcion(cursor.getString(cursor.getColumnIndex("descripcion")));
+                capas.setTipo(cursor.getString(cursor.getColumnIndex("tipo")));
+                capas.setSrid(cursor.getInt(cursor.getColumnIndex("srid")));
+                capas.setEscalamin(cursor.getInt(cursor.getColumnIndex("escalamin")));
+                capas.setEscalamax(cursor.getInt(cursor.getColumnIndex("escalamax")));
+                capas.setEscalamineti(cursor.getInt(cursor.getColumnIndex("escalamineti")));
+                capas.setEscalamaxeti(cursor.getInt(cursor.getColumnIndex("escalamaxeti")));
+                capa.add(capas);
+            }
+        }finally{
+            if(cursor != null) cursor.close();
+        }
+        return capa;
+
+    }
+
     public void insertarDatos(Capa capa){
         ContentValues contentValues = capa.toValues();
         sqLiteDatabase.insert(SQLConstantes.tb_capa,null,contentValues);
