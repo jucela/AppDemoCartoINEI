@@ -16,6 +16,7 @@ import android.text.InputFilter;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
@@ -30,6 +31,8 @@ import com.inei.appcartoinei.adapters.ExpandListAdapter;
 import com.inei.appcartoinei.fragments.Capa1;
 import com.inei.appcartoinei.fragments.Capa2;
 import com.inei.appcartoinei.fragments.Capa3;
+import com.inei.appcartoinei.fragments.ListPoligonoFragment;
+import com.inei.appcartoinei.fragments.MapCapas;
 import com.inei.appcartoinei.modelo.DAO.Data;
 import com.inei.appcartoinei.modelo.DAO.DataBaseHelper;
 import com.inei.appcartoinei.modelo.pojos.Capa;
@@ -80,13 +83,15 @@ public class MainActivity extends AppCompatActivity  {
         //NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View headerView = navigationView.getHeaderView(0);
         ImageView img_add_capa = (ImageView) headerView.findViewById(R.id.img_add_capa);
+        ImageView img_delete_capa = (ImageView) headerView.findViewById(R.id.img_delete_capa);
+        ImageView img_list_capa = (ImageView) headerView.findViewById(R.id.img_list_capa);
         //accountButton.setOnClickListener(this);
         listDataHeader = new ArrayList<String>();
         listDataChild = new HashMap<String, List<String>>();
         expListView = (ExpandableListView) findViewById(R.id.expandable_principal1);
         //prepareListData(listDataHeader, listDataChild);
         //listAdapter = new ExpandListAdapter(this, listDataHeader, listDataChild);
-//        listAdapter.notifyDataSetChanged();
+        //listAdapter.notifyDataSetChanged();
         listAdapter = new ExpandListAdapter(this,obtenerListDataHeader(),obtenerListDataChild(),expListView);
         expListView.setAdapter(listAdapter);
         enableExpandableList();
@@ -99,7 +104,7 @@ public class MainActivity extends AppCompatActivity  {
             public void onClick(View view) {
                 AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this,R.style.ThemeOverlay_MaterialComponents_Dialog);
                 final View dialogView = MainActivity.this.getLayoutInflater().inflate(R.layout.layout_form_capa, null);
-                final LinearLayout lytDialog = (LinearLayout) dialogView.findViewById(R.id.dialog_lyt);
+                final EditText id       = (EditText) dialogView.findViewById(R.id.id_edtId);
                 final EditText nombre       = (EditText) dialogView.findViewById(R.id.id_edtNombre);
                 final EditText descripcion  = (EditText) dialogView.findViewById(R.id.id_edtDescripcion);
                 final EditText tipo         = (EditText) dialogView.findViewById(R.id.id_edtTipo);
@@ -108,8 +113,6 @@ public class MainActivity extends AppCompatActivity  {
                 final EditText escalamax    = (EditText) dialogView.findViewById(R.id.id_edtEscalaMax);
                 final EditText escalamineti = (EditText) dialogView.findViewById(R.id.id_edtEscalaMinEti);
                 final EditText escalamaxeti = (EditText) dialogView.findViewById(R.id.id_edtEscalaMaxEti);
-
-                //srid.setTransformationMethod(new NumericKeyBoardTransformationMethod());
 
                 alert.setTitle("Crear Capa Vectorial");
                 alert.setIcon(R.drawable.ic_layers_36);
@@ -130,7 +133,7 @@ public class MainActivity extends AppCompatActivity  {
                                 try {
                                     data = new Data(context);
                                     data.open();
-                                    data.insertarDatos(new Capa(1,
+                                    data.insertarCapa(new Capa(Integer.parseInt(id.getText().toString()),
                                             nombre.getText().toString(),
                                             descripcion.getText().toString(),
                                             tipo.getText().toString(),
@@ -151,6 +154,31 @@ public class MainActivity extends AppCompatActivity  {
                     }
                 });
                 alertDialog.show();
+            }
+        });
+
+        img_delete_capa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    data = new Data(context);
+                    data.open();
+                    data.deletePoligono();
+                    data.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        img_list_capa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ListPoligonoFragment newFragment = new ListPoligonoFragment();
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.contedor_fragments,newFragment).commit();
+                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer);
+                drawer.closeDrawer(GravityCompat.START);
             }
         });
 
@@ -213,37 +241,37 @@ public class MainActivity extends AppCompatActivity  {
         expListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
             @Override
             public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
-                Fragment fragment = null;
-                Class fragmentClass=null;
-                switch (groupPosition) {
-                    case 0:
-                        fragmentClass = Capa1.class;
-                        Toast.makeText(MainActivity.this, "posicion 01", Toast.LENGTH_LONG).show();
-                        break;
-                    case 1:
-                        fragmentClass = Capa2.class;
-                        Toast.makeText(MainActivity.this, "posicion 02", Toast.LENGTH_LONG).show();
-                        break;
-                    case 2:
-                        fragmentClass = Capa3.class;
-                        Toast.makeText(MainActivity.this, "posicion 03", Toast.LENGTH_LONG).show();
-                        break;
-                    case 3:
-                        fragmentClass = Capa3.class;
-                        Toast.makeText(MainActivity.this, "posicion 04", Toast.LENGTH_LONG).show();
-                        break;
-                    default:
-                        fragmentClass = Capa1.class;
-                }
-                try {
-                    fragment = (Fragment)fragmentClass.newInstance();
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                } catch (InstantiationException e) {
-                    e.printStackTrace();
-                }
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.contedor_fragments,fragment).commit();
+//                Fragment fragment = null;
+//                Class fragmentClass=null;
+//                switch (groupPosition) {
+//                    case 0:
+//                        fragmentClass = Capa1.class;
+//                        Toast.makeText(MainActivity.this, "posicion 01", Toast.LENGTH_LONG).show();
+//                        break;
+//                    case 1:
+//                        fragmentClass = Capa2.class;
+//                        Toast.makeText(MainActivity.this, "posicion 02", Toast.LENGTH_LONG).show();
+//                        break;
+//                    case 2:
+//                        fragmentClass = Capa3.class;
+//                        Toast.makeText(MainActivity.this, "posicion 03", Toast.LENGTH_LONG).show();
+//                        break;
+//                    case 3:
+//                        fragmentClass = Capa3.class;
+//                        Toast.makeText(MainActivity.this, "posicion 04", Toast.LENGTH_LONG).show();
+//                        break;
+//                    default:
+//                        fragmentClass = Capa1.class;
+//                }
+//                try {
+//                    fragment = (Fragment)fragmentClass.newInstance();
+//                } catch (IllegalAccessException e) {
+//                    e.printStackTrace();
+//                } catch (InstantiationException e) {
+//                    e.printStackTrace();
+//                }
+//                FragmentManager fragmentManager = getSupportFragmentManager();
+//                fragmentManager.beginTransaction().replace(R.id.contedor_fragments,fragment).commit();
 //                menuItems.setChecked(true);
  //               setTitle(menuItems.getTitle());
 //                drawerLayout.closeDrawers();
@@ -252,69 +280,48 @@ public class MainActivity extends AppCompatActivity  {
                 return false;
             }
         });
+//        expListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+//            @Override
+//            public boolean onChildClick(ExpandableListView parent, View v, final int groupPosition, final int childPosition, long id) {
+//                Fragment fragment = null;
+//                Class fragmentClass=null;
+//                if(groupPosition>=0 && childPosition==0)
+//                {
+//                    fragmentClass = MapCapas.class;
+//                    try {
+//                        fragment = (Fragment)fragmentClass.newInstance();
+//                    } catch (IllegalAccessException e) {
+//                        e.printStackTrace();
+//                    } catch (InstantiationException e) {
+//                        e.printStackTrace();
+//                    }
+//                    FragmentManager fragmentManager = getSupportFragmentManager();
+//                    fragmentManager.beginTransaction().replace(R.id.contedor_fragments,fragment).commit();
+//                    DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer);
+//                    drawer.closeDrawer(GravityCompat.START);
+//
+//                }
+//                return false;
+//            }
+//        });
+
+
         expListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, final int groupPosition, final int childPosition, long id) {
+                  Toast.makeText(MainActivity.this,""+obtenerListDataHeader2().get(groupPosition),Toast.LENGTH_SHORT).show();
 
-                switch (groupPosition) {
-                    case 0:
-                        switch (childPosition) {
-                            case 0:
-                                Toast.makeText(MainActivity.this, "Agregar 1", Toast.LENGTH_LONG).show();
-                                break;
-                            case 1:
-                                Toast.makeText(MainActivity.this, "Editar 1", Toast.LENGTH_LONG).show();
-                                break;
-                            case 2:
-                                Toast.makeText(MainActivity.this, "Eliminar 1", Toast.LENGTH_LONG).show();
-                                break;
-                        }
-                        break;
-                    case 1:
-                        switch (childPosition) {
-                            case 0:
-                                Toast.makeText(MainActivity.this, "Agregar 2", Toast.LENGTH_LONG).show();
-                                break;
-                            case 1:
-                                Toast.makeText(MainActivity.this, "Editar 2", Toast.LENGTH_LONG).show();
-                                break;
-                            case 2:
-                                Toast.makeText(MainActivity.this, "Eliminar 2", Toast.LENGTH_LONG).show();
-                                break;
-
-                        }
-                        break;
-                    case 2:
-                        switch (childPosition) {
-                            case 0:
-                                Toast.makeText(MainActivity.this, "Agregar 3", Toast.LENGTH_LONG).show();
-                                break;
-                            case 1:
-                                Toast.makeText(MainActivity.this, "Editar 3", Toast.LENGTH_LONG).show();
-                                break;
-                            case 2:
-                                Toast.makeText(MainActivity.this, "Eliminar 3", Toast.LENGTH_LONG).show();
-                                break;
-
-                        }
-                        break;
-                    case 3:
-                        switch (childPosition) {
-                            case 0:
-                                Toast.makeText(MainActivity.this, "Agregar 4", Toast.LENGTH_LONG).show();
-                                break;
-                            case 1:
-                                Toast.makeText(MainActivity.this, "Editar 4", Toast.LENGTH_LONG).show();
-                                break;
-                            case 2:
-                                Toast.makeText(MainActivity.this, "Eliminar 4", Toast.LENGTH_LONG).show();
-                                break;
-
-                        }
-                        break;
+                if(groupPosition>=0 && childPosition==0)
+                {
+                    Bundle args = new Bundle();
+                    args.putString("idCapa",""+obtenerListDataHeader2().get(groupPosition));
+                    MapCapas newFragment = new MapCapas();
+                    newFragment.setArguments(args);
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    fragmentManager.beginTransaction().replace(R.id.contedor_fragments,newFragment).commit();
+                    DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer);
+                    drawer.closeDrawer(GravityCompat.START);
                 }
-                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer);
-                drawer.closeDrawer(GravityCompat.START);
                 return false;
             }
         });
@@ -400,6 +407,14 @@ public class MainActivity extends AppCompatActivity  {
        ArrayList<String> header = new ArrayList<>();
         for (int i = 0; i < obtenerAllCapa().size(); i++) {
             header.add(i, obtenerAllCapa().get(i).getNombre());
+        }
+        return header;
+    }
+
+    public ArrayList<Integer> obtenerListDataHeader2() {
+        ArrayList<Integer> header = new ArrayList<>();
+        for (int i = 0; i < obtenerAllCapa().size(); i++) {
+            header.add(i, obtenerAllCapa().get(i).getId());
         }
         return header;
     }

@@ -1,5 +1,4 @@
 package com.inei.appcartoinei.modelo;
-
 import android.content.Context;
 
 import org.spatialite.database.SQLiteDatabase;

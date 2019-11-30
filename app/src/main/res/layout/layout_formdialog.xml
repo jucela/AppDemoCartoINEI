@@ -13,40 +13,27 @@
                     android:id="@+id/id_edtUbigeo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="place"/>
+                    android:hint="Ubigeo"
+                    android:textColor="@color/colorBlack"/>
         </com.google.android.material.textfield.TextInputLayout>
-        <LinearLayout
-            android:id="@+id/dialog_lyt"
-            android:orientation="vertical"
-            android:focusableInTouchMode="true"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="15dp">
-
-        <LinearLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Zona       :"/>
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/id_edtZona"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-        </LinearLayout>
-        <LinearLayout
+                    android:layout_height="wrap_content"
+                    android:hint="Zona"
+                    android:textColor="@color/colorBlack"/>
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Manzana:"/>
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/id_edtmanzana"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        </LinearLayout>
-</LinearLayout>
-
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/id_edtmanzana"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Manzana"
+                    android:textColor="@color/colorBlack"/>
+        </com.google.android.material.textfield.TextInputLayout>
 </LinearLayout>

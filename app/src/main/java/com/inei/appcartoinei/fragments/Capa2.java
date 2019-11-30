@@ -82,7 +82,6 @@ public class Capa2 extends Fragment {
             public void onClick(View v) {
                 AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
                 final View dialogView = getActivity().getLayoutInflater().inflate(R.layout.layout_formdialog, null);
-                final LinearLayout lytDialog = (LinearLayout) dialogView.findViewById(R.id.dialog_lyt);
                 final EditText edtUbigeo = (EditText) dialogView.findViewById(R.id.id_edtUbigeo);
                 final EditText edtZona = (EditText) dialogView.findViewById(R.id.id_edtZona);
                 final EditText edtManzana = (EditText) dialogView.findViewById(R.id.id_edtmanzana);

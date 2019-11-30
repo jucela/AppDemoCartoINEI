@@ -5,8 +5,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -20,7 +20,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -38,8 +37,11 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.JointType;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polygon;
 import com.google.android.gms.maps.model.PolygonOptions;
@@ -53,7 +55,6 @@ import com.inei.appcartoinei.modelo.pojos.Capa;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.spatialite.database.SQLiteDatabase;
-import org.spatialite.database.SQLiteOpenHelper;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -61,7 +62,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class Capa3 extends Fragment implements OnMapReadyCallback,GoogleMap.OnMapClickListener {
+public class MapCapas extends Fragment implements OnMapReadyCallback,GoogleMap.OnMapClickListener {
 
     GoogleMap mgoogleMap;
     MapView mapView;
@@ -87,11 +88,13 @@ public class Capa3 extends Fragment implements OnMapReadyCallback,GoogleMap.OnMa
     private RequestQueue mQueue;
     Data    data;
     Context context;
+    String  idCapa;
+    Cursor res=null;
 
 
     private OnFragmentInteractionListener mListener;
 
-    public Capa3() {
+    public MapCapas() {
         // Required empty public constructor
     }
 
@@ -99,6 +102,7 @@ public class Capa3 extends Fragment implements OnMapReadyCallback,GoogleMap.OnMa
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mLocationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
+        consulta();
 //        if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION)== PackageManager.PERMISSION_GRANTED){
 //            mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,LOCATION_UPDATE_MIN_TIME,LOCATION_UPDATE_MIN_DISTANCE, (LocationListener) this);
 //        }
@@ -109,6 +113,8 @@ public class Capa3 extends Fragment implements OnMapReadyCallback,GoogleMap.OnMa
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_capa3, container, false);
+        idCapa = getArguments().getString("idCapa","aaa");
+        Log.i("idCapa",idCapa);
         return view;
     }
 
@@ -121,8 +127,8 @@ public class Capa3 extends Fragment implements OnMapReadyCallback,GoogleMap.OnMa
         fab3 =  (FloatingActionButton) view.findViewById(R.id.fab3);
 
         //conn = new ConexionSpatiaLiteHelper(getContext());
-        //op = new DataBaseHelper(getContext());
-        //db = op.getWritableDatabase();
+        op = new DataBaseHelper(getContext());
+        db = op.getWritableDatabase();
         mQueue = Volley.newRequestQueue(getContext());
 
         if(mapView!=null){
@@ -209,7 +215,6 @@ public class Capa3 extends Fragment implements OnMapReadyCallback,GoogleMap.OnMa
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //insertarDatosCapa();
                 exportarDatos();
             }
         });
@@ -218,8 +223,8 @@ public class Capa3 extends Fragment implements OnMapReadyCallback,GoogleMap.OnMa
         fab2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //agregarPoligono(newListPoints);
-                agregarPoligono(listPoints);
+                //agregarPoligono(listPoints);
+                insertarPoligono(listPoints);
 
             }
         });
@@ -228,7 +233,7 @@ public class Capa3 extends Fragment implements OnMapReadyCallback,GoogleMap.OnMa
         fab3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+                AlertDialog.Builder alert = new AlertDialog.Builder(getActivity(),R.style.ThemeOverlay_MaterialComponents_Dialog);
                 final View dialogView = getActivity().getLayoutInflater().inflate(R.layout.layout_formdialog, null);
                 final EditText edtUbigeo = (EditText) dialogView.findViewById(R.id.id_edtUbigeo);
                 final EditText edtZona = (EditText) dialogView.findViewById(R.id.id_edtZona);
@@ -237,7 +242,8 @@ public class Capa3 extends Fragment implements OnMapReadyCallback,GoogleMap.OnMa
                 edtUbigeo.setFilters(new InputFilter[]{new InputFilter.LengthFilter(4)});
                 edtZona.setFilters(new InputFilter[]{new InputFilter.LengthFilter(4)});
                 edtManzana.setFilters(new InputFilter[]{new InputFilter.LengthFilter(4)});
-                alert.setTitle("Datos");
+                alert.setTitle("Ingresar Datos");
+                alert.setIcon(R.drawable.ic_action_pin);
                 alert.setView(dialogView);
                 alert.setPositiveButton("OK",null);
                 alert.setNegativeButton("Cancelar",null);
@@ -252,9 +258,7 @@ public class Capa3 extends Fragment implements OnMapReadyCallback,GoogleMap.OnMa
                             @Override
                             public void onClick(View view) {
                                 // TODO Do something
-                                if(!edtUbigeo.getText().toString().equals("") && !edtZona.getText().toString().equals("")&&!edtManzana.getText().toString().equals("0")){
-                                    //dato = edtUbigeo.getText().toString();
-                                    //txt.setText(dato);
+                                if(!edtUbigeo.getText().toString().equals("") && !edtZona.getText().toString().equals("")&&!edtManzana.getText().toString().equals("")){
                                     valores.add(edtUbigeo.getText().toString());
                                     valores.add(edtZona.getText().toString());
                                     valores.add(edtManzana.getText().toString());
@@ -271,19 +275,62 @@ public class Capa3 extends Fragment implements OnMapReadyCallback,GoogleMap.OnMa
         });
 
 
+        PolygonOptions rectOptions = new PolygonOptions()
+                .add(
+                new LatLng(-12.067416,-77.0492049),
+                new LatLng(-12.068313,-77.0499774),
+                new LatLng(-12.0690894,-77.049044),
+                new LatLng(-12.0681504,-77.0482662),
+                new LatLng(-12.0677622,-77.0487785),
+                new LatLng(-12.067416,-77.0492049)
+        );
+
+        Polygon polygono = googleMap.addPolygon(new PolygonOptions()
+                .add(   new LatLng(-12.067416,-77.0492049),
+                        new LatLng(-12.068313,-77.0499774),
+                        new LatLng(-12.0690894,-77.049044),
+                        new LatLng(-12.0681504,-77.0482662),
+                        new LatLng(-12.0677622,-77.0487785),
+                        new LatLng(-12.067416,-77.0492049))
+                .strokeColor(Color.BLUE)
+                .strokeWidth(2)
+                .strokeJointType(JointType.ROUND)
+                .visible(true));
+
+        polygono.setClickable(true);
+        polygono.setStrokeJointType(JointType.ROUND);
+        googleMap.setOnPolygonClickListener(new GoogleMap.OnPolygonClickListener() {
+            @Override
+            public void onPolygonClick(Polygon polygon) {
+                Toast.makeText(getContext(),"Hola",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
 
     }
 
     @Override
     public void onMapClick(LatLng latLng) {
         listPoints.add(latLng);
-        poligon = mgoogleMap.addPolygon(new PolygonOptions().addAll(listPoints));
-        if(listPoints.size() > 1){
+        poligon = mgoogleMap.addPolygon(new PolygonOptions().addAll(listPoints).strokeJointType(JointType.DEFAULT));
+        //poligon = mgoogleMap.addPolygon(new PolygonOptions().add(new LatLng(0, 0), new LatLng(0, 0), new LatLng(0, 0)).strokeJointType(JointType.DEFAULT));
 
-            poligon.setPoints(listPoints);
-            poligon.setFillColor(0xffff0000);
+
+
+        if(listPoints.size() > 1){
+            poligon.setFillColor(Color.GREEN);
             poligon.setStrokeWidth(5);
+            poligon.setClickable(true);
+            poligon.setStrokeColor(Color.BLACK);
+            poligon.setStrokeJointType(JointType.ROUND);
         }
+
+        Marker marker = mgoogleMap.addMarker(new
+                MarkerOptions().
+                position(latLng).
+                icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_edit_location)));
     }
 
 
@@ -340,54 +387,6 @@ public class Capa3 extends Fragment implements OnMapReadyCallback,GoogleMap.OnMa
         else{Toast.makeText(getContext(),"Ingrese valores (Ubigeo,Manzana,Zona)!",Toast.LENGTH_SHORT).show();}
 
     }
-//
-    public void exportarDatos(){
-
-        String queryJson = "SELECT AsGeoJSON(geometry_column) geom,ubigeo,zona,manzana from poligonos where export=0;" ;
-        Cursor res = db.rawQuery( queryJson, null );
-        int contador = res.getCount();
-        if(contador>0)
-        {
-            Log.i("contador",""+contador);
-            res.moveToFirst();
-
-            while(res.isAfterLast() == false) {
-
-                Log.i("contador1",""+contador);
-
-                String campoGeom=res.getString(res.getColumnIndex("geom"));
-                String campoUbigeo=res.getString(res.getColumnIndex("ubigeo"));
-                String campoZona=res.getString(res.getColumnIndex("zona"));
-                String campoManzana=res.getString(res.getColumnIndex("manzana"));
-
-
-                String stringJsonFinal = "";
-
-                try {
-                    Log.i("contador2",""+contador);
-                    JSONObject geom = new JSONObject(campoGeom);
-                    String rings=geom.get("coordinates").toString();
-                    stringJsonFinal = "{\"geometry\":{\"rings\":"+ rings+", \"spatialReference\" : {\"wkid\" : 4326}},\"attributes\":{\"UBIGEO\":"+campoUbigeo+",\"ZONA\":"+campoZona+",\"MANZANA\":"+campoManzana+"}}";
-                    JSONArray arrayGeom = new JSONArray();
-                    //arrayGeom.put();
-                    JSONObject obj = new JSONObject(stringJsonFinal);
-                    arrayGeom.put(obj);
-                    Log.d("My App", arrayGeom.toString());
-                    insertarServicio(arrayGeom);
-                } catch (Throwable tx) {
-                    Log.e("My App", "Could not parse malformed JSON: \"" + stringJsonFinal + "\"");
-                }
-                res.moveToNext();
-
-            }
-        }
-        else
-        {
-            Toast.makeText(getContext(),"No hay Registros para subir",Toast.LENGTH_SHORT).show();
-        }
-
-
-    }
 
     public void insertarServicio( final JSONArray arrayGeom)
     {
@@ -421,79 +420,7 @@ public class Capa3 extends Fragment implements OnMapReadyCallback,GoogleMap.OnMa
                 params.put("f", "json");
                 return params;
             }
-
-            /*@Override
-            public byte[] getBody() throws AuthFailureError{
-                try {
-                    return requestBody == null ? null : requestBody.getBytes("utf-8");
-                } catch (UnsupportedEncodingException uee) {
-                    VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", requestBody, "utf-8");
-                    return null;
-                }
-            }*/
-
-            /*@Override
-            protected Response<String> parseNetworkResponse(NetworkResponse response) {
-                String responseString = "";
-                if (response != null) {
-                    responseString = String.valueOf(response.statusCode);
-                    // can get more details such as response.headers
-                }
-                return Response.success(responseString, HttpHeaderParser.parseCacheHeaders(response));
-            }*/
-
-
-
-
         };
-
-
-
-
-
-
-/*
-        JsonArrayRequest request = new JsonArrayRequest(Request.Method.POST, url, arrayGeom,
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        Log.i("SUCCESS", response.toString());
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.i("ERROR", error.toString());
-            }
-        }
-        );*/
-
-       /* JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            JSONArray jsonArray = response.getJSONArray("employees");
-
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                JSONObject employee = jsonArray.getJSONObject(i);
-
-                                String firstName = employee.getString("firstname");
-                                int age = employee.getInt("age");
-                                String mail = employee.getString("mail");
-
-                                mTextViewResult.append(firstName + ", " + String.valueOf(age) + ", " + mail + "\n\n");
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-            }
-        });*/
-
         mQueue.add(request);
 
     }
@@ -507,6 +434,125 @@ public class Capa3 extends Fragment implements OnMapReadyCallback,GoogleMap.OnMa
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
+    }
+
+    public  void insertarPoligono(ArrayList<LatLng> poligono){
+        Polygon poligonAdd = mgoogleMap.addPolygon(new PolygonOptions().add(new LatLng(0, 0), new LatLng(0, 0), new LatLng(0, 0)).fillColor(COLOR_FILL_POLYGON_GREEN).strokeWidth(8));
+        if(valores.size()>0)
+        { if(listPoints.size()>0) {
+                poligonAdd.setPoints(poligono);
+                    String query = "INSERT INTO poligonos(id,geometry_column,export,ubigeo,zona,manzana) VALUES ( '"+Integer.parseInt(idCapa)+"',GeomFromText('POLYGON(("+formatGeom(poligono)+"))',4326),0,'"+valores.get(0)+"','"+valores.get(1)+"','"+valores.get(2)+"');" ;
+                    db.execSQL(query);
+                    Toast.makeText(getContext(),"Se Registro Información",Toast.LENGTH_SHORT).show();
+                    listPoints.clear();
+                    valores.clear();
+                    Log.d("query",query);
+
+        }
+        else
+        {Toast.makeText(getContext(),"Ingrese Poligono!",Toast.LENGTH_SHORT).show();}
+        }
+        else{Toast.makeText(getContext(),"Ingrese valores (Ubigeo,Manzana,Zona)!",Toast.LENGTH_SHORT).show();}
+
+    }
+
+    public void exportarDatos(){
+
+        String queryJson = "SELECT AsGeoJSON(geometry_column) geom,ubigeo,zona,manzana from poligonos where export=0;" ;
+        Cursor res = db.rawQuery( queryJson, null );
+        int contador = res.getCount();
+        if(contador>0)
+        {
+            Log.i("datos_contador1",""+contador);
+            res.moveToFirst();
+
+            while(res.isAfterLast() == false) {
+
+                Log.i("datos_contador2",""+contador);
+
+                String campoGeom=res.getString(res.getColumnIndex("geom"));
+                String campoUbigeo=res.getString(res.getColumnIndex("ubigeo"));
+                String campoZona=res.getString(res.getColumnIndex("zona"));
+                String campoManzana=res.getString(res.getColumnIndex("manzana"));
+
+
+                String stringJsonFinal = "";
+
+                try {
+                    Log.i("datos_contador3",""+contador);
+                    JSONObject geom = new JSONObject(campoGeom);
+                    String rings=geom.get("coordinates").toString();
+                    stringJsonFinal = "{\"geometry\":{\"rings\":"+ rings+", \"spatialReference\" : {\"wkid\" : 4326}},\"attributes\":{\"UBIGEO\":"+campoUbigeo+",\"ZONA\":"+campoZona+",\"MANZANA\":"+campoManzana+"}}";
+                    JSONArray arrayGeom = new JSONArray();
+                    Log.i("datos_contador3",""+contador);
+                    //arrayGeom.put();
+                    JSONObject obj = new JSONObject(stringJsonFinal);
+                    arrayGeom.put(obj);
+                    Log.d("My App", arrayGeom.toString());
+                    insertarServicio(arrayGeom);
+                } catch (Throwable tx) {
+                    Log.e("My App", "Could not parse malformed JSON: \"" + stringJsonFinal + "\"");
+                }
+                res.moveToNext();
+
+            }
+        }
+        else
+        {
+            Toast.makeText(getContext(),"No hay Registros para subir",Toast.LENGTH_SHORT).show();
+        }
+
+
+    }
+
+    public void consulta(){
+        String queryJson = "SELECT id,AsGeoJSON(geometry_column) geom,ubigeo,zona,manzana from poligonos where export=0;" ;
+        try {
+            Cursor res=db.rawQuery(queryJson, null);
+            int contador = res.getCount();
+            if (contador > 0) {
+                Log.i("contador", "" + contador);
+                res.moveToFirst();
+
+                while (res.isAfterLast() == false) {
+
+                    Log.i("contador1", "" + contador);
+
+                    String campoGeom = res.getString(res.getColumnIndex("geom"));
+                    String campoUbigeo = res.getString(res.getColumnIndex("ubigeo"));
+                    String campoZona = res.getString(res.getColumnIndex("zona"));
+                    String campoManzana = res.getString(res.getColumnIndex("manzana"));
+                    String stringJsonFinal = "";
+
+                    try {
+                        Log.i("contador2", "" + contador);
+                        JSONObject geom = new JSONObject(campoGeom);
+                        String rings = geom.get("coordinates").toString();
+                        stringJsonFinal = "{\"geometry\":{\"rings\":" + rings + ", \"spatialReference\" : {\"wkid\" : 4326}},\"attributes\":{\"UBIGEO\":" + campoUbigeo + ",\"ZONA\":" + campoZona + ",\"MANZANA\":" + campoManzana + "}}";
+                        JSONArray arrayGeom = new JSONArray();
+                        Log.i("contador_JsonFinal", "" + stringJsonFinal);
+                        //arrayGeom.put();
+                        JSONObject obj = new JSONObject(stringJsonFinal);
+                        Log.i("contador_obj", "" + obj);
+                        arrayGeom.put(obj);
+                        Log.d("contador_arraygeon", arrayGeom.toString());
+                        //insertarServicio(arrayGeom);
+                    } catch (Throwable tx) {
+                        Log.e("My App", "Could not parse malformed JSON: \"" + stringJsonFinal + "\"");
+                    }
+                    res.moveToNext();
+
+                }
+            } else {
+                Toast.makeText(getContext(), "No hay Registros para subir", Toast.LENGTH_SHORT).show();
+            }
+        }catch (NullPointerException e){
+            e.getMessage();
+            Toast.makeText(getContext(), "Error de lista"+e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+
 
 
     }

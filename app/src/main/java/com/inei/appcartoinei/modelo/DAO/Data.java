@@ -7,6 +7,7 @@ import android.database.SQLException;
 import android.util.Log;
 
 import com.inei.appcartoinei.modelo.pojos.Capa;
+import com.inei.appcartoinei.modelo.pojos.Poligono;
 
 import org.spatialite.database.SQLiteDatabase;
 import org.spatialite.database.SQLiteOpenHelper;
@@ -93,9 +94,41 @@ public class Data {
 
     }
 
-    public void insertarDatos(Capa capa){
+    public ArrayList<Poligono> getAllPoligono(){
+        ArrayList<Poligono> poligonos = new ArrayList<>();
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.rawQuery("SELECT id,export,ubigeo,zona,manzana FROM poligonos ",null);
+            while(cursor.moveToNext()){
+                Poligono poligono = new Poligono();
+                poligono.setId(cursor.getInt(cursor.getColumnIndex("id")));
+                poligono.setExport(cursor.getInt(cursor.getColumnIndex("export")));
+                poligono.setUbigeo(cursor.getString(cursor.getColumnIndex("ubigeo")));
+                poligono.setZona(cursor.getString(cursor.getColumnIndex("zona")));
+                poligono.setManzana(cursor.getString(cursor.getColumnIndex("manzana")));
+                poligonos.add(poligono);
+            }
+        }finally{
+            if(cursor != null) cursor.close();
+        }
+        return poligonos;
+
+    }
+
+
+
+    public void insertarCapa(Capa capa){
         ContentValues contentValues = capa.toValues();
         sqLiteDatabase.insert(SQLConstantes.tb_capa,null,contentValues);
+    }
+
+    public void insertarPoligono(Capa capa){
+        ContentValues contentValues = capa.toValues();
+        sqLiteDatabase.insert(SQLConstantes.tb_capa,null,contentValues);
+    }
+
+    public void deletePoligono(){
+        sqLiteDatabase.execSQL("delete from "+ SQLConstantes.tb_poligono);
     }
 
 //    public boolean isTableExists(String nombreTabla) {

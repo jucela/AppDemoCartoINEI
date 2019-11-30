@@ -34,7 +34,6 @@ public class ExpandListAdapter extends BaseExpandableListAdapter {
         this._listDataChild = listDataChild;
         this.expandList = mView;
         notifyDataSetChanged();
-
     }
 
     @Override
@@ -114,7 +113,6 @@ public class ExpandListAdapter extends BaseExpandableListAdapter {
 
         ImageView imageView = (ImageView)convertView.findViewById(R.id.id_imageview1_home);
         imageView.setImageResource(R.drawable.ic_action_pin);
-
         return convertView;
     }
 

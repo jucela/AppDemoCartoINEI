@@ -9,27 +9,33 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:orientation="horizontal">
         <ImageView
             android:id="@+id/img_add_capa"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_layers_36"/>
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="5">
-        <TextView
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:padding="10dp"
-            android:textColor="#ffffff"
-            android:text="Añadir Capa"
-            android:textSize="14dp"/>
+            android:layout_weight="3"
+            android:clickable="true"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/ic_layers_36"/>
+        <ImageView
+            android:id="@+id/img_delete_capa"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:clickable="true"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/ic_layers_clear"/>
+        <ImageView
+            android:id="@+id/img_list_capa"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:clickable="true"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/ic_format_list_bulleted"/>
+
     </LinearLayout>
 
 
