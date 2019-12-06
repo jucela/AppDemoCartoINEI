@@ -15,9 +15,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -51,6 +52,8 @@ import com.inei.appcartoinei.modelo.ConexionSpatiaLiteHelper;
 import com.inei.appcartoinei.modelo.DAO.Data;
 import com.inei.appcartoinei.modelo.DAO.DataBaseHelper;
 import com.inei.appcartoinei.modelo.pojos.Capa;
+import com.inei.appcartoinei.modelo.pojos.Departamento;
+import com.inei.appcartoinei.modelo.pojos.Manzana;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -58,11 +61,12 @@ import org.spatialite.database.SQLiteDatabase;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
 
-public class MapCapas extends Fragment implements OnMapReadyCallback,GoogleMap.OnMapClickListener {
+public class MapManzanaFragment extends Fragment implements OnMapReadyCallback,GoogleMap.OnMapClickListener {
 
     GoogleMap mgoogleMap;
     MapView mapView;
@@ -77,7 +81,7 @@ public class MapCapas extends Fragment implements OnMapReadyCallback,GoogleMap.O
 
     private Polygon poligon;
     private ArrayList<LatLng> listPoints = new ArrayList<LatLng>() ;
-    private ArrayList<String> valores = new ArrayList<String>() ;
+    private ArrayList<String> datosManzana = new ArrayList<String>() ;
     private FloatingActionButton fab1;
     private FloatingActionButton fab2;
     private FloatingActionButton fab3;
@@ -94,7 +98,7 @@ public class MapCapas extends Fragment implements OnMapReadyCallback,GoogleMap.O
 
     private OnFragmentInteractionListener mListener;
 
-    public MapCapas() {
+    public MapManzanaFragment() {
         // Required empty public constructor
     }
 
@@ -102,7 +106,7 @@ public class MapCapas extends Fragment implements OnMapReadyCallback,GoogleMap.O
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mLocationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
-        consulta();
+
 //        if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION)== PackageManager.PERMISSION_GRANTED){
 //            mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,LOCATION_UPDATE_MIN_TIME,LOCATION_UPDATE_MIN_DISTANCE, (LocationListener) this);
 //        }
@@ -112,8 +116,7 @@ public class MapCapas extends Fragment implements OnMapReadyCallback,GoogleMap.O
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_capa3, container, false);
-//        idCapa = getArguments().getString("idCapa","aaa");
-//        Log.i("idCapa",idCapa);
+        idCapa = getArguments().getString("idUsuario","0");
         return view;
     }
 
@@ -125,7 +128,6 @@ public class MapCapas extends Fragment implements OnMapReadyCallback,GoogleMap.O
         fab2 =  (FloatingActionButton) view.findViewById(R.id.fab2);
         fab3 =  (FloatingActionButton) view.findViewById(R.id.fab3);
 
-        //conn = new ConexionSpatiaLiteHelper(getContext());
         op = new DataBaseHelper(getContext());
         db = op.getWritableDatabase();
         mQueue = Volley.newRequestQueue(getContext());
@@ -154,9 +156,6 @@ public class MapCapas extends Fragment implements OnMapReadyCallback,GoogleMap.O
         super.onDetach();
         mListener = null;
     }
-
-
-
 
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
@@ -206,7 +205,7 @@ public class MapCapas extends Fragment implements OnMapReadyCallback,GoogleMap.O
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                exportarDatos();
+                   exportarManzana();
             }
         });
 
@@ -214,8 +213,7 @@ public class MapCapas extends Fragment implements OnMapReadyCallback,GoogleMap.O
         fab2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //agregarPoligono(listPoints);
-                insertarPoligono(listPoints);
+                insertarManzana(listPoints);
 
             }
         });
@@ -224,44 +222,7 @@ public class MapCapas extends Fragment implements OnMapReadyCallback,GoogleMap.O
         fab3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder alert = new AlertDialog.Builder(getActivity(),R.style.ThemeOverlay_MaterialComponents_Dialog);
-                final View dialogView = getActivity().getLayoutInflater().inflate(R.layout.layout_formdialog, null);
-                final EditText edtUbigeo = (EditText) dialogView.findViewById(R.id.id_edtUbigeo);
-                final EditText edtZona = (EditText) dialogView.findViewById(R.id.id_edtZona);
-                final EditText edtManzana = (EditText) dialogView.findViewById(R.id.id_edtmanzana);
-
-                edtUbigeo.setFilters(new InputFilter[]{new InputFilter.LengthFilter(4)});
-                edtZona.setFilters(new InputFilter[]{new InputFilter.LengthFilter(4)});
-                edtManzana.setFilters(new InputFilter[]{new InputFilter.LengthFilter(4)});
-                alert.setTitle("Ingresar Datos");
-                alert.setIcon(R.drawable.ic_action_pin);
-                alert.setView(dialogView);
-                alert.setPositiveButton("OK",null);
-                alert.setNegativeButton("Cancelar",null);
-
-                final AlertDialog alertDialog = alert.create();
-
-                alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
-                    @Override
-                    public void onShow(DialogInterface dialogInterface) {
-                        Button b = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
-                        b.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                // TODO Do something
-                                if(!edtUbigeo.getText().toString().equals("") && !edtZona.getText().toString().equals("")&&!edtManzana.getText().toString().equals("")){
-                                    valores.add(edtUbigeo.getText().toString());
-                                    valores.add(edtZona.getText().toString());
-                                    valores.add(edtManzana.getText().toString());
-                                    alertDialog.dismiss();
-                                }else{
-                                    Toast.makeText(getActivity().getApplicationContext(), "DEBE LLENAR TODOS LOS CAMPOS", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
-                    }
-                });
-                alertDialog.show();
+                formManzana();
             }
         });
 
@@ -293,7 +254,7 @@ public class MapCapas extends Fragment implements OnMapReadyCallback,GoogleMap.O
         googleMap.setOnPolygonClickListener(new GoogleMap.OnPolygonClickListener() {
             @Override
             public void onPolygonClick(Polygon polygon) {
-                Toast.makeText(getContext(),"Hola",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(),"",Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -325,51 +286,40 @@ public class MapCapas extends Fragment implements OnMapReadyCallback,GoogleMap.O
     }
 
 
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-//        if (requestCode == LOCATION_REQUEST_CODE) {
-//            // ¿Permisos asignados?
-//            if (permissions.length > 0 &&
-//                    permissions[0].equals(Manifest.permission.ACCESS_FINE_LOCATION) &&
-//                    grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//                    mgoogleMap.setMyLocationEnabled(true);
-//            } else {
-//
-//                Toast.makeText(getContext(), "Error de permisos", Toast.LENGTH_LONG).show();
-//            }
-//
-//        }
-//    }
-
-    public String formatGeom(ArrayList<LatLng> poligono){
-
-        String format ="";
-
-        for (int i = 0; i <poligono.size() ; i++) {
-            if (i >0){
-                format = format +"," + poligono.get(i).longitude+ " "+poligono.get(i).latitude;
-
+    /*METODO INSERTAR MANZANA A SQLITE INTERNO*/
+    public  void insertarManzanax(ArrayList<LatLng> poligono){
+        Polygon poligonAdd = mgoogleMap.addPolygon(new PolygonOptions().add(new LatLng(0, 0), new LatLng(0, 0), new LatLng(0, 0)).fillColor(COLOR_FILL_POLYGON_GREEN).strokeWidth(8));
+        if(datosManzana.size()>0)
+        { if(listPoints.size()>0) {
+            poligonAdd.setPoints(poligono);
+            try {
+            data = new Data(context);
+            data.open();
+            data.insertManzana(new Manzana(1,2,"001",datosManzana.get(0),"002",datosManzana.get(1),datosManzana.get(2)+datosManzana.get(3)+datosManzana.get(4),"GeomFromText('POLYGON(("+formatGeom(poligono)+"))',4326)"));
+            data.close();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            else{
-                format = poligono.get(i).longitude+ " "+poligono.get(i).latitude;
-            }
-
+            Toast.makeText(getContext(),"Se Registro Información",Toast.LENGTH_SHORT).show();
+            listPoints.clear();
+            datosManzana.clear();
         }
-
-        return format;
-
+        else
+        {Toast.makeText(getContext(),"Ingrese Poligono!",Toast.LENGTH_SHORT).show();}
+        }
+        else{Toast.makeText(getContext(),"Ingrese valores (Ubigeo,Manzana,Zona)!",Toast.LENGTH_SHORT).show();}
     }
 
-    public  void agregarPoligono(ArrayList<LatLng> poligono){
+    public  void insertarManzana(ArrayList<LatLng> poligono){
         Polygon poligonAdd = mgoogleMap.addPolygon(new PolygonOptions().add(new LatLng(0, 0), new LatLng(0, 0), new LatLng(0, 0)).fillColor(COLOR_FILL_POLYGON_GREEN).strokeWidth(8));
-        if(valores.size()>0)
-        {  if(listPoints.size()>0) {
+        if(datosManzana.size()>0)
+        { if(listPoints.size()>0) {
             poligonAdd.setPoints(poligono);
-            String query = "INSERT INTO poligonos(geometry_column,export,ubigeo,zona,manzana) VALUES ( GeomFromText('POLYGON(("+formatGeom(poligono)+"))',4326),0,'"+valores.get(0)+"','"+valores.get(1)+"','"+valores.get(2)+"');" ;
+            String query = "INSERT INTO manzana(id,iduser,idmanzana,nommanzana,idzona,zona,ubigeo,shape) VALUES (1,2,'001','"+datosManzana.get(0)+"','002','"+datosManzana.get(1)+"','"+datosManzana.get(2)+datosManzana.get(3)+datosManzana.get(4)+"',GeomFromText('POLYGON(("+formatGeom(poligono)+"))',4326));" ;
             db.execSQL(query);
             Toast.makeText(getContext(),"Se Registro Información",Toast.LENGTH_SHORT).show();
             listPoints.clear();
-            valores.clear();
+            datosManzana.clear();
             Log.d("query",query);
         }
         else
@@ -379,8 +329,60 @@ public class MapCapas extends Fragment implements OnMapReadyCallback,GoogleMap.O
 
     }
 
-    public void insertarServicio( final JSONArray arrayGeom)
-    {
+
+    /*METODO DE OBTENCION DE MANZANA DE SQLITE INTERNO*/
+    public void exportarManzana(){
+        String queryJson = "SELECT id,iduser,idmanzana,nommanzana,idzona,zona,ubigeo,AsGeoJSON(shape) geom from manzana where id=1;" ;
+        try {
+            Cursor res=db.rawQuery(queryJson, null);
+            Log.i("contador_res", "" +res);
+            int contador = res.getCount();
+            if (contador > 0) {
+                Log.i("contador", "" + contador);
+                res.moveToFirst();
+                while (res.isAfterLast() == false) {
+                    Log.i("contador1", "" + contador);
+                    String campoUbigeo = res.getString(res.getColumnIndex("ubigeo"));
+                    String campoZona =    res.getString(res.getColumnIndex("idzona"));
+                    String campoManzana = res.getString(res.getColumnIndex("nommanzana"));
+                    String campoGeom =    res.getString(res.getColumnIndex("geom"));
+                    String stringJsonFinal = "";
+                    Log.i("contador_Geomm", "" + campoGeom);
+                    try {
+                        Log.i("contador2", "" + contador);
+                        JSONObject geom = new JSONObject(campoGeom);
+                        String rings = geom.get("coordinates").toString();
+                        Log.i("Contador_ring",""+rings);
+
+
+                        stringJsonFinal = "{\"geometry\":{\"rings\":" + rings + ", \"spatialReference\" : {\"wkid\" : 4326}},\"attributes\":{\"UBIGEO\":" + campoUbigeo + ",\"ZONA\":" + campoZona + ",\"MANZANA\":" + campoManzana + "}}";
+                        JSONArray arrayGeom = new JSONArray();
+                        Log.i("contador_JsonFinal", "" + stringJsonFinal);
+                        //arrayGeom.put();
+                        JSONObject obj = new JSONObject(stringJsonFinal);
+                        Log.i("contador_obj", "" + obj);
+                        arrayGeom.put(obj);
+                        Log.d("contador_arraygeon", arrayGeom.toString());
+                        insertarServicio(arrayGeom);
+                    } catch (Throwable tx) {
+                        Log.e("My App", "Could not parse malformed JSON: \"" + stringJsonFinal + "\"");
+                    }
+                    res.moveToNext();
+                }
+            } else {
+                Toast.makeText(getContext(), "No hay Registros para subir...", Toast.LENGTH_SHORT).show();
+            }
+        }catch (NullPointerException e){
+            e.getMessage();
+            Toast.makeText(getContext(), "Error de lista"+e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+
+
+
+    }
+
+    /*METODO DE INSERCION DE MANZANA A SQLSERVER MEDIANTE SERVICIO GIS*/
+    public void insertarServicio( final JSONArray arrayGeom){
         String url = "http://arcgis4.inei.gob.pe:6080/arcgis/rest/services/DESARROLLO/servicio_prueba_captura/FeatureServer/0/addFeatures";
         StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -416,137 +418,105 @@ public class MapCapas extends Fragment implements OnMapReadyCallback,GoogleMap.O
 
     }
 
-    public void insertarDatosCapa(){
-        try {
-            data = new Data(context);
-            data.open();
-            data.insertarCapa(new Capa(1,"juxe","Lavado","poligono",1,2,3,4,5));
-            data.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-    }
-
-    public  void insertarPoligono(ArrayList<LatLng> poligono){
-        Polygon poligonAdd = mgoogleMap.addPolygon(new PolygonOptions().add(new LatLng(0, 0), new LatLng(0, 0), new LatLng(0, 0)).fillColor(COLOR_FILL_POLYGON_GREEN).strokeWidth(8));
-        if(valores.size()>0)
-        { if(listPoints.size()>0) {
-                poligonAdd.setPoints(poligono);
-                    String query = "INSERT INTO poligonos(id,geometry_column,export,ubigeo,zona,manzana) VALUES ( '"+Integer.parseInt(idCapa)+"',GeomFromText('POLYGON(("+formatGeom(poligono)+"))',4326),0,'"+valores.get(0)+"','"+valores.get(1)+"','"+valores.get(2)+"');" ;
-                    db.execSQL(query);
-                    Toast.makeText(getContext(),"Se Registro Información",Toast.LENGTH_SHORT).show();
-                    listPoints.clear();
-                    valores.clear();
-                    Log.d("query",query);
-
-        }
-        else
-        {Toast.makeText(getContext(),"Ingrese Poligono!",Toast.LENGTH_SHORT).show();}
-        }
-        else{Toast.makeText(getContext(),"Ingrese valores (Ubigeo,Manzana,Zona)!",Toast.LENGTH_SHORT).show();}
-
-    }
-
-    public void exportarDatos(){
-
-        String queryJson = "SELECT AsGeoJSON(geometry_column) geom,ubigeo,zona,manzana from poligonos where export=0;" ;
-        Cursor res = db.rawQuery( queryJson, null );
-        int contador = res.getCount();
-        if(contador>0)
-        {
-            Log.i("datos_contador1",""+contador);
-            res.moveToFirst();
-
-            while(res.isAfterLast() == false) {
-
-                Log.i("datos_contador2",""+contador);
-
-                String campoGeom=res.getString(res.getColumnIndex("geom"));
-                String campoUbigeo=res.getString(res.getColumnIndex("ubigeo"));
-                String campoZona=res.getString(res.getColumnIndex("zona"));
-                String campoManzana=res.getString(res.getColumnIndex("manzana"));
-
-
-                String stringJsonFinal = "";
-
-                try {
-                    Log.i("datos_contador3",""+contador);
-                    JSONObject geom = new JSONObject(campoGeom);
-                    String rings=geom.get("coordinates").toString();
-                    stringJsonFinal = "{\"geometry\":{\"rings\":"+ rings+", \"spatialReference\" : {\"wkid\" : 4326}},\"attributes\":{\"UBIGEO\":"+campoUbigeo+",\"ZONA\":"+campoZona+",\"MANZANA\":"+campoManzana+"}}";
-                    JSONArray arrayGeom = new JSONArray();
-                    Log.i("datos_contador3",""+contador);
-                    //arrayGeom.put();
-                    JSONObject obj = new JSONObject(stringJsonFinal);
-                    arrayGeom.put(obj);
-                    Log.d("My App", arrayGeom.toString());
-                    insertarServicio(arrayGeom);
-                } catch (Throwable tx) {
-                    Log.e("My App", "Could not parse malformed JSON: \"" + stringJsonFinal + "\"");
-                }
-                res.moveToNext();
-
+    /*METODO DE FORMATO A POLYGONO*/
+    public String formatGeom(ArrayList<LatLng> poligono){
+        String format ="";
+        for (int i = 0; i <poligono.size() ; i++) {
+            if (i >0){
+                format = format +"," + poligono.get(i).longitude+ " "+poligono.get(i).latitude;
+            }
+            else{
+                format = poligono.get(i).longitude+ " "+poligono.get(i).latitude;
             }
         }
-        else
-        {
-            Toast.makeText(getContext(),"No hay Registros para subir",Toast.LENGTH_SHORT).show();
-        }
-
+        return format;
 
     }
 
-    public void consulta(){
-        String queryJson = "SELECT id,AsGeoJSON(geometry_column) geom,ubigeo,zona,manzana from poligonos where export=0;" ;
-        try {
-            Cursor res=db.rawQuery(queryJson, null);
-            int contador = res.getCount();
-            if (contador > 0) {
-                Log.i("contador", "" + contador);
-                res.moveToFirst();
+    /*METODO DE CREACION DE DIALOGO DE MANZANA*/
+    public  void formManzana(){
+        ArrayList<String> zonas = new ArrayList<>();
+        zonas.add("00100");
+        zonas.add("00200");
+        zonas.add("00300");
+        zonas.add("00400");
+        zonas.add("00500");
+        ArrayList<String> depas = new ArrayList<>();
+        depas.add("15");
+        depas.add("01");
+        depas.add("14");
+        depas.add("13");
+        ArrayList<String> departamentos = new ArrayList<>();
+        departamentos.add("15");
+        departamentos.add("01");
+        departamentos.add("14Lambayeque");
+        departamentos.add("13");
+        departamentos.add("12");
+        ArrayList<String> provincias = new ArrayList<>();
+        provincias.add("01");
+        provincias.add("02");
+        provincias.add("03");
+        provincias.add("04");
+        ArrayList<String> distritos = new ArrayList<>();
+        distritos.add("01");
+        distritos.add("02");
+        distritos.add("03");
+        distritos.add("04");
+        distritos.add("05");
+        AlertDialog.Builder alert = new AlertDialog.Builder(getActivity(),R.style.ThemeOverlay_MaterialComponents_Dialog);
+        final View dialogView = getActivity().getLayoutInflater().inflate(R.layout.layout_form_manzana, null);
+        final EditText nombre =       (EditText) dialogView.findViewById(R.id.id_edtManzanaNombre);
+        final Spinner zona =         (Spinner) dialogView.findViewById(R.id.id_edtManzanaZona);
+        final Spinner  departamento = (Spinner) dialogView.findViewById(R.id.id_edtManzanaDepartamento);
+        final Spinner  provincia =    (Spinner) dialogView.findViewById(R.id.id_edtManzanaProvincia);
+        final Spinner  distrito =     (Spinner) dialogView.findViewById(R.id.id_edtManzanaDistrito);
+        ArrayAdapter<String> adapterZona         = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item,zonas);
+        ArrayAdapter<String> adapterDepartamento = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item,departamentos);
+        ArrayAdapter<String> adapterProvincia    = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item,provincias);
+        ArrayAdapter<String> adapterDistrito     = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item,distritos);
+        adapterZona.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapterDepartamento.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapterProvincia.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapterDistrito.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-                while (res.isAfterLast() == false) {
+        zona.setAdapter(adapterZona);
+        departamento.setAdapter(adapterDepartamento);
+        provincia.setAdapter(adapterProvincia);
+        distrito.setAdapter(adapterDistrito);
+        alert.setTitle("Manzana");
+        alert.setIcon(R.drawable.ic_view_module_26);
+        alert.setView(dialogView);
+        alert.setPositiveButton("OK",null);
+        alert.setNegativeButton("Cancelar",null);
 
-                    Log.i("contador1", "" + contador);
+        final AlertDialog alertDialog = alert.create();
 
-                    String campoGeom = res.getString(res.getColumnIndex("geom"));
-                    String campoUbigeo = res.getString(res.getColumnIndex("ubigeo"));
-                    String campoZona = res.getString(res.getColumnIndex("zona"));
-                    String campoManzana = res.getString(res.getColumnIndex("manzana"));
-                    String stringJsonFinal = "";
-
-                    try {
-                        Log.i("contador2", "" + contador);
-                        JSONObject geom = new JSONObject(campoGeom);
-                        String rings = geom.get("coordinates").toString();
-                        stringJsonFinal = "{\"geometry\":{\"rings\":" + rings + ", \"spatialReference\" : {\"wkid\" : 4326}},\"attributes\":{\"UBIGEO\":" + campoUbigeo + ",\"ZONA\":" + campoZona + ",\"MANZANA\":" + campoManzana + "}}";
-                        JSONArray arrayGeom = new JSONArray();
-                        Log.i("contador_JsonFinal", "" + stringJsonFinal);
-                        //arrayGeom.put();
-                        JSONObject obj = new JSONObject(stringJsonFinal);
-                        Log.i("contador_obj", "" + obj);
-                        arrayGeom.put(obj);
-                        Log.d("contador_arraygeon", arrayGeom.toString());
-                        //insertarServicio(arrayGeom);
-                    } catch (Throwable tx) {
-                        Log.e("My App", "Could not parse malformed JSON: \"" + stringJsonFinal + "\"");
+        alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialogInterface) {
+                Button b = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                b.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if(!nombre.getText().toString().equals("")){
+                            datosManzana.add(nombre.getText().toString());
+                            datosManzana.add(zona.getSelectedItem().toString());
+                            datosManzana.add(departamento.getSelectedItem().toString());
+                            datosManzana.add(provincia.getSelectedItem().toString());
+                            datosManzana.add(distrito.getSelectedItem().toString());
+                            Toast.makeText(getContext(),"Valores"+datosManzana.get(0)+""+datosManzana.get(1),Toast.LENGTH_SHORT).show();
+                            alertDialog.dismiss();
+                        }else{
+                            Toast.makeText(getActivity().getApplicationContext(), "DEBE CAMPO NOMBRE", Toast.LENGTH_SHORT).show();
+                        }
                     }
-                    res.moveToNext();
-
-                }
-            } else {
-                Toast.makeText(getContext(), "No hay Registros para subir", Toast.LENGTH_SHORT).show();
+                });
             }
-        }catch (NullPointerException e){
-            e.getMessage();
-            Toast.makeText(getContext(), "Error de lista"+e.getMessage(), Toast.LENGTH_SHORT).show();
-        }
-
-
-
+        });
+        alertDialog.show();
     }
+
+
 
 
 

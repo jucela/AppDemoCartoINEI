@@ -21,14 +21,14 @@
         android:background="#ffffff"
         app:itemTextColor="#000000"
         app:itemIconTint="#000000"
-        android:layout_gravity="start">
-<!--            app:menu="@menu/drawermenu"-->
+        android:layout_gravity="start"
+            app:menu="@menu/drawermenu">
             <ExpandableListView
                 android:id="@+id/expandable_principal1"
                 android:layoutDirection="rtl"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="80dp"
+                android:layout_marginTop="250dp"
                 android:childIndicatorLeft="10dp"
                 android:divider="@null"/>
     </com.google.android.material.navigation.NavigationView>

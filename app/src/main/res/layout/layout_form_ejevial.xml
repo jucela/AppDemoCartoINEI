@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:orientation="vertical">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/id_edtEjeCategoria"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20dp"/>
+                <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/id_edtEjeNombre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Nombre"
+                    android:textColor="@color/colorBlack"/>
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/id_edtEjeNombreAlt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Nombre Alternativo"
+                    android:textColor="@color/colorBlack"/>
+            </com.google.android.material.textfield.TextInputLayout>
+                <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/id_edtEjeDepartamento"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp"/>
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/id_edtEjeProvincia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20dp"/>
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/id_edtEjeDistrito"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20dp"/>
+        </LinearLayout>
+        </ScrollView>
+
+
+</LinearLayout>

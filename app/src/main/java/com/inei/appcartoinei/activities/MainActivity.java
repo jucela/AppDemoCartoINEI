@@ -17,11 +17,13 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
@@ -33,6 +35,7 @@ import com.inei.appcartoinei.fragments.Capa2;
 import com.inei.appcartoinei.fragments.Capa3;
 import com.inei.appcartoinei.fragments.ListPoligonoFragment;
 import com.inei.appcartoinei.fragments.MapCapas;
+import com.inei.appcartoinei.fragments.MapManzanaFragment;
 import com.inei.appcartoinei.modelo.DAO.Data;
 import com.inei.appcartoinei.modelo.DAO.DataBaseHelper;
 import com.inei.appcartoinei.modelo.pojos.Capa;
@@ -85,14 +88,10 @@ public class MainActivity extends AppCompatActivity  {
         ImageView img_add_capa = (ImageView) headerView.findViewById(R.id.img_add_capa);
         ImageView img_delete_capa = (ImageView) headerView.findViewById(R.id.img_delete_capa);
         ImageView img_list_capa = (ImageView) headerView.findViewById(R.id.img_list_capa);
-        //accountButton.setOnClickListener(this);
         listDataHeader = new ArrayList<String>();
         listDataChild = new HashMap<String, List<String>>();
         expListView = (ExpandableListView) findViewById(R.id.expandable_principal1);
-        //prepareListData(listDataHeader, listDataChild);
-        //listAdapter = new ExpandListAdapter(this, listDataHeader, listDataChild);
-        //listAdapter.notifyDataSetChanged();
-        listAdapter = new ExpandListAdapter(this,obtenerListDataHeader(),obtenerListDataChild(),expListView);
+        listAdapter = new ExpandListAdapter(this,cargarListDataHeader(),cargarListDataChild(),expListView);
         expListView.setAdapter(listAdapter);
         enableExpandableList();
 
@@ -182,6 +181,12 @@ public class MainActivity extends AppCompatActivity  {
             }
         });
 
+        MapCapas newFragment = new MapCapas();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.contedor_fragments,newFragment).commit();
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer);
+        drawer.closeDrawer(GravityCompat.START);
+
 
     }
 
@@ -195,34 +200,22 @@ public class MainActivity extends AppCompatActivity  {
     }
 
     public void selectItemDrawer(MenuItem menuItem){
-        Fragment fragment = null;
-        Class fragmentClass;
         switch (menuItem.getItemId()){
             case R.id.capa1:
-                fragmentClass = Capa1.class;
+                viewFragment();
                 break;
             case R.id.capa2:
-                fragmentClass = Capa2.class;
+                formVivienda();
                 break;
             case R.id.capa3:
-                fragmentClass = Capa3.class;
+                formEjeVial();
+                break;
+            case R.id.capa4:
+                formNewCapa();
                 break;
             default:
-                fragmentClass = Capa1.class;
-        }
-        try {
-            fragment = (Fragment)fragmentClass.newInstance();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        }
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.contedor_fragments,fragment).commit();
-        menuItem.setChecked(true);
-        setTitle(menuItem.getTitle());
-        drawerLayout.closeDrawers();
 
+        }
     }
 
     private void setupDrawerContent(NavigationView navigationView){
@@ -432,6 +425,335 @@ public class MainActivity extends AppCompatActivity  {
         }
         return child;
     }
+
+
+    //Arraylist de Cabezera
+    public ArrayList<String> cargarListDataHeader() {
+        ArrayList<String> header = new ArrayList<>();
+        header.add(0,"Capa 1");
+        header.add(1,"Capa 2");
+        return header;
+    }
+    //ArrayList de Item
+    public HashMap<String, List<String>> cargarListDataChild(){
+        HashMap<String, List<String>> child = new HashMap<String, List<String>>();
+        List<String> grupo1 = new ArrayList<String>();
+        grupo1.add(0,"Agregar");
+        grupo1.add(1,"Editar");
+        List<String> grupo2 = new ArrayList<String>();
+
+
+        child.put(cargarListDataHeader().get(0),grupo1);// Header, Child data
+        child.put(cargarListDataHeader().get(1),grupo1);
+
+        return child;
+    }
+
+    public  void formManzana(){
+        ArrayList<String> zonas = new ArrayList<>();
+        zonas.add("00100");
+        zonas.add("00200");
+        zonas.add("00300");
+        zonas.add("00400");
+        zonas.add("00500");
+        ArrayList<String> departamentos = new ArrayList<>();
+        departamentos.add("Lima");
+        departamentos.add("Amazonas");
+        departamentos.add("Lambayeque");
+        departamentos.add("La Libertad");
+        departamentos.add("Amazonas");
+        ArrayList<String> provincias = new ArrayList<>();
+        provincias.add("Lima");
+        provincias.add("Yauyos");
+        provincias.add("Huarochiri");
+        provincias.add("Cañete");
+        ArrayList<String> distritos = new ArrayList<>();
+        distritos.add("Ate");
+        distritos.add("Jesús Maria");
+        distritos.add("La victoria");
+        distritos.add("San Juan de Miraflores");
+        distritos.add("Villa el Salvador");
+        AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this,R.style.ThemeOverlay_MaterialComponents_Dialog);
+        final View dialogView = MainActivity.this.getLayoutInflater().inflate(R.layout.layout_form_manzana, null);
+        final EditText nombre =       (EditText) dialogView.findViewById(R.id.id_edtManzanaNombre);
+        final Spinner  zona =         (Spinner) dialogView.findViewById(R.id.id_edtManzanaZona);
+        final Spinner  departamento = (Spinner) dialogView.findViewById(R.id.id_edtManzanaDepartamento);
+        final Spinner  provincia =    (Spinner) dialogView.findViewById(R.id.id_edtManzanaProvincia);
+        final Spinner  distrito =     (Spinner) dialogView.findViewById(R.id.id_edtManzanaDistrito);
+        ArrayAdapter<String> adapterZona         = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,zonas);
+        ArrayAdapter<String> adapterDepartamento = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,departamentos);
+        ArrayAdapter<String> adapterProvincia    = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,provincias);
+        ArrayAdapter<String> adapterDistrito     = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,distritos);
+        adapterZona.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapterDepartamento.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapterProvincia.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapterDistrito.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        zona.setAdapter(adapterZona);
+        departamento.setAdapter(adapterDepartamento);
+        provincia.setAdapter(adapterProvincia);
+        distrito.setAdapter(adapterDistrito);
+        alert.setTitle("Manzana");
+        alert.setIcon(R.drawable.ic_view_module_26);
+        alert.setView(dialogView);
+        alert.setPositiveButton("OK",null);
+        alert.setNegativeButton("Cancelar",null);
+
+        final AlertDialog alertDialog = alert.create();
+
+        alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialogInterface) {
+                Button b = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                b.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // TODO Do something
+                        try {
+                            data = new Data(context);
+                            data.open();
+                            //data.insertarCapa();
+                            listAdapter.notifyDataSetChanged();
+                            data.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                        alertDialog.dismiss();
+                    }
+                });
+            }
+        });
+        alertDialog.show();
+    }
+
+    public  void formVivienda(){
+        ArrayList<String> manzanas = new ArrayList<>();
+        manzanas.add("08010200200003A");
+        manzanas.add("08010200200003B");
+        ArrayList<String> zonas = new ArrayList<>();
+        zonas.add("00100");
+        zonas.add("00200");
+        zonas.add("00300");
+        zonas.add("00400");
+        zonas.add("00500");
+        ArrayList<String> departamentos = new ArrayList<>();
+        departamentos.add("Lima");
+        departamentos.add("Amazonas");
+        departamentos.add("Lambayeque");
+        departamentos.add("La Libertad");
+        departamentos.add("Amazonas");
+        ArrayList<String> provincias = new ArrayList<>();
+        provincias.add("Lima");
+        provincias.add("Yauyos");
+        provincias.add("Huarochiri");
+        provincias.add("Cañete");
+        ArrayList<String> distritos = new ArrayList<>();
+        distritos.add("Ate");
+        distritos.add("Jesús Maria");
+        distritos.add("La victoria");
+        distritos.add("San Juan de Miraflores");
+        distritos.add("Villa el Salvador");
+        AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this,R.style.ThemeOverlay_MaterialComponents_Dialog);
+        final View dialogView = MainActivity.this.getLayoutInflater().inflate(R.layout.layout_form_vivienda, null);
+        final Spinner manzana =       (Spinner) dialogView.findViewById(R.id.id_edtViviendaManzana);
+        final EditText descripcion =  (EditText) dialogView.findViewById(R.id.id_edtviviendaDescripcion);
+        final Spinner  zona =         (Spinner) dialogView.findViewById(R.id.id_edtViviendaZona);
+        final EditText frente =       (EditText) dialogView.findViewById(R.id.id_edtViviendaFrente);
+        final EditText puerta =       (EditText) dialogView.findViewById(R.id.id_edtViviendaPuerta);
+        final Spinner  departamento = (Spinner) dialogView.findViewById(R.id.id_edtViviendaDepartamento);
+        final Spinner  provincia =    (Spinner) dialogView.findViewById(R.id.id_edtViviendaProvincia);
+        final Spinner  distrito =     (Spinner) dialogView.findViewById(R.id.id_edtViviendaDistrito);
+        ArrayAdapter<String> adapterManzana         = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,manzanas);
+        ArrayAdapter<String> adapterZona         = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,zonas);
+        ArrayAdapter<String> adapterDepartamento = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,departamentos);
+        ArrayAdapter<String> adapterProvincia    = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,provincias);
+        ArrayAdapter<String> adapterDistrito     = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,distritos);
+        adapterManzana.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapterZona.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapterDepartamento.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapterProvincia.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapterDistrito.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        manzana.setAdapter(adapterManzana);
+        zona.setAdapter(adapterZona);
+        departamento.setAdapter(adapterDepartamento);
+        provincia.setAdapter(adapterProvincia);
+        distrito.setAdapter(adapterDistrito);
+        alert.setTitle("Vivienda");
+        alert.setIcon(R.drawable.ic_home_24);
+        alert.setView(dialogView);
+        alert.setPositiveButton("OK",null);
+        alert.setNegativeButton("Cancelar",null);
+
+        final AlertDialog alertDialog = alert.create();
+
+        alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialogInterface) {
+                Button b = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                b.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // TODO Do something
+                        try {
+                            data = new Data(context);
+                            data.open();
+                            //data.insertarCapa();
+                            listAdapter.notifyDataSetChanged();
+                            data.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                        alertDialog.dismiss();
+                    }
+                });
+            }
+        });
+        alertDialog.show();
+    }
+
+    public  void formEjeVial(){
+
+        ArrayList<String> categorias = new ArrayList<>();
+        categorias.add("1. AV");
+        categorias.add("2. CAL");
+        categorias.add("3. JR");
+        ArrayList<String> departamentos = new ArrayList<>();
+        departamentos.add("Lima");
+        departamentos.add("Amazonas");
+        departamentos.add("Lambayeque");
+        departamentos.add("La Libertad");
+        departamentos.add("Amazonas");
+        ArrayList<String> provincias = new ArrayList<>();
+        provincias.add("Lima");
+        provincias.add("Yauyos");
+        provincias.add("Huarochiri");
+        provincias.add("Cañete");
+        ArrayList<String> distritos = new ArrayList<>();
+        distritos.add("Ate");
+        distritos.add("Jesús Maria");
+        distritos.add("La victoria");
+        distritos.add("San Juan de Miraflores");
+        distritos.add("Villa el Salvador");
+        AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this,R.style.ThemeOverlay_MaterialComponents_Dialog);
+        final View dialogView = MainActivity.this.getLayoutInflater().inflate(R.layout.layout_form_ejevial, null);
+        final Spinner categoria =       (Spinner) dialogView.findViewById(R.id.id_edtEjeCategoria);
+        final EditText nombre =       (EditText) dialogView.findViewById(R.id.id_edtEjeNombre);
+        final EditText nombrealt =       (EditText) dialogView.findViewById(R.id.id_edtEjeNombreAlt);
+        final Spinner  departamento = (Spinner) dialogView.findViewById(R.id.id_edtEjeDepartamento);
+        final Spinner  provincia =    (Spinner) dialogView.findViewById(R.id.id_edtEjeProvincia);
+        final Spinner  distrito =     (Spinner) dialogView.findViewById(R.id.id_edtEjeDistrito);
+        ArrayAdapter<String> adapterCategoria       = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,categorias);
+        ArrayAdapter<String> adapterDepartamento = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,departamentos);
+        ArrayAdapter<String> adapterProvincia    = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,provincias);
+        ArrayAdapter<String> adapterDistrito     = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,distritos);
+        adapterCategoria.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapterDepartamento.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapterProvincia.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapterDistrito.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        categoria.setAdapter(adapterCategoria);
+        departamento.setAdapter(adapterDepartamento);
+        provincia.setAdapter(adapterProvincia);
+        distrito.setAdapter(adapterDistrito);
+        alert.setTitle("Eje Vial");
+        alert.setIcon(R.drawable.ic_transfer_within_a_station_24);
+        alert.setView(dialogView);
+        alert.setPositiveButton("OK",null);
+        alert.setNegativeButton("Cancelar",null);
+
+        final AlertDialog alertDialog = alert.create();
+
+        alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialogInterface) {
+                Button b = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                b.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // TODO Do something
+                        try {
+                            data = new Data(context);
+                            data.open();
+                            //data.insertarCapa();
+                            listAdapter.notifyDataSetChanged();
+                            data.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                        alertDialog.dismiss();
+                    }
+                });
+            }
+        });
+        alertDialog.show();
+    }
+
+    public  void formNewCapa(){
+
+        ArrayList<String> tipos = new ArrayList<>();
+        tipos.add("Punto");
+        tipos.add("Linea");
+        tipos.add("Poligono");
+
+        AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this,R.style.ThemeOverlay_MaterialComponents_Dialog);
+        final View dialogView = MainActivity.this.getLayoutInflater().inflate(R.layout.layout_form_agregar_capa, null);
+        final EditText nombre =       (EditText) dialogView.findViewById(R.id.id_edtCapaNombre);
+        final EditText descripcion =  (EditText) dialogView.findViewById(R.id.id_edtCapaDescripcion);
+        final Spinner  tipo =         (Spinner) dialogView.findViewById(R.id.id_edtCapaTipo);
+        ArrayAdapter<String> adapterTipo       = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,tipos);
+        adapterTipo.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        tipo.setAdapter(adapterTipo);
+        alert.setTitle("Agregar Capa");
+        alert.setIcon(R.drawable.ic_layers_36);
+        alert.setView(dialogView);
+        alert.setPositiveButton("OK",null);
+        alert.setNegativeButton("Cancelar",null);
+
+        final AlertDialog alertDialog = alert.create();
+
+        alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialogInterface) {
+                Button b = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                b.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        // TODO Do something
+                        try {
+                            data = new Data(context);
+                            data.open();
+                            //data.insertarCapa();
+                            listAdapter.notifyDataSetChanged();
+                            data.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                        alertDialog.dismiss();
+                    }
+                });
+            }
+        });
+        alertDialog.show();
+    }
+
+    public void viewFragment(){
+        Bundle args = new Bundle();
+        args.putString("idUsuario",""+1);
+        MapManzanaFragment newFragment = new MapManzanaFragment();
+        newFragment.setArguments(args);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.contedor_fragments,newFragment).commit();
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer);
+        drawer.closeDrawer(GravityCompat.START);
+    }
+
+
 
 
 }

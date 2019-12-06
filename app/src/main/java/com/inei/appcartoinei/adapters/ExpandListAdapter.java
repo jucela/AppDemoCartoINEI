@@ -97,7 +97,10 @@ public class ExpandListAdapter extends BaseExpandableListAdapter {
     public View getGroupView(int groupPosition, boolean isExpanded,
                              View convertView, ViewGroup parent) {
         iconos = new ArrayList<>();
-        iconos.add(R.drawable.ic_action_pin);
+        iconos.add(R.drawable.ic_view_module_26);
+        iconos.add(R.drawable.ic_home_24);
+        iconos.add(R.drawable.ic_transfer_within_a_station_24);
+        iconos.add(R.drawable.ic_layers_36);
 
 
 

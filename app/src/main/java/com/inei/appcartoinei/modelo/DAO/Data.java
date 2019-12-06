@@ -7,6 +7,7 @@ import android.database.SQLException;
 import android.util.Log;
 
 import com.inei.appcartoinei.modelo.pojos.Capa;
+import com.inei.appcartoinei.modelo.pojos.Manzana;
 import com.inei.appcartoinei.modelo.pojos.Poligono;
 
 import org.spatialite.database.SQLiteDatabase;
@@ -125,6 +126,11 @@ public class Data {
     public void insertarPoligono(Capa capa){
         ContentValues contentValues = capa.toValues();
         sqLiteDatabase.insert(SQLConstantes.tb_capa,null,contentValues);
+    }
+
+    public void insertManzana(Manzana manzana){
+        ContentValues contentValues = manzana.toValues();
+        sqLiteDatabase.insert(SQLConstantes.tb_manzana,null,contentValues);
     }
 
     public void deletePoligono(){
