@@ -664,6 +664,8 @@ public class MapManzanaFragment extends Fragment implements OnMapReadyCallback,G
         alertDialog.show();
     }
 
+    /*bruno*/
+
 
 
 
