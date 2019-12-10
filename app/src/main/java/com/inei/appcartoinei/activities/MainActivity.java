@@ -35,7 +35,9 @@ import com.inei.appcartoinei.fragments.Capa2;
 import com.inei.appcartoinei.fragments.Capa3;
 import com.inei.appcartoinei.fragments.ListPoligonoFragment;
 import com.inei.appcartoinei.fragments.MapCapas;
+import com.inei.appcartoinei.fragments.MapEjeVialFragment;
 import com.inei.appcartoinei.fragments.MapManzanaFragment;
+import com.inei.appcartoinei.fragments.MapViviendaFragment;
 import com.inei.appcartoinei.modelo.DAO.Data;
 import com.inei.appcartoinei.modelo.DAO.DataBaseHelper;
 import com.inei.appcartoinei.modelo.pojos.Capa;
@@ -202,13 +204,13 @@ public class MainActivity extends AppCompatActivity  {
     public void selectItemDrawer(MenuItem menuItem){
         switch (menuItem.getItemId()){
             case R.id.capa1:
-                viewFragment();
+                viewFragment1();
                 break;
             case R.id.capa2:
-                formVivienda();
+                viewFragment2();
                 break;
             case R.id.capa3:
-                formEjeVial();
+                viewFragment3();
                 break;
             case R.id.capa4:
                 formNewCapa();
@@ -742,10 +744,30 @@ public class MainActivity extends AppCompatActivity  {
         alertDialog.show();
     }
 
-    public void viewFragment(){
+    public void viewFragment1(){
         Bundle args = new Bundle();
         args.putString("idUsuario",""+1);
         MapManzanaFragment newFragment = new MapManzanaFragment();
+        newFragment.setArguments(args);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.contedor_fragments,newFragment).commit();
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer);
+        drawer.closeDrawer(GravityCompat.START);
+    }
+    public void viewFragment2(){
+        Bundle args = new Bundle();
+        args.putString("idUsuario",""+1);
+        MapViviendaFragment newFragment = new MapViviendaFragment();
+        newFragment.setArguments(args);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.contedor_fragments,newFragment).commit();
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer);
+        drawer.closeDrawer(GravityCompat.START);
+    }
+    public void viewFragment3(){
+        Bundle args = new Bundle();
+        args.putString("idUsuario",""+1);
+        MapEjeVialFragment newFragment = new MapEjeVialFragment();
         newFragment.setArguments(args);
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.contedor_fragments,newFragment).commit();

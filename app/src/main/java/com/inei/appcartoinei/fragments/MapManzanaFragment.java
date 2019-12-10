@@ -315,6 +315,7 @@ public class MapManzanaFragment extends Fragment implements OnMapReadyCallback,G
 
 
     /*METODO INSERTAR MANZANA A SQLITE INTERNO*/
+    /*OBJETO*/
     public  void insertarManzanax(ArrayList<LatLng> poligono){
         Polygon poligonAdd = mgoogleMap.addPolygon(new PolygonOptions().add(new LatLng(0, 0), new LatLng(0, 0), new LatLng(0, 0)).fillColor(COLOR_FILL_POLYGON_GREEN).strokeWidth(8));
         if(datosManzana.size()>0)
@@ -337,15 +338,15 @@ public class MapManzanaFragment extends Fragment implements OnMapReadyCallback,G
         }
         else{Toast.makeText(getContext(),"Ingrese valores (Ubigeo,Manzana,Zona)!",Toast.LENGTH_SHORT).show();}
     }
-
+    /*STRING*/
     public  void insertarManzana(ArrayList<LatLng> poligono){
         Polygon poligonAdd = mgoogleMap.addPolygon(new PolygonOptions().add(new LatLng(0, 0), new LatLng(0, 0), new LatLng(0, 0)).fillColor(COLOR_FILL_POLYGON_GREEN).strokeWidth(8));
         if(datosManzana.size()>0)
         { if(listPoints.size()>0) {
-            poligonAdd.setPoints(poligono);
             String query = "INSERT INTO manzana(id,iduser,idmanzana,nommanzana,idzona,zona,ubigeo,shape) VALUES (1,2,'001','"+datosManzana.get(0)+"','002','"+datosManzana.get(1)+"','"+datosManzana.get(2)+datosManzana.get(3)+datosManzana.get(4)+"',GeomFromText('POLYGON(("+formatGeom(poligono)+"))',4326));" ;
             db.execSQL(query);
-            Toast.makeText(getContext(),"Se Registro Información",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(),"Se Registro Información de Manzana",Toast.LENGTH_SHORT).show();
+            poligonAdd.setPoints(poligono);
             listPoints.clear();
             datosManzana.clear();
             Log.d("query",query);
@@ -655,7 +656,7 @@ public class MapManzanaFragment extends Fragment implements OnMapReadyCallback,G
                             Toast.makeText(getContext(),"Valores"+datosManzana.get(0)+""+datosManzana.get(1),Toast.LENGTH_SHORT).show();
                             alertDialog.dismiss();
                         }else{
-                            Toast.makeText(getActivity().getApplicationContext(), "DEBE CAMPO NOMBRE", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity().getApplicationContext(), "DEBE LLENAR CAMPO NOMBRE", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -664,7 +665,7 @@ public class MapManzanaFragment extends Fragment implements OnMapReadyCallback,G
         alertDialog.show();
     }
 
-    /*bruno*/
+
 
 
 
