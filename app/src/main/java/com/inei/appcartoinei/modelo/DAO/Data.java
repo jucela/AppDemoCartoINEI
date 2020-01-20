@@ -116,6 +116,81 @@ public class Data {
 
     }
 
+    public ArrayList<Poligono> getAllManzana(){
+        ArrayList<Poligono> poligonos = new ArrayList<>();
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.rawQuery("SELECT id,export,ubigeo,zona,manzana FROM poligonos ",null);
+            while(cursor.moveToNext()){
+                Poligono poligono = new Poligono();
+                poligono.setId(cursor.getInt(cursor.getColumnIndex("id")));
+                poligono.setExport(cursor.getInt(cursor.getColumnIndex("export")));
+                poligono.setUbigeo(cursor.getString(cursor.getColumnIndex("ubigeo")));
+                poligono.setZona(cursor.getString(cursor.getColumnIndex("zona")));
+                poligono.setManzana(cursor.getString(cursor.getColumnIndex("manzana")));
+                poligonos.add(poligono);
+            }
+        }finally{
+            if(cursor != null) cursor.close();
+        }
+        return poligonos;
+
+    }
+
+    public String getManzana(){
+        String dato = new String();
+        ArrayList<Poligono> poligonos = new ArrayList<>();
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.rawQuery("SELECT nommanzana FROM manzana ",null);
+            while(cursor.moveToNext()){
+                Poligono poligono = new Poligono();
+                poligono.setManzana(cursor.getString(cursor.getColumnIndex("nommanzana")));
+                poligonos.add(poligono);
+            }
+        }finally{
+            if(cursor != null) cursor.close();
+        }
+        dato = String.valueOf(poligonos.get(0).getManzana());
+        return dato;
+
+    }
+
+    public String getVersion(){
+        String dato = new String();
+        ArrayList<Poligono> poligonos = new ArrayList<>();
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.rawQuery("SELECT spatialite_version()",null);
+            while(cursor.moveToNext()){
+                dato = cursor.getString(0);
+            }
+        }finally{
+            if(cursor != null) cursor.close();
+        }
+
+        return dato;
+
+    }
+
+    public String getArea(){
+        String dato = new String();
+        ArrayList<Poligono> poligonos = new ArrayList<>();
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.rawQuery("SELECT ST_Area(shape)*10000000000 FROM manzana WHERE id=1",null);
+            while(cursor.moveToNext()){
+                dato = cursor.getString(0);
+            }
+        }finally{
+            if(cursor != null) cursor.close();
+        }
+
+        return dato;
+
+    }
+
+
 
 
     public void insertarCapa(Capa capa){

@@ -10,7 +10,6 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.InputFilter;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,13 +49,9 @@ import com.google.android.gms.maps.model.Polygon;
 import com.google.android.gms.maps.model.PolygonOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.maps.android.data.geojson.GeoJsonLayer;
-import com.google.maps.android.data.geojson.GeoJsonPolygon;
 import com.inei.appcartoinei.R;
-import com.inei.appcartoinei.modelo.ConexionSpatiaLiteHelper;
 import com.inei.appcartoinei.modelo.DAO.Data;
 import com.inei.appcartoinei.modelo.DAO.DataBaseHelper;
-import com.inei.appcartoinei.modelo.pojos.Capa;
-import com.inei.appcartoinei.modelo.pojos.Departamento;
 import com.inei.appcartoinei.modelo.pojos.Manzana;
 
 import org.json.JSONArray;
@@ -68,7 +63,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -98,7 +92,6 @@ public class MapManzanaFragment extends Fragment implements OnMapReadyCallback,G
 
     private SQLiteDatabase db ;
     private DataBaseHelper op;
-    private ConexionSpatiaLiteHelper conn;
     private RequestQueue mQueue;
     Data    data;
     Context context;
@@ -117,16 +110,13 @@ public class MapManzanaFragment extends Fragment implements OnMapReadyCallback,G
         super.onCreate(savedInstanceState);
         mLocationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
 
-//        if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION)== PackageManager.PERMISSION_GRANTED){
-//            mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,LOCATION_UPDATE_MIN_TIME,LOCATION_UPDATE_MIN_DISTANCE, (LocationListener) this);
-//        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_capa3, container, false);
-        idCapa = getArguments().getString("idUsuario","0");
+        view = inflater.inflate(R.layout.layout_mapa_principal, container, false);
+        //idCapa = getArguments().getString("idUsuario","0");
         return view;
     }
 
@@ -215,7 +205,8 @@ public class MapManzanaFragment extends Fragment implements OnMapReadyCallback,G
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                   exportarManzanaxx();
+                   //exportarManzanaxx();
+                mostrarConsulta();
             }
         });
 
@@ -355,6 +346,21 @@ public class MapManzanaFragment extends Fragment implements OnMapReadyCallback,G
         {Toast.makeText(getContext(),"Ingrese Poligono!",Toast.LENGTH_SHORT).show();}
         }
         else{Toast.makeText(getContext(),"Ingrese valores (Ubigeo,Manzana,Zona)!",Toast.LENGTH_SHORT).show();}
+
+    }
+    /*CONSULTA*/
+    public  void mostrarConsulta(){
+            try {
+                Data data = new Data(context);
+                data.open();
+                String query  = data.getArea();
+                Toast.makeText(getContext(),"Areas:"+query,Toast.LENGTH_SHORT).show();
+                Log.d("query",query);
+                data.close();
+            }
+            catch (IOException e){
+                e.printStackTrace();
+            }
 
     }
 

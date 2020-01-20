@@ -2,7 +2,5 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/capa1" android:title="Manzana" android:icon="@drawable/ic_view_module_26"/>
     <item android:id="@+id/capa2" android:title="Vivienda" android:icon="@drawable/ic_home_24"/>
-    <item android:id="@+id/capa3" android:title="Eje Vial" android:icon="@drawable/ic_transfer_within_a_station_24"/>
-    <item android:id="@+id/capa4" android:title="Agregar Capa" android:icon="@drawable/ic_layers_36"/>
 
 </menu>
