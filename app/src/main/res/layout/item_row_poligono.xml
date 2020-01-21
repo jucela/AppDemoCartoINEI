@@ -37,7 +37,7 @@
                     android:padding="5dp"/>
                 <TextView
                     android:background="@color/colorWhite"
-                    android:id="@+id/txt_item_export"
+                    android:id="@+id/txt_item_manzana"
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -73,7 +73,7 @@
                     android:padding="5dp"/>
                 <TextView
                     android:background="@color/colorWhite"
-                    android:id="@+id/txt_item_manzana"
+                    android:id="@+id/txt_item_area"
                     android:layout_weight="2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"

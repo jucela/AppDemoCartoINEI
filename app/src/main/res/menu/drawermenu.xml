@@ -2,5 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/capa1" android:title="Manzana" android:icon="@drawable/ic_view_module_26"/>
     <item android:id="@+id/capa2" android:title="Vivienda" android:icon="@drawable/ic_home_24"/>
-
+    <item android:id="@+id/capa3" android:title="Reporte Manzana" android:icon="@drawable/ic_format_list_bulleted"/>
+    <item android:id="@+id/capa4" android:title="Reset BD" android:icon="@drawable/ic_action_turn_right"/>
 </menu>

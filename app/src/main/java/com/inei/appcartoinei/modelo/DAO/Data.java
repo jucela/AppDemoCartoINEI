@@ -95,45 +95,35 @@ public class Data {
 
     }
 
-    public ArrayList<Poligono> getAllPoligono(){
-        ArrayList<Poligono> poligonos = new ArrayList<>();
+    public ArrayList<Manzana> getAllManzana(){
+        ArrayList<Manzana> manzanas = new ArrayList<>();
         Cursor cursor = null;
         try{
-            cursor = sqLiteDatabase.rawQuery("SELECT id,export,ubigeo,zona,manzana FROM poligonos ",null);
+            cursor = sqLiteDatabase.rawQuery("SELECT id,iduser,idmanzana,nommanzana,idzona,zona,ubigeo,ST_Area(shape)*10000000000 FROM manzana ",null);
             while(cursor.moveToNext()){
-                Poligono poligono = new Poligono();
-                poligono.setId(cursor.getInt(cursor.getColumnIndex("id")));
-                poligono.setExport(cursor.getInt(cursor.getColumnIndex("export")));
-                poligono.setUbigeo(cursor.getString(cursor.getColumnIndex("ubigeo")));
-                poligono.setZona(cursor.getString(cursor.getColumnIndex("zona")));
-                poligono.setManzana(cursor.getString(cursor.getColumnIndex("manzana")));
-                poligonos.add(poligono);
+                Manzana manzana = new Manzana();
+//                manzana.setId(cursor.getInt(cursor.getColumnIndex("id")));
+//                manzana.setUserid(cursor.getInt(cursor.getColumnIndex("iduser")));
+//                manzana.setUbigeo(cursor.getString(cursor.getColumnIndex("idmanzana")));
+//                manzana.setIdmanzana(cursor.getString(cursor.getColumnIndex("nommanzana")));
+//                manzana.setIdzona(cursor.getString(cursor.getColumnIndex("idzona")));
+//                manzana.setZona(cursor.getString(cursor.getColumnIndex("zona")));
+//                manzana.setUbigeo(cursor.getString(cursor.getColumnIndex("ubigeo")));
+//                manzana.setShape(cursor.getString(cursor.getColumnIndex("area")));
+                manzana.setId(cursor.getInt(0));
+                manzana.setUserid(cursor.getInt(1));
+                manzana.setIdmanzana(cursor.getString(2));
+                manzana.setNommanzana(cursor.getString(3));
+                manzana.setIdzona(cursor.getString(4));
+                manzana.setZona(cursor.getString(5));
+                manzana.setUbigeo(cursor.getString(6));
+                manzana.setShape(cursor.getString(7));
+                manzanas.add(manzana);
             }
         }finally{
             if(cursor != null) cursor.close();
         }
-        return poligonos;
-
-    }
-
-    public ArrayList<Poligono> getAllManzana(){
-        ArrayList<Poligono> poligonos = new ArrayList<>();
-        Cursor cursor = null;
-        try{
-            cursor = sqLiteDatabase.rawQuery("SELECT id,export,ubigeo,zona,manzana FROM poligonos ",null);
-            while(cursor.moveToNext()){
-                Poligono poligono = new Poligono();
-                poligono.setId(cursor.getInt(cursor.getColumnIndex("id")));
-                poligono.setExport(cursor.getInt(cursor.getColumnIndex("export")));
-                poligono.setUbigeo(cursor.getString(cursor.getColumnIndex("ubigeo")));
-                poligono.setZona(cursor.getString(cursor.getColumnIndex("zona")));
-                poligono.setManzana(cursor.getString(cursor.getColumnIndex("manzana")));
-                poligonos.add(poligono);
-            }
-        }finally{
-            if(cursor != null) cursor.close();
-        }
-        return poligonos;
+        return manzanas;
 
     }
 
@@ -190,6 +180,24 @@ public class Data {
 
     }
 
+    public String getDato(){
+        String dato = new String();
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.rawQuery("SELECT AsGeoJSON(shape,0,0) FROM manzana WHERE id=1",null);
+            while(cursor.moveToNext()){
+                dato = cursor.getString(0);
+            }
+        }finally{
+            if(cursor != null) cursor.close();
+        }
+
+        return dato;
+
+    }
+
+
+
 
 
 
@@ -208,8 +216,8 @@ public class Data {
         sqLiteDatabase.insert(SQLConstantes.tb_manzana,null,contentValues);
     }
 
-    public void deletePoligono(){
-        sqLiteDatabase.execSQL("delete from "+ SQLConstantes.tb_poligono);
+    public void deleteManzana(){
+        sqLiteDatabase.execSQL("delete from "+ SQLConstantes.tb_manzana);
     }
 
 //    public boolean isTableExists(String nombreTabla) {

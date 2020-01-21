@@ -11,13 +11,13 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.inei.appcartoinei.R;
-import com.inei.appcartoinei.modelo.pojos.Poligono;
+import com.inei.appcartoinei.modelo.pojos.Manzana;
 
 import java.util.ArrayList;
 
 
 public class ItemPoligonoAdapter extends RecyclerView.Adapter<ItemPoligonoAdapter.ViewHolderItem> {
-    private ArrayList<Poligono> poligonos;
+    private ArrayList<Manzana> manzanas;
     OnItemClickListener onItemClickListener;
     Context context;
 
@@ -25,8 +25,8 @@ public class ItemPoligonoAdapter extends RecyclerView.Adapter<ItemPoligonoAdapte
         public void onItemClick(View view, int position);
     }
 
-    public ItemPoligonoAdapter(ArrayList<Poligono> poligonos,OnItemClickListener onItemClickListener) {
-        this.poligonos = poligonos;
+    public ItemPoligonoAdapter(ArrayList<Manzana> manzanas, OnItemClickListener onItemClickListener) {
+        this.manzanas = manzanas;
         this.context = context;
         this.onItemClickListener = onItemClickListener;
     }
@@ -42,24 +42,18 @@ public class ItemPoligonoAdapter extends RecyclerView.Adapter<ItemPoligonoAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderItem viewHolder, final int position) {
-        final Poligono poligono = poligonos.get(position);
-        viewHolder.txtItem1.setText(""+poligono.getId());
-        viewHolder.txtItem2.setText(""+poligono.getExport());
-        viewHolder.txtItem3.setText(""+poligono.getUbigeo());
-        viewHolder.txtItem4.setText(""+poligono.getZona());
-        viewHolder.txtItem5.setText(""+poligono.getManzana());
-//        viewHolder.cv.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                onItemClickListener.onItemClick(view,subindicador.id_subindicador);
-//            }
-//        });
+        final Manzana manzana = manzanas.get(position);
+        viewHolder.txtItem1.setText(""+manzana.getId());
+        viewHolder.txtItem2.setText(""+manzana.getNommanzana());
+        viewHolder.txtItem3.setText(""+manzana.getUbigeo());
+        viewHolder.txtItem4.setText(""+manzana.getZona());
+        viewHolder.txtItem5.setText(""+manzana.getShape());
 
     }
 
     @Override
     public int getItemCount() {
-        return poligonos.size();
+        return manzanas.size();
     }
 
     public static class ViewHolderItem extends RecyclerView.ViewHolder {
@@ -73,10 +67,10 @@ public class ItemPoligonoAdapter extends RecyclerView.Adapter<ItemPoligonoAdapte
             super(itemView);
             cv =       itemView.findViewById(R.id.cardview_item_poligono);
             txtItem1 = itemView.findViewById(R.id.txt_item_id);
-            txtItem2 = itemView.findViewById(R.id.txt_item_export);
+            txtItem2 = itemView.findViewById(R.id.txt_item_manzana);
             txtItem3 = itemView.findViewById(R.id.txt_item_ubigeo);
             txtItem4 = itemView.findViewById(R.id.txt_item_zona);
-            txtItem5 = itemView.findViewById(R.id.txt_item_manzana);
+            txtItem5 = itemView.findViewById(R.id.txt_item_area);
 
         }
     }

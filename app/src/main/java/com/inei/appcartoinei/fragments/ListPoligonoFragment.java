@@ -17,7 +17,7 @@ import android.widget.Toast;
 import com.inei.appcartoinei.R;
 import com.inei.appcartoinei.adapters.ItemPoligonoAdapter;
 import com.inei.appcartoinei.modelo.DAO.Data;
-import com.inei.appcartoinei.modelo.pojos.Poligono;
+import com.inei.appcartoinei.modelo.pojos.Manzana;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -44,7 +44,7 @@ public class ListPoligonoFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_list_poligono, container, false);
-        recyclerView = (RecyclerView) view.findViewById(R.id.rv_lista_lopigono);
+        recyclerView = (RecyclerView) view.findViewById(R.id.rv_lista_poligono);
         return view;
     }
 
@@ -52,7 +52,7 @@ public class ListPoligonoFragment extends Fragment {
         super.onViewCreated(view,savedInstanceState);
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context);
-        itemPoligonoAdapter = new ItemPoligonoAdapter(obtenerAllPoligon(),new ItemPoligonoAdapter.OnItemClickListener(){
+        itemPoligonoAdapter = new ItemPoligonoAdapter(obtenerAllManzana(),new ItemPoligonoAdapter.OnItemClickListener(){
             @Override
             public void onItemClick(View view, int position) {
                 Toast.makeText(getContext(),"posiciòn:"+position,Toast.LENGTH_SHORT).show();
@@ -72,12 +72,6 @@ public class ListPoligonoFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-//        if (context instanceof OnFragmentInteractionListener) {
-//            mListener = (OnFragmentInteractionListener) context;
-//        } else {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement OnFragmentInteractionListener");
-//        }
     }
 
     @Override
@@ -91,17 +85,18 @@ public class ListPoligonoFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
-    public ArrayList<Poligono> obtenerAllPoligon()
-    { ArrayList<Poligono> poligonos = new ArrayList<>();
+
+    public ArrayList<Manzana> obtenerAllManzana()
+    { ArrayList<Manzana> manzanas = new ArrayList<>();
         try {
             Data data = new Data(context);
             data.open();
-            poligonos = data.getAllPoligono();
+            manzanas = data.getAllManzana();
             data.close();
         }
         catch (IOException e){
             e.printStackTrace();
         }
-        return poligonos;
+        return manzanas;
     }
 }

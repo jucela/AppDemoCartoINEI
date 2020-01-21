@@ -17,7 +17,6 @@
                 android:gravity="center_vertical">
                 <TextView
                     android:background="@color/colorAccent"
-                    android:id="@+id/txt_item_id"
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -29,19 +28,17 @@
                     android:padding="5dp"/>
                 <TextView
                     android:background="@color/colorAccent"
-                    android:id="@+id/txt_item_export"
                     android:layout_weight="2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:gravity="left"
                     android:textColor="@color/colorWhite"
                     android:textSize="14dp"
-                    android:text="export"
+                    android:text="manzana"
                     android:textAlignment="center"
                     android:padding="5dp"/>
                 <TextView
                     android:background="@color/colorAccent"
-                    android:id="@+id/txt_item_ubigeo"
                     android:layout_weight="2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -53,7 +50,6 @@
                     android:padding="5dp"/>
                 <TextView
                     android:background="@color/colorAccent"
-                    android:id="@+id/txt_item_zona"
                     android:layout_weight="2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -65,14 +61,13 @@
                     android:padding="5dp"/>
                 <TextView
                     android:background="@color/colorAccent"
-                    android:id="@+id/txt_item_manzana"
                     android:layout_weight="2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:gravity="left"
                     android:textColor="@color/colorWhite"
                     android:textSize="14dp"
-                    android:text="manzana"
+                    android:text="Area"
                     android:textAlignment="center"
                     android:padding="5dp"/>
             </LinearLayout>>

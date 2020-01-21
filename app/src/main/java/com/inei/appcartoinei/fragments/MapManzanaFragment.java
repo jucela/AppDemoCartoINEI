@@ -353,7 +353,7 @@ public class MapManzanaFragment extends Fragment implements OnMapReadyCallback,G
             try {
                 Data data = new Data(context);
                 data.open();
-                String query  = data.getArea();
+                String query  = data.getDato();
                 Toast.makeText(getContext(),"Areas:"+query,Toast.LENGTH_SHORT).show();
                 Log.d("query",query);
                 data.close();
