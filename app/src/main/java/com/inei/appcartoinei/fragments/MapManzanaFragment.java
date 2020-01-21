@@ -205,8 +205,8 @@ public class MapManzanaFragment extends Fragment implements OnMapReadyCallback,G
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                   //exportarManzanaxx();
-                mostrarConsulta();
+                  exportarManzanaxx();
+                //mostrarConsulta();
             }
         });
 
@@ -259,10 +259,13 @@ public class MapManzanaFragment extends Fragment implements OnMapReadyCallback,G
 //            }
 //        });
 
+        String valor = "-12.067416";
+
         lista.add(new LatLng(-12.067416,-77.0492049));
         lista.add(new LatLng(-12.067416,-77.0492050));
         lista.add(new LatLng(-12.067416,-77.0492051));
         lista.add(new LatLng(-12.067416,-77.0492052));
+        lista.add(new LatLng(Double.parseDouble(valor),-77));
 
         Log.i("contador_jux1",""+lista);
         for(int i=0;i<lista.size();i++){
@@ -483,20 +486,56 @@ public class MapManzanaFragment extends Fragment implements OnMapReadyCallback,G
                 res.moveToFirst();
                 while (res.isAfterLast() == false) {
                     Log.i("contador1", "" + contador);
-                    String campoUbigeo = res.getString(res.getColumnIndex("ubigeo"));
-                    String campoZona =    res.getString(res.getColumnIndex("idzona"));
-                    String campoManzana = res.getString(res.getColumnIndex("nommanzana"));
                     String campoGeom =    res.getString(res.getColumnIndex("geom"));
                     String stringJson1 = "";
                     String stringJson2 = "";
                     String stringJson3 = "";
                     String stringJson4 = "";
-                    Log.i("contador_Geomm", "" + campoGeom);
+                    Log.i("cadena_Geomm", "" + campoGeom);
 
                     try {
-                        GeoJSONObject geoJSON = GeoJSON.parse(campoGeom);
-                        //GeoJsonLayer layer = new GeoJsonLayer(googleMap,geom);
-                        Log.i("contador_geojson", "" + geoJSON.toJSON().getString("coordinates"));
+
+                        JSONObject jsonObject = new JSONObject(campoGeom);
+                        String dato = jsonObject.getString("coordinates");
+                        Log.i("cadena_object",""+jsonObject);
+                        Log.i("cadena_dato",""+dato);
+                        String ncadena1= dato.substring(1,dato.length()-1);
+                        Log.i("cadena_nueva1", "" + ncadena1);
+                        String ncadena2= ncadena1.substring(1,ncadena1.length()-1);
+                        Log.i("cadena_nueva2", "" + ncadena2);
+                        String ncadena3 = ncadena2.replace("],[", "];[");
+                        Log.i("cadena_nueva3", "" + ncadena3);
+
+                        String[] parts = ncadena3.split(";");
+
+                        for(int i =0;i<parts.length;i++)
+                        {
+                            String part1 = parts[i];
+                            String cadena4= part1.substring(1,part1.length()-1);
+                            //Log.i("cadena_valor1", "" + part1);
+                            Log.i("cadena_valor2", "" + cadena4);
+
+                        }
+
+
+
+
+//                        GeoJSONObject geoJSON = GeoJSON.parse(campoGeom);
+//                        JSONObject json = new JSONObject("type");
+//                        Log.i("cadena objeto",""+json);
+//                        Log.i("cadena_geojson", "" + geoJSON.toJSON().getString("coordinates"));
+//                        String cadena = geoJSON.toJSON().getString("coordinates");
+//                        String ncadena= cadena.substring(1,cadena.length()-1);
+//                        Log.i("cadena_nueva", "" + ncadena
+//                        );
+                        //JSONArray  jsonArrays  = new JSONArray(campoGeom);
+                        //Log.i("cadena_array",""+jsonarray);
+                        //JSONObject jsonObject = jsonArray.getJSONObject(0);
+                        //String cadena = jsonObject.getString("coordinates");
+
+                        //Log.i("cadena",""+cadena);
+
+
                     }
                     catch (JSONException e) {
                         e.printStackTrace();
@@ -519,9 +558,6 @@ public class MapManzanaFragment extends Fragment implements OnMapReadyCallback,G
                     for(String s: al){
                         System.out.println(s);
                     }
-
-
-
                     res.moveToNext();
                 }
             } else {

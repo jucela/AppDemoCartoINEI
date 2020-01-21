@@ -98,9 +98,9 @@ public class SQLConstantes {
                     vivienda_cp_idzona      + " TEXT," +
                     vivienda_cp_zona        + " TEXT," +
                     vivienda_cp_ubigeo      + " TEXT," +
-                    vivienda_cp_nrofrente   + " TEXT," +
+                    vivienda_cp_nrofrente   + " INTEGER," +
                     vivienda_cp_nropuerta   + " INTEGER," +
-                    vivienda_cp_descripcion + " INTEGER," +
+                    vivienda_cp_descripcion + " TEXT," +
                     vivienda_cp_shape      + " POLYGON"+");"
             ;
 
