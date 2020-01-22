@@ -149,7 +149,7 @@ public class MainActivity extends AppCompatActivity  {
                         try {
                             Data data = new Data(MainActivity.this);
                             data.open();
-                            data.deleteManzana();
+                            data.deleteTblManzana();
                             data.close();
                         } catch (IOException e) {
                             e.printStackTrace();

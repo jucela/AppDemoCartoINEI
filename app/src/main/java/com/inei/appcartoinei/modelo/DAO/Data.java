@@ -5,9 +5,13 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.util.Log;
+import android.widget.Toast;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.inei.appcartoinei.modelo.pojos.Manzana;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.spatialite.database.SQLiteDatabase;
 import org.spatialite.database.SQLiteOpenHelper;
 
@@ -67,7 +71,7 @@ public class Data {
         return sqLiteDatabase != null ? true : false;
     }
 
-    /*METODOS*/
+    /*METODOS MANZANA*/
     public ArrayList<Manzana> getAllManzana(){
         ArrayList<Manzana> manzanas = new ArrayList<>();
         Cursor cursor = null;
@@ -100,6 +104,24 @@ public class Data {
 
     }
 
+    public ArrayList<String> getAllShapeManzana(){
+        ArrayList<String> listashape = new ArrayList<>();
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.rawQuery("SELECT id,iduser,idmanzana,nommanzana,idzona,zona,ubigeo,AsGeoJSON(shape) geom FROM manzana ",null);
+            while(cursor.moveToNext()){
+                String shape = cursor.getString(7);
+                listashape.add(shape);
+            }
+        }finally{
+            if(cursor != null) cursor.close();
+        }
+        return listashape;
+    }
+
+    public void insertManzana(int id,int iduser,String idmanzana,String nommanzana,String idzona,String zona,String ubigeo,String shape){
+        sqLiteDatabase.execSQL("INSERT INTO manzana(id,iduser,idmanzana,nommanzana,idzona,zona,ubigeo,shape) VALUES ("+id+","+iduser+",'"+idmanzana+"','"+nommanzana+"','"+idzona+"','"+zona+"','"+ubigeo+"',"+shape+");");
+    }
 
     public String getArea(){
         String dato = new String();
@@ -133,18 +155,29 @@ public class Data {
 
     }
 
-
-
-
-    public void insertManzana(Manzana manzana){
-        ContentValues contentValues = manzana.toValues();
-        sqLiteDatabase.insert(SQLConstantes.tb_manzana,null,contentValues);
-    }
-
-    public void deleteManzana(){
+    public void deleteTblManzana(){
         sqLiteDatabase.execSQL("delete from "+ SQLConstantes.tb_manzana);
     }
 
+    /*METODOS VIVIENDA*/
+    public void insertVivienda(int id,int iduser,String idviv,String idmanzana,String nommanzana,String idzona,String zona,String ubigeo,int nrofrente,int nropuerta,String descripcion,String shape){
+        sqLiteDatabase.execSQL("INSERT INTO vivienda(id,iduser,idviv,idmanzana,nommanzana,idzona,zona,ubigeo,nrofrente,nropuerta,descripcion,shape) VALUES ("+id+","+iduser+",'"+idviv+"','"+idmanzana+"','"+nommanzana+"','"+idzona+"','"+zona+"','"+ubigeo+"','"+nrofrente+"','"+nropuerta+"','"+descripcion+"',"+shape+");");
+    }
+
+    public ArrayList<String> getAllShapeVivienda(){
+        ArrayList<String> listashape = new ArrayList<>();
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.rawQuery("SELECT id,iduser,idviv,idmanzana,nommanzana,idzona,zona,ubigeo,nrofrente,nropuerta,descripcion,,AsGeoJSON(shape) geom FROM vivienda ",null);
+            while(cursor.moveToNext()){
+                String shape = cursor.getString(11);
+                listashape.add(shape);
+            }
+        }finally{
+            if(cursor != null) cursor.close();
+        }
+        return listashape;
+    }
 
 
 

@@ -101,7 +101,7 @@ public class SQLConstantes {
                     vivienda_cp_nrofrente   + " INTEGER," +
                     vivienda_cp_nropuerta   + " INTEGER," +
                     vivienda_cp_descripcion + " TEXT," +
-                    vivienda_cp_shape      + " POLYGON"+");"
+                    vivienda_cp_shape      + " POINT"+");"
             ;
 
     public static final String SQL_CREATE_TABLA_EJE_VIAL =

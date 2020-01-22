@@ -40,8 +40,11 @@ import com.inei.appcartoinei.R;
 import com.inei.appcartoinei.modelo.DAO.Data;
 import com.inei.appcartoinei.modelo.DAO.DataBaseHelper;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.spatialite.database.SQLiteDatabase;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
@@ -87,7 +90,7 @@ public class MapViviendaFragment extends Fragment implements OnMapReadyCallback,
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.layout_mapa_principal, container, false);
-        idCapa = getArguments().getString("idUsuario","0");
+        //idCapa = getArguments().getString("idUsuario","0");
         return view;
     }
 
@@ -175,7 +178,7 @@ public class MapViviendaFragment extends Fragment implements OnMapReadyCallback,
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Toast.makeText(getContext(),"PUNTO:"+formatGeom(punto),Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -209,13 +212,81 @@ public class MapViviendaFragment extends Fragment implements OnMapReadyCallback,
     }
 
 
-    /*METODO INSERTAR MANZANA A SQLITE INTERNO*/
-    /*STRING*/
+    /*METODO INSERTAR VIVIENDA A SQLITE INTERNO*/
     public  void insertarVivienda(LatLng punto){
         Marker marcadorAdd = mgoogleMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)));
         if(datosVivienda.size()>0)
         { if(punto!=null) {
-            String query = "INSERT INTO vivienda(id,iduser,idviv,idmanzana,nommanzana,idzona,zona,ubigeo,nrofrente,nropuerta,descripcion,shape) VALUES (1,2,'A001','M001','"+datosVivienda.get(0)+"','002','"+datosVivienda.get(2)+"','"+datosVivienda.get(5)+datosVivienda.get(6)+datosVivienda.get(7)+"',"+datosVivienda.get(3)+","+datosVivienda.get(4)+",'"+datosVivienda.get(1)+"',GeomFromText('POLYGON(("+formatGeom(punto)+"))',4326));" ;
+            try {
+                data = new Data(context);
+                data.open();
+                data.insertVivienda(2,2,"A001","M001",datosVivienda.get(0),"002",datosVivienda.get(2),datosVivienda.get(5)+datosVivienda.get(6)+datosVivienda.get(7),Integer.valueOf(datosVivienda.get(3)),Integer.valueOf(datosVivienda.get(4)),datosVivienda.get(1),"GeomFromText('POINT("+formatGeom(punto)+")')");
+                data.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Toast.makeText(getContext(),"Se Registro Informaciónde Vivienda",Toast.LENGTH_SHORT).show();
+            marcadorAdd.setPosition(punto);
+            datosVivienda.clear();;
+        }
+        else
+        {Toast.makeText(getContext(),"Ingrese Poligono o complete el poligono!",Toast.LENGTH_SHORT).show();}
+        }
+        else{Toast.makeText(getContext(),"Ingrese valores (Ubigeo,Manzana,Zona)!",Toast.LENGTH_SHORT).show();}
+    }
+
+    /*METODO OBTENER LISTA(STRING) DE SHAPE*/
+    public ArrayList<String> obtenerListaShape(){
+        ArrayList<String > listashape = new ArrayList<>();
+        try {
+            Data data = new Data(context);
+            data.open();
+            ArrayList<String> query = data.getAllShapeVivienda();
+            for(int i=0;i<query.size();i++){
+                String shape = query.get(i);
+                listashape.add(shape);
+            }
+            data.close();
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+        return listashape;
+
+    }
+
+    /*METODO CONVERTIR LISTA(STRING) A LISTA(LATLNG)*/
+//    public LatLng obtenerLatLngShape(String shape){
+//        LatLng punto = null;
+//        String campoGeom = shape;
+//        try {
+//            JSONObject jsonObject = new JSONObject(campoGeom);
+//            String dato = jsonObject.getString("coordinates");
+//            String ncadena1= dato.substring(1,dato.length()-1);
+//            String ncadena2= ncadena1.substring(1,ncadena1.length()-1);
+//            String ncadena3 = ncadena2.replace(" ", ";");
+//            String[] parts = ncadena3.split(";");
+//            for(int i =0;i<parts.length;i++)
+//            {
+//                String part1 = parts[i];
+//                String cadena4= part1.substring(1,part1.length()-1);
+//                String[] latlog = cadena4.split(",");
+//                for(int x=0;x<1;x++){
+//                    listapintado.add(new LatLng(Double.parseDouble(latlog[0]),Double.parseDouble(latlog[1])));
+//                }
+//            }
+//        }
+//        catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//        return punto;
+//    }
+
+    public  void insertarViviendax(LatLng punto){
+        Marker marcadorAdd = mgoogleMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)));
+        if(datosVivienda.size()>0)
+        { if(punto!=null) {
+            String query = "INSERT INTO vivienda(id,iduser,idviv,idmanzana,nommanzana,idzona,zona,ubigeo,nrofrente,nropuerta,descripcion,shape) VALUES (1,2,'A001','M001','"+datosVivienda.get(0)+"','002','"+datosVivienda.get(2)+"','"+datosVivienda.get(5)+datosVivienda.get(6)+datosVivienda.get(7)+"',"+datosVivienda.get(3)+","+datosVivienda.get(4)+",'"+datosVivienda.get(1)+"',GeomFromText('POINT("+formatGeom(punto)+")'));" ;
             db.execSQL(query);
             Toast.makeText(getContext(),"Se Registro Informaciónde Vivienda",Toast.LENGTH_SHORT).show();
             marcadorAdd.setPosition(punto);
@@ -234,7 +305,7 @@ public class MapViviendaFragment extends Fragment implements OnMapReadyCallback,
         String format ="";
 
             if (punto!=null){
-                format = format +punto.longitude+ " "+punto.latitude;
+                format = punto.latitude+ " "+punto.longitude;
             }
 
         return format;
@@ -335,6 +406,11 @@ public class MapViviendaFragment extends Fragment implements OnMapReadyCallback,
             }
         });
         alertDialog.show();
+    }
+
+    /*PRUEBAS*/
+    public void mostrarPunto(LatLng punto){
+        Toast.makeText(getContext(),"PUNTO:"+punto,Toast.LENGTH_SHORT).show();
     }
 
 
