@@ -85,6 +85,7 @@ public class MapManzanaFragment extends Fragment implements OnMapReadyCallback,G
     private Polygon poligon;
     private ArrayList<LatLng> listPoints = new ArrayList<LatLng>() ;
     private ArrayList<LatLng> lista = new ArrayList<LatLng>();
+    private ArrayList<LatLng> listalatlog= new ArrayList<LatLng>();
     private ArrayList<String> datosManzana = new ArrayList<String>() ;
     private FloatingActionButton fab1;
     private FloatingActionButton fab2;
@@ -205,7 +206,7 @@ public class MapManzanaFragment extends Fragment implements OnMapReadyCallback,G
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                  exportarManzanaxx();
+                  pintarManzana();
                 //mostrarConsulta();
             }
         });
@@ -227,60 +228,33 @@ public class MapManzanaFragment extends Fragment implements OnMapReadyCallback,G
             }
         });
 
+        listalatlog.add(new LatLng(-12.22321664097417,-76.93561669439077));
+        listalatlog.add(new LatLng(-12.2231176829611,-76.9352401793003));
+        listalatlog.add(new LatLng(-12.22384151737385,-76.93483181297779));
+        listalatlog.add(new LatLng(-12.22398995397334,-76.93517044186592));
 
-//        PolygonOptions rectOptions = new PolygonOptions()
-//                .add(
-//                new LatLng(-12.067416,-77.0492049),
-//                new LatLng(-12.068313,-77.0499774),
-//                new LatLng(-12.0690894,-77.049044),
-//                new LatLng(-12.0681504,-77.0482662),
-//                new LatLng(-12.0677622,-77.0487785),
-//                new LatLng(-12.067416,-77.0492049)
-//        );
-
-//        Polygon polygono = googleMap.addPolygon(new PolygonOptions()
-//                .add(   new LatLng(-12.067416,-77.0492049),
-//                        new LatLng(-12.068313,-77.0499774),
-//                        new LatLng(-12.0690894,-77.049044),
-//                        new LatLng(-12.0681504,-77.0482662),
-//                        new LatLng(-12.0677622,-77.0487785),
-//                        new LatLng(-12.067416,-77.0492049))
-//                .strokeColor(Color.BLUE)
-//                .strokeWidth(2)
-//                .strokeJointType(JointType.ROUND)
-//                .visible(true));
-//
-//        polygono.setClickable(true);
-//        polygono.setStrokeJointType(JointType.ROUND);
-//        googleMap.setOnPolygonClickListener(new GoogleMap.OnPolygonClickListener() {
-//            @Override
-//            public void onPolygonClick(Polygon polygon) {
-//                Toast.makeText(getContext(),"",Toast.LENGTH_SHORT).show();
-//            }
-//        });
-
-        String valor = "-12.067416";
-
-        lista.add(new LatLng(-12.067416,-77.0492049));
-        lista.add(new LatLng(-12.067416,-77.0492050));
-        lista.add(new LatLng(-12.067416,-77.0492051));
-        lista.add(new LatLng(-12.067416,-77.0492052));
-        lista.add(new LatLng(Double.parseDouble(valor),-77));
-
-        Log.i("contador_jux1",""+lista);
-        for(int i=0;i<lista.size();i++){
-            Log.i("contador_jux2",""+lista.get(i));
+        for (int i=0;i<pintarManzana().size();i++){
+            Log.i("valores", "" + pintarManzana().get(i));
         }
-        String data = "{\"type\":\"Polygon\",\"coordinates\":[[[-76.93461824208498,-12.22585474309521],[-76.93433459848165,-12.22569352831877],[-76.93467758595943,-12.2249441404559],[-76.93499341607093,-12.2251410720589]]]}";
-        try {
-            JSONObject geom = new JSONObject(data);
-            //GeoJSONObject geoJSON = GeoJSON.parse(data);
-            GeoJsonLayer layer = new GeoJsonLayer(googleMap,geom);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        if(pintarManzana().isEmpty())
+        {}
+        else{
+        Polygon polygono = googleMap.addPolygon(new PolygonOptions()
+                .addAll(pintarManzana())
+                .strokeColor(Color.BLUE)
+                .strokeWidth(2)
+                .strokeJointType(JointType.ROUND)
+                .visible(true));
 
-
+        polygono.setClickable(true);
+        polygono.setStrokeJointType(JointType.ROUND);}
+        googleMap.setOnPolygonClickListener(new GoogleMap.OnPolygonClickListener() {
+            @Override
+            public void onPolygonClick(Polygon polygon) {
+                //Toast.makeText(getContext(),"",Toast.LENGTH_SHORT).show();
+                mostrarConsulta();
+            }
+        });
 
 
     }
@@ -356,9 +330,8 @@ public class MapManzanaFragment extends Fragment implements OnMapReadyCallback,G
             try {
                 Data data = new Data(context);
                 data.open();
-                String query  = data.getDato();
-                Toast.makeText(getContext(),"Areas:"+query,Toast.LENGTH_SHORT).show();
-                Log.d("query",query);
+                String query  = data.getArea();
+                Toast.makeText(getContext(),"Area:"+query+" m",Toast.LENGTH_SHORT).show();
                 data.close();
             }
             catch (IOException e){
@@ -474,27 +447,18 @@ public class MapManzanaFragment extends Fragment implements OnMapReadyCallback,G
 
     }
 
-    public void exportarManzanaxx(){
+    public ArrayList<LatLng> pintarManzana(){
+        ArrayList<LatLng> listapintado = new ArrayList<LatLng>();
         String queryJson = "SELECT id,iduser,idmanzana,nommanzana,idzona,zona,ubigeo,AsGeoJSON(shape) geom from manzana where id=1;" ;
-        //String queryJson = "SELECT id,iduser,idmanzana,nommanzana,idzona,zona,ubigeo,AsText(shape) as geom from manzana where geom not null";
         try {
             Cursor res=db.rawQuery(queryJson, null);
-            Log.i("contador_res", "" +res);
             int contador = res.getCount();
             if (contador > 0) {
-                Log.i("contador", "" + contador);
                 res.moveToFirst();
                 while (res.isAfterLast() == false) {
-                    Log.i("contador1", "" + contador);
                     String campoGeom =    res.getString(res.getColumnIndex("geom"));
-                    String stringJson1 = "";
-                    String stringJson2 = "";
-                    String stringJson3 = "";
-                    String stringJson4 = "";
                     Log.i("cadena_Geomm", "" + campoGeom);
-
                     try {
-
                         JSONObject jsonObject = new JSONObject(campoGeom);
                         String dato = jsonObject.getString("coordinates");
                         Log.i("cadena_object",""+jsonObject);
@@ -512,64 +476,34 @@ public class MapManzanaFragment extends Fragment implements OnMapReadyCallback,G
                         {
                             String part1 = parts[i];
                             String cadena4= part1.substring(1,part1.length()-1);
-                            //Log.i("cadena_valor1", "" + part1);
                             Log.i("cadena_valor2", "" + cadena4);
-
+                            String[] latlog = cadena4.split(",");
+                            Log.i("cadena_latlog", "" + latlog);
+                            for(int x=0;x<1;x++){
+                                listapintado.add(new LatLng(Double.parseDouble(latlog[0]),Double.parseDouble(latlog[1])));
+                                //Log.i("cadena_lista", "["+x+"]=" + listalatlog.get(x));
+                            }
                         }
-
-
-
-
-//                        GeoJSONObject geoJSON = GeoJSON.parse(campoGeom);
-//                        JSONObject json = new JSONObject("type");
-//                        Log.i("cadena objeto",""+json);
-//                        Log.i("cadena_geojson", "" + geoJSON.toJSON().getString("coordinates"));
-//                        String cadena = geoJSON.toJSON().getString("coordinates");
-//                        String ncadena= cadena.substring(1,cadena.length()-1);
-//                        Log.i("cadena_nueva", "" + ncadena
-//                        );
-                        //JSONArray  jsonArrays  = new JSONArray(campoGeom);
-                        //Log.i("cadena_array",""+jsonarray);
-                        //JSONObject jsonObject = jsonArray.getJSONObject(0);
-                        //String cadena = jsonObject.getString("coordinates");
-
-                        //Log.i("cadena",""+cadena);
-
-
+                        for (int i=0;i<listalatlog.size();i++){
+                            Log.i("valor1", "" + listalatlog.get(i));
+                        }
+                        for (int i=0;i<listapintado.size();i++){
+                            Log.i("valor2", "" + listapintado.get(i));
+                        }
                     }
                     catch (JSONException e) {
                         e.printStackTrace();
                     }
-
-
-                    stringJson1 = campoGeom.replace("POLYGON((","lat/lng: (");
-                    Log.i("contador_j1", "" + stringJson1);
-                    stringJson2 = stringJson1.replace(", -",");lat/lng: (-");
-                    Log.i("contador_j2", "" + stringJson2);
-                    stringJson3 = stringJson2.replace(" -",",-");
-                    Log.i("contador_j3", "" + stringJson3);
-                    stringJson4 = stringJson3.replace("))",")");
-                    Log.i("contador_j4", "" + stringJson4);
-                    String num = ""+stringJson4;
-                    String str[] = num.split(";");
-                    List<String> al = new ArrayList<String>();
-                    al = Arrays.asList(str);
-                    Log.i("contador_j5", "" + al);
-                    for(String s: al){
-                        System.out.println(s);
-                    }
                     res.moveToNext();
                 }
             } else {
-                Toast.makeText(getContext(), "No hay Registros para subir...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "No hay poligonos para pintar", Toast.LENGTH_SHORT).show();
             }
         }catch (NullPointerException e){
             e.getMessage();
             Toast.makeText(getContext(), "Error de lista"+e.getMessage(), Toast.LENGTH_SHORT).show();
         }
-
-
-
+        return listapintado;
     }
 
     /*METODO DE INSERCION DE MANZANA A SQLSERVER MEDIANTE SERVICIO GIS*/
@@ -614,10 +548,10 @@ public class MapManzanaFragment extends Fragment implements OnMapReadyCallback,G
         String format ="";
         for (int i = 0; i <poligono.size() ; i++) {
             if (i >0){
-                format = format +"," + poligono.get(i).longitude+ " "+poligono.get(i).latitude;
+                format = format +"," + poligono.get(i).latitude+ " "+poligono.get(i).longitude;
             }
             else{
-                format = poligono.get(i).longitude+ " "+poligono.get(i).latitude;
+                format = poligono.get(i).latitude+ " "+poligono.get(i).longitude;
             }
         }
         return format;
