@@ -1,10 +1,12 @@
 package com.inei.appcartoinei.fragments;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
@@ -31,7 +33,9 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.JointType;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -65,13 +69,13 @@ public class MapViviendaFragment extends Fragment implements OnMapReadyCallback,
     private FloatingActionButton fab2;
     private FloatingActionButton fab3;
 
+
     private SQLiteDatabase db ;
     private DataBaseHelper op;
     private RequestQueue mQueue;
     Data    data;
     Context context;
     String  idCapa;
-    Cursor res=null;
 
 
     private OnFragmentInteractionListener mListener;
@@ -94,6 +98,7 @@ public class MapViviendaFragment extends Fragment implements OnMapReadyCallback,
         return view;
     }
 
+
     @Override
     public void onViewCreated(View view,Bundle savedInstanceState){
         super.onViewCreated(view,savedInstanceState);
@@ -101,6 +106,7 @@ public class MapViviendaFragment extends Fragment implements OnMapReadyCallback,
         fab1 =  (FloatingActionButton) view.findViewById(R.id.fab1);
         fab2 =  (FloatingActionButton) view.findViewById(R.id.fab2);
         fab3 =  (FloatingActionButton) view.findViewById(R.id.fab3);
+
 
         op = new DataBaseHelper(getContext());
         db = op.getWritableDatabase();
@@ -178,7 +184,8 @@ public class MapViviendaFragment extends Fragment implements OnMapReadyCallback,
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(),"PUNTO:"+formatGeom(punto),Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(),"PUNTO:"+formatGeom(punto),Toast.LENGTH_SHORT).show();
+                mostrarConsulta();
             }
         });
 
@@ -198,6 +205,26 @@ public class MapViviendaFragment extends Fragment implements OnMapReadyCallback,
                 formVivienda();
             }
         });
+
+
+
+        /*MOSTRAR PUNTOS*/
+        if(obtenerListaShape().isEmpty())
+        {Toast.makeText(getContext(),"No se encontraron Puntos",Toast.LENGTH_SHORT).show();}
+        else{
+            for(int i=0;i<obtenerListaShape().size();i++)
+            {    LatLng punto = null;
+                punto = obtenerLatLngShape(obtenerListaShape().get(i));
+                if(punto!=null)
+                {
+                    googleMap.addMarker(new MarkerOptions()
+                            .position(punto)
+                            .title("punto")
+                            .snippet("aaa")
+                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+                }
+            }
+        }
    }
 
     @Override
@@ -225,14 +252,14 @@ public class MapViviendaFragment extends Fragment implements OnMapReadyCallback,
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            Toast.makeText(getContext(),"Se Registro Informaciónde Vivienda",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(),"Se registro Vivienda correctamente!",Toast.LENGTH_SHORT).show();
             marcadorAdd.setPosition(punto);
             datosVivienda.clear();;
         }
         else
-        {Toast.makeText(getContext(),"Ingrese Poligono o complete el poligono!",Toast.LENGTH_SHORT).show();}
+        {Toast.makeText(getContext(),"Agrege ubicación de la Vivienda",Toast.LENGTH_SHORT).show();}
         }
-        else{Toast.makeText(getContext(),"Ingrese valores (Ubigeo,Manzana,Zona)!",Toast.LENGTH_SHORT).show();}
+        else{Toast.makeText(getContext(),"Ingrese valores en el Formulario",Toast.LENGTH_SHORT).show();}
     }
 
     /*METODO OBTENER LISTA(STRING) DE SHAPE*/
@@ -255,32 +282,24 @@ public class MapViviendaFragment extends Fragment implements OnMapReadyCallback,
 
     }
 
-    /*METODO CONVERTIR LISTA(STRING) A LISTA(LATLNG)*/
-//    public LatLng obtenerLatLngShape(String shape){
-//        LatLng punto = null;
-//        String campoGeom = shape;
-//        try {
-//            JSONObject jsonObject = new JSONObject(campoGeom);
-//            String dato = jsonObject.getString("coordinates");
-//            String ncadena1= dato.substring(1,dato.length()-1);
-//            String ncadena2= ncadena1.substring(1,ncadena1.length()-1);
-//            String ncadena3 = ncadena2.replace(" ", ";");
-//            String[] parts = ncadena3.split(";");
-//            for(int i =0;i<parts.length;i++)
-//            {
-//                String part1 = parts[i];
-//                String cadena4= part1.substring(1,part1.length()-1);
-//                String[] latlog = cadena4.split(",");
-//                for(int x=0;x<1;x++){
-//                    listapintado.add(new LatLng(Double.parseDouble(latlog[0]),Double.parseDouble(latlog[1])));
-//                }
-//            }
-//        }
-//        catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-//        return punto;
-//    }
+    /*METODO CONVERTIR LISTA(STRING) A PUNTO (LATLNG)*/
+    public LatLng obtenerLatLngShape(String shape){
+        LatLng punto = null;
+        String campoGeom = shape;
+        try {
+            JSONObject jsonObject = new JSONObject(campoGeom);
+            String dato = jsonObject.getString("coordinates");
+                String cadena4= dato.substring(1,dato.length()-1);
+                String[] latlog = cadena4.split(",");
+                for(int x=0;x<1;x++){
+                    punto = new LatLng(Double.parseDouble(latlog[0]),Double.parseDouble(latlog[1]));
+                }
+        }
+        catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return punto;
+    }
 
     public  void insertarViviendax(LatLng punto){
         Marker marcadorAdd = mgoogleMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)));
@@ -300,7 +319,7 @@ public class MapViviendaFragment extends Fragment implements OnMapReadyCallback,
 
     }
 
-    /*METODO DE FORMATO A POLYGONO*/
+    /*METODO DE FORMATO A PUNTO*/
     public String formatGeom(LatLng punto){
         String format ="";
 
@@ -411,6 +430,25 @@ public class MapViviendaFragment extends Fragment implements OnMapReadyCallback,
     /*PRUEBAS*/
     public void mostrarPunto(LatLng punto){
         Toast.makeText(getContext(),"PUNTO:"+punto,Toast.LENGTH_SHORT).show();
+    }
+
+    public  void mostrarConsulta(){
+        try {
+            Data data = new Data(context);
+            data.open();
+            // query  = data.getArea();
+            ArrayList<String> query = data.getAllShapeVivienda();
+            for(int i=0;i<query.size();i++){
+                Log.i("cadena_shape","["+i+"]="+query.get(i));
+            }
+            //Toast.makeText(getContext(),"Valor:"+query.get(i),Toast.LENGTH_SHORT).show();
+            //Log.i("cadena->",""+query);
+            data.close();
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+
     }
 
 

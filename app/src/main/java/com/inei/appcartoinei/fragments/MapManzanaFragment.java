@@ -1,6 +1,7 @@
 package com.inei.appcartoinei.fragments;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
@@ -82,12 +83,16 @@ public class MapManzanaFragment extends Fragment implements OnMapReadyCallback,G
     private final static int COLOR_FILL_POLYGON_GREEN = 0x5500ff00;
 
     private Polygon poligon;
+    private Marker vertice;
+    private ArrayList<Marker> listaMarker = new ArrayList<Marker>();
     private ArrayList<LatLng> listPoints = new ArrayList<LatLng>() ;
+    private ArrayList<LatLng> newListPoints = new ArrayList<LatLng>();
     private ArrayList<LatLng> listalatlog= new ArrayList<LatLng>();
     private ArrayList<String> datosManzana = new ArrayList<String>() ;
     private FloatingActionButton fab1;
     private FloatingActionButton fab2;
     private FloatingActionButton fab3;
+    private FloatingActionButton fab4;
 
     private SQLiteDatabase db ;
     private DataBaseHelper op;
@@ -118,6 +123,7 @@ public class MapManzanaFragment extends Fragment implements OnMapReadyCallback,G
         return view;
     }
 
+    @SuppressLint("RestrictedApi")
     @Override
     public void onViewCreated(View view,Bundle savedInstanceState){
         super.onViewCreated(view,savedInstanceState);
@@ -125,6 +131,8 @@ public class MapManzanaFragment extends Fragment implements OnMapReadyCallback,G
         fab1 =  (FloatingActionButton) view.findViewById(R.id.fab1);
         fab2 =  (FloatingActionButton) view.findViewById(R.id.fab2);
         fab3 =  (FloatingActionButton) view.findViewById(R.id.fab3);
+        fab4 =  (FloatingActionButton) view.findViewById(R.id.fab4);
+        fab4.setVisibility(View.VISIBLE);
 
         op = new DataBaseHelper(getContext());
         db = op.getWritableDatabase();
@@ -171,7 +179,6 @@ public class MapManzanaFragment extends Fragment implements OnMapReadyCallback,G
         LatLng peru = new LatLng(-9, -74);
 
         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        googleMap.addMarker(new MarkerOptions().position(new LatLng(40.689247,-74.044502)).title("prueba").snippet("xxx"));
         CameraPosition Liberty = CameraPosition.builder().target(new LatLng(40.689247,-74.044502)).zoom(16).bearing(0).tilt(45).build();
         googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(Liberty));
 
@@ -203,7 +210,8 @@ public class MapManzanaFragment extends Fragment implements OnMapReadyCallback,G
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                  exportarManzana();
+                  //exportarManzana();
+                poligon.remove();
             }
         });
 
@@ -220,6 +228,36 @@ public class MapManzanaFragment extends Fragment implements OnMapReadyCallback,G
             @Override
             public void onClick(View view) {
                 formManzana();
+            }
+        });
+
+        /*DESHACER ULTIMO PUNTO DE POLIGONO*/
+        fab4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(listPoints.isEmpty())
+                {
+                    Toast.makeText(getContext(),"No ha Dibujado una manzana",Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    listaMarker.get(listaMarker.size()-1).remove();
+                    listaMarker.remove(listaMarker.size()-1);
+                    listPoints.remove(listPoints.size()-1);
+                    poligon.remove();
+                    if(listPoints.isEmpty())
+                    {
+                        poligon = mgoogleMap.addPolygon(new PolygonOptions()
+                                .add(new LatLng(0, 0), new LatLng(0, 0), new LatLng(0, 0))
+                                .fillColor(Color.GREEN)
+                                .strokeWidth(5));
+                    }
+                    else{poligon = mgoogleMap.addPolygon(new PolygonOptions()
+                            .addAll(listPoints)
+                            .fillColor(Color.GREEN)
+                            .strokeWidth(5));}
+
+                }
+
             }
         });
 
@@ -250,28 +288,47 @@ public class MapManzanaFragment extends Fragment implements OnMapReadyCallback,G
                 //mostrarConsulta();
             }
         });
+
+        /*MOSTRAR POLIGONO*/
+        poligon = googleMap.addPolygon(new PolygonOptions()
+                .add(new LatLng(0, 0), new LatLng(0, 0), new LatLng(0, 0))
+                .fillColor(Color.GREEN)
+                .strokeWidth(5));
     }
 
     @Override
     public void onMapClick(LatLng latLng) {
+
+//        listPoints.add(latLng);
+//        poligon = mgoogleMap.addPolygon(new PolygonOptions().
+//                addAll(listPoints).
+//                strokeJointType(JointType.BEVEL));
+//
+//        if (listPoints.size() > 1) {
+//            poligon.setFillColor(Color.GREEN);
+//            poligon.setStrokeWidth(5);
+//            poligon.setClickable(true);
+//            poligon.setStrokeColor(Color.BLACK);
+//            poligon.setStrokeJointType(JointType.BEVEL);
+//        } else {
+//            Toast.makeText(getContext(), "vacio", Toast.LENGTH_SHORT).show();
+//        }
+//        vertice = mgoogleMap.addMarker(new
+//                MarkerOptions().
+//                position(latLng).
+//                icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_edit_location)));
+//        listaMarker.add(vertice);
+
         listPoints.add(latLng);
-        poligon = mgoogleMap.addPolygon(new PolygonOptions().addAll(listPoints).strokeJointType(JointType.DEFAULT));
-        //poligon = mgoogleMap.addPolygon(new PolygonOptions().add(new LatLng(0, 0), new LatLng(0, 0), new LatLng(0, 0)).strokeJointType(JointType.DEFAULT));
+        newListPoints = new ArrayList<LatLng>(listPoints);
+        newListPoints.add(listPoints.get(0));
+        poligon.setPoints(newListPoints);
 
-
-
-        if(listPoints.size() > 1){
-            poligon.setFillColor(Color.GREEN);
-            poligon.setStrokeWidth(5);
-            poligon.setClickable(true);
-            poligon.setStrokeColor(Color.BLACK);
-            poligon.setStrokeJointType(JointType.ROUND);
-        }
-
-        Marker marker = mgoogleMap.addMarker(new
-                MarkerOptions().
-                position(latLng).
-                icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_edit_location)));
+        vertice = mgoogleMap.addMarker(new
+        MarkerOptions().
+        position(latLng).
+        icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_edit_location)));
+        listaMarker.add(vertice);
     }
 
 
@@ -288,20 +345,21 @@ public class MapManzanaFragment extends Fragment implements OnMapReadyCallback,G
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            Toast.makeText(getContext(),"Se Registro Información de manzana",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(),"Se registro Manzana correctamente!",Toast.LENGTH_SHORT).show();
             poligonAdd.setPoints(poligono);
+            listaMarker.clear();
             listPoints.clear();
             datosManzana.clear();
         }
         else
-        {Toast.makeText(getContext(),"Ingrese Poligono o complete el poligono!",Toast.LENGTH_SHORT).show();}
+        {Toast.makeText(getContext(),"Dibuje una Manzana",Toast.LENGTH_SHORT).show();}
         }
-        else{Toast.makeText(getContext(),"Ingrese valores (Ubigeo,Manzana,Zona)!",Toast.LENGTH_SHORT).show();}
+        else{Toast.makeText(getContext(),"Ingrese valores en el Formulario",Toast.LENGTH_SHORT).show();}
     }
 
     /*METODO OBTENER LISTA(STRING) DE SHAPE*/
     public ArrayList<String> obtenerListaShape(){
-        ArrayList<String > listashape = new ArrayList<>();
+        ArrayList<String> listashape = new ArrayList<>();
             try {
                 Data data = new Data(context);
                 data.open();

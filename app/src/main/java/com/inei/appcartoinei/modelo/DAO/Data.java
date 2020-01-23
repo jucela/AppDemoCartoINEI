@@ -27,23 +27,20 @@ public class Data {
     public Data (Context context) throws IOException{
         this.contexto = context;
         sqLiteOpenHelper = new DataBaseHelper(contexto);
-        //sqLiteDatabase = sqLiteOpenHelper.getWritableDatabase();
-        //createDataBase();
     }
 
-    public void createDataBase() throws  IOException {
-        boolean dbExist = checkDataBase();
-        Log.i("Datos",""+dbExist);
-        if(!dbExist){
-
-        }
-        else{
-
-            sqLiteDatabase.execSQL(SQLConstantes.SQL_CREATE_TABLA_CAPA);
-            sqLiteDatabase = sqLiteOpenHelper.getWritableDatabase();
-            sqLiteDatabase.close();
-        }
-    }
+//    public void createDataBase() throws  IOException {
+//        boolean dbExist = checkDataBase();
+//        Log.i("Datos",""+dbExist);
+//        if(!dbExist){
+//
+//        }
+//        else{
+//            sqLiteDatabase.execSQL(SQLConstantes.SQL_CREATE_TABLA_CAPA);
+//            sqLiteDatabase = sqLiteOpenHelper.getWritableDatabase();
+//            sqLiteDatabase.close();
+//        }
+//    }
 
     public void open() throws SQLException {
         String myPath = SQLConstantes.DB_PATH + SQLConstantes.DB_NAME;
@@ -56,20 +53,20 @@ public class Data {
         }
     }
 
-    public boolean checkDataBase(){
-        //sqLiteDatabase =null;
-        try{
-            String myPath = SQLConstantes.DB_PATH + SQLConstantes.DB_NAME;
-            sqLiteDatabase = SQLiteDatabase.openDatabase(myPath,null,SQLiteDatabase.OPEN_READWRITE);
-            //sqLiteDatabase.close();
-        }catch (Exception e){
-            File dbFile = new File(SQLConstantes.DB_PATH + SQLConstantes.DB_NAME);
-            return dbFile.exists();
-        }
-        if (sqLiteDatabase != null) sqLiteDatabase.close();
-        //Si sqlLiteDatabase es diferente de nulo,Devuelve true : Devuelve false.
-        return sqLiteDatabase != null ? true : false;
-    }
+//    public boolean checkDataBase(){
+//        //sqLiteDatabase =null;
+//        try{
+//            String myPath = SQLConstantes.DB_PATH + SQLConstantes.DB_NAME;
+//            sqLiteDatabase = SQLiteDatabase.openDatabase(myPath,null,SQLiteDatabase.OPEN_READWRITE);
+//            //sqLiteDatabase.close();
+//        }catch (Exception e){
+//            File dbFile = new File(SQLConstantes.DB_PATH + SQLConstantes.DB_NAME);
+//            return dbFile.exists();
+//        }
+//        if (sqLiteDatabase != null) sqLiteDatabase.close();
+//        //Si sqlLiteDatabase es diferente de nulo,Devuelve true : Devuelve false.
+//        return sqLiteDatabase != null ? true : false;
+//    }
 
     /*METODOS MANZANA*/
     public ArrayList<Manzana> getAllManzana(){
@@ -168,7 +165,7 @@ public class Data {
         ArrayList<String> listashape = new ArrayList<>();
         Cursor cursor = null;
         try{
-            cursor = sqLiteDatabase.rawQuery("SELECT id,iduser,idviv,idmanzana,nommanzana,idzona,zona,ubigeo,nrofrente,nropuerta,descripcion,,AsGeoJSON(shape) geom FROM vivienda ",null);
+            cursor = sqLiteDatabase.rawQuery("SELECT id,iduser,idviv,idmanzana,nommanzana,idzona,zona,ubigeo,nrofrente,nropuerta,descripcion,AsGeoJSON(shape) geom FROM vivienda ",null);
             while(cursor.moveToNext()){
                 String shape = cursor.getString(11);
                 listashape.add(shape);
