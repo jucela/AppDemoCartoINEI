@@ -273,7 +273,7 @@ public class MapManzanaFragment extends Fragment implements OnMapReadyCallback,G
                     Polygon polygono = googleMap.addPolygon(new PolygonOptions()
                             .addAll(listados)
                             .strokeColor(Color.BLUE)
-                            .strokeWidth(2)
+                            .strokeWidth(3)
                             .strokeJointType(JointType.ROUND)
                             .visible(true));
                     polygono.setClickable(true);
@@ -334,7 +334,7 @@ public class MapManzanaFragment extends Fragment implements OnMapReadyCallback,G
 
     /*METODO INSERTAR MANZANA A SQLITE INTERNO*/
     public  void insertarManzana(ArrayList<LatLng> poligono){
-        Polygon poligonAdd = mgoogleMap.addPolygon(new PolygonOptions().add(new LatLng(0, 0), new LatLng(0, 0), new LatLng(0, 0)).fillColor(COLOR_FILL_POLYGON_GREEN).strokeWidth(8));
+        Polygon poligonAdd = mgoogleMap.addPolygon(new PolygonOptions().add(new LatLng(0, 0), new LatLng(0, 0), new LatLng(0, 0)).strokeColor(Color.BLUE).strokeWidth(3).strokeJointType(JointType.ROUND).visible(true));
         if(datosManzana.size()>0)
         { if(listPoints.size()>2) {
             try {
@@ -346,7 +346,16 @@ public class MapManzanaFragment extends Fragment implements OnMapReadyCallback,G
                 e.printStackTrace();
             }
             Toast.makeText(getContext(),"Se registro Manzana correctamente!",Toast.LENGTH_SHORT).show();
+            poligon.remove();
+            poligon = mgoogleMap.addPolygon(new PolygonOptions()
+                    .add(new LatLng(0, 0), new LatLng(0, 0), new LatLng(0, 0))
+                    .fillColor(Color.GREEN)
+                    .strokeWidth(5));
             poligonAdd.setPoints(poligono);
+            for(int i=0;i<listaMarker.size();i++)
+            {
+                listaMarker.get(i).remove();
+            }
             listaMarker.clear();
             listPoints.clear();
             datosManzana.clear();
