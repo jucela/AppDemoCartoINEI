@@ -639,4 +639,9 @@ public class MapManzanaFragment extends Fragment implements OnMapReadyCallback,G
         }
 
     }
+
+
+
+
+
 }

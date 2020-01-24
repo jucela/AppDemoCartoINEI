@@ -39,6 +39,8 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polygon;
 import com.google.android.gms.maps.model.PolygonOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.inei.appcartoinei.R;
 import com.inei.appcartoinei.modelo.DAO.Data;
@@ -201,18 +203,21 @@ public class MapAsignarViviendaFragment extends Fragment implements OnMapReadyCa
         {Toast.makeText(getContext(),"No se encontraron Manzanas",Toast.LENGTH_SHORT).show();}
         else{
             for(int i=0;i<obtenerListaShapeManzana().size();i++)
-            {    ArrayList<LatLng> listados = new ArrayList<LatLng>();
+            {   ArrayList<LatLng> listados    = new ArrayList<LatLng>();
+                ArrayList<LatLng> newlistados = new ArrayList<LatLng>();
                 listados = obtenerLatLngShapeManzana(obtenerListaShapeManzana().get(i));
                 if(listados.size()>0)
-                {
-                    Polygon polygono = googleMap.addPolygon(new PolygonOptions()
-                            .addAll(listados)
-                            .strokeColor(Color.BLUE)
-                            .strokeWidth(3)
-                            .strokeJointType(JointType.ROUND)
+                {   for(int j=0;j<listados.size();j++)
+                    {
+                        newlistados.add(listados.get(j));
+                    }
+                    newlistados.add(listados.get(0));
+                    Polyline polyline = googleMap.addPolyline(new PolylineOptions()
+                            .addAll(newlistados)
+                            .color(Color.BLUE)
+                            .width(3)
+                            .jointType(JointType.ROUND)
                             .visible(true));
-                    polygono.setClickable(true);
-                    polygono.setStrokeJointType(JointType.ROUND);
                 }
             }
         }

@@ -12,7 +12,7 @@
         android:id="@+id/contedor_fragments"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#c2c200"/>
+        android:background="#ffffff"/>
         <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation_drawer"
         app:headerLayout="@layout/header"
