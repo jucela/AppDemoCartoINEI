@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import com.google.android.material.navigation.NavigationView;
 import com.inei.appcartoinei.R;
 import com.inei.appcartoinei.fragments.ListPoligonoFragment;
+import com.inei.appcartoinei.fragments.MapAsignarViviendaFragment;
 import com.inei.appcartoinei.fragments.MapManzanaFragment;
 import com.inei.appcartoinei.fragments.MapViviendaFragment;
 import com.inei.appcartoinei.modelo.DAO.Data;
@@ -30,15 +31,12 @@ public class MainActivity extends AppCompatActivity  {
     private SQLiteDatabase db ;
     private DataBaseHelper op;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         drawerLayout =(DrawerLayout)findViewById(R.id.drawer);
         createDB();
-
 
         actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,R.string.open,R.string.close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
@@ -48,15 +46,11 @@ public class MainActivity extends AppCompatActivity  {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setupDrawerContent(navigationView);
 
-
-
         MapManzanaFragment newFragment = new MapManzanaFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.contedor_fragments,newFragment).commit();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer);
         drawer.closeDrawer(GravityCompat.START);
-
-
     }
 
     @Override
@@ -79,6 +73,9 @@ public class MainActivity extends AppCompatActivity  {
                 viewFragment3();
                 break;
             case R.id.capa4:
+                viewFragment4();
+                break;
+            case R.id.capa5:
                 resetBD();
                 break;
             default:
@@ -126,6 +123,17 @@ public class MainActivity extends AppCompatActivity  {
     public void viewFragment3(){
         Bundle args = new Bundle();
         args.putString("idUsuario",""+1);
+        MapAsignarViviendaFragment newFragment = new MapAsignarViviendaFragment();
+        newFragment.setArguments(args);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.contedor_fragments,newFragment).commit();
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer);
+        drawer.closeDrawer(GravityCompat.START);
+    }
+
+    public void viewFragment4(){
+        Bundle args = new Bundle();
+        args.putString("idUsuario",""+1);
         ListPoligonoFragment newFragment = new ListPoligonoFragment();
         newFragment.setArguments(args);
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -159,9 +167,4 @@ public class MainActivity extends AppCompatActivity  {
         AlertDialog alert = builder.create();
         alert.show();
     }
-
-
-
-
-
 }

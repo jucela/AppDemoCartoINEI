@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
@@ -32,9 +33,12 @@ import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.JointType;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polygon;
+import com.google.android.gms.maps.model.PolygonOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.inei.appcartoinei.R;
 import com.inei.appcartoinei.modelo.DAO.Data;
@@ -49,7 +53,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 
-public class MapViviendaFragment extends Fragment implements OnMapReadyCallback,GoogleMap.OnMapClickListener {
+public class MapAsignarViviendaFragment extends Fragment implements OnMapReadyCallback,GoogleMap.OnMapClickListener {
 
     GoogleMap mgoogleMap;
     MapView mapView;
@@ -72,7 +76,7 @@ public class MapViviendaFragment extends Fragment implements OnMapReadyCallback,
 
     private OnFragmentInteractionListener mListener;
 
-    public MapViviendaFragment() {
+    public MapAsignarViviendaFragment() {
         // Required empty public constructor
     }
 
@@ -192,6 +196,27 @@ public class MapViviendaFragment extends Fragment implements OnMapReadyCallback,
             }
         });
 
+        /*MOSTRAR MANZANAS*/
+        if(obtenerListaShapeManzana().isEmpty())
+        {Toast.makeText(getContext(),"No se encontraron Manzanas",Toast.LENGTH_SHORT).show();}
+        else{
+            for(int i=0;i<obtenerListaShapeManzana().size();i++)
+            {    ArrayList<LatLng> listados = new ArrayList<LatLng>();
+                listados = obtenerLatLngShapeManzana(obtenerListaShapeManzana().get(i));
+                if(listados.size()>0)
+                {
+                    Polygon polygono = googleMap.addPolygon(new PolygonOptions()
+                            .addAll(listados)
+                            .strokeColor(Color.BLUE)
+                            .strokeWidth(3)
+                            .strokeJointType(JointType.ROUND)
+                            .visible(true));
+                    polygono.setClickable(true);
+                    polygono.setStrokeJointType(JointType.ROUND);
+                }
+            }
+        }
+
         /*MOSTRAR PUNTOS*/
         if(obtenerListaShape().isEmpty())
         {Toast.makeText(getContext(),"No se encontraron Puntos",Toast.LENGTH_SHORT).show();}
@@ -262,6 +287,53 @@ public class MapViviendaFragment extends Fragment implements OnMapReadyCallback,
         }
         return listashape;
     }
+
+    /*METODO OBTENER LISTA(STRING) DE SHAPE MANZANA*/
+    public ArrayList<String> obtenerListaShapeManzana(){
+        ArrayList<String> listashape = new ArrayList<>();
+        try {
+            Data data = new Data(context);
+            data.open();
+            ArrayList<String> query = data.getAllShapeManzana();
+            for(int i=0;i<query.size();i++){
+                String shape = query.get(i);
+                listashape.add(shape);
+            }
+            data.close();
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+        return listashape;
+    }
+
+    /*METODO CONVERTIR LISTA(STRING) A LISTA MANZANA(LATLNG)*/
+    public ArrayList<LatLng> obtenerLatLngShapeManzana(String shape){
+        ArrayList<LatLng> listapintado = new ArrayList<LatLng>();
+        String campoGeom = shape;
+        try {
+            JSONObject jsonObject = new JSONObject(campoGeom);
+            String dato = jsonObject.getString("coordinates");
+            String ncadena1= dato.substring(1,dato.length()-1);
+            String ncadena2= ncadena1.substring(1,ncadena1.length()-1);
+            String ncadena3 = ncadena2.replace("],[", "];[");
+            String[] parts = ncadena3.split(";");
+            for(int i =0;i<parts.length;i++)
+            {
+                String part1 = parts[i];
+                String cadena4= part1.substring(1,part1.length()-1);
+                String[] latlog = cadena4.split(",");
+                for(int x=0;x<1;x++){
+                    listapintado.add(new LatLng(Double.parseDouble(latlog[0]),Double.parseDouble(latlog[1])));
+                }
+            }
+        }
+        catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return listapintado;
+    }
+
 
     /*METODO CONVERTIR LISTA(STRING) A PUNTO (LATLNG)*/
     public LatLng obtenerLatLngShape(String shape){

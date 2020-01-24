@@ -33,8 +33,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.cocoahero.android.geojson.GeoJSON;
-import com.cocoahero.android.geojson.GeoJSONObject;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -49,11 +47,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polygon;
 import com.google.android.gms.maps.model.PolygonOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.maps.android.data.geojson.GeoJsonLayer;
 import com.inei.appcartoinei.R;
 import com.inei.appcartoinei.modelo.DAO.Data;
 import com.inei.appcartoinei.modelo.DAO.DataBaseHelper;
-import com.inei.appcartoinei.modelo.pojos.Manzana;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -61,11 +57,8 @@ import org.json.JSONObject;
 import org.spatialite.database.SQLiteDatabase;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 
@@ -76,12 +69,6 @@ public class MapManzanaFragment extends Fragment implements OnMapReadyCallback,G
     View view;
     private LocationManager mLocationManager;
     private Location location;
-    private static final int LOCATION_REQUEST_CODE  = 1 ;
-    public static final int LOCATION_UPDATE_MIN_DISTANCE = 10;
-    public static final int LOCATION_UPDATE_MIN_TIME = 5000;
-    private final static int COLOR_FILL_POLYGON = 0x7F00FF00;
-    private final static int COLOR_FILL_POLYGON_GREEN = 0x5500ff00;
-
     private Polygon poligon;
     private Marker vertice;
     private ArrayList<Marker> listaMarker = new ArrayList<Marker>();
@@ -93,14 +80,12 @@ public class MapManzanaFragment extends Fragment implements OnMapReadyCallback,G
     private FloatingActionButton fab2;
     private FloatingActionButton fab3;
     private FloatingActionButton fab4;
-
     private SQLiteDatabase db ;
     private DataBaseHelper op;
     private RequestQueue mQueue;
     Data    data;
     Context context;
     String  idCapa;
-
 
     private OnFragmentInteractionListener mListener;
 
@@ -179,12 +164,11 @@ public class MapManzanaFragment extends Fragment implements OnMapReadyCallback,G
         LatLng peru = new LatLng(-9, -74);
 
         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        CameraPosition Liberty = CameraPosition.builder().target(new LatLng(40.689247,-74.044502)).zoom(16).bearing(0).tilt(45).build();
+        CameraPosition Liberty = CameraPosition.builder().target(peru).zoom(16).bearing(0).tilt(45).build();
         googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(Liberty));
 
         if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION)== PackageManager.PERMISSION_GRANTED){
             mgoogleMap.setMyLocationEnabled(true);
-
             location = mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 
             if (location!=null){
@@ -198,20 +182,16 @@ public class MapManzanaFragment extends Fragment implements OnMapReadyCallback,G
         else {
             if(ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),Manifest.permission.ACCESS_FINE_LOCATION)){
             }
-
             else{
                 ActivityCompat.requestPermissions(getActivity(),new String[]{Manifest.permission.ACCESS_FINE_LOCATION} ,1);
             }
-
-
         }
 
         /*SUBIR DATOS A SERVIDOR*/
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                  //exportarManzana();
-                poligon.remove();
+                  exportarManzana();
             }
         });
 
@@ -255,9 +235,7 @@ public class MapManzanaFragment extends Fragment implements OnMapReadyCallback,G
                             .addAll(listPoints)
                             .fillColor(Color.GREEN)
                             .strokeWidth(5));}
-
                 }
-
             }
         });
 
@@ -285,11 +263,10 @@ public class MapManzanaFragment extends Fragment implements OnMapReadyCallback,G
             @Override
             public void onPolygonClick(Polygon polygon) {
                 Toast.makeText(getContext(),"x",Toast.LENGTH_SHORT).show();
-                //mostrarConsulta();
             }
         });
 
-        /*MOSTRAR POLIGONO*/
+        /*CREAR POLIGONO*/
         poligon = googleMap.addPolygon(new PolygonOptions()
                 .add(new LatLng(0, 0), new LatLng(0, 0), new LatLng(0, 0))
                 .fillColor(Color.GREEN)
@@ -298,39 +275,16 @@ public class MapManzanaFragment extends Fragment implements OnMapReadyCallback,G
 
     @Override
     public void onMapClick(LatLng latLng) {
-
-//        listPoints.add(latLng);
-//        poligon = mgoogleMap.addPolygon(new PolygonOptions().
-//                addAll(listPoints).
-//                strokeJointType(JointType.BEVEL));
-//
-//        if (listPoints.size() > 1) {
-//            poligon.setFillColor(Color.GREEN);
-//            poligon.setStrokeWidth(5);
-//            poligon.setClickable(true);
-//            poligon.setStrokeColor(Color.BLACK);
-//            poligon.setStrokeJointType(JointType.BEVEL);
-//        } else {
-//            Toast.makeText(getContext(), "vacio", Toast.LENGTH_SHORT).show();
-//        }
-//        vertice = mgoogleMap.addMarker(new
-//                MarkerOptions().
-//                position(latLng).
-//                icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_edit_location)));
-//        listaMarker.add(vertice);
-
         listPoints.add(latLng);
         newListPoints = new ArrayList<LatLng>(listPoints);
         newListPoints.add(listPoints.get(0));
         poligon.setPoints(newListPoints);
-
         vertice = mgoogleMap.addMarker(new
         MarkerOptions().
         position(latLng).
         icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_edit_location)));
         listaMarker.add(vertice);
     }
-
 
     /*METODO INSERTAR MANZANA A SQLITE INTERNO*/
     public  void insertarManzana(ArrayList<LatLng> poligono){
@@ -366,7 +320,7 @@ public class MapManzanaFragment extends Fragment implements OnMapReadyCallback,G
         else{Toast.makeText(getContext(),"Ingrese valores en el Formulario",Toast.LENGTH_SHORT).show();}
     }
 
-    /*METODO OBTENER LISTA(STRING) DE SHAPE*/
+    /*METODO OBTENER LISTA(STRING) DE SHAPE MANZANA*/
     public ArrayList<String> obtenerListaShape(){
         ArrayList<String> listashape = new ArrayList<>();
             try {
@@ -383,7 +337,6 @@ public class MapManzanaFragment extends Fragment implements OnMapReadyCallback,G
                 e.printStackTrace();
             }
             return listashape;
-
     }
 
     /*METODO CONVERTIR LISTA(STRING) A LISTA(LATLNG)*/
@@ -524,7 +477,6 @@ public class MapManzanaFragment extends Fragment implements OnMapReadyCallback,G
             }
         }
         return format;
-
     }
 
     /*METODO DE CREACION DE DIALOGO DE MANZANA*/
@@ -687,10 +639,4 @@ public class MapManzanaFragment extends Fragment implements OnMapReadyCallback,G
         }
 
     }
-
-
-
-
-
-
 }
