@@ -67,7 +67,7 @@ public class ImportarDataFragment extends Fragment  {
         super.onViewCreated(view,savedInstanceState);
         fab1 =  (FloatingActionButton) view.findViewById(R.id.fab1_importar);
         fab2 =  (FloatingActionButton) view.findViewById(R.id.fab2_importar);
-        ruta = (EditText) view.findViewById(R.id.edt_ruta);
+        ruta =  (EditText) view.findViewById(R.id.edt_ruta);
 
 
         op = new DataBaseHelper(getContext());
