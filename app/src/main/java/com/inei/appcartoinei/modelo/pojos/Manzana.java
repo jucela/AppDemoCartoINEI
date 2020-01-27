@@ -14,6 +14,7 @@ public class Manzana {
     private String shape;
 
     public Manzana() {
+
     }
 
     public Manzana(int id, int iduser, String idmanzana, String nommanzana, String idzona, String zona, String ubigeo, String shape) {
@@ -90,6 +91,20 @@ public class Manzana {
 
     public void setShape(String shape) {
         this.shape = shape;
+    }
+
+    public void setVariable(String variable,String valor){
+        switch (variable){
+            case SQLConstantes.manzana_cp_id:         setId(Integer.parseInt(valor)); break;
+            case SQLConstantes.manzana_cp_iduser:     setUserid(Integer.parseInt(valor)); break;
+            case SQLConstantes.manzana_cp_idmanzana:  setIdmanzana(valor); break;
+            case SQLConstantes.manzana_cp_nommanzana: setNommanzana(valor); break;
+            case SQLConstantes.manzana_cp_idzona:     setIdzona(valor); break;
+            case SQLConstantes.manzana_cp_zona:       setZona(valor); break;
+            case SQLConstantes.manzana_cp_ubigeo:     setUbigeo(valor); break;
+            case SQLConstantes.manzana_cp_shape:      setShape(valor); break;
+            default: break;
+        }
     }
 
     public ContentValues toValues(){

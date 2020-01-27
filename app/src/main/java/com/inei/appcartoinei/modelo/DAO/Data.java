@@ -176,6 +176,19 @@ public class Data {
         return listashape;
     }
 
+    /*METODOS IMPORTACION*/
+    public void limpiar_tabla(String nombre_tabla){
+        open();
+        sqLiteDatabase.delete(nombre_tabla,null,null);
+        close();
+    }
+
+    public void insertarDatos(String nombre_tabla, ContentValues contentValues){
+        open();
+        sqLiteDatabase.insert(nombre_tabla,null,contentValues);
+        close();
+    }
+
 
 
 

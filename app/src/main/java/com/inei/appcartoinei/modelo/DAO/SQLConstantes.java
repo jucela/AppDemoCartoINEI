@@ -8,14 +8,14 @@ public class SQLConstantes {
     public static String tb_vivienda ="vivienda";
     public static String tb_eje_vial ="eje_vial";
 
-    public static String manzana_cp_id         = "id";
-    public static String manzana_cp_iduser     = "iduser";
-    public static String manzana_cp_idmanzana  = "idmanzana";
-    public static String manzana_cp_nommanzana = "nommanzana";
-    public static String manzana_cp_idzona     = "idzona";
-    public static String manzana_cp_zona       = "zona";
-    public static String manzana_cp_ubigeo     = "ubigeo";
-    public static String manzana_cp_shape      = "shape";
+    public static final String manzana_cp_id         = "id";
+    public static final String manzana_cp_iduser     = "iduser";
+    public static final String manzana_cp_idmanzana  = "idmanzana";
+    public static final String manzana_cp_nommanzana = "nommanzana";
+    public static final String manzana_cp_idzona     = "idzona";
+    public static final String manzana_cp_zona       = "zona";
+    public static final String manzana_cp_ubigeo     = "ubigeo";
+    public static final String manzana_cp_shape      = "shape";
 
     public static String vivienda_cp_id          = "id";
     public static String vivienda_cp_iduser      = "iduser";

@@ -25,6 +25,7 @@ import com.google.maps.android.data.kml.KmlPlacemark;
 import com.inei.appcartoinei.R;
 import com.inei.appcartoinei.modelo.DAO.DataBaseHelper;
 import com.inei.appcartoinei.util.FileChooser;
+import com.inei.appcartoinei.util.Importar_data;
 
 import org.spatialite.database.SQLiteDatabase;
 
@@ -40,6 +41,7 @@ public class ImportarDataFragment extends Fragment  {
     private SQLiteDatabase db ;
     private DataBaseHelper op;
     private RequestQueue mQueue;
+    String filename;
 
     private OnFragmentInteractionListener mListener;
 
@@ -103,6 +105,9 @@ public class ImportarDataFragment extends Fragment  {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getContext(),"Importar",Toast.LENGTH_SHORT).show();
+                String nombreArchivo = ruta.getText().toString();
+                filename = nombreArchivo;
+                Importar_data importar_encuesta = new Importar_data(getContext(),filename);
             }
         });
 
@@ -130,7 +135,5 @@ public class ImportarDataFragment extends Fragment  {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
-
-
 
 }
