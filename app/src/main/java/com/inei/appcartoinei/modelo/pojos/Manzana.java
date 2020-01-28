@@ -107,16 +107,5 @@ public class Manzana {
         }
     }
 
-    public ContentValues toValues(){
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(SQLConstantes.manzana_cp_id,id);
-        contentValues.put(SQLConstantes.manzana_cp_iduser,iduser);
-        contentValues.put(SQLConstantes.manzana_cp_idmanzana,idmanzana);
-        contentValues.put(SQLConstantes.manzana_cp_nommanzana,nommanzana);
-        contentValues.put(SQLConstantes.manzana_cp_idzona,idzona);
-        contentValues.put(SQLConstantes.manzana_cp_zona,zona);
-        contentValues.put(SQLConstantes.manzana_cp_ubigeo,ubigeo);
-        contentValues.put(SQLConstantes.manzana_cp_shape,shape);
-        return contentValues;
-    }
+
 }

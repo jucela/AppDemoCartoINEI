@@ -82,7 +82,6 @@ public class MapManzanaFragment extends Fragment implements OnMapReadyCallback,G
     private FloatingActionButton fab4;
     private SQLiteDatabase db ;
     private DataBaseHelper op;
-    private RequestQueue mQueue;
     Data    data;
     Context context;
     String  idCapa;
@@ -121,7 +120,6 @@ public class MapManzanaFragment extends Fragment implements OnMapReadyCallback,G
 
         op = new DataBaseHelper(getContext());
         db = op.getWritableDatabase();
-        mQueue = Volley.newRequestQueue(getContext());
 
         if(mapView!=null){
             mapView.onCreate(null);
@@ -191,7 +189,7 @@ public class MapManzanaFragment extends Fragment implements OnMapReadyCallback,G
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                  exportarManzana();
+
             }
         });
 
@@ -259,12 +257,6 @@ public class MapManzanaFragment extends Fragment implements OnMapReadyCallback,G
                 }
             }
         }
-        googleMap.setOnPolygonClickListener(new GoogleMap.OnPolygonClickListener() {
-            @Override
-            public void onPolygonClick(Polygon polygon) {
-                Toast.makeText(getContext(),"x",Toast.LENGTH_SHORT).show();
-            }
-        });
 
         /*CREAR POLIGONO*/
         poligon = googleMap.addPolygon(new PolygonOptions()
@@ -366,105 +358,6 @@ public class MapManzanaFragment extends Fragment implements OnMapReadyCallback,G
         return listapintado;
     }
 
-    /*METODO DE OBTENCION DE MANZANA DE SQLITE INTERNO*/
-    public void exportarManzana(){
-        String queryJson = "SELECT id,iduser,idmanzana,nommanzana,idzona,zona,ubigeo,AsGeoJSON(shape) geom from manzana where id=1;" ;
-        try {
-            Cursor res=db.rawQuery(queryJson, null);
-            Log.i("contador_res", "" +res);
-            int contador = res.getCount();
-            if (contador > 0) {
-                Log.i("contador", "" + contador);
-                res.moveToFirst();
-                while (res.isAfterLast() == false) {
-                    Log.i("contador1", "" + contador);
-                    String campoUbigeo = res.getString(res.getColumnIndex("ubigeo"));
-                    String campoZona =    res.getString(res.getColumnIndex("idzona"));
-                    String campoManzana = res.getString(res.getColumnIndex("nommanzana"));
-                    String campoGeom =    res.getString(res.getColumnIndex("geom"));
-                    String stringJsonFinal = "";
-                    Log.i("contador_Geomm", "" + campoGeom);
-                    try {
-
-//                        JSONArray json = new JSONArray(campoGeom);
-//                        JSONObject objeto = json.getJSONObject(1);
-//                        String nombre = objeto.getString("coordinates");
-
-
-                        Log.i("contador2", "" + contador);
-                        JSONObject geom = new JSONObject(campoGeom);
-                        Log.i("Contador_geom",""+geom);
-                        String rings = geom.get("coordinates").toString();
-
-                        //JSONObject json = geom.getJSONObject("coordinates");
-                        //Log.i("Contador_Juxe",""+json);
-
-
-
-                        Log.i("Contador_ring",""+rings);
-                        stringJsonFinal = "{\"geometry\":{\"rings\":" + rings + ", \"spatialReference\" : {\"wkid\" : 4326}},\"attributes\":{\"UBIGEO\":" + campoUbigeo + ",\"ZONA\":" + campoZona + ",\"MANZANA\":" + campoManzana + "}}";
-                        JSONArray arrayGeom = new JSONArray();
-                        Log.i("contador_JsonFinal", "" + stringJsonFinal);
-                        //arrayGeom.put();
-                        JSONObject obj = new JSONObject(stringJsonFinal);
-                        Log.i("contador_obj", "" + obj);
-                        arrayGeom.put(obj);
-                        Log.d("contador_arraygeon", arrayGeom.toString());
-                        insertarServicio(arrayGeom);
-                    } catch (Throwable tx) {
-                        Log.e("My App", "Could not parse malformed JSON: \"" + stringJsonFinal + "\"");
-                    }
-                    res.moveToNext();
-                }
-            } else {
-                Toast.makeText(getContext(), "No hay Registros para subir...", Toast.LENGTH_SHORT).show();
-            }
-        }catch (NullPointerException e){
-            e.getMessage();
-            Toast.makeText(getContext(), "Error de lista"+e.getMessage(), Toast.LENGTH_SHORT).show();
-        }
-
-
-
-    }
-
-    /*METODO DE INSERCION DE MANZANA A SQLSERVER MEDIANTE SERVICIO GIS*/
-    public void insertarServicio( final JSONArray arrayGeom){
-        String url = "http://arcgis4.inei.gob.pe:6080/arcgis/rest/services/DESARROLLO/servicio_prueba_captura/FeatureServer/0/addFeatures";
-        StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Log.i("SUCCESS", response);
-                String queryJsonUpdate = "UPDATE poligonos SET export =1  where export=0;" ;
-                db.execSQL(queryJsonUpdate);
-                Toast.makeText(getContext(),"Se Inserto en el Servidor Correctamente!",Toast.LENGTH_SHORT).show();
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.i("ERROR", error.toString());
-                Toast.makeText(getContext(),"Error al Insertar en el Servidor",Toast.LENGTH_SHORT).show();
-            }
-        }){
-
-            @Override
-            public String getBodyContentType() {
-                return "application/x-www-form-urlencoded; charset=utf-8";
-            }
-
-
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("features", arrayGeom.toString());
-                params.put("f", "json");
-                return params;
-            }
-        };
-        mQueue.add(request);
-
-    }
-
     /*METODO DE FORMATO A POLYGONO*/
     public String formatGeom(ArrayList<LatLng> poligono){
         String format ="";
@@ -561,87 +454,5 @@ public class MapManzanaFragment extends Fragment implements OnMapReadyCallback,G
         });
         alertDialog.show();
     }
-
-     /*OTROS*/
-     public ArrayList<LatLng> pintarManzana(){
-         ArrayList<LatLng> listapintado = new ArrayList<LatLng>();
-         String queryJson = "SELECT id,iduser,idmanzana,nommanzana,idzona,zona,ubigeo,AsGeoJSON(shape) geom from manzana where id=1;" ;
-         try {
-             Cursor res=db.rawQuery(queryJson, null);
-             int contador = res.getCount();
-             if (contador > 0) {
-                 res.moveToFirst();
-                 while (res.isAfterLast() == false) {
-                     String campoGeom =    res.getString(res.getColumnIndex("geom"));
-                     Log.i("cadena_Geomm", "" + campoGeom);
-                     try {
-                         JSONObject jsonObject = new JSONObject(campoGeom);
-                         String dato = jsonObject.getString("coordinates");
-                         Log.i("cadena_object",""+jsonObject);
-                         Log.i("cadena_dato",""+dato);
-                         String ncadena1= dato.substring(1,dato.length()-1);
-                         Log.i("cadena_nueva1", "" + ncadena1);
-                         String ncadena2= ncadena1.substring(1,ncadena1.length()-1);
-                         Log.i("cadena_nueva2", "" + ncadena2);
-                         String ncadena3 = ncadena2.replace("],[", "];[");
-                         Log.i("cadena_nueva3", "" + ncadena3);
-
-                         String[] parts = ncadena3.split(";");
-
-                         for(int i =0;i<parts.length;i++)
-                         {
-                             String part1 = parts[i];
-                             String cadena4= part1.substring(1,part1.length()-1);
-                             Log.i("cadena_valor2", "" + cadena4);
-                             String[] latlog = cadena4.split(",");
-                             Log.i("cadena_latlog", "" + latlog);
-                             for(int x=0;x<1;x++){
-                                 listapintado.add(new LatLng(Double.parseDouble(latlog[0]),Double.parseDouble(latlog[1])));
-                                 //Log.i("cadena_lista", "["+x+"]=" + listalatlog.get(x));
-                             }
-                         }
-                         for (int i=0;i<listalatlog.size();i++){
-                             Log.i("valor1", "" + listalatlog.get(i));
-                         }
-                         for (int i=0;i<listapintado.size();i++){
-                             Log.i("valor2", "" + listapintado.get(i));
-                         }
-                     }
-                     catch (JSONException e) {
-                         e.printStackTrace();
-                     }
-                     res.moveToNext();
-                 }
-             } else {
-                 Toast.makeText(getContext(), "No hay poligonos para pintar", Toast.LENGTH_SHORT).show();
-             }
-         }catch (NullPointerException e){
-             e.getMessage();
-             Toast.makeText(getContext(), "Error de lista"+e.getMessage(), Toast.LENGTH_SHORT).show();
-         }
-         return listapintado;
-     }
-
-     public  void mostrarConsulta(){
-        try {
-            Data data = new Data(context);
-            data.open();
-            // query  = data.getArea();
-            ArrayList<String> query = data.getAllShapeManzana();
-            for(int i=0;i<query.size();i++){
-                Log.i("cadena_shape","["+i+"]="+query.get(i));
-            }
-            Toast.makeText(getContext(),"Area:"+query+" m",Toast.LENGTH_SHORT).show();
-            data.close();
-        }
-        catch (IOException e){
-            e.printStackTrace();
-        }
-
-    }
-
-
-
-
 
 }

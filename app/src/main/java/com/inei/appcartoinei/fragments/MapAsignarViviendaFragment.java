@@ -60,7 +60,6 @@ public class MapAsignarViviendaFragment extends Fragment implements OnMapReadyCa
     GoogleMap mgoogleMap;
     MapView mapView;
     View view;
-    InputStream stream;
     private LocationManager mLocationManager;
     private Location location;
     private Marker marker;
@@ -71,10 +70,8 @@ public class MapAsignarViviendaFragment extends Fragment implements OnMapReadyCa
     private FloatingActionButton fab3;
     private SQLiteDatabase db ;
     private DataBaseHelper op;
-    private RequestQueue mQueue;
     Data    data;
     Context context;
-    String  idCapa;
 
     private OnFragmentInteractionListener mListener;
 
@@ -92,7 +89,6 @@ public class MapAsignarViviendaFragment extends Fragment implements OnMapReadyCa
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.layout_mapa_principal, container, false);
-        //idCapa = getArguments().getString("idUsuario","0");
         return view;
     }
 
@@ -108,7 +104,6 @@ public class MapAsignarViviendaFragment extends Fragment implements OnMapReadyCa
 
         op = new DataBaseHelper(getContext());
         db = op.getWritableDatabase();
-        mQueue = Volley.newRequestQueue(getContext());
 
         if(mapView!=null){
             mapView.onCreate(null);
@@ -178,7 +173,7 @@ public class MapAsignarViviendaFragment extends Fragment implements OnMapReadyCa
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mostrarConsulta();
+
             }
         });
 
@@ -233,8 +228,6 @@ public class MapAsignarViviendaFragment extends Fragment implements OnMapReadyCa
                 {
                     googleMap.addMarker(new MarkerOptions()
                             .position(punto)
-                            .title("punto")
-                            .snippet("aaa")
                             .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
                 }
             }
@@ -462,30 +455,6 @@ public class MapAsignarViviendaFragment extends Fragment implements OnMapReadyCa
             }
         });
         alertDialog.show();
-    }
-
-    /*PRUEBAS*/
-    public void mostrarPunto(LatLng punto){
-        Toast.makeText(getContext(),"PUNTO:"+punto,Toast.LENGTH_SHORT).show();
-    }
-
-    public  void mostrarConsulta(){
-        try {
-            Data data = new Data(context);
-            data.open();
-            // query  = data.getArea();
-            ArrayList<String> query = data.getAllShapeVivienda();
-            for(int i=0;i<query.size();i++){
-                Log.i("cadena_shape","["+i+"]="+query.get(i));
-            }
-            //Toast.makeText(getContext(),"Valor:"+query.get(i),Toast.LENGTH_SHORT).show();
-            //Log.i("cadena->",""+query);
-            data.close();
-        }
-        catch (IOException e){
-            e.printStackTrace();
-        }
-
     }
 
 }

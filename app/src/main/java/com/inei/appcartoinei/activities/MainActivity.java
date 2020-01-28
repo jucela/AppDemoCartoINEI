@@ -11,11 +11,9 @@ import androidx.fragment.app.FragmentManager;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.google.android.material.navigation.NavigationView;
 import com.inei.appcartoinei.R;
-import com.inei.appcartoinei.fragments.ImportarDataFragment;
 import com.inei.appcartoinei.fragments.ListPoligonoFragment;
 import com.inei.appcartoinei.fragments.MapAsignarViviendaFragment;
 import com.inei.appcartoinei.fragments.MapManzanaFragment;
@@ -78,9 +76,6 @@ public class MainActivity extends AppCompatActivity  {
                 viewFragment4();
                 break;
             case R.id.capa5:
-                viewFragment5();
-                break;
-            case R.id.capa6:
                 resetBD();
                 break;
             default:
@@ -147,17 +142,6 @@ public class MainActivity extends AppCompatActivity  {
         drawer.closeDrawer(GravityCompat.START);
     }
 
-    public void viewFragment5(){
-        Bundle args = new Bundle();
-        args.putString("idUsuario",""+1);
-        ImportarDataFragment newFragment = new ImportarDataFragment();
-        newFragment.setArguments(args);
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.contedor_fragments,newFragment).commit();
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer);
-        drawer.closeDrawer(GravityCompat.START);
-    }
-
     public void resetBD(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("¿Está seguro que desea borrar los datos?")
@@ -174,6 +158,7 @@ public class MainActivity extends AppCompatActivity  {
                             Data data = new Data(MainActivity.this);
                             data.open();
                             data.deleteTblManzana();
+                            data.deleteTblVivienda();
                             data.close();
                         } catch (IOException e) {
                             e.printStackTrace();

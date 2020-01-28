@@ -6,7 +6,6 @@ public class SQLConstantes {
     public static int DATABASE_VERSION = 5;
     public static String tb_manzana ="manzana";
     public static String tb_vivienda ="vivienda";
-    public static String tb_eje_vial ="eje_vial";
 
     public static final String manzana_cp_id         = "id";
     public static final String manzana_cp_iduser     = "iduser";
@@ -29,14 +28,6 @@ public class SQLConstantes {
     public static String vivienda_cp_nropuerta   = "nropuerta";
     public static String vivienda_cp_descripcion = "descripcion";
     public static String vivienda_cp_shape       = "shape";
-
-    public static String ejevial_cp_id          = "id";
-    public static String ejevial_cp_iduser      = "iduser";
-    public static String ejevial_cp_idcategoria = "idcategoria";
-    public static String ejevial_cp_nombrevia   = "nombrevia";
-    public static String ejevial_cp_nombrealt   = "nombrealt";
-    public static String ejevial_cp_ubigeo      = "ubigeo";
-    public static String ejevial_cp_shape       = "shape";
 
 
     public static final String SQL_CREATE_TABLA_MANZANA =
@@ -67,26 +58,4 @@ public class SQLConstantes {
                     vivienda_cp_shape      + " POINT"+");"
             ;
 
-    public static final String SQL_CREATE_TABLA_EJE_VIAL =
-            "CREATE TABLE " + tb_eje_vial + "(" +
-                    ejevial_cp_id          + " INTEGER," +
-                    ejevial_cp_iduser      + " INTEGER," +
-                    ejevial_cp_idcategoria + " INTEGER," +
-                    ejevial_cp_nombrevia   + " TEXT," +
-                    ejevial_cp_nombrealt   + " TEXT," +
-                    ejevial_cp_ubigeo      + " TEXT," +
-                    ejevial_cp_shape       + " POLYGON"+");"
-            ;
-
-
-    public static final String[] COLUMNAS_TB_MANZANA = {
-            manzana_cp_id,
-            manzana_cp_iduser,
-            manzana_cp_idmanzana,
-            manzana_cp_nommanzana,
-            manzana_cp_idzona,
-            manzana_cp_zona,
-            manzana_cp_ubigeo,
-            manzana_cp_shape
-    };
 }

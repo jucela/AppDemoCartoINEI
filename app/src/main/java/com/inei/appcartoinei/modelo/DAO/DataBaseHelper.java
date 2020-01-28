@@ -19,7 +19,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(SQLConstantes.SQL_CREATE_TABLA_MANZANA);
         sqLiteDatabase.execSQL(SQLConstantes.SQL_CREATE_TABLA_VIVIENDA);
-        sqLiteDatabase.execSQL(SQLConstantes.SQL_CREATE_TABLA_EJE_VIAL);
 
 
     }
@@ -28,7 +27,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+SQLConstantes.tb_manzana);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+SQLConstantes.tb_vivienda);
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+SQLConstantes.tb_eje_vial);
         onCreate(sqLiteDatabase);
     }
 }
