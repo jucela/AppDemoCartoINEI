@@ -189,6 +189,11 @@ public class Data {
         close();
     }
 
+    public void insertarApple(Manzana manzana){
+        ContentValues contentValues = manzana.toValues();
+        sqLiteDatabase.insert(SQLConstantes.tb_manzana,null,contentValues);
+    }
+
 
 
 

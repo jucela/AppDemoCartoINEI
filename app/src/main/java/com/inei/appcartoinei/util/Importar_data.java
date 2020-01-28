@@ -33,6 +33,8 @@ public class Importar_data {
     private String currentVariable = null;
     public Importar_data(Context context, String filename) {
         this.context = context;
+        parseXML(filename);
+        llenarTablasBD();
 
     }
 

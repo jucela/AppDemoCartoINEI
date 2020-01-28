@@ -23,13 +23,24 @@ import com.android.volley.toolbox.Volley;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.maps.android.data.kml.KmlPlacemark;
 import com.inei.appcartoinei.R;
+import com.inei.appcartoinei.modelo.DAO.Data;
 import com.inei.appcartoinei.modelo.DAO.DataBaseHelper;
+import com.inei.appcartoinei.modelo.DAO.SQLConstantes;
+import com.inei.appcartoinei.modelo.pojos.Manzana;
 import com.inei.appcartoinei.util.FileChooser;
 import com.inei.appcartoinei.util.Importar_data;
 
 import org.spatialite.database.SQLiteDatabase;
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+
+import static android.os.Environment.getExternalStorageDirectory;
 
 public class ImportarDataFragment extends Fragment  {
 
@@ -42,6 +53,9 @@ public class ImportarDataFragment extends Fragment  {
     private DataBaseHelper op;
     private RequestQueue mQueue;
     String filename;
+    private Manzana manzana;
+    private String currentTag = null;
+    private String currentVariable = null;
 
     private OnFragmentInteractionListener mListener;
 
@@ -107,7 +121,8 @@ public class ImportarDataFragment extends Fragment  {
                 Toast.makeText(getContext(),"Importar",Toast.LENGTH_SHORT).show();
                 String nombreArchivo = ruta.getText().toString();
                 filename = nombreArchivo;
-                Importar_data importar_encuesta = new Importar_data(getContext(),filename);
+                parseXMLImportar(nombreArchivo);
+                //Importar_data importar_encuesta = new Importar_data(getContext(),filename);
             }
         });
 
@@ -134,6 +149,89 @@ public class ImportarDataFragment extends Fragment  {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    /*IMPORTACION*/
+    public void parseXMLImportar(String nombreArchivo){
+        manzana = new Manzana();
+
+        XmlPullParserFactory factory;
+        FileInputStream fis = null;
+        try {
+            StringBuilder sb = new StringBuilder();
+            factory = XmlPullParserFactory.newInstance();
+            factory.setNamespaceAware(true);
+            XmlPullParser xpp = factory.newPullParser();
+            File nuevaCarpeta = new File(getExternalStorageDirectory(), "datos");
+            File file = new File(nuevaCarpeta, nombreArchivo);
+            FileInputStream fileInputStream = new FileInputStream(file);
+            fis = new FileInputStream(file);
+            xpp.setInput(fis, null);
+            int eventType = xpp.getEventType();
+
+            while(eventType != XmlPullParser.END_DOCUMENT){
+                if(eventType == XmlPullParser.START_TAG){
+                    handleStarTag(xpp.getName());
+                }else if(eventType == XmlPullParser.END_TAG){
+                    handleEndTag(xpp.getName());
+                }else if(eventType == XmlPullParser.TEXT){
+                    handleText(xpp.getText());
+                }
+                eventType = xpp.next();
+            }
+                Data data = new Data(getContext());
+                data.open();
+                data.insertarApple(manzana);
+                data.close();
+
+        } catch (XmlPullParserException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Toast.makeText(getContext(), "No existe el archivo", Toast.LENGTH_SHORT).show();
+        } finally {
+            if (fis != null) {
+                try {
+                    fis.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    private void handleText(String text) {
+        String xmlText = text;
+        switch (currentTag){
+            case "manzana": agregarVariableManzana(currentVariable,text);break;
+        }
+    }
+
+    private void handleStarTag(String name) {
+        switch (name){
+            case "manzana": currentTag = "manzana";break;
+            default: currentVariable = name;break;
+        }
+    }
+    public void handleEndTag(String name){
+//        switch (name){
+//            case "VISITA": visitas.add(currentVisita);break;
+//            case "MODULO5_II":modulo5Dinamicos.add(currentModulo5Dinamico);break;
+//        }
+    }
+
+    public void agregarVariableManzana(String campo, String valor){
+        switch(campo){
+            case SQLConstantes.manzana_cp_id:manzana.setId(Integer.parseInt(valor));break;
+            case SQLConstantes.manzana_cp_iduser:manzana.setUserid(Integer.parseInt(valor));break;
+            case SQLConstantes.manzana_cp_idmanzana:manzana.setIdmanzana(valor);break;
+            case SQLConstantes.manzana_cp_nommanzana:manzana.setNommanzana(valor);break;
+            case SQLConstantes.manzana_cp_idzona:manzana.setIdzona(valor);break;
+            case SQLConstantes.manzana_cp_zona:manzana.setZona(valor);break;
+            case SQLConstantes.manzana_cp_ubigeo:manzana.setUbigeo(valor);break;
+            case SQLConstantes.manzana_cp_shape:manzana.setShape(valor);break;
+        }
+
     }
 
 }
