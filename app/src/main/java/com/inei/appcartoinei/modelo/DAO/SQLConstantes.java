@@ -5,6 +5,7 @@ public class SQLConstantes {
     public static String DB_NAME = "cartoinei.sqlite";
     public static int DATABASE_VERSION = 5;
     public static String tb_manzana ="manzana";
+    public static String tb_manzana_captura ="manzana_captura";
     public static String tb_vivienda ="vivienda";
 
     public static final String manzana_cp_id         = "id";
@@ -15,6 +16,16 @@ public class SQLConstantes {
     public static final String manzana_cp_zona       = "zona";
     public static final String manzana_cp_ubigeo     = "ubigeo";
     public static final String manzana_cp_shape      = "shape";
+
+    public static final String manzana_cp_CCDD      = "ccdd";
+    public static final String manzana_cp_CCPP      = "ccpp";
+    public static final String manzana_cp_CCDI      = "ccdi";
+    public static final String manzana_cp_CODZONA   = "codzona";
+    public static final String manzana_cp_SUFZONA   = "sufzona";
+    public static final String manzana_cp_CODMZNA   = "codmzna";
+    public static final String manzana_cp_SUFMZNA   = "sufmzna";
+    public static final String manzana_cp_ESTADO    = "estado";
+    public static final String manzana_cp_FRENTES   = "frentes";
 
     public static String vivienda_cp_id          = "id";
     public static String vivienda_cp_iduser      = "iduser";
@@ -56,6 +67,22 @@ public class SQLConstantes {
                     vivienda_cp_nropuerta   + " INTEGER," +
                     vivienda_cp_descripcion + " TEXT," +
                     vivienda_cp_shape      + " POINT"+");"
+            ;
+
+    public static final String SQL_CREATE_TABLA_MANZANA_CAPTURA =
+            "CREATE TABLE " + tb_manzana_captura + "(" +
+                    manzana_cp_id      + " INTEGER," +
+                    manzana_cp_iduser  + " INTEGER," +
+                    manzana_cp_CCDD    + " TEXT," +
+                    manzana_cp_CCPP    + " TEXT," +
+                    manzana_cp_CCDI    + " TEXT," +
+                    manzana_cp_CODZONA + " TEXT," +
+                    manzana_cp_SUFZONA + " TEXT," +
+                    manzana_cp_CODMZNA + " TEXT," +
+                    manzana_cp_SUFMZNA + " TEXT," +
+                    manzana_cp_ESTADO  + " INTEGER," +
+                    manzana_cp_FRENTES + " INTEGER," +
+                    manzana_cp_shape   + " POLYGON"+");"
             ;
 
 }

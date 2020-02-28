@@ -16,8 +16,11 @@ import com.google.android.material.navigation.NavigationView;
 import com.inei.appcartoinei.R;
 import com.inei.appcartoinei.fragments.ListPoligonoFragment;
 import com.inei.appcartoinei.fragments.MapAsignarViviendaFragment;
+import com.inei.appcartoinei.fragments.MapDibujarManzanaFragment;
 import com.inei.appcartoinei.fragments.MapManzanaFragment;
+import com.inei.appcartoinei.fragments.MapManzanaPolylineFragment;
 import com.inei.appcartoinei.fragments.MapViviendaFragment;
+import com.inei.appcartoinei.fragments.ReporteFragment;
 import com.inei.appcartoinei.modelo.DAO.Data;
 import com.inei.appcartoinei.modelo.DAO.DataBaseHelper;
 
@@ -46,7 +49,7 @@ public class MainActivity extends AppCompatActivity  {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setupDrawerContent(navigationView);
 
-        MapManzanaFragment newFragment = new MapManzanaFragment();
+        MapDibujarManzanaFragment newFragment = new MapDibujarManzanaFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.contedor_fragments,newFragment).commit();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer);
@@ -76,6 +79,9 @@ public class MainActivity extends AppCompatActivity  {
                 viewFragment4();
                 break;
             case R.id.capa5:
+                viewFragment5();
+                break;
+            case R.id.capa6:
                 resetBD();
                 break;
             default:
@@ -134,7 +140,18 @@ public class MainActivity extends AppCompatActivity  {
     public void viewFragment4(){
         Bundle args = new Bundle();
         args.putString("idUsuario",""+1);
-        ListPoligonoFragment newFragment = new ListPoligonoFragment();
+        MapDibujarManzanaFragment newFragment = new MapDibujarManzanaFragment();
+        newFragment.setArguments(args);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.contedor_fragments,newFragment).commit();
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer);
+        drawer.closeDrawer(GravityCompat.START);
+    }
+
+    public void viewFragment5(){
+        Bundle args = new Bundle();
+        args.putString("idUsuario",""+1);
+        ReporteFragment newFragment = new ReporteFragment();
         newFragment.setArguments(args);
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.contedor_fragments,newFragment).commit();
@@ -159,6 +176,7 @@ public class MainActivity extends AppCompatActivity  {
                             data.open();
                             data.deleteTblManzana();
                             data.deleteTblVivienda();
+                            data.deleteTblManzanaCaptura();
                             data.close();
                         } catch (IOException e) {
                             e.printStackTrace();

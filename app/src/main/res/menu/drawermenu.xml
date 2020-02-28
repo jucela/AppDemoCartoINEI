@@ -11,9 +11,12 @@
           android:title="Asignar Vivienda"
           android:icon="@drawable/ic_casino"/>
     <item android:id="@+id/capa4"
+        android:title="Dibujar Manzana"
+        android:icon="@drawable/ic_action_pin"/>
+    <item android:id="@+id/capa5"
           android:title="Reporte Manzana"
           android:icon="@drawable/ic_format_list_bulleted"/>
-    <item android:id="@+id/capa5"
+    <item android:id="@+id/capa6"
           android:title="Reset BD"
           android:icon="@drawable/ic_action_turn_right"/>
 </menu>

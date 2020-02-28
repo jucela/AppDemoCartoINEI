@@ -1,0 +1,2798 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.opengis.net/kml/2.2 http://schemas.opengis.net/kml/2.2.0/ogckml22.xsd http://www.google.com/kml/ext/2.2 http://code.google.com/apis/kml/schema/kml22gx.xsd">
+<Document id="Layers">
+  <name>Layers</name>
+  <Snippet></Snippet>
+  <Folder id="FeatureLayer0">
+    <name>NO_SELECCION</name>
+    <Snippet></Snippet>
+    <Placemark id="ID_00000">
+      <name>15</name>
+      <Snippet></Snippet>
+      <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+<td>15</td>
+</tr>
+<tr>
+<td>
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+<tr>
+<td>UBIGEO</td>
+<td>150132</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DEPARTAMENTO</td>
+<td>LIMA</td>
+</tr>
+<tr>
+<td>PROVINCIA</td>
+<td>LIMA</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DISTRITO</td>
+<td>SAN JUAN DE LURIGANCHO</td>
+</tr>
+<tr>
+<td>ZONA</td>
+<td>12300</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>MANZANA</td>
+<td>012</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+]]></description>
+      <styleUrl>#PolyStyle00</styleUrl>
+      <MultiGeometry>
+        <Polygon>
+          <extrude>0</extrude>          <altitudeMode>clampToGround</altitudeMode>
+          <outerBoundaryIs><LinearRing><coordinates> -77.01347759060781,-12.03318666860486,0 -77.01347566560082,-12.03320478967072,0 -77.01347121658466,-12.03324667482298,0 -77.01346634656693,-12.03329252298966,0 -77.01346451556026,-12.03330976405232,0 -77.01345970954282,-12.03332603711152,0 -77.01345037950887,-12.03335763222634,0 -77.01344299248206,-12.03337293328201,0 -77.01343424045024,-12.03339105934788,0 -77.01342652442219,-12.03340703940597,0 -77.01342167240455,-12.03341398043119,0 -77.01341056036415,-12.03342987548899,0 -77.01339732431603,-12.03344880755782,0 -77.01339098629296,-12.0334578745908,0 -77.01334404012232,-12.03350384275791,0 -77.01334310411892,-12.03350462176076,0 -77.01330457897882,-12.03353668487728,0 -77.01330064896456,-12.03353909888608,0 -77.01322535569085,-12.03358534205421,0 -77.01320786262721,-12.03359608509322,0 -77.01319958659713,-12.03360116811172,0 -77.01318901555874,-12.03360786313607,0 -77.01315802344607,-12.03362749220742,0 -77.01311971030674,-12.03365175729562,0 -77.01309803322795,-12.03366548634557,0 -77.01309381921266,-12.03366815535526,0 -77.01308057716449,-12.03367931039583,0 -77.01306429510532,-12.03369302644569,0 -77.01304001901707,-12.03371347552002,0 -77.01303572100142,-12.03371709653317,0 -77.01301093191131,-12.03374124262098,0 -77.01299013283568,-12.03376150269463,0 -77.0129775077898,-12.03377380073931,0 -77.01295587671115,-12.03379487081594,0 -77.01292984061649,-12.03382023190812,0 -77.0129108545475,-12.03384096998349,0 -77.0128871704614,-12.03386684107755,0 -77.01286835639297,-12.03388739115229,0 -77.01285250733537,-12.03390470321523,0 -77.01284733431658,-12.03391270024429,0 -77.01283141225866,-12.03393731233376,0 -77.01281747920802,-12.03397018245323,0 -77.0128036451577,-12.03400282057191,0 -77.01280109514846,-12.0340065895856,0 -77.01279794813701,-12.03400987759756,0 -77.01279429512374,-12.03401258960741,0 -77.01279023710896,-12.03401465061489,0 -77.01278589209318,-12.03401600161982,0 -77.01278138107676,-12.03401660362204,0 -77.01277683406028,-12.03401643962144,0 -77.01277237804408,-12.03401551461803,0 -77.01276814102863,-12.03401385561205,0 -77.0127642420145,-12.0340115086035,0 -77.01276079300192,-12.03400853959272,0 -77.0127578909914,-12.03400503457993,0 -77.01275561798315,-12.03400109256563,0 -77.01275403997738,-12.03399682455012,0 -77.01275319997433,-12.03399235153387,0 -77.01275307697387,-12.03398469450599,0 -77.01275278697284,-12.0339665704401,0 -77.0127526669724,-12.03395910541298,0 -77.01275236897129,-12.0339405173454,0 -77.01275226897093,-12.03393429332277,0 -77.01275216697059,-12.03392339028312,0 -77.01275193496974,-12.03389858919297,0 -77.01275168596885,-12.03387191609602,0 -77.01275160196855,-12.03386292406333,0 -77.0127533269748,-12.03384694000522,0 -77.01275742898969,-12.03380893086705,0 -77.0127749420534,-12.03372106254761,0 -77.01279078511095,-12.03368733542499,0 -77.01280012114489,-12.03366746035272,0 -77.01281018018148,-12.03364604527485,0 -77.01281980821648,-12.03362554720036,0 -77.01283137625853,-12.03360091911083,0 -77.01284180129642,-12.03357872503011,0 -77.01284396230432,-12.03357549001839,0 -77.01285799635531,-12.03355447894199,0 -77.01287585742023,-12.03352773884478,0 -77.01289737849851,-12.03349551872765,0 -77.01290024250892,-12.0334930647187,0 -77.01292672460517,-12.03347037763626,0 -77.01296502674444,-12.03343756451693,0 -77.01298958783372,-12.03341652444044,0 -77.01301340492029,-12.03339612036626,0 -77.01303732900726,-12.0333799733076,0 -77.01305256806268,-12.03336968827017,0 -77.01307425214151,-12.03335505321701,0 -77.01309184720549,-12.03334317817382,0 -77.01312247231681,-12.03332250809865,0 -77.01315700044233,-12.03329920501398,0 -77.01319848259311,-12.03327120791215,0 -77.01322877170327,-12.03325076483787,0 -77.01324312475543,-12.03324107780264,0 -77.01326140982189,-12.03322873675779,0 -77.01326415983192,-12.03322693275123,0 -77.0132729098637,-12.03322053372796,0 -77.01331400801314,-12.0331904766187,0 -77.01336252218948,-12.03315499548967,0 -77.01341008236238,-12.03312021136321,0 -77.01345691553263,-12.0330859582387,0 -77.0134792386138,-12.03306963217938,0 -77.01347759060781,-12.03318666860486,0</coordinates></LinearRing></outerBoundaryIs>
+        </Polygon>
+      </MultiGeometry>
+    </Placemark>
+    <Placemark id="ID_00001">
+      <name>15</name>
+      <Snippet></Snippet>
+      <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+<td>15</td>
+</tr>
+<tr>
+<td>
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+<tr>
+<td>UBIGEO</td>
+<td>150132</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DEPARTAMENTO</td>
+<td>LIMA</td>
+</tr>
+<tr>
+<td>PROVINCIA</td>
+<td>LIMA</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DISTRITO</td>
+<td>SAN JUAN DE LURIGANCHO</td>
+</tr>
+<tr>
+<td>ZONA</td>
+<td>12300</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>MANZANA</td>
+<td>011</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+]]></description>
+      <styleUrl>#PolyStyle00</styleUrl>
+      <MultiGeometry>
+        <Polygon>
+          <extrude>0</extrude>          <altitudeMode>clampToGround</altitudeMode>
+          <outerBoundaryIs><LinearRing><coordinates> -77.01293692764227,-12.03342327646499,0 -77.01285014132674,-12.03351024178119,0 -77.01284008429019,-12.03352624483932,0 -77.01278732509837,-12.03361019114453,0 -77.01273672291444,-12.03371899154007,0 -77.01272178386012,-12.03353378086672,0 -77.01270232778938,-12.03329256498984,0 -77.01269826077458,-12.03327848193862,0 -77.01270331279295,-12.03326171287768,0 -77.01271178082374,-12.03325310484638,0 -77.01272834488395,-12.03324761682643,0 -77.01274003592647,-12.0332493178326,0 -77.01274661095039,-12.03325291284568,0 -77.01274888795865,-12.03325539385469,0 -77.01286477237994,-12.0333588552308,0 -77.01293692764227,-12.03342327646499,0</coordinates></LinearRing></outerBoundaryIs>
+        </Polygon>
+      </MultiGeometry>
+    </Placemark>
+    <Placemark id="ID_00002">
+      <name>15</name>
+      <Snippet></Snippet>
+      <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+<td>15</td>
+</tr>
+<tr>
+<td>
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+<tr>
+<td>UBIGEO</td>
+<td>150132</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DEPARTAMENTO</td>
+<td>LIMA</td>
+</tr>
+<tr>
+<td>PROVINCIA</td>
+<td>LIMA</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DISTRITO</td>
+<td>SAN JUAN DE LURIGANCHO</td>
+</tr>
+<tr>
+<td>ZONA</td>
+<td>12300</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>MANZANA</td>
+<td>032A</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+]]></description>
+      <styleUrl>#PolyStyle00</styleUrl>
+      <MultiGeometry>
+        <Polygon>
+          <extrude>0</extrude>          <altitudeMode>clampToGround</altitudeMode>
+          <outerBoundaryIs><LinearRing><coordinates> -77.01298116980308,-12.03424448045047,0 -77.01296869875779,-12.03423959043266,0 -77.01296044772778,-12.03423367641119,0 -77.01292045058239,-12.03420500930696,0 -77.01289227847997,-12.03416693816854,0 -77.01288567345591,-12.03415592912853,0 -77.01286943539691,-12.03412886603013,0 -77.01286091636592,-12.03410472994239,0 -77.01285572934705,-12.03407480483361,0 -77.01285572934705,-12.03403521068964,0 -77.0128634863753,-12.03396127642088,0 -77.01291633356738,-12.03396830844645,0 -77.01294798968246,-12.03397252046176,0 -77.01298150780434,-12.03397698047797,0 -77.01297230177084,-12.03401468061503,0 -77.01297151376798,-12.03403123167522,0 -77.01298579081993,-12.0340583577738,0 -77.0130224339531,-12.03408595987418,0 -77.01307573414687,-12.0340992849226,0 -77.01308065816477,-12.03410174693153,0 -77.01311987230736,-12.03412135400282,0 -77.0131709134929,-12.0341468740956,0 -77.01324121774849,-12.03419431826808,0 -77.01327236186171,-12.03421533434448,0 -77.0133070179877,-12.03423872142952,0 -77.01343904846772,-12.03433745578843,0 -77.0134712005846,-12.03436150087589,0 -77.01351716075169,-12.03440079401872,0 -77.01353548181828,-12.03441645707568,0 -77.01356304791847,-12.03444002416131,0 -77.01354453085116,-12.03445667922188,0 -77.01354094783812,-12.03445990123362,0 -77.01352984379776,-12.03446988926993,0 -77.01350298170013,-12.03449405135774,0 -77.01347310359148,-12.03452092545547,0 -77.0134328854453,-12.03448524032569,0 -77.01334951214221,-12.03441580307327,0 -77.01329208793345,-12.03438205995059,0 -77.01325554780061,-12.03436058887257,0 -77.01321102363875,-12.03433442577745,0 -77.01315756444438,-12.03431126069324,0 -77.01312536332733,-12.03429730664249,0 -77.01306255109898,-12.03427429455883,0 -77.01301317191945,-12.03425620449309,0 -77.01298903483172,-12.03424736146093,0 -77.01298116980308,-12.03424448045047,0</coordinates></LinearRing></outerBoundaryIs>
+        </Polygon>
+      </MultiGeometry>
+    </Placemark>
+    <Placemark id="ID_00003">
+      <name>15</name>
+      <Snippet></Snippet>
+      <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+<td>15</td>
+</tr>
+<tr>
+<td>
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+<tr>
+<td>UBIGEO</td>
+<td>150132</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DEPARTAMENTO</td>
+<td>LIMA</td>
+</tr>
+<tr>
+<td>PROVINCIA</td>
+<td>LIMA</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DISTRITO</td>
+<td>SAN JUAN DE LURIGANCHO</td>
+</tr>
+<tr>
+<td>ZONA</td>
+<td>12300</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>MANZANA</td>
+<td>034</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+]]></description>
+      <styleUrl>#PolyStyle00</styleUrl>
+      <MultiGeometry>
+        <Polygon>
+          <extrude>0</extrude>          <altitudeMode>clampToGround</altitudeMode>
+          <outerBoundaryIs><LinearRing><coordinates> -77.01294393366771,-12.03464782791679,0 -77.01292224458888,-12.03464850591928,0 -77.01285248633531,-12.0346506859272,0 -77.01280300715541,-12.03465493494264,0 -77.01279666813235,-12.03461099378291,0 -77.01278387108584,-12.03452227846037,0 -77.01275808299209,-12.03434351081046,0 -77.01277582405658,-12.03434576081867,0 -77.01278851610272,-12.03434737082449,0 -77.01281285319118,-12.03435045783573,0 -77.0128153552003,-12.03435077483687,0 -77.01285563834676,-12.03435676385863,0 -77.01289411048663,-12.03436248287943,0 -77.0129073965349,-12.03436550989045,0 -77.01293884264925,-12.03437267391649,0 -77.01298102280259,-12.0343822839514,0 -77.01300690089664,-12.03438817997284,0 -77.01303418799586,-12.03439740300638,0 -77.01308391317662,-12.03441421106749,0 -77.01312800533691,-12.03442911412168,0 -77.0131454134002,-12.03443672214934,0 -77.0131945745789,-12.03445821022746,0 -77.0132064766222,-12.03446341224634,0 -77.01324218275198,-12.03448736533346,0 -77.01325964681547,-12.03450381239321,0 -77.01327578087415,-12.03451900744847,0 -77.01330047596395,-12.03454147353017,0 -77.01333263408083,-12.03457072863648,0 -77.01334990514363,-12.0345864406936,0 -77.01336288519082,-12.03459997374284,0 -77.01340878235766,-12.03464782491676,0 -77.01343889646716,-12.03468341404619,0 -77.0134756056006,-12.03472679720386,0 -77.01347767360812,-12.03472924021276,0 -77.01350059269146,-12.03476058832672,0 -77.01355231487946,-12.03483133158392,0 -77.0134663845671,-12.03489409781207,0 -77.01342412241343,-12.03492496892432,0 -77.01337718724278,-12.03495925204896,0 -77.01335096114747,-12.03494109798294,0 -77.01332180104146,-12.03492091290957,0 -77.01327644987657,-12.03488951979546,0 -77.01325404779516,-12.03487401273907,0 -77.01323268071747,-12.03485922168528,0 -77.01321726366143,-12.03484854964648,0 -77.01319462657909,-12.03483287958954,0 -77.0131722054976,-12.03481735853313,0 -77.01315287242733,-12.03480397648445,0 -77.01312508132628,-12.03478473941453,0 -77.01310572725595,-12.03477134236584,0 -77.01308312717379,-12.03475569830897,0 -77.01307399014053,-12.03474937328593,0 -77.01306528910891,-12.03474054025384,0 -77.01304686504193,-12.03472183818587,0 -77.01303498499874,-12.03470977814203,0 -77.01301875193974,-12.03469329908211,0 -77.01301118791224,-12.03468562105417,0 -77.01300622189416,-12.03468159903957,0 -77.01298743082589,-12.03466637898424,0 -77.01295597871155,-12.03465296493545,0 -77.01294393366771,-12.03464782791679,0</coordinates></LinearRing></outerBoundaryIs>
+        </Polygon>
+      </MultiGeometry>
+    </Placemark>
+    <Placemark id="ID_00004">
+      <name>15</name>
+      <Snippet></Snippet>
+      <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+<td>15</td>
+</tr>
+<tr>
+<td>
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+<tr>
+<td>UBIGEO</td>
+<td>150132</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DEPARTAMENTO</td>
+<td>LIMA</td>
+</tr>
+<tr>
+<td>PROVINCIA</td>
+<td>LIMA</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DISTRITO</td>
+<td>SAN JUAN DE LURIGANCHO</td>
+</tr>
+<tr>
+<td>ZONA</td>
+<td>12300</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>MANZANA</td>
+<td>003</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+]]></description>
+      <styleUrl>#PolyStyle00</styleUrl>
+      <MultiGeometry>
+        <Polygon>
+          <extrude>0</extrude>          <altitudeMode>clampToGround</altitudeMode>
+          <outerBoundaryIs><LinearRing><coordinates> -77.01196780411908,-12.02918776306706,0 -77.0119533120664,-12.02917327101437,0 -77.01194172302428,-12.02915491594763,0 -77.01192336795754,-12.02911626080709,0 -77.01188667082414,-12.02903231350194,0 -77.01187338777584,-12.02899578136913,0 -77.01180184051572,-12.0287990276538,0 -77.01179420548795,-12.02877802857751,0 -77.01175568534791,-12.02867155019038,0 -77.01172240922693,-12.02857957585604,0 -77.01172274122814,-12.0285605047867,0 -77.01172904725109,-12.02854264772179,0 -77.01174282330118,-12.02853111067981,0 -77.01174616131328,-12.02852998467574,0 -77.01174746631807,-12.02852847567027,0 -77.01175514134593,-12.02852540565908,0 -77.01176396737805,-12.02852406265419,0 -77.01178858946753,-12.02852420365474,0 -77.01181689557046,-12.02852663366355,0 -77.01202979234444,-12.02854649473574,0 -77.01208522554595,-12.02855166575455,0 -77.01217978888974,-12.02856517280367,0 -77.01222325304775,-12.02858278686767,0 -77.01225437416088,-12.02860510694882,0 -77.01226788120999,-12.02862683902782,0 -77.01227317722925,-12.02865561913245,0 -77.01227200022498,-12.02868381023495,0 -77.01225138115001,-12.02871881936221,0 -77.01223678309691,-12.0287429344499,0 -77.01223609709444,-12.028744067454,0 -77.0122249170538,-12.02876253552114,0 -77.01222450605229,-12.02876321452362,0 -77.01218306390166,-12.02883167377252,0 -77.01213820973857,-12.02892673811812,0 -77.01206360946736,-12.02908484669291,0 -77.01202885234102,-12.0291523529383,0 -77.01201708829825,-12.02917520202141,0 -77.01200259624557,-12.02918583206002,0 -77.01199099420336,-12.02918872207056,0 -77.01196780411908,-12.02918776306706,0</coordinates></LinearRing></outerBoundaryIs>
+        </Polygon>
+      </MultiGeometry>
+    </Placemark>
+    <Placemark id="ID_00005">
+      <name>15</name>
+      <Snippet></Snippet>
+      <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+<td>15</td>
+</tr>
+<tr>
+<td>
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+<tr>
+<td>UBIGEO</td>
+<td>150132</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DEPARTAMENTO</td>
+<td>LIMA</td>
+</tr>
+<tr>
+<td>PROVINCIA</td>
+<td>LIMA</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DISTRITO</td>
+<td>SAN JUAN DE LURIGANCHO</td>
+</tr>
+<tr>
+<td>ZONA</td>
+<td>12300</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>MANZANA</td>
+<td>007</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+]]></description>
+      <styleUrl>#PolyStyle00</styleUrl>
+      <MultiGeometry>
+        <Polygon>
+          <extrude>0</extrude>          <altitudeMode>clampToGround</altitudeMode>
+          <outerBoundaryIs><LinearRing><coordinates> -77.01190358688564,-12.03184539972875,0 -77.0118840298145,-12.031837226699,0 -77.01183323562987,-12.03178207349851,0 -77.01182245059067,-12.03177036345596,0 -77.01180520652798,-12.03175163838785,0 -77.01168059707493,-12.03161633389595,0 -77.01146951930758,-12.03138713906276,0 -77.01132634478711,-12.03127110664093,0 -77.01135966290821,-12.03124372654139,0 -77.01140905008776,-12.03120314139386,0 -77.01153025052838,-12.03110354103177,0 -77.01156667066078,-12.03107361192292,0 -77.01159298175645,-12.03105552285717,0 -77.01166513101873,-12.03100591967683,0 -77.01166808002944,-12.03100438867131,0 -77.01176192537059,-12.03095566749414,0 -77.01177814942957,-12.03095066547598,0 -77.01180185351575,-12.03094335644943,0 -77.01189166384228,-12.03091566534874,0 -77.01197501514531,-12.03088996525531,0 -77.01200449225246,-12.03088087622228,0 -77.01201048427424,-12.03098927061632,0 -77.01201183727915,-12.03103988780032,0 -77.01201532929184,-12.03117057227541,0 -77.01201983230823,-12.03133895288755,0 -77.01200120224047,-12.03169047116552,0 -77.01200026423709,-12.03170817222986,0 -77.01199940423396,-12.03172439528885,0 -77.01199564422029,-12.03179534854678,0 -77.01198917219676,-12.03181008360036,0 -77.01197200613433,-12.03183040867424,0 -77.01196499010882,-12.03183464568963,0 -77.01195279406448,-12.03184201071639,0 -77.01194666804224,-12.03184390972331,0 -77.01193889001394,-12.03184632073209,0 -77.01192400095982,-12.03184793273795,0 -77.01190358688564,-12.03184539972875,0</coordinates></LinearRing></outerBoundaryIs>
+        </Polygon>
+      </MultiGeometry>
+    </Placemark>
+    <Placemark id="ID_00006">
+      <name>15</name>
+      <Snippet></Snippet>
+      <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+<td>15</td>
+</tr>
+<tr>
+<td>
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+<tr>
+<td>UBIGEO</td>
+<td>150132</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DEPARTAMENTO</td>
+<td>LIMA</td>
+</tr>
+<tr>
+<td>PROVINCIA</td>
+<td>LIMA</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DISTRITO</td>
+<td>SAN JUAN DE LURIGANCHO</td>
+</tr>
+<tr>
+<td>ZONA</td>
+<td>12300</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>MANZANA</td>
+<td>016</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+]]></description>
+      <styleUrl>#PolyStyle00</styleUrl>
+      <MultiGeometry>
+        <Polygon>
+          <extrude>0</extrude>          <altitudeMode>clampToGround</altitudeMode>
+          <outerBoundaryIs><LinearRing><coordinates> -77.01544347375466,-12.03557925930295,0 -77.01540058259872,-12.03561250542384,0 -77.0153674584783,-12.03563818051714,0 -77.01532513232445,-12.03567098863641,0 -77.01529867522828,-12.03569149571098,0 -77.01524272702488,-12.03562640947439,0 -77.01520302488052,-12.03558022130648,0 -77.01518103780057,-12.03555464221347,0 -77.01516054172606,-12.03553079812679,0 -77.01514173165771,-12.03551622807379,0 -77.01510766353385,-12.03548983997786,0 -77.01506721738679,-12.03545851086398,0 -77.01500534416186,-12.03541058568976,0 -77.01497137003838,-12.03538427059408,0 -77.01493538490752,-12.03535639849275,0 -77.01489390175675,-12.03532426737593,0 -77.01486146663882,-12.03529914428464,0 -77.01482031948922,-12.03526727216877,0 -77.01478236635126,-12.03523787406186,0 -77.01474218220517,-12.03520674794874,0 -77.01471382210207,-12.03518478086886,0 -77.01468436199497,-12.03516196178589,0 -77.0146526918798,-12.03513743069669,0 -77.01461236173321,-12.03510619158317,0 -77.01459321666363,-12.03509136252922,0 -77.01457325559102,-12.03507590247301,0 -77.01455725253288,-12.03506350742799,0 -77.01453827746389,-12.03504880837454,0 -77.01452268240718,-12.03503672933061,0 -77.01450495234275,-12.03502299528071,0 -77.01448527127116,-12.03500775122529,0 -77.01453837846424,-12.03496986508753,0 -77.01459862368324,-12.03492688493128,0 -77.01503342326396,-12.03526262715184,0 -77.01544347375466,-12.03557925930295,0</coordinates></LinearRing></outerBoundaryIs>
+        </Polygon>
+      </MultiGeometry>
+    </Placemark>
+    <Placemark id="ID_00007">
+      <name>15</name>
+      <Snippet></Snippet>
+      <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+<td>15</td>
+</tr>
+<tr>
+<td>
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+<tr>
+<td>UBIGEO</td>
+<td>150132</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DEPARTAMENTO</td>
+<td>LIMA</td>
+</tr>
+<tr>
+<td>PROVINCIA</td>
+<td>LIMA</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DISTRITO</td>
+<td>SAN JUAN DE LURIGANCHO</td>
+</tr>
+<tr>
+<td>ZONA</td>
+<td>12300</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>MANZANA</td>
+<td>029</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+]]></description>
+      <styleUrl>#PolyStyle00</styleUrl>
+      <MultiGeometry>
+        <Polygon>
+          <extrude>0</extrude>          <altitudeMode>clampToGround</altitudeMode>
+          <outerBoundaryIs><LinearRing><coordinates> -77.01456953157748,-12.03567517665164,0 -77.01454253747937,-12.03568889470154,0 -77.01449970532366,-12.03571065978065,0 -77.0144723722243,-12.03572454983117,0 -77.01443905110313,-12.0356460255457,0 -77.01439629494769,-12.03558102730938,0 -77.01439098292838,-12.03557295128002,0 -77.01439038192621,-12.0355721972773,0 -77.01436199482299,-12.03553647014741,0 -77.01432870570199,-12.03549457299511,0 -77.01430197760482,-12.03546093187276,0 -77.01428057052698,-12.03543398977485,0 -77.01424233638801,-12.03539459463161,0 -77.01421091327376,-12.0353622195139,0 -77.01419404121242,-12.0353448354507,0 -77.0141783291553,-12.03532864739185,0 -77.01423476536047,-12.03528082621801,0 -77.01426894748477,-12.03525186311271,0 -77.01430150960312,-12.03528360622812,0 -77.01441534001697,-12.03542146872934,0 -77.01443667209452,-12.03544730482327,0 -77.01445736816976,-12.0354703189069,0 -77.01450055132671,-12.03551818208092,0 -77.01455468152352,-12.03563005048761,0 -77.01456953157748,-12.03567517665164,0</coordinates></LinearRing></outerBoundaryIs>
+        </Polygon>
+      </MultiGeometry>
+    </Placemark>
+    <Placemark id="ID_00008">
+      <name>15</name>
+      <Snippet></Snippet>
+      <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+<td>15</td>
+</tr>
+<tr>
+<td>
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+<tr>
+<td>UBIGEO</td>
+<td>150132</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DEPARTAMENTO</td>
+<td>LIMA</td>
+</tr>
+<tr>
+<td>PROVINCIA</td>
+<td>LIMA</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DISTRITO</td>
+<td>SAN JUAN DE LURIGANCHO</td>
+</tr>
+<tr>
+<td>ZONA</td>
+<td>12300</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>MANZANA</td>
+<td>017</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+]]></description>
+      <styleUrl>#PolyStyle00</styleUrl>
+      <MultiGeometry>
+        <Polygon>
+          <extrude>0</extrude>          <altitudeMode>clampToGround</altitudeMode>
+          <outerBoundaryIs><LinearRing><coordinates> -77.01565527852466,-12.03574762891503,0 -77.01567006457844,-12.03576819498983,0 -77.01568167362063,-12.03578434204854,0 -77.01556142518348,-12.03591826353539,0 -77.01554837113599,-12.03593021657883,0 -77.0155652301973,-12.03595137965579,0 -77.01550907499313,-12.0360227639153,0 -77.01546526883391,-12.03600743185956,0 -77.01537011448795,-12.03613697833049,0 -77.01534955841322,-12.03617435346638,0 -77.01533626936492,-12.0361985145542,0 -77.01533893837461,-12.03619903955615,0 -77.01533752536949,-12.03620291257022,0 -77.0153767765122,-12.03621407261079,0 -77.01534917541187,-12.03629497490488,0 -77.01530744326016,-12.03628537287,0 -77.01527350013674,-12.03627756384162,0 -77.01522829597241,-12.03637512119627,0 -77.01519022683402,-12.03645787949711,0 -77.01526019108837,-12.03650035665157,0 -77.01520691089468,-12.03665797822458,0 -77.01516411173907,-12.03665892022798,0 -77.01510697953137,-12.03666017723259,0 -77.01503552627162,-12.03666174923831,0 -77.0149856600903,-12.03666284624228,0 -77.01494813595389,-12.03666367224525,0 -77.01494685094923,-12.03665924722918,0 -77.01498606509176,-12.03660168301991,0 -77.0150088201745,-12.03656827889847,0 -77.01503481226899,-12.03651877971851,0 -77.01506324637239,-12.03647155854685,0 -77.01508010343366,-12.03644553345225,0 -77.01511425655781,-12.03639280226054,0 -77.01512426659423,-12.03637734820438,0 -77.01516069372661,-12.03632926502957,0 -77.01520977990509,-12.03626446979399,0 -77.01522177194869,-12.03622963466734,0 -77.01520643489295,-12.03619653854702,0 -77.01521678293057,-12.03618791551571,0 -77.01523662000267,-12.03617138545559,0 -77.01522405695698,-12.03614740036841,0 -77.01521755393333,-12.03613618332764,0 -77.01523582299978,-12.03610947523055,0 -77.01525485506897,-12.03608165112939,0 -77.01527293713468,-12.03605878604623,0 -77.0152889151928,-12.03604372999149,0 -77.01531571029017,-12.0360184818997,0 -77.01536259546066,-12.03597854875454,0 -77.01550243796902,-12.03585943832155,0 -77.01554784313407,-12.03582076518092,0 -77.01558453526747,-12.0357895130673,0 -77.01562149340185,-12.03576491197788,0 -77.01565527852466,-12.03574762891503,0</coordinates></LinearRing></outerBoundaryIs>
+        </Polygon>
+      </MultiGeometry>
+    </Placemark>
+    <Placemark id="ID_00009">
+      <name>15</name>
+      <Snippet></Snippet>
+      <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+<td>15</td>
+</tr>
+<tr>
+<td>
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+<tr>
+<td>UBIGEO</td>
+<td>150132</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DEPARTAMENTO</td>
+<td>LIMA</td>
+</tr>
+<tr>
+<td>PROVINCIA</td>
+<td>LIMA</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DISTRITO</td>
+<td>SAN JUAN DE LURIGANCHO</td>
+</tr>
+<tr>
+<td>ZONA</td>
+<td>12300</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>MANZANA</td>
+<td>020</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+]]></description>
+      <styleUrl>#PolyStyle00</styleUrl>
+      <MultiGeometry>
+        <Polygon>
+          <extrude>0</extrude>          <altitudeMode>clampToGround</altitudeMode>
+          <outerBoundaryIs><LinearRing><coordinates> -77.01528313217176,-12.03570679176659,0 -77.01525496506935,-12.03572487583233,0 -77.01523929101239,-12.035736882876,0 -77.01519255684246,-12.03577268300614,0 -77.01517392777475,-12.03574981492301,0 -77.01515275769776,-12.03572382682853,0 -77.01513544863485,-12.03570257975127,0 -77.01511675156689,-12.03567962866782,0 -77.01509435448548,-12.03565213356791,0 -77.01507487641464,-12.03562822448095,0 -77.01504917932124,-12.03559668036627,0 -77.01502504123346,-12.03556704925859,0 -77.01506308937178,-12.03553849215473,0 -77.01508523445233,-12.03552192209452,0 -77.01509381548351,-12.03551550107119,0 -77.01516748275134,-12.03556918226633,0 -77.01519535085265,-12.03560393139264,0 -77.0152137389195,-12.03562686047599,0 -77.01528313217176,-12.03570679176659,0</coordinates></LinearRing></outerBoundaryIs>
+        </Polygon>
+      </MultiGeometry>
+    </Placemark>
+    <Placemark id="ID_00010">
+      <name>15</name>
+      <Snippet></Snippet>
+      <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+<td>15</td>
+</tr>
+<tr>
+<td>
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+<tr>
+<td>UBIGEO</td>
+<td>150132</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DEPARTAMENTO</td>
+<td>LIMA</td>
+</tr>
+<tr>
+<td>PROVINCIA</td>
+<td>LIMA</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DISTRITO</td>
+<td>SAN JUAN DE LURIGANCHO</td>
+</tr>
+<tr>
+<td>ZONA</td>
+<td>12300</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>MANZANA</td>
+<td>018</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+]]></description>
+      <styleUrl>#PolyStyle00</styleUrl>
+      <MultiGeometry>
+        <Polygon>
+          <extrude>0</extrude>          <altitudeMode>clampToGround</altitudeMode>
+          <outerBoundaryIs><LinearRing><coordinates> -77.01525390906551,-12.03605227302256,0 -77.01524765004274,-12.03606397006507,0 -77.01523919601203,-12.03608664514752,0 -77.0151903698345,-12.03606462206744,0 -77.01515753271514,-12.03604981101364,0 -77.01515667571204,-12.0360272529316,0 -77.01515096569125,-12.0360218279119,0 -77.01515883171987,-12.03601224087703,0 -77.01516503074242,-12.03600422484789,0 -77.01520133287437,-12.03596640871041,0 -77.01524226702321,-12.0359338925922,0 -77.01528986719626,-12.03589608245477,0 -77.01531731629603,-12.0358742783755,0 -77.01536329846317,-12.03583613923684,0 -77.01538646554741,-12.03581692216699,0 -77.01541936066701,-12.03578402704738,0 -77.01544508676051,-12.03575830095383,0 -77.01543916473901,-12.03575282993398,0 -77.01541624065567,-12.035731653857,0 -77.01540215360444,-12.03572081781761,0 -77.01536171945747,-12.03568971370453,0 -77.01539009956065,-12.03566242360529,0 -77.01542358868238,-12.03563022348823,0 -77.01545691480351,-12.03565689558519,0 -77.01549638294699,-12.03568848570006,0 -77.01552739105972,-12.03571409979315,0 -77.01555368515534,-12.03573581987212,0 -77.01558395026535,-12.035760819963,0 -77.01542014866988,-12.03591090850864,0 -77.01540302860764,-12.03592380755555,0 -77.01529267320643,-12.03600695685782,0 -77.01525390906551,-12.03605227302256,0</coordinates></LinearRing></outerBoundaryIs>
+        </Polygon>
+      </MultiGeometry>
+    </Placemark>
+    <Placemark id="ID_00011">
+      <name>15</name>
+      <Snippet></Snippet>
+      <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+<td>15</td>
+</tr>
+<tr>
+<td>
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+<tr>
+<td>UBIGEO</td>
+<td>150132</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DEPARTAMENTO</td>
+<td>LIMA</td>
+</tr>
+<tr>
+<td>PROVINCIA</td>
+<td>LIMA</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DISTRITO</td>
+<td>SAN JUAN DE LURIGANCHO</td>
+</tr>
+<tr>
+<td>ZONA</td>
+<td>12300</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>MANZANA</td>
+<td>019</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+]]></description>
+      <styleUrl>#PolyStyle00</styleUrl>
+      <MultiGeometry>
+        <Polygon>
+          <extrude>0</extrude>          <altitudeMode>clampToGround</altitudeMode>
+          <outerBoundaryIs><LinearRing><coordinates> -77.01535096241832,-12.03569168371166,0 -77.0153828625343,-12.03572081081757,0 -77.01541834466332,-12.03575320893532,0 -77.01533457735877,-12.03583696423982,0 -77.01529107320062,-12.03587205436742,0 -77.01522150294773,-12.0359281675714,0 -77.01514008065169,-12.03599953983087,0 -77.01511532556168,-12.03595122465521,0 -77.01509092147296,-12.03590359348203,0 -77.01518985183265,-12.03582297318894,0 -77.01525853808232,-12.03576700098546,0 -77.01529061719896,-12.03574085889045,0 -77.01535096241832,-12.03569168371166,0</coordinates></LinearRing></outerBoundaryIs>
+        </Polygon>
+      </MultiGeometry>
+    </Placemark>
+    <Placemark id="ID_00012">
+      <name>15</name>
+      <Snippet></Snippet>
+      <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+<td>15</td>
+</tr>
+<tr>
+<td>
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+<tr>
+<td>UBIGEO</td>
+<td>150132</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DEPARTAMENTO</td>
+<td>LIMA</td>
+</tr>
+<tr>
+<td>PROVINCIA</td>
+<td>LIMA</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DISTRITO</td>
+<td>SAN JUAN DE LURIGANCHO</td>
+</tr>
+<tr>
+<td>ZONA</td>
+<td>12300</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>MANZANA</td>
+<td>021B</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+]]></description>
+      <styleUrl>#PolyStyle00</styleUrl>
+      <MultiGeometry>
+        <Polygon>
+          <extrude>0</extrude>          <altitudeMode>clampToGround</altitudeMode>
+          <outerBoundaryIs><LinearRing><coordinates> -77.01516796975307,-12.03581416315694,0 -77.01511400255691,-12.03585770331523,0 -77.01502931524902,-12.03592602856361,0 -77.01497710605923,-12.03585796331618,0 -77.01494659194827,-12.03581818217157,0 -77.01492129585631,-12.03578520305166,0 -77.014895621763,-12.03575173092997,0 -77.01487194567693,-12.03572086381774,0 -77.01484099556438,-12.03568051367108,0 -77.01486559265379,-12.03566445961269,0 -77.01489361075568,-12.03564617254619,0 -77.01490081678185,-12.03564146952914,0 -77.01494072392694,-12.03561354342759,0 -77.01496108800097,-12.03559929337581,0 -77.01497704305899,-12.03558812833518,0 -77.01500981517813,-12.03556519425183,0 -77.01509421748494,-12.03567681065761,0 -77.01510562552642,-12.03569189771247,0 -77.01518588081819,-12.03579802909826,0 -77.01516796975307,-12.03581416315694,0</coordinates></LinearRing></outerBoundaryIs>
+        </Polygon>
+      </MultiGeometry>
+    </Placemark>
+    <Placemark id="ID_00013">
+      <name>15</name>
+      <Snippet></Snippet>
+      <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+<td>15</td>
+</tr>
+<tr>
+<td>
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+<tr>
+<td>UBIGEO</td>
+<td>150132</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DEPARTAMENTO</td>
+<td>LIMA</td>
+</tr>
+<tr>
+<td>PROVINCIA</td>
+<td>LIMA</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DISTRITO</td>
+<td>SAN JUAN DE LURIGANCHO</td>
+</tr>
+<tr>
+<td>ZONA</td>
+<td>12300</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>MANZANA</td>
+<td>022</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+]]></description>
+      <styleUrl>#PolyStyle00</styleUrl>
+      <MultiGeometry>
+        <Polygon>
+          <extrude>0</extrude>          <altitudeMode>clampToGround</altitudeMode>
+          <outerBoundaryIs><LinearRing><coordinates> -77.01494231693272,-12.03586074432627,0 -77.01484299657165,-12.03586943435789,0 -77.01477379132007,-12.03587548937986,0 -77.01473597718263,-12.03587879839193,0 -77.01467874697454,-12.03588380641014,0 -77.01466804893568,-12.03588410741122,0 -77.01465971690539,-12.03588434241209,0 -77.01465498588817,-12.03586204033098,0 -77.01465127387468,-12.03584453926737,0 -77.01464705585931,-12.03582465319505,0 -77.01464282784394,-12.03580472112259,0 -77.01463876982922,-12.03578559005308,0 -77.01463590981882,-12.03577210600406,0 -77.01463314580877,-12.03575907495667,0 -77.01463123680185,-12.03575007692393,0 -77.01472553914465,-12.03571204278569,0 -77.01480952844997,-12.03567816766253,0 -77.0148479595897,-12.0357341578661,0 -77.01486643465688,-12.03576107296391,0 -77.01489731076913,-12.03580162811136,0 -77.01494231693272,-12.03586074432627,0</coordinates></LinearRing></outerBoundaryIs>
+        </Polygon>
+      </MultiGeometry>
+    </Placemark>
+    <Placemark id="ID_00014">
+      <name>15</name>
+      <Snippet></Snippet>
+      <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+<td>15</td>
+</tr>
+<tr>
+<td>
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+<tr>
+<td>UBIGEO</td>
+<td>150132</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DEPARTAMENTO</td>
+<td>LIMA</td>
+</tr>
+<tr>
+<td>PROVINCIA</td>
+<td>LIMA</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DISTRITO</td>
+<td>SAN JUAN DE LURIGANCHO</td>
+</tr>
+<tr>
+<td>ZONA</td>
+<td>12300</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>MANZANA</td>
+<td>039</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+]]></description>
+      <styleUrl>#PolyStyle00</styleUrl>
+      <MultiGeometry>
+        <Polygon>
+          <extrude>0</extrude>          <altitudeMode>clampToGround</altitudeMode>
+          <outerBoundaryIs><LinearRing><coordinates> -77.01442229204224,-12.035868372354,0 -77.01440006396143,-12.03588313740767,0 -77.01433873873845,-12.03592387055579,0 -77.01430617762009,-12.03594549963441,0 -77.01426549647221,-12.03597252173262,0 -77.01422665833098,-12.03599831982643,0 -77.01418895119394,-12.03602336591746,0 -77.01416320510032,-12.03604046697967,0 -77.01413245798852,-12.03606089105392,0 -77.01401803957259,-12.03613689233021,0 -77.01401805357261,-12.03613338631743,0 -77.01401813857297,-12.03611225724063,0 -77.01401834757371,-12.03606039605211,0 -77.01401846757415,-12.03603071594421,0 -77.01401578056436,-12.03601062787118,0 -77.01401135954831,-12.035977577751,0 -77.0140053695265,-12.03593279458823,0 -77.01400247751599,-12.03591117150961,0 -77.01399506048904,-12.03589510045117,0 -77.01397579241899,-12.0358533522994,0 -77.01396646138505,-12.03583313522591,0 -77.01399797649964,-12.03581095314524,0 -77.01401055854541,-12.03580302411643,0 -77.01405111869286,-12.0357774650235,0 -77.01407182676815,-12.03576441597608,0 -77.01409038183556,-12.03575272293358,0 -77.01410888290286,-12.03574106489117,0 -77.01412498896139,-12.03573091585429,0 -77.01415364906558,-12.03571285578863,0 -77.01423058534527,-12.03566437361241,0 -77.01427131149336,-12.0356387105191,0 -77.01430685362254,-12.03561631343769,0 -77.01432804769962,-12.03560295838912,0 -77.01434832077331,-12.0356351395061,0 -77.01436190582268,-12.03565670558453,0 -77.01436506283415,-12.03566179560301,0 -77.01438223089656,-12.03568947670362,0 -77.01439146293012,-12.03571472779544,0 -77.01439999696117,-12.03573806988032,0 -77.01440199296843,-12.03574798491633,0 -77.01441111300159,-12.03579330108107,0 -77.01441193000454,-12.03579878910102,0 -77.01441505201592,-12.03581975017727,0 -77.01442003603404,-12.03585322129891,0 -77.01442229204224,-12.035868372354,0</coordinates></LinearRing></outerBoundaryIs>
+        </Polygon>
+      </MultiGeometry>
+    </Placemark>
+    <Placemark id="ID_00015">
+      <name>15</name>
+      <Snippet></Snippet>
+      <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+<td>15</td>
+</tr>
+<tr>
+<td>
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+<tr>
+<td>UBIGEO</td>
+<td>150132</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DEPARTAMENTO</td>
+<td>LIMA</td>
+</tr>
+<tr>
+<td>PROVINCIA</td>
+<td>LIMA</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DISTRITO</td>
+<td>SAN JUAN DE LURIGANCHO</td>
+</tr>
+<tr>
+<td>ZONA</td>
+<td>12300</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>MANZANA</td>
+<td>040</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+]]></description>
+      <styleUrl>#PolyStyle00</styleUrl>
+      <MultiGeometry>
+        <Polygon>
+          <extrude>0</extrude>          <altitudeMode>clampToGround</altitudeMode>
+          <outerBoundaryIs><LinearRing><coordinates> -77.01445441015898,-12.03614264935112,0 -77.01445396115736,-12.03614690236657,0 -77.01444467912359,-12.03623490468652,0 -77.01444103511034,-12.0362424887141,0 -77.01441650602118,-12.03629353489964,0 -77.0143850469068,-12.03631791898829,0 -77.01437138585715,-12.03632850802683,0 -77.01435214178719,-12.03634342408105,0 -77.01432167467641,-12.03636703916686,0 -77.01429574158215,-12.03638713923994,0 -77.01427542650828,-12.03640288529721,0 -77.01426244146109,-12.03641295133377,0 -77.0142269103319,-12.03644049143389,0 -77.01421661529452,-12.03644650645578,0 -77.01418197516858,-12.03646674552937,0 -77.01413890701201,-12.03649191062084,0 -77.01410847290134,-12.03650969268551,0 -77.01404372566594,-12.036547523823,0 -77.01389721213332,-12.03663313213423,0 -77.01385147296702,-12.03658347895373,0 -77.01387217104229,-12.0365443778116,0 -77.01392020521689,-12.03645363448169,0 -77.01393654027629,-12.03642277536949,0 -77.01395426634076,-12.03638928824779,0 -77.01399021247141,-12.03632927002957,0 -77.01399516448942,-12.03631114796372,0 -77.01400878353894,-12.03626129878245,0 -77.01401546656325,-12.0362204106338,0 -77.01401956857814,-12.03619531354258,0 -77.01402307159088,-12.03617388546468,0 -77.01403831764628,-12.0361637414278,0 -77.01406467274211,-12.03614620636404,0 -77.01408653382157,-12.03613166131117,0 -77.01410854790163,-12.03611701425791,0 -77.014133955994,-12.03610010919647,0 -77.01417058012714,-12.03607574110788,0 -77.01420413524915,-12.03605341502674,0 -77.01423508236161,-12.03603282395187,0 -77.01427017448918,-12.03600947586699,0 -77.01429380857513,-12.03599374980979,0 -77.01432328468229,-12.03597413873854,0 -77.01438971492377,-12.03592993957784,0 -77.01443311308157,-12.03590106547284,0 -77.01444403412125,-12.03597962375847,0 -77.01445186514974,-12.03603595896328,0 -77.01445256715226,-12.03606537607021,0 -77.01445441015898,-12.03614264935112,0</coordinates></LinearRing></outerBoundaryIs>
+        </Polygon>
+      </MultiGeometry>
+    </Placemark>
+    <Placemark id="ID_00016">
+      <name>15</name>
+      <Snippet></Snippet>
+      <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+<td>15</td>
+</tr>
+<tr>
+<td>
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+<tr>
+<td>UBIGEO</td>
+<td>150132</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DEPARTAMENTO</td>
+<td>LIMA</td>
+</tr>
+<tr>
+<td>PROVINCIA</td>
+<td>LIMA</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DISTRITO</td>
+<td>SAN JUAN DE LURIGANCHO</td>
+</tr>
+<tr>
+<td>ZONA</td>
+<td>12300</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>MANZANA</td>
+<td>004</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+]]></description>
+      <styleUrl>#PolyStyle00</styleUrl>
+      <MultiGeometry>
+        <Polygon>
+          <extrude>0</extrude>          <altitudeMode>clampToGround</altitudeMode>
+          <outerBoundaryIs><LinearRing><coordinates> -77.01240122269473,-12.03141544916565,0 -77.01239610167613,-12.03141367615922,0 -77.01239135865887,-12.03141105714968,0 -77.0123871306435,-12.03140766813738,0 -77.01238354163047,-12.03140360912261,0 -77.01238069662014,-12.03139899810589,0 -77.01237867861278,-12.03139396908756,0 -77.01237754560867,-12.03138867006834,0 -77.01237733260791,-12.03138325604863,0 -77.0123780446105,-12.03137788502909,0 -77.01237966061638,-12.03137271301029,0 -77.01238213462534,-12.03136789199277,0 -77.01238539263721,-12.03136356297705,0 -77.01238738664443,-12.03125940759838,0 -77.0123893306515,-12.03115783022912,0 -77.01239094665738,-12.03107339092213,0 -77.01239319366556,-12.03095599449534,0 -77.01239649467755,-12.03078355686847,0 -77.01238482163512,-12.03072292164802,0 -77.01233494745378,-12.03046385970623,0 -77.0123105783652,-12.03033727824607,0 -77.01225773417309,-12.03016006260179,0 -77.01208892255937,-12.02959394454371,0 -77.01201038527387,-12.02933056158616,0 -77.01221967603476,-12.02894299217718,0 -77.01227143622293,-12.02884714182875,0 -77.01228954928877,-12.02881359970678,0 -77.01248584800237,-12.02867497820284,0 -77.01271673484177,-12.02872597038822,0 -77.01274564394686,-12.02873235541142,0 -77.01295494770778,-12.02876795054084,0 -77.01466183491306,-12.02905823759619,0 -77.01470497006989,-12.02906557362286,0 -77.01485440761314,-12.02909098871521,0 -77.01485191060408,-12.02911595280597,0 -77.01484999859713,-12.02913505987544,0 -77.01484842359139,-12.0291508079327,0 -77.01484622958344,-12.02917273901244,0 -77.01484418257599,-12.02919320208684,0 -77.01484189956767,-12.02921602516977,0 -77.0148390195572,-12.02924481727445,0 -77.01483609454658,-12.02927406238081,0 -77.01483412453939,-12.02929375745237,0 -77.01483215053224,-12.02931349252413,0 -77.01483040252589,-12.02933096358765,0 -77.01482870451969,-12.02934793564936,0 -77.01482697351344,-12.02936524071225,0 -77.01482509550658,-12.02938401678051,0 -77.01482308649929,-12.02940410585353,0 -77.01482002548818,-12.02943470696482,0 -77.01481754947918,-12.02945946405481,0 -77.01481453246817,-12.02948962516445,0 -77.01481161445759,-12.0295187972705,0 -77.01480957845018,-12.02953914734451,0 -77.01480632243835,-12.02957169246281,0 -77.01480326242722,-12.02960227957402,0 -77.01480062841762,-12.02962860966971,0 -77.0147989054114,-12.02964583673236,0 -77.01479667140325,-12.02966816681351,0 -77.01479453039548,-12.02968956789135,0 -77.01479100938269,-12.02972476801932,0 -77.01478753437004,-12.02975950714557,0 -77.01478526536181,-12.02978219322807,0 -77.01478267935238,-12.02980804332202,0 -77.01477983034204,-12.02983652842562,0 -77.01477692433144,-12.02986557753121,0 -77.01477388232041,-12.02989598964177,0 -77.01477105631011,-12.02992423574443,0 -77.01476715729598,-12.02996321688619,0 -77.01475953726828,-12.03003939616309,0 -77.01475005723381,-12.03013417050767,0 -77.01474569121791,-12.03017781766636,0 -77.01474376021088,-12.0302077687752,0 -77.01474030219833,-12.03026139697016,0 -77.01473818219063,-12.03029428208976,0 -77.01436203682317,-12.03049377581499,0 -77.01365695525988,-12.03087144518798,0 -77.0132077126267,-12.0311364211513,0 -77.01316552547331,-12.03114871919598,0 -77.012656830624,-12.03129700973511,0 -77.01256086627512,-12.03135865395922,0 -77.01246172991472,-12.03140298812036,0 -77.01241198773386,-12.03141627616867,0 -77.01240656971419,-12.03141632416885,0 -77.01240122269473,-12.03141544916565,0</coordinates></LinearRing></outerBoundaryIs>
+        </Polygon>
+      </MultiGeometry>
+    </Placemark>
+    <Placemark id="ID_00017">
+      <name>15</name>
+      <Snippet></Snippet>
+      <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+<td>15</td>
+</tr>
+<tr>
+<td>
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+<tr>
+<td>UBIGEO</td>
+<td>150132</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DEPARTAMENTO</td>
+<td>LIMA</td>
+</tr>
+<tr>
+<td>PROVINCIA</td>
+<td>LIMA</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DISTRITO</td>
+<td>SAN JUAN DE LURIGANCHO</td>
+</tr>
+<tr>
+<td>ZONA</td>
+<td>12300</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>MANZANA</td>
+<td>001A</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+]]></description>
+      <styleUrl>#PolyStyle00</styleUrl>
+      <MultiGeometry>
+        <Polygon>
+          <extrude>0</extrude>          <altitudeMode>clampToGround</altitudeMode>
+          <outerBoundaryIs><LinearRing><coordinates> -77.01112388405107,-12.02812182519187,0 -77.01112668106123,-12.02812657020917,0 -77.0111289910696,-12.02813049022342,0 -77.01113562709372,-12.02814174926431,0 -77.01113651509695,-12.0281432562698,0 -77.01114994914582,-12.02817498738517,0 -77.01115543316575,-12.02818794043225,0 -77.01116696120766,-12.02821516853123,0 -77.01117612024098,-12.02823680160986,0 -77.01118481627259,-12.02825734168454,0 -77.01119836132182,-12.02828933480089,0 -77.01120338534008,-12.02830027984066,0 -77.01121418237932,-12.02832379792613,0 -77.01121967139926,-12.0283357539696,0 -77.01123124344133,-12.02836457607441,0 -77.01123678446152,-12.02837837612458,0 -77.01123913447003,-12.02838743515753,0 -77.01124380948704,-12.02840545722302,0 -77.01114294012035,-12.0284454113683,0 -77.01106224182695,-12.02847737648449,0 -77.01103268971951,-12.02848908152703,0 -77.01101328164896,-12.02849676955498,0 -77.01102471569055,-12.02852704766508,0 -77.01104477876345,-12.0285194186373,0 -77.0110681188483,-12.02851054260503,0 -77.01108923392508,-12.02850251357586,0 -77.01112268604669,-12.02848979252963,0 -77.01116857921352,-12.02847234146617,0 -77.01126139455096,-12.02843704633784,0 -77.01126592556744,-12.0284476393764,0 -77.01127048658401,-12.02845830241512,0 -77.01127713860819,-12.02847385247168,0 -77.01128607864069,-12.02849475054762,0 -77.01129243166378,-12.02850960360166,0 -77.01129858368614,-12.02852398665391,0 -77.01130538171088,-12.02853987771169,0 -77.01131732975432,-12.02856780881325,0 -77.01133164980638,-12.02860128693493,0 -77.01134123784124,-12.02862370101644,0 -77.01136226391765,-12.02867285619516,0 -77.01136776093767,-12.02868570724183,0 -77.0113766299699,-12.02870644231723,0 -77.01138299999303,-12.02872133337138,0 -77.01138775701037,-12.0287324544118,0 -77.01135892690553,-12.02874473545643,0 -77.01131969676294,-12.02876144651719,0 -77.01128651664232,-12.02877558056861,0 -77.01125534652897,-12.02878885861685,0 -77.01123843046747,-12.02879606464308,0 -77.01121327937602,-12.028806778682,0 -77.0111950523098,-12.02881454371021,0 -77.01116947621682,-12.02882543874983,0 -77.01115053514792,-12.02883350677917,0 -77.0111330630844,-12.02884094980624,0 -77.01110987900012,-12.02885082584214,0 -77.01108927792524,-12.02885960187405,0 -77.01106711284467,-12.02886904390834,0 -77.01104727177255,-12.02887749593907,0 -77.01102786970199,-12.02888576096916,0 -77.01100994463684,-12.02889339699692,0 -77.01099559358465,-12.02889951001913,0 -77.01098239753668,-12.02890513103955,0 -77.010973686505,-12.02890884205306,0 -77.01096237646391,-12.02888220895625,0 -77.01095364243213,-12.02886164188146,0 -77.01093688137121,-12.02882217573796,0 -77.0109132772854,-12.0287665955359,0 -77.01088681318919,-12.02870428230938,0 -77.01087071813066,-12.02866638317158,0 -77.01084569703971,-12.02860746495742,0 -77.0108345249991,-12.02858115786177,0 -77.0108269269715,-12.02856326779676,0 -77.01081691293507,-12.02853968671099,0 -77.01080701489912,-12.0285163796263,0 -77.01079515385595,-12.02848845052472,0 -77.01078230580924,-12.02845819841474,0 -77.01077123576903,-12.02843213332,0 -77.01076314073958,-12.02841307125073,0 -77.0107551967107,-12.02839436618268,0 -77.01074251266459,-12.0283644980741,0 -77.01073191162607,-12.02833953498339,0 -77.01072716560879,-12.02832836094274,0 -77.01069601249554,-12.02833966998384,0 -77.01068108044126,-12.02834509100359,0 -77.01066616938704,-12.02832475992966,0 -77.01065119033262,-12.02830433485542,0 -77.01063510627415,-12.02828240377568,0 -77.01062460723597,-12.02826808872362,0 -77.01061782321131,-12.02825974169326,0 -77.01059059811234,-12.02822624057149,0 -77.01057932707136,-12.02821237152108,0 -77.0105554679846,-12.02818428241898,0 -77.01052963389071,-12.0281538663084,0 -77.01052363186886,-12.02814812628753,0 -77.01046901367033,-12.02809589009763,0 -77.01045779962954,-12.0280851650586,0 -77.01040478143682,-12.02804253290361,0 -77.01039570040376,-12.02802963885677,0 -77.01039381939694,-12.02801845981611,0 -77.01039792541189,-12.02800724177536,0 -77.01040625244212,-12.02799952874727,0 -77.01050751781031,-12.02795877859916,0 -77.01052946989012,-12.02794994556706,0 -77.01053698891741,-12.02794691955603,0 -77.01056133400596,-12.02793712452041,0 -77.01059290112067,-12.02792442547428,0 -77.01062254022844,-12.02791250043089,0 -77.01066624938733,-12.02789491536697,0 -77.01073167362517,-12.02786859227126,0 -77.01077425978002,-12.027851458209,0 -77.01080737990043,-12.02783813316057,0 -77.01084153802458,-12.0278243901106,0 -77.01086489410949,-12.02781499307645,0 -77.01089275021076,-12.02780378603569,0 -77.01092522432884,-12.02779072098821,0 -77.01094761941027,-12.02778171095542,0 -77.01097008049192,-12.0277768909379,0 -77.0109742615071,-12.02777599393465,0 -77.01099140156941,-12.02778171095542,0 -77.01100852963168,-12.02781787208687,0 -77.01100473061786,-12.02782548211457,0 -77.01101044763868,-12.02784860819861,0 -77.01101171464325,-12.02785149920914,0 -77.01101533365642,-12.0278598002393,0 -77.0110189286695,-12.02786811526954,0 -77.01102252268254,-12.02787644229983,0 -77.01102609169556,-12.02788476933012,0 -77.01102964770848,-12.02789309536036,0 -77.01103320272136,-12.02790143539068,0 -77.01103469072677,-12.02790494940348,0 -77.01103673373422,-12.02790977542099,0 -77.01104023774695,-12.02791812745136,0 -77.01104374275968,-12.02792648048171,0 -77.01104723477238,-12.02793484451212,0 -77.011050701785,-12.02794321054256,0 -77.01105415479753,-12.02795157557296,0 -77.01105759581009,-12.02795995360344,0 -77.01105817281217,-12.02796136560858,0 -77.01106102382255,-12.02796834463391,0 -77.01106443883492,-12.02797673566442,0 -77.01106784084732,-12.02798512669494,0 -77.01106796684775,-12.02798543969607,0 -77.01107001585524,-12.02799052471454,0 -77.01108071689413,-12.02801469180241,0 -77.01109470394499,-12.02804628091724,0 -77.01110258297359,-12.0280666809914,0 -77.01110787899285,-12.0280803940413,0 -77.01111417601578,-12.02809669810057,0 -77.01105151778796,-12.02812385419929,0 -77.0110128206473,-12.02814062626027,0 -77.01098552054805,-12.02815245830328,0 -77.01093557736647,-12.02817410438195,0 -77.01090654726096,-12.02818668642772,0 -77.01091595929518,-12.02820890850848,0 -77.01093854637725,-12.02819944947407,0 -77.01096810048472,-12.0281870714291,0 -77.011001189605,-12.0281732123787,0 -77.01105576780344,-12.02815035429563,0 -77.01112388405107,-12.02812182519187,0</coordinates></LinearRing></outerBoundaryIs>
+        </Polygon>
+      </MultiGeometry>
+    </Placemark>
+    <Placemark id="ID_00018">
+      <name>15</name>
+      <Snippet></Snippet>
+      <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+<td>15</td>
+</tr>
+<tr>
+<td>
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+<tr>
+<td>UBIGEO</td>
+<td>150132</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DEPARTAMENTO</td>
+<td>LIMA</td>
+</tr>
+<tr>
+<td>PROVINCIA</td>
+<td>LIMA</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DISTRITO</td>
+<td>SAN JUAN DE LURIGANCHO</td>
+</tr>
+<tr>
+<td>ZONA</td>
+<td>12300</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>MANZANA</td>
+<td>041</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+]]></description>
+      <styleUrl>#PolyStyle00</styleUrl>
+      <MultiGeometry>
+        <Polygon>
+          <extrude>0</extrude>          <altitudeMode>clampToGround</altitudeMode>
+          <outerBoundaryIs><LinearRing><coordinates> -77.01417349913777,-12.03664043816082,0 -77.01416326610053,-12.03662540610617,0 -77.01414649103958,-12.0366007650166,0 -77.01412467196025,-12.03656871390007,0 -77.01416918812208,-12.03653850979026,0 -77.01421096227392,-12.03651016468723,0 -77.01425341642829,-12.03648135858248,0 -77.01427905752149,-12.03646396051926,0 -77.01431387664809,-12.03651832171687,0 -77.01433720573289,-12.03655474384925,0 -77.01434764377086,-12.0365710399085,0 -77.01430074760037,-12.03660037901517,0 -77.01423852737418,-12.03663930515671,0 -77.01419307420889,-12.03666774126009,0 -77.01418564718193,-12.03665738022238,0 -77.01418134816629,-12.03665138420058,0 -77.01417349913777,-12.03664043816082,0</coordinates></LinearRing></outerBoundaryIs>
+        </Polygon>
+      </MultiGeometry>
+    </Placemark>
+    <Placemark id="ID_00019">
+      <name>15</name>
+      <Snippet></Snippet>
+      <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+<td>15</td>
+</tr>
+<tr>
+<td>
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+<tr>
+<td>UBIGEO</td>
+<td>150132</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DEPARTAMENTO</td>
+<td>LIMA</td>
+</tr>
+<tr>
+<td>PROVINCIA</td>
+<td>LIMA</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DISTRITO</td>
+<td>SAN JUAN DE LURIGANCHO</td>
+</tr>
+<tr>
+<td>ZONA</td>
+<td>12300</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>MANZANA</td>
+<td>028</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+]]></description>
+      <styleUrl>#PolyStyle00</styleUrl>
+      <MultiGeometry>
+        <Polygon>
+          <extrude>0</extrude>          <altitudeMode>clampToGround</altitudeMode>
+          <outerBoundaryIs><LinearRing><coordinates> -77.01465920490352,-12.03605128201895,0 -77.0146562068926,-12.03613724533147,0 -77.01465363988325,-12.03621083559904,0 -77.014651637876,-12.03626824680771,0 -77.01465019187071,-12.03630971495846,0 -77.01463322380903,-12.03638009021432,0 -77.01462648878459,-12.03640802331586,0 -77.01458639563879,-12.03643132140059,0 -77.01455500952471,-12.03644956046691,0 -77.01451432537681,-12.03647320155284,0 -77.01446544419912,-12.03650466166721,0 -77.01442102403763,-12.03653325177112,0 -77.01440365197448,-12.03654443281181,0 -77.01437724987846,-12.03656109287238,0 -77.01436733784243,-12.03656734789507,0 -77.01436497683386,-12.03656323988014,0 -77.01434033574429,-12.03652607774507,0 -77.01431333764612,-12.03648536059706,0 -77.0142942405767,-12.03645656049235,0 -77.01431513465263,-12.03644355244506,0 -77.01431921066745,-12.03644060843436,0 -77.01434040474453,-12.0364259663811,0 -77.01436432483149,-12.03640944132104,0 -77.01438492990639,-12.03639520626928,0 -77.01439925395846,-12.0363853102333,0 -77.01440835599158,-12.03637820620747,0 -77.01443237507885,-12.03635945813932,0 -77.01445099914656,-12.03634492108648,0 -77.01447644823912,-12.03632505701427,0 -77.01448729827854,-12.03629116489105,0 -77.01449996732458,-12.03625158874718,0 -77.01451609038321,-12.03620122356409,0 -77.01452030439856,-12.03617256945989,0 -77.01452496641548,-12.03614086634462,0 -77.01452953243211,-12.03610982023179,0 -77.01453322244549,-12.03608472614053,0 -77.01453140143889,-12.03606342106309,0 -77.01452748342462,-12.03601758189643,0 -77.01452378241118,-12.03597427873905,0 -77.01452180140399,-12.03595109465476,0 -77.01451396137549,-12.03591232751381,0 -77.01450415533981,-12.03586384533753,0 -77.0144920182957,-12.0358038351194,0 -77.01448420926732,-12.035765224979,0 -77.01448068425452,-12.03574779391568,0 -77.01453840146434,-12.03572353182744,0 -77.01459110065593,-12.03570137874692,0 -77.01460905972118,-12.03574455190386,0 -77.0146198367604,-12.03577046099804,0 -77.01464071983628,-12.03585578630828,0 -77.01465613089232,-12.03597041772497,0 -77.01465806789935,-12.0359897837954,0 -77.01465920490352,-12.03605128201895,0</coordinates></LinearRing></outerBoundaryIs>
+        </Polygon>
+      </MultiGeometry>
+    </Placemark>
+    <Placemark id="ID_00020">
+      <name>15</name>
+      <Snippet></Snippet>
+      <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+<td>15</td>
+</tr>
+<tr>
+<td>
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+<tr>
+<td>UBIGEO</td>
+<td>150132</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DEPARTAMENTO</td>
+<td>LIMA</td>
+</tr>
+<tr>
+<td>PROVINCIA</td>
+<td>LIMA</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DISTRITO</td>
+<td>SAN JUAN DE LURIGANCHO</td>
+</tr>
+<tr>
+<td>ZONA</td>
+<td>12300</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>MANZANA</td>
+<td>027</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+]]></description>
+      <styleUrl>#PolyStyle00</styleUrl>
+      <MultiGeometry>
+        <Polygon>
+          <extrude>0</extrude>          <altitudeMode>clampToGround</altitudeMode>
+          <outerBoundaryIs><LinearRing><coordinates> -77.01465357688306,-12.03635877013682,0 -77.01465686589501,-12.03634205007603,0 -77.01473451217726,-12.03635662712901,0 -77.01478107434656,-12.03636536916082,0 -77.01477644232972,-12.03639392226461,0 -77.01477319731794,-12.03641391933729,0 -77.01473810519036,-12.03641016532367,0 -77.01472600014631,-12.03642201736676,0 -77.01463994783347,-12.03650626667303,0 -77.01461174773095,-12.03647538756076,0 -77.01459095865539,-12.03645262547803,0 -77.01465377188373,-12.03640616930915,0 -77.01466111591043,-12.03640073828939,0 -77.01466872993814,-12.03639217225828,0 -77.01464812186322,-12.03638650323762,0 -77.01465357688306,-12.03635877013682,0</coordinates></LinearRing></outerBoundaryIs>
+        </Polygon>
+      </MultiGeometry>
+    </Placemark>
+    <Placemark id="ID_00021">
+      <name>15</name>
+      <Snippet></Snippet>
+      <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+<td>15</td>
+</tr>
+<tr>
+<td>
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+<tr>
+<td>UBIGEO</td>
+<td>150132</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DEPARTAMENTO</td>
+<td>LIMA</td>
+</tr>
+<tr>
+<td>PROVINCIA</td>
+<td>LIMA</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DISTRITO</td>
+<td>SAN JUAN DE LURIGANCHO</td>
+</tr>
+<tr>
+<td>ZONA</td>
+<td>12300</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>MANZANA</td>
+<td>023</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+]]></description>
+      <styleUrl>#PolyStyle00</styleUrl>
+      <MultiGeometry>
+        <Polygon>
+          <extrude>0</extrude>          <altitudeMode>clampToGround</altitudeMode>
+          <outerBoundaryIs><LinearRing><coordinates> -77.0150129151894,-12.03595960168565,0 -77.01502796724412,-12.03598475477713,0 -77.01504395730223,-12.03601147487427,0 -77.01501779120713,-12.03603737396838,0 -77.01498799209878,-12.03606686907563,0 -77.01497912306655,-12.03609802518889,0 -77.01496572001781,-12.03614510636004,0 -77.01495931899456,-12.03618953352157,0 -77.01495601198252,-12.03621249160506,0 -77.01493340190035,-12.03625061674364,0 -77.01492688687665,-12.0362616037836,0 -77.01490235678745,-12.0362901948875,0 -77.01487318168142,-12.03632420201114,0 -77.01484065556315,-12.03636211314898,0 -77.01475536125309,-12.03634557508883,0 -77.01470940908604,-12.03633670005661,0 -77.0146631159177,-12.03632776002411,0 -77.0146645149228,-12.03628779187881,0 -77.0146662519291,-12.03623815969837,0 -77.01466781593479,-12.03619348053593,0 -77.01466904693928,-12.03615830840806,0 -77.01466997894266,-12.03613169031127,0 -77.01467104394652,-12.03610127120072,0 -77.01467224595092,-12.03606694807593,0 -77.01467331295481,-12.03603646196507,0 -77.01467371795627,-12.03602490092305,0 -77.01467134994766,-12.0359910808001,0 -77.01466812593594,-12.03594502063265,0 -77.01466575792733,-12.03591118850966,0 -77.01466479692385,-12.03589746745979,0 -77.01475433424935,-12.03589342044506,0 -77.01482164449402,-12.03589037743399,0 -77.01490859481015,-12.03588644741973,0 -77.0149612880017,-12.03588406541104,0 -77.01496888602935,-12.0358951824515,0 -77.01499648212968,-12.03593555859828,0 -77.0150129151894,-12.03595960168565,0</coordinates></LinearRing></outerBoundaryIs>
+        </Polygon>
+      </MultiGeometry>
+    </Placemark>
+    <Placemark id="ID_00022">
+      <name>15</name>
+      <Snippet></Snippet>
+      <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+<td>15</td>
+</tr>
+<tr>
+<td>
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+<tr>
+<td>UBIGEO</td>
+<td>150132</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DEPARTAMENTO</td>
+<td>LIMA</td>
+</tr>
+<tr>
+<td>PROVINCIA</td>
+<td>LIMA</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DISTRITO</td>
+<td>SAN JUAN DE LURIGANCHO</td>
+</tr>
+<tr>
+<td>ZONA</td>
+<td>12300</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>MANZANA</td>
+<td>025</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+]]></description>
+      <styleUrl>#PolyStyle00</styleUrl>
+      <MultiGeometry>
+        <Polygon>
+          <extrude>0</extrude>          <altitudeMode>clampToGround</altitudeMode>
+          <outerBoundaryIs><LinearRing><coordinates> -77.0152071958957,-12.03625782876986,0 -77.01519957086799,-12.03627077581695,0 -77.01516563774459,-12.03630837595364,0 -77.01513480863252,-12.03633598405401,0 -77.01508519945219,-12.03641416333818,0 -77.01507479341433,-12.03642720938564,0 -77.0150093341764,-12.0365382407893,0 -77.01496907403003,-12.03650995768646,0 -77.01492738087842,-12.03649273662387,0 -77.01489864177398,-12.03648086658069,0 -77.01493478890535,-12.03644915546539,0 -77.01498636309287,-12.03640390930093,0 -77.01503790728026,-12.03631820298932,0 -77.01505184633095,-12.03629502490509,0 -77.01507582541808,-12.03624417272022,0 -77.01509600849147,-12.03620136956459,0 -77.01510013750647,-12.03619179252979,0 -77.01511705356796,-12.03615256238714,0 -77.0151344956314,-12.03611211224012,0 -77.01514578467243,-12.03608593214494,0 -77.01515364970101,-12.03606769307862,0 -77.01519062883546,-12.0360808891266,0 -77.01523760800626,-12.03609765418753,0 -77.01521227791415,-12.03613396431956,0 -77.01523083798162,-12.03617108445451,0 -77.01520256987885,-12.03619563954379,0 -77.01521744193292,-12.03622866666382,0 -77.0152071958957,-12.03625782876986,0</coordinates></LinearRing></outerBoundaryIs>
+        </Polygon>
+      </MultiGeometry>
+    </Placemark>
+    <Placemark id="ID_00023">
+      <name>15</name>
+      <Snippet></Snippet>
+      <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+<td>15</td>
+</tr>
+<tr>
+<td>
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+<tr>
+<td>UBIGEO</td>
+<td>150132</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DEPARTAMENTO</td>
+<td>LIMA</td>
+</tr>
+<tr>
+<td>PROVINCIA</td>
+<td>LIMA</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DISTRITO</td>
+<td>SAN JUAN DE LURIGANCHO</td>
+</tr>
+<tr>
+<td>ZONA</td>
+<td>12300</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>MANZANA</td>
+<td>024</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+]]></description>
+      <styleUrl>#PolyStyle00</styleUrl>
+      <MultiGeometry>
+        <Polygon>
+          <extrude>0</extrude>          <altitudeMode>clampToGround</altitudeMode>
+          <outerBoundaryIs><LinearRing><coordinates> -77.01514889368372,-12.03603965597671,0 -77.01511428255793,-12.03613798133415,0 -77.01507011139734,-12.03623248567772,0 -77.01504194729495,-12.03629274089678,0 -77.01500835017282,-12.03634665209279,0 -77.01497646405687,-12.03639781827877,0 -77.01491289482578,-12.03645369748193,0 -77.01489397375701,-12.0364703295424,0 -77.01486381064734,-12.03647883857332,0 -77.01485652662086,-12.03646923153838,0 -77.01483916555776,-12.03644633345516,0 -77.01481788848037,-12.0364182673531,0 -77.01480860844663,-12.0364060273086,0 -77.01484438557674,-12.0363813502189,0 -77.01485540061674,-12.03636758116886,0 -77.01490582280007,-12.03630455393972,0 -77.01493693291315,-12.03626566579834,0 -77.014965220016,-12.03621795062486,0 -77.01496927403076,-12.03618837551738,0 -77.01497539105299,-12.03614376035517,0 -77.0149904491077,-12.0360939801742,0 -77.01499763613384,-12.0360702220878,0 -77.01503407626632,-12.03603788097024,0 -77.0150737414105,-12.03600267784225,0 -77.0151112235468,-12.03596941172134,0 -77.01513581863622,-12.03601527488809,0 -77.01514889368372,-12.03603965597671,0</coordinates></LinearRing></outerBoundaryIs>
+        </Polygon>
+      </MultiGeometry>
+    </Placemark>
+    <Placemark id="ID_00024">
+      <name>15</name>
+      <Snippet></Snippet>
+      <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+<td>15</td>
+</tr>
+<tr>
+<td>
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+<tr>
+<td>UBIGEO</td>
+<td>150132</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DEPARTAMENTO</td>
+<td>LIMA</td>
+</tr>
+<tr>
+<td>PROVINCIA</td>
+<td>LIMA</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DISTRITO</td>
+<td>SAN JUAN DE LURIGANCHO</td>
+</tr>
+<tr>
+<td>ZONA</td>
+<td>12300</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>MANZANA</td>
+<td>042B</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+]]></description>
+      <styleUrl>#PolyStyle00</styleUrl>
+      <MultiGeometry>
+        <Polygon>
+          <extrude>0</extrude>          <altitudeMode>clampToGround</altitudeMode>
+          <outerBoundaryIs><LinearRing><coordinates> -77.01392244922505,-12.03694057225192,0 -77.01391260818929,-12.03703801060618,0 -77.0139011451476,-12.03715151501882,0 -77.01380646080338,-12.03711384088183,0 -77.01372075049181,-12.03707973675785,0 -77.01369946141443,-12.03706497770418,0 -77.0136816303496,-12.03703762660479,0 -77.01367573032815,-12.03702857557187,0 -77.01366698329633,-12.03700859049923,0 -77.01365830826478,-12.03698876742715,0 -77.01364767222611,-12.03694663527398,0 -77.0136441092132,-12.03690332811652,0 -77.01364771822631,-12.03686002395909,0 -77.01365840026512,-12.03681790280598,0 -77.01366613229322,-12.03679988174048,0 -77.01367382232121,-12.03678196067529,0 -77.01368060534588,-12.03677099563544,0 -77.01369439839601,-12.03674869955438,0 -77.01370825944639,-12.03674309753404,0 -77.01374986159766,-12.03672628447288,0 -77.01378148971264,-12.03671350242644,0 -77.01380561580032,-12.03670375139097,0 -77.01381811584577,-12.03673172049264,0 -77.01383369390243,-12.03676657661936,0 -77.01384840495587,-12.03679949373907,0 -77.01386304800911,-12.03683225785818,0 -77.01388409708562,-12.03686260296848,0 -77.01390841917407,-12.03689766809595,0 -77.01392444523231,-12.03692077217994,0 -77.01392244922505,-12.03694057225192,0</coordinates></LinearRing></outerBoundaryIs>
+        </Polygon>
+      </MultiGeometry>
+    </Placemark>
+    <Placemark id="ID_00025">
+      <name>15</name>
+      <Snippet></Snippet>
+      <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+<td>15</td>
+</tr>
+<tr>
+<td>
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+<tr>
+<td>UBIGEO</td>
+<td>150132</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DEPARTAMENTO</td>
+<td>LIMA</td>
+</tr>
+<tr>
+<td>PROVINCIA</td>
+<td>LIMA</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DISTRITO</td>
+<td>SAN JUAN DE LURIGANCHO</td>
+</tr>
+<tr>
+<td>ZONA</td>
+<td>12300</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>MANZANA</td>
+<td>043</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+]]></description>
+      <styleUrl>#PolyStyle00</styleUrl>
+      <MultiGeometry>
+        <Polygon>
+          <extrude>0</extrude>          <altitudeMode>clampToGround</altitudeMode>
+          <outerBoundaryIs><LinearRing><coordinates> -77.01416143709389,-12.03664951319382,0 -77.0141825651707,-12.03668888633695,0 -77.01421149427586,-12.03674279653291,0 -77.01423682536796,-12.03679000270455,0 -77.01425860344716,-12.03683058785208,0 -77.01425083441887,-12.03683418386515,0 -77.01411172491316,-12.03689310507934,0 -77.01399930250449,-12.03694072325249,0 -77.0139459763106,-12.03692624019982,0 -77.01393419026778,-12.03690644612789,0 -77.01391228118808,-12.03686965299409,0 -77.01389201811446,-12.03683165085596,0 -77.0138721250421,-12.03679434472031,0 -77.01386211800576,-12.03676959663034,0 -77.01384787995397,-12.03673438550237,0 -77.01383905692188,-12.03671256742302,0 -77.01386311700935,-12.03667533128765,0 -77.01391333719192,-12.03665141020071,0 -77.01397063640025,-12.0366241171015,0 -77.01402553459985,-12.0365979670064,0 -77.01407939779563,-12.03657231091313,0 -77.01409753286157,-12.03656367288176,0 -77.01413574300051,-12.03661499906832,0 -77.01416143709389,-12.03664951319382,0</coordinates></LinearRing></outerBoundaryIs>
+        </Polygon>
+      </MultiGeometry>
+    </Placemark>
+    <Placemark id="ID_00026">
+      <name>15</name>
+      <Snippet></Snippet>
+      <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+<td>15</td>
+</tr>
+<tr>
+<td>
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+<tr>
+<td>UBIGEO</td>
+<td>150132</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DEPARTAMENTO</td>
+<td>LIMA</td>
+</tr>
+<tr>
+<td>PROVINCIA</td>
+<td>LIMA</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DISTRITO</td>
+<td>SAN JUAN DE LURIGANCHO</td>
+</tr>
+<tr>
+<td>ZONA</td>
+<td>12300</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>MANZANA</td>
+<td>042A</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+]]></description>
+      <styleUrl>#PolyStyle00</styleUrl>
+      <MultiGeometry>
+        <Polygon>
+          <extrude>0</extrude>          <altitudeMode>clampToGround</altitudeMode>
+          <outerBoundaryIs><LinearRing><coordinates> -77.01489583476376,-12.03648925761121,0 -77.01494589394577,-12.03650952868492,0 -77.01496493501497,-12.03651723971291,0 -77.01500319715404,-12.03654779182398,0 -77.01495249596974,-12.03662059408867,0 -77.01493275689796,-12.03664893719173,0 -77.01494929295808,-12.03668443132074,0 -77.01496024599794,-12.03670794140624,0 -77.01494922295785,-12.03671499543185,0 -77.01476826530001,-12.03681165978327,0 -77.01470816208149,-12.03684028988738,0 -77.01457550659922,-12.03690347911709,0 -77.01453064143612,-12.03684234589485,0 -77.01449953832304,-12.03679996574078,0 -77.01431451065037,-12.03687610901756,0 -77.01430700262307,-12.03686082096198,0 -77.01428917855827,-12.0368288318457,0 -77.01425161542176,-12.03676141760064,0 -77.01422887233906,-12.03672060245225,0 -77.01420353324693,-12.03667512728691,0 -77.01423306335431,-12.03665613921788,0 -77.01426404046691,-12.03663622014545,0 -77.01428962955993,-12.03661976508568,0 -77.0143096396327,-12.03660689903887,0 -77.01433010570707,-12.03659373899103,0 -77.01435288178988,-12.03662673111097,0 -77.0143642168311,-12.03664315017068,0 -77.01437632187509,-12.03666068423439,0 -77.01439748395205,-12.03669133934585,0 -77.01441079200043,-12.03671061641592,0 -77.01447760424333,-12.03666355124483,0 -77.01454074047285,-12.03661907608313,0 -77.0145956956726,-12.0365803629424,0 -77.01461991476066,-12.03662341809894,0 -77.01464582985489,-12.03666948926644,0 -77.01465338788233,-12.036663870246,0 -77.01470936608587,-12.03662580110762,0 -77.01474621021981,-12.03660074401648,0 -77.01476529528918,-12.03658681296588,0 -77.01482321549975,-12.03654453281217,0 -77.01485389461129,-12.03652213673075,0 -77.01486466665045,-12.03651369270006,0 -77.01489583476376,-12.03648925761121,0</coordinates></LinearRing></outerBoundaryIs>
+        </Polygon>
+      </MultiGeometry>
+    </Placemark>
+    <Placemark id="ID_00027">
+      <name>15</name>
+      <Snippet></Snippet>
+      <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+<td>15</td>
+</tr>
+<tr>
+<td>
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+<tr>
+<td>UBIGEO</td>
+<td>150132</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DEPARTAMENTO</td>
+<td>LIMA</td>
+</tr>
+<tr>
+<td>PROVINCIA</td>
+<td>LIMA</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DISTRITO</td>
+<td>SAN JUAN DE LURIGANCHO</td>
+</tr>
+<tr>
+<td>ZONA</td>
+<td>12300</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>MANZANA</td>
+<td>026</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+]]></description>
+      <styleUrl>#PolyStyle00</styleUrl>
+      <MultiGeometry>
+        <Polygon>
+          <extrude>0</extrude>          <altitudeMode>clampToGround</altitudeMode>
+          <outerBoundaryIs><LinearRing><coordinates> -77.01485922763067,-12.03649996965015,0 -77.01475626225636,-12.03657311091604,0 -77.01465119587436,-12.03664774418735,0 -77.01462892479344,-12.0366089890465,0 -77.01460250069738,-12.0365630078793,0 -77.01463761982501,-12.03653677278396,0 -77.0146489928664,-12.03652192272995,0 -77.01469977605098,-12.03648405059226,0 -77.01473488017859,-12.03645787349711,0 -77.01479531739835,-12.03641280233325,0 -77.01482130549283,-12.03644824746209,0 -77.01483836155484,-12.03647151054668,0 -77.01485922763067,-12.03649996965015,0</coordinates></LinearRing></outerBoundaryIs>
+        </Polygon>
+      </MultiGeometry>
+    </Placemark>
+    <Placemark id="ID_00028">
+      <name>15</name>
+      <Snippet></Snippet>
+      <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+<td>15</td>
+</tr>
+<tr>
+<td>
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+<tr>
+<td>UBIGEO</td>
+<td>150132</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DEPARTAMENTO</td>
+<td>LIMA</td>
+</tr>
+<tr>
+<td>PROVINCIA</td>
+<td>LIMA</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DISTRITO</td>
+<td>SAN JUAN DE LURIGANCHO</td>
+</tr>
+<tr>
+<td>ZONA</td>
+<td>12300</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>MANZANA</td>
+<td>027A</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+]]></description>
+      <styleUrl>#PolyStyle00</styleUrl>
+      <MultiGeometry>
+        <Polygon>
+          <extrude>0</extrude>          <altitudeMode>clampToGround</altitudeMode>
+          <outerBoundaryIs><LinearRing><coordinates> -77.0146363798205,-12.03652293273365,0 -77.01456835857323,-12.03657250091385,0 -77.01452055639948,-12.03660733604045,0 -77.01450578534576,-12.03661810007958,0 -77.01449150529385,-12.03662803011571,0 -77.01445848617379,-12.03665099019918,0 -77.01441841302813,-12.03667885530047,0 -77.0143824908975,-12.03663377213655,0 -77.01434680376781,-12.03658898297374,0 -77.01444030710769,-12.03653102176304,0 -77.01448159325781,-12.03650542867001,0 -77.01452020839821,-12.03648149158295,0 -77.01456879457481,-12.03645137447347,0 -77.01458369162896,-12.03646714653081,0 -77.01459553367204,-12.03647968457642,0 -77.01461798875369,-12.03650346066286,0 -77.0146363798205,-12.03652293273365,0</coordinates></LinearRing></outerBoundaryIs>
+        </Polygon>
+      </MultiGeometry>
+    </Placemark>
+    <Placemark id="ID_00029">
+      <name>15</name>
+      <Snippet></Snippet>
+      <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+<td>15</td>
+</tr>
+<tr>
+<td>
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+<tr>
+<td>UBIGEO</td>
+<td>150132</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DEPARTAMENTO</td>
+<td>LIMA</td>
+</tr>
+<tr>
+<td>PROVINCIA</td>
+<td>LIMA</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DISTRITO</td>
+<td>SAN JUAN DE LURIGANCHO</td>
+</tr>
+<tr>
+<td>ZONA</td>
+<td>12300</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>MANZANA</td>
+<td>005</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+]]></description>
+      <styleUrl>#PolyStyle00</styleUrl>
+      <MultiGeometry>
+        <Polygon>
+          <extrude>0</extrude>          <altitudeMode>clampToGround</altitudeMode>
+          <outerBoundaryIs><LinearRing><coordinates> -77.01169890114147,-12.03071579762212,0 -77.01166761102775,-12.03066824844927,0 -77.0116265588785,-12.03060586222244,0 -77.01159751877293,-12.03055991205542,0 -77.01157584269413,-12.03052561393071,0 -77.01156179864307,-12.03050339284994,0 -77.01153553254756,-12.03046840572273,0 -77.01151520747368,-12.03044132862431,0 -77.0115113534597,-12.03043619560566,0 -77.01149825841208,-12.03042209355436,0 -77.01145747726383,-12.03037817639472,0 -77.01143239517262,-12.03035116429652,0 -77.01139881505054,-12.03031810717636,0 -77.01133944483473,-12.03025966096385,0 -77.0112527655196,-12.03017433065367,0 -77.01120141033289,-12.03012377446987,0 -77.01121521938308,-12.03011174742613,0 -77.01126708657165,-12.03008051231257,0 -77.01140285706526,-12.03002063109489,0 -77.01146072527564,-12.02999510800208,0 -77.01150853544942,-12.02997402092547,0 -77.0115526806099,-12.02995455085465,0 -77.01163443690712,-12.02991849172355,0 -77.01165117196797,-12.02991111069673,0 -77.01166847103087,-12.02990405867109,0 -77.0116869120979,-12.02989654164378,0 -77.0117007991484,-12.02989088062321,0 -77.01172589923965,-12.02997770893887,0 -77.01173598027629,-12.03001258206564,0 -77.0117450883094,-12.03004409018018,0 -77.01175516534602,-12.03007895030692,0 -77.01178098543988,-12.03016826963165,0 -77.0117882434663,-12.03019337772292,0 -77.01179656149651,-12.03022215382754,0 -77.01181238955405,-12.03027691402662,0 -77.01181802957456,-12.03029642409751,0 -77.01182548260169,-12.03032220519123,0 -77.01183378563184,-12.03035092829566,0 -77.01184263066403,-12.03038152640693,0 -77.01185158369657,-12.03041249651949,0 -77.0118574577179,-12.0304328185934,0 -77.01186801475632,-12.03046933772612,0 -77.01191126891354,-12.03061896927011,0 -77.01192732997191,-12.03067452947209,0 -77.01193793701049,-12.03071696562637,0 -77.01194738504483,-12.03075476376381,0 -77.01183741264504,-12.03077747584638,0 -77.01177867743149,-12.03078960589045,0 -77.01172847424903,-12.03079997392814,0 -77.01169890114147,-12.03071579762212,0</coordinates></LinearRing></outerBoundaryIs>
+        </Polygon>
+      </MultiGeometry>
+    </Placemark>
+    <Placemark id="ID_00030">
+      <name>15</name>
+      <Snippet></Snippet>
+      <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+<td>15</td>
+</tr>
+<tr>
+<td>
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+<tr>
+<td>UBIGEO</td>
+<td>150132</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DEPARTAMENTO</td>
+<td>LIMA</td>
+</tr>
+<tr>
+<td>PROVINCIA</td>
+<td>LIMA</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DISTRITO</td>
+<td>SAN JUAN DE LURIGANCHO</td>
+</tr>
+<tr>
+<td>ZONA</td>
+<td>12300</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>MANZANA</td>
+<td>006</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+]]></description>
+      <styleUrl>#PolyStyle00</styleUrl>
+      <MultiGeometry>
+        <Polygon>
+          <extrude>0</extrude>          <altitudeMode>clampToGround</altitudeMode>
+          <outerBoundaryIs><LinearRing><coordinates> -77.01121732539076,-12.03103302477541,0 -77.01120709435355,-12.03102311873937,0 -77.0111814192602,-12.03099826064903,0 -77.01110842199483,-12.03092758539208,0 -77.01106881085082,-12.03088923425264,0 -77.01103744373683,-12.03085886514225,0 -77.01101306564817,-12.03083526205643,0 -77.01099523958339,-12.03081800299367,0 -77.01097864652303,-12.03080298393911,0 -77.01096023445609,-12.03078631787849,0 -77.01093914137942,-12.03076722580909,0 -77.01091911930666,-12.03074910374323,0 -77.01090265824678,-12.03073420468905,0 -77.01089371721429,-12.03072611165965,0 -77.01088598718621,-12.03071820163086,0 -77.0108794171623,-12.03071147860641,0 -77.01086988812767,-12.03069827855842,0 -77.01086369710515,-12.03068108849595,0 -77.01085813408491,-12.03064138935162,0 -77.01085589807678,-12.03062543229362,0 -77.01085723808166,-12.03056997409198,0 -77.01086465410862,-12.0305363939699,0 -77.01087801115722,-12.03051190688092,0 -77.01089824023075,-12.03047930976237,0 -77.0109059842589,-12.03046683171704,0 -77.01098100253159,-12.03037473938224,0 -77.0110327087196,-12.03031126515145,0 -77.01106134182368,-12.03027611602369,0 -77.01108694591676,-12.03029454309069,0 -77.01112643206034,-12.03032296019399,0 -77.01113759710091,-12.03033139822469,0 -77.01114915414291,-12.03034013125642,0 -77.01117976325418,-12.03036589235006,0 -77.0111990743244,-12.03038292541197,0 -77.01123376645052,-12.03041352452323,0 -77.01125948854406,-12.03043876161496,0 -77.01126333855802,-12.03044299563038,0 -77.01126951658051,-12.03044968565467,0 -77.01127574660313,-12.03045632367883,0 -77.011282039626,-12.03046289870275,0 -77.01128838364906,-12.03046943472651,0 -77.01129479167236,-12.03047590675004,0 -77.01130126469593,-12.03048232777337,0 -77.0113077877196,-12.03048868479647,0 -77.01131520674659,-12.03049752382862,0 -77.01132112876815,-12.03050443085374,0 -77.01132711478988,-12.03051127387857,0 -77.01133317781194,-12.03051806590327,0 -77.01133930483422,-12.03052479392773,0 -77.01134549585669,-12.03053147095204,0 -77.01135176387948,-12.03053807097604,0 -77.01139869405012,-12.03059761419246,0 -77.01140405306961,-12.03060495621918,0 -77.01140937408894,-12.03061231124593,0 -77.01141468210824,-12.03061969127276,0 -77.01141994012733,-12.03062709729966,0 -77.01142518414639,-12.03063452832669,0 -77.01143037716531,-12.03064197335374,0 -77.0114355451841,-12.03064944338092,0 -77.01144068720276,-12.03065692640809,0 -77.01144579022133,-12.03066444743547,0 -77.01145086823976,-12.03067198146283,0 -77.01145362024977,-12.03067610147781,0 -77.01145590825809,-12.03067952749029,0 -77.01146092227634,-12.03068709951782,0 -77.01146452928947,-12.03069261153786,0 -77.01150402843302,-12.03075615776885,0 -77.01157380868671,-12.03086659917034,0 -77.01154574058467,-12.03089112925954,0 -77.01151060845695,-12.03092183337117,0 -77.01148908937876,-12.03094064043955,0 -77.01142402314218,-12.03099750364623,0 -77.01132000076404,-12.03108841397676,0 -77.01129065265735,-12.03111406306999,0 -77.01127625360499,-12.03109815001216,0 -77.01125315352101,-12.03107262191935,0 -77.01122674842503,-12.03104343781325,0 -77.01121732539076,-12.03103302477541,0</coordinates></LinearRing></outerBoundaryIs>
+        </Polygon>
+      </MultiGeometry>
+    </Placemark>
+    <Placemark id="ID_00031">
+      <name>15</name>
+      <Snippet></Snippet>
+      <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+<td>15</td>
+</tr>
+<tr>
+<td>
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+<tr>
+<td>UBIGEO</td>
+<td>150132</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DEPARTAMENTO</td>
+<td>LIMA</td>
+</tr>
+<tr>
+<td>PROVINCIA</td>
+<td>LIMA</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DISTRITO</td>
+<td>SAN JUAN DE LURIGANCHO</td>
+</tr>
+<tr>
+<td>ZONA</td>
+<td>12300</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>MANZANA</td>
+<td>050</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+]]></description>
+      <styleUrl>#PolyStyle00</styleUrl>
+      <MultiGeometry>
+        <Polygon>
+          <extrude>0</extrude>          <altitudeMode>clampToGround</altitudeMode>
+          <outerBoundaryIs><LinearRing><coordinates> -77.01353542181806,-12.03668041630613,0 -77.0134153713816,-12.03671449043003,0 -77.01338869328464,-12.03672206245756,0 -77.01333696609657,-12.03673674351091,0 -77.01332796406388,-12.03670839140784,0 -77.01331829502868,-12.03667794029713,0 -77.01331055000054,-12.03665354620847,0 -77.01328765091728,-12.03659369599086,0 -77.01327259786257,-12.03655435384786,0 -77.01326444583293,-12.03653304777038,0 -77.01325568580108,-12.03651015268719,0 -77.0132471107699,-12.03648773860567,0 -77.01323536772725,-12.03645704749408,0 -77.01323463372455,-12.03645427848403,0 -77.01322575469226,-12.03642079536229,0 -77.01321732466164,-12.03638900624674,0 -77.01321144164024,-12.03636682316608,0 -77.0132063976219,-12.03634780109695,0 -77.01320005959889,-12.03632390001008,0 -77.01319508558078,-12.03630514294184,0 -77.0131874635531,-12.03627640083738,0 -77.01318193353296,-12.03625554776158,0 -77.01317530450888,-12.03623055067067,0 -77.01317010948998,-12.03621095659946,0 -77.0131592544505,-12.03617002445066,0 -77.01315276642691,-12.0361455623617,0 -77.01314354839343,-12.03611080323537,0 -77.01313375635783,-12.03607387910114,0 -77.01321046563669,-12.03606676507525,0 -77.01325525779953,-12.03606261106017,0 -77.01324305775518,-12.03604316798948,0 -77.01323221871576,-12.0360258949267,0 -77.01321883766713,-12.03600457184916,0 -77.01320354261151,-12.03598019776052,0 -77.01319719758845,-12.03594673863893,0 -77.01319341257471,-12.03592678256638,0 -77.0131935715753,-12.03589392844691,0 -77.01319375757595,-12.0358553833068,0 -77.01323957374251,-12.03585554230739,0 -77.01328327490137,-12.03585569430794,0 -77.01330907499516,-12.03585578430824,0 -77.01335186815078,-12.03585593330877,0 -77.01336103918408,-12.03585634331029,0 -77.01337021021743,-12.03585675231176,0 -77.01337939425082,-12.03585717431332,0 -77.01338856528417,-12.03585760931486,0 -77.01338986928892,-12.03585767331509,0 -77.01339772431749,-12.03585805731649,0 -77.01340689535078,-12.03585851731816,0 -77.01341165836811,-12.03585875631904,0 -77.01341606638414,-12.03585897831988,0 -77.01342523741749,-12.03585946432162,0 -77.01343440845085,-12.03585995032341,0 -77.01344358048419,-12.03586044932519,0 -77.01345273751747,-12.03586096032706,0 -77.01346190855082,-12.03586148532895,0 -77.01347107958412,-12.03586202233095,0 -77.01347320359184,-12.03586215033141,0 -77.01348023861743,-12.03586257233292,0 -77.01348940965079,-12.03586312233495,0 -77.01349856768405,-12.03586369833704,0 -77.01350772571738,-12.03586427333909,0 -77.01351689775072,-12.03586486234127,0 -77.01352605578398,-12.03586546334344,0 -77.01353521381731,-12.03586607734565,0 -77.01354437285062,-12.03586669134791,0 -77.01355353088388,-12.03586733035024,0 -77.0135626889172,-12.03586797035257,0 -77.01357184795046,-12.03586863535497,0 -77.01358100598378,-12.03586930035738,0 -77.01359016501709,-12.03586997835987,0 -77.01359932305036,-12.03587066936234,0 -77.0136074410799,-12.03587057836205,0 -77.01362326813739,-12.03587040036138,0 -77.01363396317629,-12.03589375644629,0 -77.01365211624227,-12.03593339659039,0 -77.01366990430694,-12.0359722417316,0 -77.01364967923342,-12.03597296873426,0 -77.01361674611371,-12.03597415273856,0 -77.01358952601476,-12.03597513074215,0 -77.01355217387896,-12.03597647374699,0 -77.01345567952814,-12.03597994175959,0 -77.01344731549773,-12.03602473992248,0 -77.01343788046347,-12.03607526310617,0 -77.01343612245705,-12.03608467514039,0 -77.01351028472669,-12.03608873015509,0 -77.01350849872017,-12.03610526721525,0 -77.01350345670187,-12.03615195838495,0 -77.01349928068669,-12.03619062252551,0 -77.01349548567288,-12.0362257646533,0 -77.0134912016573,-12.0362654387975,0 -77.01348789164524,-12.03629608490894,0 -77.01348592463813,-12.03631429597516,0 -77.01348474263381,-12.03632204800334,0 -77.01348137062155,-12.03634415808369,0 -77.0134567895322,-12.03634369008199,0 -77.01344049047293,-12.03634337908085,0 -77.01343721046101,-12.03637079718055,0 -77.01343641245813,-12.03637748120485,0 -77.01343230144317,-12.03641189932995,0 -77.01342913843166,-12.03643838142625,0 -77.01347468859729,-12.03645922650202,0 -77.01348407463138,-12.03646352151765,0 -77.01352060276417,-12.03647689856626,0 -77.01355793689993,-12.03649057061597,0 -77.01356432392311,-12.03649616563632,0 -77.01358079698304,-12.03651059468876,0 -77.01359547103635,-12.03652344873552,0 -77.0135930120274,-12.03655229184034,0 -77.01358634900322,-12.03663044712448,0 -77.0135830969914,-12.03666859626316,0 -77.01353542181806,-12.03668041630613,0</coordinates></LinearRing></outerBoundaryIs>
+        </Polygon>
+      </MultiGeometry>
+    </Placemark>
+    <Placemark id="ID_00032">
+      <name>15</name>
+      <Snippet></Snippet>
+      <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+<td>15</td>
+</tr>
+<tr>
+<td>
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+<tr>
+<td>UBIGEO</td>
+<td>150132</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DEPARTAMENTO</td>
+<td>LIMA</td>
+</tr>
+<tr>
+<td>PROVINCIA</td>
+<td>LIMA</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DISTRITO</td>
+<td>SAN JUAN DE LURIGANCHO</td>
+</tr>
+<tr>
+<td>ZONA</td>
+<td>12300</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>MANZANA</td>
+<td>049</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+]]></description>
+      <styleUrl>#PolyStyle00</styleUrl>
+      <MultiGeometry>
+        <Polygon>
+          <extrude>0</extrude>          <altitudeMode>clampToGround</altitudeMode>
+          <outerBoundaryIs><LinearRing><coordinates> -77.0136197761247,-12.03649433262967,0 -77.01358049498191,-12.03647974557663,0 -77.01352956579677,-12.03646083250789,0 -77.01349966768805,-12.0364497304675,0 -77.01351096972917,-12.03640452030317,0 -77.0135216207679,-12.03636191814826,0 -77.01352426477752,-12.03635134210981,0 -77.0135308658015,-12.03629961092173,0 -77.01353440481438,-12.03627187282092,0 -77.01353863882974,-12.03623868870028,0 -77.01354979087029,-12.03615128438253,0 -77.01355571789185,-12.03610483421363,0 -77.01355677889569,-12.03607240409576,0 -77.01355758589864,-12.03604776000617,0 -77.01356408392223,-12.03599518881504,0 -77.0136145141056,-12.0359919788034,0 -77.01368425535912,-12.03598753978724,0 -77.01368942837792,-12.03599475081347,0 -77.01370826444639,-12.03602100690893,0 -77.01372697851446,-12.03604709500377,0 -77.01374769158974,-12.03607596710873,0 -77.01376698265989,-12.03610285820645,0 -77.01377819170062,-12.03611848226325,0 -77.01378732473381,-12.03613474832241,0 -77.01380083378297,-12.03615880740989,0 -77.01381644983974,-12.03618661851095,0 -77.01381863784769,-12.03623173267499,0 -77.01381588683768,-12.0362401247055,0 -77.01380657580381,-12.03626853280878,0 -77.01378632873019,-12.03629704891245,0 -77.01378158171298,-12.03630373393673,0 -77.01376999167081,-12.03632128000055,0 -77.01374877459369,-12.03635339811729,0 -77.01372796151804,-12.03638490623183,0 -77.01370651044005,-12.0364066033107,0 -77.01367353932017,-12.03643995343197,0 -77.0136197761247,-12.03649433262967,0</coordinates></LinearRing></outerBoundaryIs>
+        </Polygon>
+      </MultiGeometry>
+    </Placemark>
+    <Placemark id="ID_00033">
+      <name>15</name>
+      <Snippet></Snippet>
+      <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+<td>15</td>
+</tr>
+<tr>
+<td>
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+<tr>
+<td>UBIGEO</td>
+<td>150132</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DEPARTAMENTO</td>
+<td>LIMA</td>
+</tr>
+<tr>
+<td>PROVINCIA</td>
+<td>LIMA</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DISTRITO</td>
+<td>SAN JUAN DE LURIGANCHO</td>
+</tr>
+<tr>
+<td>ZONA</td>
+<td>12300</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>MANZANA</td>
+<td>044</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+]]></description>
+      <styleUrl>#PolyStyle00</styleUrl>
+      <MultiGeometry>
+        <Polygon>
+          <extrude>0</extrude>          <altitudeMode>clampToGround</altitudeMode>
+          <outerBoundaryIs><LinearRing><coordinates> -77.0140002255078,-12.03725850740779,0 -77.01399369048409,-12.03728955152064,0 -77.01398527445349,-12.03732953066594,0 -77.01390211015115,-12.03731700462043,0 -77.01378667973148,-12.03729961755721,0 -77.01369997641626,-12.03728817651563,0 -77.01369345339259,-12.03728731551252,0 -77.01362502614381,-12.03727016845016,0 -77.01359972905186,-12.0372638294271,0 -77.01358288099061,-12.03725595539851,0 -77.01356865193884,-12.0372493053743,0 -77.01355199587829,-12.03723891633655,0 -77.01351199773291,-12.03721396624582,0 -77.01346444856006,-12.03718430713803,0 -77.01342962043344,-12.03715706803899,0 -77.01339473630662,-12.03712279791438,0 -77.01338240026178,-12.03709850682611,0 -77.01337236522528,-12.03707317773399,0 -77.01336250918945,-12.03703719860323,0 -77.01336025518123,-12.03702124854522,0 -77.01335728917047,-12.0370002614689,0 -77.01335720217014,-12.03699910346472,0 -77.01335736417076,-12.03695412230121,0 -77.01336438719625,-12.03690969213966,0 -77.01336940221449,-12.0368940290827,0 -77.01337810424616,-12.03686685298391,0 -77.01338358726605,-12.03685586994402,0 -77.0133981963192,-12.0368266088376,0 -77.01342419241371,-12.03678989970416,0 -77.01345548252743,-12.03675758558671,0 -77.01347870161186,-12.03675060856131,0 -77.01350260369873,-12.03674654354654,0 -77.01352077276482,-12.03674579854385,0 -77.01352839979251,-12.03674548554272,0 -77.01355411188598,-12.03674781855119,0 -77.01357929597754,-12.03675350257186,0 -77.01356632293039,-12.03682146781893,0 -77.01356137191237,-12.03684740291322,0 -77.01355544889088,-12.03687843402605,0 -77.01355177887751,-12.03689766309594,0 -77.01354584585596,-12.03692737920397,0 -77.01354416984987,-12.03695763631396,0 -77.01354482785223,-12.03696522534153,0 -77.01354678585938,-12.03698782642374,0 -77.01355261488055,-12.0370139185186,0 -77.0135545498876,-12.03701930353816,0 -77.01356165391343,-12.03703908061004,0 -77.01356403492207,-12.03704377062712,0 -77.01357375895742,-12.03706291869673,0 -77.01357874097556,-12.03706998172237,0 -77.0135939200307,-12.03709150480063,0 -77.01360340106521,-12.03710112983561,0 -77.01361846911999,-12.03711642489122,0 -77.01363066416428,-12.03712530092349,0 -77.01364675122278,-12.03713701096609,0 -77.0136575672621,-12.03714088898016,0 -77.01368537236317,-12.0371508570164,0 -77.01372090949241,-12.03716359806271,0 -77.01377039667227,-12.03718134112722,0 -77.01381660984032,-12.03719791018744,0 -77.01383037389036,-12.0372028452054,0 -77.01385607098376,-12.037211266236,0 -77.01390038014483,-12.03722578628879,0 -77.01394252929805,-12.03723959933905,0 -77.0140002255078,-12.03725850740779,0</coordinates></LinearRing></outerBoundaryIs>
+        </Polygon>
+      </MultiGeometry>
+    </Placemark>
+    <Placemark id="ID_00034">
+      <name>15</name>
+      <Snippet></Snippet>
+      <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+<td>15</td>
+</tr>
+<tr>
+<td>
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+<tr>
+<td>UBIGEO</td>
+<td>150132</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DEPARTAMENTO</td>
+<td>LIMA</td>
+</tr>
+<tr>
+<td>PROVINCIA</td>
+<td>LIMA</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DISTRITO</td>
+<td>SAN JUAN DE LURIGANCHO</td>
+</tr>
+<tr>
+<td>ZONA</td>
+<td>12300</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>MANZANA</td>
+<td>047</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+]]></description>
+      <styleUrl>#PolyStyle00</styleUrl>
+      <MultiGeometry>
+        <Polygon>
+          <extrude>0</extrude>          <altitudeMode>clampToGround</altitudeMode>
+          <outerBoundaryIs><LinearRing><coordinates> -77.01314179038701,-12.03484116961965,0 -77.01314679840522,-12.03484554563556,0 -77.01319822959221,-12.03487880275651,0 -77.01321770566301,-12.03489139580228,0 -77.01330155696786,-12.03494591700047,0 -77.01335947617844,-12.03498357613739,0 -77.0133044289783,-12.03506318642678,0 -77.0132686228481,-12.03511497061504,0 -77.0132182766651,-12.03518778187976,0 -77.0131969555876,-12.035172722825,0 -77.01317487950735,-12.03516001777882,0 -77.01314551640058,-12.03514311971742,0 -77.01313516436295,-12.03513716169573,0 -77.01309165220476,-12.03511212060471,0 -77.01306175009603,-12.03509491254215,0 -77.01304218902493,-12.03508365450119,0 -77.01301599892975,-12.03506858344645,0 -77.01299950286978,-12.03505909041189,0 -77.01296105873001,-12.03503696533147,0 -77.01294025065437,-12.03502499028792,0 -77.01293352562988,-12.03502112027388,0 -77.01291492056225,-12.03500561321749,0 -77.01289960650661,-12.03499284917109,0 -77.01288020343606,-12.03497667611231,0 -77.01287597342065,-12.03495671403971,0 -77.01287131940376,-12.03493475495992,0 -77.0128650933811,-12.03490537785308,0 -77.01285250633538,-12.03484598063716,0 -77.01284868532144,-12.03482795257162,0 -77.01284375030355,-12.03480466748698,0 -77.01283789928226,-12.03477705738658,0 -77.01282600323901,-12.03472092218254,0 -77.01282147722253,-12.03469956510486,0 -77.01291785757292,-12.03468630205668,0 -77.01296043872776,-12.03468044203538,0 -77.01298703582444,-12.03470727313288,0 -77.01302834697464,-12.03474894928439,0 -77.01305756408084,-12.03477227636921,0 -77.01308318617396,-12.03479273344357,0 -77.01310954226977,-12.03481377552009,0 -77.01311994930762,-12.03482208455029,0 -77.01314179038701,-12.03484116961965,0</coordinates></LinearRing></outerBoundaryIs>
+        </Polygon>
+      </MultiGeometry>
+    </Placemark>
+    <Placemark id="ID_00035">
+      <name>15</name>
+      <Snippet></Snippet>
+      <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+<td>15</td>
+</tr>
+<tr>
+<td>
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+<tr>
+<td>UBIGEO</td>
+<td>150132</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DEPARTAMENTO</td>
+<td>LIMA</td>
+</tr>
+<tr>
+<td>PROVINCIA</td>
+<td>LIMA</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DISTRITO</td>
+<td>SAN JUAN DE LURIGANCHO</td>
+</tr>
+<tr>
+<td>ZONA</td>
+<td>12300</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>MANZANA</td>
+<td>046</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+]]></description>
+      <styleUrl>#PolyStyle00</styleUrl>
+      <MultiGeometry>
+        <Polygon>
+          <extrude>0</extrude>          <altitudeMode>clampToGround</altitudeMode>
+          <outerBoundaryIs><LinearRing><coordinates> -77.01348724664291,-12.03523083003626,0 -77.01346817357359,-12.03526844217299,0 -77.01344510648971,-12.0353139323384,0 -77.01337328622861,-12.03526958717714,0 -77.01332256604422,-12.03524244407851,0 -77.01325329979244,-12.03520537594375,0 -77.01326368083016,-12.03519043088937,0 -77.0132986309572,-12.0351401157065,0 -77.01332009503523,-12.03513261967925,0 -77.01346876457575,-12.03521997099676,0 -77.01348724664291,-12.03523083003626,0</coordinates></LinearRing></outerBoundaryIs>
+        </Polygon>
+      </MultiGeometry>
+    </Placemark>
+    <Placemark id="ID_00036">
+      <name>15</name>
+      <Snippet></Snippet>
+      <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+<td>15</td>
+</tr>
+<tr>
+<td>
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+<tr>
+<td>UBIGEO</td>
+<td>150132</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DEPARTAMENTO</td>
+<td>LIMA</td>
+</tr>
+<tr>
+<td>PROVINCIA</td>
+<td>LIMA</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DISTRITO</td>
+<td>SAN JUAN DE LURIGANCHO</td>
+</tr>
+<tr>
+<td>ZONA</td>
+<td>12300</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>MANZANA</td>
+<td>037</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+]]></description>
+      <styleUrl>#PolyStyle00</styleUrl>
+      <MultiGeometry>
+        <Polygon>
+          <extrude>0</extrude>          <altitudeMode>clampToGround</altitudeMode>
+          <outerBoundaryIs><LinearRing><coordinates> -77.01362234613407,-12.03527494619664,0 -77.0135884380108,-12.0352535621189,0 -77.01344517848997,-12.03516321579048,0 -77.01344357348415,-12.03516060178094,0 -77.01344239347986,-12.03515776977065,0 -77.01344166447723,-12.03515478975982,0 -77.01344140547627,-12.03515173274872,0 -77.01344162247705,-12.03514867273759,0 -77.0134421294789,-12.03514630472898,0 -77.01344292248177,-12.03514401672067,0 -77.01344398848568,-12.03514184271273,0 -77.01344458948785,-12.03514008970637,0 -77.01346885357606,-12.03512352564616,0 -77.01356743393444,-12.03505633540192,0 -77.01357297995457,-12.03505315139034,0 -77.01357894897632,-12.03505085638199,0 -77.013585199999,-12.03504950437707,0 -77.01359158402221,-12.0350491283757,0 -77.01359795004538,-12.0350497373779,0 -77.0136041470679,-12.03505131638366,0 -77.01361002808926,-12.03505382839279,0 -77.0136398561977,-12.03514459072272,0 -77.01367292231794,-12.03524520708851,0 -77.01365491225243,-12.03525437812186,0 -77.01364894523078,-12.03525814613556,0 -77.01362234613407,-12.03527494619664,0</coordinates></LinearRing></outerBoundaryIs>
+        </Polygon>
+      </MultiGeometry>
+    </Placemark>
+    <Placemark id="ID_00037">
+      <name>15</name>
+      <Snippet></Snippet>
+      <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+<td>15</td>
+</tr>
+<tr>
+<td>
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+<tr>
+<td>UBIGEO</td>
+<td>150132</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DEPARTAMENTO</td>
+<td>LIMA</td>
+</tr>
+<tr>
+<td>PROVINCIA</td>
+<td>LIMA</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DISTRITO</td>
+<td>SAN JUAN DE LURIGANCHO</td>
+</tr>
+<tr>
+<td>ZONA</td>
+<td>12300</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>MANZANA</td>
+<td>035</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+]]></description>
+      <styleUrl>#PolyStyle00</styleUrl>
+      <MultiGeometry>
+        <Polygon>
+          <extrude>0</extrude>          <altitudeMode>clampToGround</altitudeMode>
+          <outerBoundaryIs><LinearRing><coordinates> -77.01360688207785,-12.03501064523579,0 -77.01350488070705,-12.03507976048707,0 -77.013387964282,-12.03515898277504,0 -77.01334997414386,-12.03513774569785,0 -77.01329943696015,-12.03510949359514,0 -77.0133181630282,-12.03507888548387,0 -77.01336199818758,-12.03501124623796,0 -77.01345913854073,-12.03493409995753,0 -77.01354823486463,-12.0348633437003,0 -77.01357352595659,-12.03492686693124,0 -77.01360688207785,-12.03501064523579,0</coordinates></LinearRing></outerBoundaryIs>
+        </Polygon>
+      </MultiGeometry>
+    </Placemark>
+    <Placemark id="ID_00038">
+      <name>15</name>
+      <Snippet></Snippet>
+      <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+<td>15</td>
+</tr>
+<tr>
+<td>
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+<tr>
+<td>UBIGEO</td>
+<td>150132</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DEPARTAMENTO</td>
+<td>LIMA</td>
+</tr>
+<tr>
+<td>PROVINCIA</td>
+<td>LIMA</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DISTRITO</td>
+<td>SAN JUAN DE LURIGANCHO</td>
+</tr>
+<tr>
+<td>ZONA</td>
+<td>12300</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>MANZANA</td>
+<td>036</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+]]></description>
+      <styleUrl>#PolyStyle00</styleUrl>
+      <MultiGeometry>
+        <Polygon>
+          <extrude>0</extrude>          <altitudeMode>clampToGround</altitudeMode>
+          <outerBoundaryIs><LinearRing><coordinates> -77.01398932946819,-12.03525744713301,0 -77.01403560863645,-12.03530277929781,0 -77.01407487477923,-12.03534124143766,0 -77.0140503126899,-12.03536062950815,0 -77.01398714446026,-12.03541049568941,0 -77.01395333433737,-12.03543718578646,0 -77.01390154514905,-12.03547806793506,0 -77.01381498783439,-12.03554639618346,0 -77.01379786377214,-12.0354925479877,0 -77.0137841847224,-12.03544953183132,0 -77.01377703669641,-12.03542705574961,0 -77.01377027767188,-12.03539646863845,0 -77.01376366964786,-12.03536656652972,0 -77.01376362664769,-12.03536629352874,0 -77.0137572566245,-12.03532557238071,0 -77.01375114760231,-12.03528652123873,0 -77.013749405596,-12.03527800220775,0 -77.01373877855735,-12.03522603301883,0 -77.01372834151943,-12.0351833328636,0 -77.01372137049407,-12.03515481175992,0 -77.01370370442982,-12.03509639354752,0 -77.01368775637184,-12.03504365835579,0 -77.01364833022853,-12.03494930501279,0 -77.01362288013598,-12.03488840079137,0 -77.0136480802276,-12.03487704775012,0 -77.01365854126567,-12.03487233573299,0 -77.01372493750705,-12.03496832508193,0 -77.01375118760245,-12.03500627421988,0 -77.01376280064466,-12.03502306228091,0 -77.01380094978339,-12.03506482343278,0 -77.01382930488643,-12.03509586254558,0 -77.01384451694173,-12.03511251560616,0 -77.01385881499374,-12.03512816766306,0 -77.01387530305368,-12.03514621672866,0 -77.01388852510172,-12.03516069078125,0 -77.01391837821029,-12.03518934488545,0 -77.01397014139843,-12.03523903006607,0 -77.01398932946819,-12.03525744713301,0</coordinates></LinearRing></outerBoundaryIs>
+        </Polygon>
+      </MultiGeometry>
+    </Placemark>
+    <Placemark id="ID_00039">
+      <name>15</name>
+      <Snippet></Snippet>
+      <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+<td>15</td>
+</tr>
+<tr>
+<td>
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+<tr>
+<td>UBIGEO</td>
+<td>150132</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DEPARTAMENTO</td>
+<td>LIMA</td>
+</tr>
+<tr>
+<td>PROVINCIA</td>
+<td>LIMA</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DISTRITO</td>
+<td>SAN JUAN DE LURIGANCHO</td>
+</tr>
+<tr>
+<td>ZONA</td>
+<td>12300</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>MANZANA</td>
+<td>031</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+]]></description>
+      <styleUrl>#PolyStyle00</styleUrl>
+      <MultiGeometry>
+        <Polygon>
+          <extrude>0</extrude>          <altitudeMode>clampToGround</altitudeMode>
+          <outerBoundaryIs><LinearRing><coordinates> -77.01379639676679,-12.0347787693928,0 -77.01388298808161,-12.03489689682226,0 -77.01391173318609,-12.03492631792921,0 -77.01398007043457,-12.03499626318353,0 -77.0141055778908,-12.03508767351582,0 -77.01427458350526,-12.0352161259828,0 -77.01422077630963,-12.03526676216688,0 -77.01416917112204,-12.03531532534345,0 -77.01407263377104,-12.03523031103435,0 -77.01399485448832,-12.03516181478534,0 -77.01393109525651,-12.03510566758126,0 -77.01391210618749,-12.03508894452045,0 -77.01389122611158,-12.03507104945538,0 -77.01387558905469,-12.03505522739789,0 -77.01381230582467,-12.03499119216508,0 -77.01375798862716,-12.03493622796526,0 -77.01374720258798,-12.03492277691635,0 -77.01366610329313,-12.03482164254871,0 -77.01363125916646,-12.03476341033701,0 -77.01361270609903,-12.03473240422426,0 -77.01359039301792,-12.03469619409265,0 -77.01357863997515,-12.03467712002328,0 -77.01352994179814,-12.03459809073598,0 -77.01348404063128,-12.0345236014652,0 -77.01351124473018,-12.03450546539926,0 -77.01353232780679,-12.03448990434265,0 -77.0135571108969,-12.03447161227615,0 -77.01357233895226,-12.03446037223529,0 -77.01358452399654,-12.03445137820262,0 -77.01374739058866,-12.03469794909898,0 -77.01379003874371,-12.0347682843547,0 -77.01379639676679,-12.0347787693928,0</coordinates></LinearRing></outerBoundaryIs>
+        </Polygon>
+      </MultiGeometry>
+    </Placemark>
+    <Placemark id="ID_00040">
+      <name>15</name>
+      <Snippet></Snippet>
+      <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+<td>15</td>
+</tr>
+<tr>
+<td>
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+<tr>
+<td>UBIGEO</td>
+<td>150132</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DEPARTAMENTO</td>
+<td>LIMA</td>
+</tr>
+<tr>
+<td>PROVINCIA</td>
+<td>LIMA</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DISTRITO</td>
+<td>SAN JUAN DE LURIGANCHO</td>
+</tr>
+<tr>
+<td>ZONA</td>
+<td>12300</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>MANZANA</td>
+<td>015</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+]]></description>
+      <styleUrl>#PolyStyle00</styleUrl>
+      <MultiGeometry>
+        <Polygon>
+          <extrude>0</extrude>          <altitudeMode>clampToGround</altitudeMode>
+          <outerBoundaryIs><LinearRing><coordinates> -77.01456542856261,-12.03510939659481,0 -77.01472334813667,-12.03524696509493,0 -77.01473649218445,-12.03525644112938,0 -77.01481806248103,-12.03531524734314,0 -77.01504905832081,-12.03548302495312,0 -77.01498687909475,-12.03553083712694,0 -77.01496814302664,-12.03554524417928,0 -77.01492547287148,-12.03557272427918,0 -77.01486026563447,-12.03561471943186,0 -77.01481094245514,-12.03564648454733,0 -77.0147595742684,-12.03557241527807,0 -77.0147130910994,-12.03550538803438,0 -77.01469766504334,-12.03548314395351,0 -77.01468323099084,-12.03547045690743,0 -77.0146433018457,-12.0354353597798,0 -77.0146126287342,-12.0354083986818,0 -77.0145906816544,-12.03538910661166,0 -77.0145665575667,-12.03536790253457,0 -77.01454556749036,-12.03534945246753,0 -77.01451825839109,-12.03531872735579,0 -77.01448524327105,-12.03528158122077,0 -77.01446345219188,-12.03525706313161,0 -77.01445038914437,-12.03524236607819,0 -77.01443794609912,-12.03522755702437,0 -77.01441948803205,-12.0352055899445,0 -77.01441137900252,-12.03519703591343,0 -77.01438639191173,-12.03517067781758,0 -77.0143585588105,-12.03514131771084,0 -77.01434292275366,-12.03512482265086,0 -77.01432602469225,-12.03510699758607,0 -77.01435149378483,-12.03508782651636,0 -77.01437677587677,-12.03506879644721,0 -77.01439446394107,-12.03505548239878,0 -77.01441556501777,-12.03503959834103,0 -77.01443248507928,-12.03502686129474,0 -77.01444425812207,-12.03501799926255,0 -77.01456542856261,-12.03510939659481,0</coordinates></LinearRing></outerBoundaryIs>
+        </Polygon>
+      </MultiGeometry>
+    </Placemark>
+    <Placemark id="ID_00041">
+      <name>15</name>
+      <Snippet></Snippet>
+      <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+<td>15</td>
+</tr>
+<tr>
+<td>
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+<tr>
+<td>UBIGEO</td>
+<td>150132</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DEPARTAMENTO</td>
+<td>LIMA</td>
+</tr>
+<tr>
+<td>PROVINCIA</td>
+<td>LIMA</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DISTRITO</td>
+<td>SAN JUAN DE LURIGANCHO</td>
+</tr>
+<tr>
+<td>ZONA</td>
+<td>12300</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>MANZANA</td>
+<td>030</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+]]></description>
+      <styleUrl>#PolyStyle00</styleUrl>
+      <MultiGeometry>
+        <Polygon>
+          <extrude>0</extrude>          <altitudeMode>clampToGround</altitudeMode>
+          <outerBoundaryIs><LinearRing><coordinates> -77.01430432461336,-12.03522138400194,0 -77.01428437854082,-12.03520360893731,0 -77.01424248938855,-12.03516627780158,0 -77.01427911052167,-12.03514295571682,0 -77.01430352361047,-12.03512740866029,0 -77.01437395686651,-12.03520991396022,0 -77.01441179900405,-12.03525148611135,0 -77.01449549230836,-12.03534342944562,0 -77.0145429014807,-12.03539551063494,0 -77.01459043265351,-12.03543323977209,0 -77.01463456081393,-12.03546826589945,0 -77.01465787089865,-12.03550341302724,0 -77.01474405221194,-12.03563336049962,0 -77.01476404628465,-12.03567183363953,0 -77.0147160681102,-12.03569228371384,0 -77.01468387599317,-12.03570600476371,0 -77.01464547785361,-12.03572237082324,0 -77.0146247047781,-12.0357312248554,0 -77.01461437474052,-12.03571647380181,0 -77.01460901472103,-12.03570881977396,0 -77.01457071458179,-12.03562263846067,0 -77.01453146843915,-12.0355343271396,0 -77.01452133540226,-12.03551152605672,0 -77.01446707320503,-12.03544962183167,0 -77.01439052592673,-12.03536229451419,0 -77.01433976974221,-12.03530439130367,0 -77.01430075660039,-12.03525988314186,0 -77.01428091152826,-12.03523724305956,0 -77.01428262253444,-12.035235152052,0 -77.01430432461336,-12.03522138400194,0</coordinates></LinearRing></outerBoundaryIs>
+        </Polygon>
+      </MultiGeometry>
+    </Placemark>
+    <Placemark id="ID_00042">
+      <name>15</name>
+      <Snippet></Snippet>
+      <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+<td>15</td>
+</tr>
+<tr>
+<td>
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+<tr>
+<td>UBIGEO</td>
+<td>150132</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DEPARTAMENTO</td>
+<td>LIMA</td>
+</tr>
+<tr>
+<td>PROVINCIA</td>
+<td>LIMA</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DISTRITO</td>
+<td>SAN JUAN DE LURIGANCHO</td>
+</tr>
+<tr>
+<td>ZONA</td>
+<td>12300</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>MANZANA</td>
+<td>038</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+]]></description>
+      <styleUrl>#PolyStyle00</styleUrl>
+      <MultiGeometry>
+        <Polygon>
+          <extrude>0</extrude>          <altitudeMode>clampToGround</altitudeMode>
+          <outerBoundaryIs><LinearRing><coordinates> -77.01431197264117,-12.0355874943329,0 -77.01421369228387,-12.03565231956856,0 -77.01417922115854,-12.0356750566512,0 -77.01414685004085,-12.03569640872883,0 -77.01412210295092,-12.03571273178818,0 -77.01409303084523,-12.03573190785789,0 -77.01406564974565,-12.03574996792355,0 -77.01402290159024,-12.03577816502605,0 -77.01400533552641,-12.03578975106819,0 -77.01397149740336,-12.03581207114934,0 -77.01394852631989,-12.03582722320442,0 -77.01391806620916,-12.03576583698123,0 -77.01390258315286,-12.03573463386783,0 -77.01388135807571,-12.03569186071229,0 -77.01386519001693,-12.03565927859387,0 -77.01384795195423,-12.03562453946756,0 -77.0138270408782,-12.03558239731439,0 -77.01382289286312,-12.03557403828398,0 -77.01384550994538,-12.03555749622382,0 -77.01389892613958,-12.0355184270818,0 -77.01396116136579,-12.0354729079163,0 -77.01400968154218,-12.0354374187873,0 -77.01411847993774,-12.03535784449804,0 -77.0141419600231,-12.03538571059931,0 -77.01417735415174,-12.03542771875203,0 -77.01423588336456,-12.0354971850046,0 -77.01428409653983,-12.03555440821259,0 -77.01431197264117,-12.0355874943329,0</coordinates></LinearRing></outerBoundaryIs>
+        </Polygon>
+      </MultiGeometry>
+    </Placemark>
+    <Placemark id="ID_00043">
+      <name>15</name>
+      <Snippet></Snippet>
+      <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+<td>15</td>
+</tr>
+<tr>
+<td>
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+<tr>
+<td>UBIGEO</td>
+<td>150132</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DEPARTAMENTO</td>
+<td>LIMA</td>
+</tr>
+<tr>
+<td>PROVINCIA</td>
+<td>LIMA</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DISTRITO</td>
+<td>SAN JUAN DE LURIGANCHO</td>
+</tr>
+<tr>
+<td>ZONA</td>
+<td>12300</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>MANZANA</td>
+<td>045</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+]]></description>
+      <styleUrl>#PolyStyle00</styleUrl>
+      <MultiGeometry>
+        <Polygon>
+          <extrude>0</extrude>          <altitudeMode>clampToGround</altitudeMode>
+          <outerBoundaryIs><LinearRing><coordinates> -77.01354906486768,-12.03545738685989,0 -77.01353893283084,-12.03543869479194,0 -77.01351866075714,-12.03540129665601,0 -77.01349474567019,-12.03536736953265,0 -77.01345693153269,-12.03533555841699,0 -77.01347593760181,-12.03531120632846,0 -77.01349735067964,-12.03528377122871,0 -77.01353002879847,-12.0352419030765,0 -77.0135418138413,-12.03525133011078,0 -77.01356768793534,-12.03527202818606,0 -77.01359322902823,-12.03529894328386,0 -77.01362912515873,-12.03533677142139,0 -77.01363941519611,-12.03535240747823,0 -77.01367905734026,-12.03541264269722,0 -77.01367914534058,-12.03541277569769,0 -77.01369373639358,-12.0354390377932,0 -77.01370185442312,-12.03545364984632,0 -77.01370632343935,-12.0354628628798,0 -77.01372763551683,-12.03550680403953,0 -77.01373580854653,-12.03552971412285,0 -77.01375085060124,-12.03557969530453,0 -77.01375930263197,-12.03560778140667,0 -77.01376665065868,-12.03563219749543,0 -77.01377328068276,-12.03565337957241,0 -77.01377527469003,-12.03565975059559,0 -77.01378400172177,-12.03568763269692,0 -77.0137932317553,-12.03571712080412,0 -77.01380776880814,-12.0357462169099,0 -77.01382104185643,-12.03577278200652,0 -77.01383930792281,-12.03580934113938,0 -77.01385235697023,-12.03583545723433,0 -77.0138762660572,-12.03588331140833,0 -77.01389567012774,-12.0359221485495,0 -77.01389919914055,-12.03592921057521,0 -77.01390996417968,-12.03596162369303,0 -77.01392511223475,-12.03600723785883,0 -77.01392767624407,-12.0360149568869,0 -77.01393854028356,-12.0360942621752,0 -77.01391474819707,-12.03611148023782,0 -77.01389043010869,-12.03612907930182,0 -77.01385173796803,-12.0361570804036,0 -77.013836883914,-12.03616627643703,0 -77.01380089678315,-12.0361146692494,0 -77.01378209271479,-12.0360877031514,0 -77.01375813062771,-12.03605333902647,0 -77.01373705755111,-12.0360231189166,0 -77.01371410646766,-12.03599020379693,0 -77.01369830441018,-12.03596754271456,0 -77.01368567836431,-12.03593635860119,0 -77.01367564032779,-12.03591156551101,0 -77.01365026123557,-12.03584888228318,0 -77.01363510618046,-12.03581145014709,0 -77.01363288917241,-12.03580067310787,0 -77.01362584714678,-12.03576643598342,0 -77.01361912712235,-12.03573376686467,0 -77.01361042309071,-12.03569145171082,0 -77.01360222906095,-12.03565161856602,0 -77.01359560203684,-12.03561940144891,0 -77.01359051401835,-12.03559466735896,0 -77.01358561300054,-12.03557083927234,0 -77.01358512099876,-12.03556931226677,0 -77.01355786189964,-12.03548469295919,0 -77.01354906486768,-12.03545738685989,0</coordinates></LinearRing></outerBoundaryIs>
+        </Polygon>
+      </MultiGeometry>
+    </Placemark>
+    <Placemark id="ID_00044">
+      <name>15</name>
+      <Snippet></Snippet>
+      <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+<td>15</td>
+</tr>
+<tr>
+<td>
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+<tr>
+<td>UBIGEO</td>
+<td>150132</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DEPARTAMENTO</td>
+<td>LIMA</td>
+</tr>
+<tr>
+<td>PROVINCIA</td>
+<td>LIMA</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DISTRITO</td>
+<td>SAN JUAN DE LURIGANCHO</td>
+</tr>
+<tr>
+<td>ZONA</td>
+<td>12300</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>MANZANA</td>
+<td>008</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+]]></description>
+      <styleUrl>#PolyStyle00</styleUrl>
+      <MultiGeometry>
+        <Polygon>
+          <extrude>0</extrude>          <altitudeMode>clampToGround</altitudeMode>
+          <outerBoundaryIs><LinearRing><coordinates> -77.01327438586907,-12.03283601833005,0 -77.0132470437697,-12.03286729644378,0 -77.01320685262357,-12.03291327361092,0 -77.01319732958893,-12.03292416765055,0 -77.01318011752636,-12.03294385672211,0 -77.01315804044612,-12.03296911381392,0 -77.0131450573989,-12.03298396586791,0 -77.0131275663353,-12.03300397494064,0 -77.01310593925672,-12.03302871603063,0 -77.01308593618398,-12.03305159811379,0 -77.01302382895818,-12.03299728791637,0 -77.01299580985631,-12.03297278682726,0 -77.01296019972688,-12.0329416477141,0 -77.01292798360976,-12.03291347661167,0 -77.01289460548838,-12.03288428850556,0 -77.01285099232985,-12.03284615236692,0 -77.01281636120393,-12.03281586925681,0 -77.01279303311912,-12.03279546918265,0 -77.01276238400772,-12.03276866808523,0 -77.01272392686792,-12.03273503896298,0 -77.01269028974565,-12.03270562585601,0 -77.01267151467738,-12.03268920779635,0 -77.01264503458111,-12.03266605171217,0 -77.01262356350304,-12.0326472766439,0 -77.01259179838758,-12.03261949854294,0 -77.01255508325409,-12.03258739442623,0 -77.01254599222102,-12.03256271933651,0 -77.01253208817047,-12.0325249801993,0 -77.01251226809842,-12.03247118200375,0 -77.01249610403966,-12.03242730684423,0 -77.01249126402206,-12.03241416979648,0 -77.0124836509944,-12.03239350572136,0 -77.01247650996845,-12.03237412365087,0 -77.01247041394629,-12.03235757759074,0 -77.01246581692959,-12.03234509854536,0 -77.01246113591253,-12.03233239349919,0 -77.01245482688961,-12.03231527043693,0 -77.0124684899393,-12.03229777237328,0 -77.01249863404888,-12.03225916723295,0 -77.01251619911272,-12.03223667115117,0 -77.01255990827161,-12.0322695512707,0 -77.01258315435615,-12.0322870373343,0 -77.01259746440815,-12.03229780237342,0 -77.01262177349656,-12.03231608843987,0 -77.012635921548,-12.03232673247857,0 -77.01266885666769,-12.03235150656866,0 -77.01271110482128,-12.03238328768418,0 -77.012743473939,-12.03240763777274,0 -77.01276595302068,-12.03242454683419,0 -77.0127894711062,-12.03244223889851,0 -77.0128126871906,-12.032459702962,0 -77.01283389326767,-12.03247565501999,0 -77.01284037429127,-12.03248053003773,0 -77.01286265237224,-12.03249877710402,0 -77.01288656245919,-12.03251836117522,0 -77.01290896654064,-12.03253671324194,0 -77.01293521163603,-12.03255820932009,0 -77.01296782375459,-12.0325849214172,0 -77.01299734986191,-12.03260910450513,0 -77.01301888494021,-12.03262674356927,0 -77.01307421514139,-12.03267206273404,0 -77.01309047920051,-12.03268538478244,0 -77.0131115022769,-12.03270260384505,0 -77.01314835141091,-12.03273278595475,0 -77.01318437454182,-12.03276229206205,0 -77.01327438586907,-12.03283601833005,0</coordinates></LinearRing></outerBoundaryIs>
+        </Polygon>
+      </MultiGeometry>
+    </Placemark>
+    <Placemark id="ID_00045">
+      <name>15</name>
+      <Snippet></Snippet>
+      <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+<td>15</td>
+</tr>
+<tr>
+<td>
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+<tr>
+<td>UBIGEO</td>
+<td>150132</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DEPARTAMENTO</td>
+<td>LIMA</td>
+</tr>
+<tr>
+<td>PROVINCIA</td>
+<td>LIMA</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DISTRITO</td>
+<td>SAN JUAN DE LURIGANCHO</td>
+</tr>
+<tr>
+<td>ZONA</td>
+<td>12300</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>MANZANA</td>
+<td>009</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+]]></description>
+      <styleUrl>#PolyStyle00</styleUrl>
+      <MultiGeometry>
+        <Polygon>
+          <extrude>0</extrude>          <altitudeMode>clampToGround</altitudeMode>
+          <outerBoundaryIs><LinearRing><coordinates> -77.01286987339847,-12.03329309199171,0 -77.01283039025498,-12.03325909086811,0 -77.01279605813016,-12.03322952576065,0 -77.01275977099823,-12.03319827764705,0 -77.01273966292513,-12.03318096258408,0 -77.01272700987914,-12.03317006554448,0 -77.01272061085587,-12.03316455552442,0 -77.01271000981734,-12.03313050240064,0 -77.0127004027824,-12.03309963928842,0 -77.01269208575218,-12.0330729231913,0 -77.01267662869594,-12.03302326701078,0 -77.01266037363689,-12.03297104982096,0 -77.01265047660087,-12.0329392557054,0 -77.01263758955406,-12.03289785755487,0 -77.01262632351308,-12.03286166842332,0 -77.01261568047437,-12.0328204792736,0 -77.01260799644643,-12.03279074316549,0 -77.01264288257329,-12.0327410719849,0 -77.0126964147679,-12.03278560314681,0 -77.01272055985567,-12.03280568821981,0 -77.01275150296817,-12.03283142831339,0 -77.0127866960961,-12.03286070441982,0 -77.01283239926227,-12.03289872155801,0 -77.0128738354129,-12.03293319068331,0 -77.01287592742051,-12.03293493068964,0 -77.012906319531,-12.03295849577535,0 -77.01295247169878,-12.03299440990588,0 -77.01300739489847,-12.03303714906127,0 -77.01305839408383,-12.03307683520552,0 -77.01306942112393,-12.03308541523671,0 -77.0130417080232,-12.0331142573416,0 -77.0130049318895,-12.03315253148071,0 -77.01295866572127,-12.03320068165579,0 -77.01294178465992,-12.03321824971965,0 -77.01292638760395,-12.0332342747779,0 -77.01290206551551,-12.03325958786991,0 -77.01286987339847,-12.03329309199171,0</coordinates></LinearRing></outerBoundaryIs>
+        </Polygon>
+      </MultiGeometry>
+    </Placemark>
+    <Placemark id="ID_00046">
+      <name>15</name>
+      <Snippet></Snippet>
+      <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+<td>15</td>
+</tr>
+<tr>
+<td>
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+<tr>
+<td>UBIGEO</td>
+<td>150132</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DEPARTAMENTO</td>
+<td>LIMA</td>
+</tr>
+<tr>
+<td>PROVINCIA</td>
+<td>LIMA</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DISTRITO</td>
+<td>SAN JUAN DE LURIGANCHO</td>
+</tr>
+<tr>
+<td>ZONA</td>
+<td>12300</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>MANZANA</td>
+<td>010</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+]]></description>
+      <styleUrl>#PolyStyle00</styleUrl>
+      <MultiGeometry>
+        <Polygon>
+          <extrude>0</extrude>          <altitudeMode>clampToGround</altitudeMode>
+          <outerBoundaryIs><LinearRing><coordinates> -77.01296931476003,-12.03337443028744,0 -77.01294008265376,-12.03334646718577,0 -77.01301870993956,-12.03325490885294,0 -77.01312814333744,-12.03313354641171,0 -77.0132230036823,-12.03302834502927,0 -77.0133325360805,-12.03291629062187,0 -77.01337433023241,-12.03295597176617,0 -77.01343295844555,-12.03301163696852,0 -77.01347489359802,-12.03305145311327,0 -77.01335012614442,-12.03314106943907,0 -77.01321075163776,-12.03324117580297,0 -77.01303703400618,-12.03336595025661,0 -77.01299096483871,-12.0333951403627,0 -77.01296931476003,-12.03337443028744,0</coordinates></LinearRing></outerBoundaryIs>
+        </Polygon>
+      </MultiGeometry>
+    </Placemark>
+    <Placemark id="ID_00047">
+      <name>15</name>
+      <Snippet></Snippet>
+      <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+<td>15</td>
+</tr>
+<tr>
+<td>
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+<tr>
+<td>UBIGEO</td>
+<td>150132</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DEPARTAMENTO</td>
+<td>LIMA</td>
+</tr>
+<tr>
+<td>PROVINCIA</td>
+<td>LIMA</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DISTRITO</td>
+<td>SAN JUAN DE LURIGANCHO</td>
+</tr>
+<tr>
+<td>ZONA</td>
+<td>12300</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>MANZANA</td>
+<td>013</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+]]></description>
+      <styleUrl>#PolyStyle00</styleUrl>
+      <MultiGeometry>
+        <Polygon>
+          <extrude>0</extrude>          <altitudeMode>clampToGround</altitudeMode>
+          <outerBoundaryIs><LinearRing><coordinates> -77.01304846704778,-12.0337656517097,0 -77.0130894141966,-12.03373176758652,0 -77.01326603683873,-12.03362234718873,0 -77.013314802016,-12.03359005307129,0 -77.01338596927474,-12.03354292289998,0 -77.0134019473328,-12.03358090503804,0 -77.01341001036212,-12.03360007110774,0 -77.01341296037288,-12.03360751413482,0 -77.0134281584281,-12.03364585527419,0 -77.01331775102671,-12.03370391348523,0 -77.0132192406686,-12.03376482770671,0 -77.013162137461,-12.03381131287569,0 -77.01312677933248,-12.03384009598034,0 -77.01310407524994,-12.0338585780475,0 -77.01307405014074,-12.03388270113521,0 -77.01306809111912,-12.03388748915262,0 -77.01304259902645,-12.03390796922707,0 -77.01301261691742,-12.03393205731464,0 -77.01298335681105,-12.03395556540011,0 -77.01296800875525,-12.03395367839323,0 -77.01294000365346,-12.03395023538076,0 -77.01290377752173,-12.03394578136454,0 -77.01289774749984,-12.03394457536018,0 -77.01289084047471,-12.03394319435512,0 -77.01287678942362,-12.03394038434493,0 -77.01291698456976,-12.03389136716675,0 -77.0129197205797,-12.03388875115724,0 -77.01304846704778,-12.0337656517097,0</coordinates></LinearRing></outerBoundaryIs>
+        </Polygon>
+      </MultiGeometry>
+    </Placemark>
+    <Placemark id="ID_00048">
+      <name>15</name>
+      <Snippet></Snippet>
+      <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+<td>15</td>
+</tr>
+<tr>
+<td>
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+<tr>
+<td>UBIGEO</td>
+<td>150132</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DEPARTAMENTO</td>
+<td>LIMA</td>
+</tr>
+<tr>
+<td>PROVINCIA</td>
+<td>LIMA</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DISTRITO</td>
+<td>SAN JUAN DE LURIGANCHO</td>
+</tr>
+<tr>
+<td>ZONA</td>
+<td>12300</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>MANZANA</td>
+<td>048</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+]]></description>
+      <styleUrl>#PolyStyle00</styleUrl>
+      <MultiGeometry>
+        <Polygon>
+          <extrude>0</extrude>          <altitudeMode>clampToGround</altitudeMode>
+          <outerBoundaryIs><LinearRing><coordinates> -77.01360100005644,-12.03582044517975,0 -77.01357808597317,-12.0358208171811,0 -77.01355365588432,-12.03582121318254,0 -77.01352371977549,-12.03582169818435,0 -77.01346194655093,-12.03582270018796,0 -77.01341812539164,-12.03582341119056,0 -77.0133895432877,-12.03582387419226,0 -77.01333045107288,-12.03582483219572,0 -77.01317840752017,-12.03582729820471,0 -77.01317272349951,-12.0358136551551,0 -77.01316357246623,-12.03579169107525,0 -77.0131550744353,-12.03577129700108,0 -77.01314758040809,-12.03575330993573,0 -77.01313899937691,-12.03573271586083,0 -77.01313121034855,-12.0357140217929,0 -77.01312168431394,-12.03569115770978,0 -77.01311194327855,-12.03566778062475,0 -77.01310317324663,-12.03564673254823,0 -77.01309525421783,-12.03562772647916,0 -77.01308867819392,-12.03561194442176,0 -77.0130676201174,-12.03562057045315,0 -77.01306357910272,-12.03561108941869,0 -77.01305353006615,-12.03558751233294,0 -77.01304413903205,-12.03556547725287,0 -77.01303316399213,-12.03553972815922,0 -77.01302469296132,-12.03551985208696,0 -77.01301094991135,-12.03548760696975,0 -77.01299056883727,-12.03543978879594,0 -77.01297635778559,-12.0354064466747,0 -77.01296183573282,-12.03537237455083,0 -77.01294504767179,-12.03533298640764,0 -77.01292574960161,-12.03528770724302,0 -77.01291695056966,-12.03527065918104,0 -77.01290117451231,-12.03524009306995,0 -77.0128793864331,-12.03519787791646,0 -77.01285061032849,-12.03514212571378,0 -77.01284338030217,-12.03512811666286,0 -77.01284225029809,-12.03511975463243,0 -77.0128396772887,-12.03511479861442,0 -77.0128379912826,-12.03510947559511,0 -77.01283724327988,-12.03510394157496,0 -77.01283745528065,-12.03509836155467,0 -77.01283862128486,-12.03509290053484,0 -77.012840298291,-12.03508855451901,0 -77.01284258129925,-12.03508449250427,0 -77.01284542130958,-12.03508080149084,0 -77.01284876132172,-12.03507755347903,0 -77.01285253233544,-12.03507481746908,0 -77.01285642034958,-12.03507275346158,0 -77.0128605523646,-12.03507123545609,0 -77.01291681156914,-12.03509580654537,0 -77.01294838368392,-12.03510959659553,0 -77.01299162784113,-12.03512856166447,0 -77.01304345602955,-12.03515129174713,0 -77.01307591514757,-12.03516552679884,0 -77.01308238017106,-12.03516836180916,0 -77.01310803526434,-12.03517600383697,0 -77.01312888034011,-12.03518221385951,0 -77.01314483339809,-12.03518696587679,0 -77.01318763855369,-12.03520642994755,0 -77.01323630573063,-12.0352313560382,0 -77.01326267982654,-12.0352448640873,0 -77.0132833849018,-12.03525546812585,0 -77.01329308793709,-12.03526043814389,0 -77.01330464997909,-12.03526861317363,0 -77.01332300204581,-12.0352815892208,0 -77.01336170118651,-12.03530895332028,0 -77.01338402626766,-12.03532473937764,0 -77.01338890028541,-12.0353281853902,0 -77.01341430537775,-12.03534832346338,0 -77.01343265944445,-12.03536287051628,0 -77.01344862650251,-12.03537552856233,0 -77.01345761553517,-12.03538501559677,0 -77.0134789336127,-12.03540751467858,0 -77.0134961826754,-12.03542571974475,0 -77.01350226169751,-12.03543396577476,0 -77.01350746671642,-12.03544448781298,0 -77.0135207977649,-12.03547143891097,0 -77.01353479081575,-12.03549972901385,0 -77.01354452485117,-12.03551940708536,0 -77.01354902886754,-12.03553911315703,0 -77.01354967286989,-12.03554242416902,0 -77.01356437392332,-12.03561798944378,0 -77.01357459796049,-12.0356705446348,0 -77.01358388199424,-12.03571826480828,0 -77.01358547000001,-12.03572642483795,0 -77.01359044001805,-12.03575197093085,0 -77.0135939710309,-12.03577486801407,0 -77.01360100005644,-12.03582044517975,0</coordinates></LinearRing></outerBoundaryIs>
+        </Polygon>
+      </MultiGeometry>
+    </Placemark>
+  </Folder>
+  <Folder id="FeatureLayer1">
+    <name>SELECCION</name>
+    <Snippet></Snippet>
+    <Placemark id="ID_10000">
+      <name>15</name>
+      <Snippet></Snippet>
+      <description><![CDATA[<html xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:msxsl="urn:schemas-microsoft-com:xslt">
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body style="margin:0px 0px 0px 0px;overflow:auto;background:#FFFFFF;">
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-collapse:collapse;padding:3px 3px 3px 3px">
+<tr style="text-align:center;font-weight:bold;background:#9CBCE2">
+<td>15</td>
+</tr>
+<tr>
+<td>
+<table style="font-family:Arial,Verdana,Times;font-size:12px;text-align:left;width:100%;border-spacing:0px; padding:3px 3px 3px 3px">
+<tr>
+<td>UBIGEO</td>
+<td>150132</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DEPARTAMENTO</td>
+<td>LIMA</td>
+</tr>
+<tr>
+<td>PROVINCIA</td>
+<td>LIMA</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>DISTRITO</td>
+<td>SAN JUAN DE LURIGANCHO</td>
+</tr>
+<tr>
+<td>NOMCCCPP</td>
+<td>SAN JUAN DE LURIGANCHO</td>
+</tr>
+<tr bgcolor="#D4E4F3">
+<td>ZONA</td>
+<td>12300</td>
+</tr>
+<tr>
+<td>MANZANA</td>
+<td>002</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+]]></description>
+      <styleUrl>#PolyStyle10</styleUrl>
+      <MultiGeometry>
+        <Polygon>
+          <extrude>0</extrude>          <altitudeMode>clampToGround</altitudeMode>
+          <outerBoundaryIs><LinearRing><coordinates> -77.01134347484936,-12.02989082162299,0 -77.01132300277493,-12.02988932661754,0 -77.01124283448348,-12.02984369245166,0 -77.0112446774902,-12.02981420434446,0 -77.01124752450056,-12.02976864617881,0 -77.01125020251027,-12.02972581802311,0 -77.01124940850741,-12.02971956000039,0 -77.01124642749653,-12.02969607091495,0 -77.01124101947687,-12.02965347176013,0 -77.01123639146005,-12.02963810870426,0 -77.01122291541105,-12.02959337754163,0 -77.01120906036073,-12.02954738937444,0 -77.01119916732472,-12.02951454925506,0 -77.01118629027792,-12.02948063313176,0 -77.01117467623573,-12.02945004302057,0 -77.0111491161428,-12.02938272377583,0 -77.01114438612558,-12.02937057773164,0 -77.01113730809988,-12.02935239966558,0 -77.01113047207502,-12.02933484460175,0 -77.01111531201991,-12.02929591246021,0 -77.01110802599339,-12.0292771993922,0 -77.01109395294225,-12.02924105726078,0 -77.01108094689494,-12.02920765513937,0 -77.0110714188603,-12.02918318605043,0 -77.01106326683066,-12.02916224997432,0 -77.01105592180397,-12.02914338690573,0 -77.01104807577548,-12.02912323783249,0 -77.01103999274608,-12.029102479757,0 -77.01102693669861,-12.02906895063512,0 -77.01100739762757,-12.02901877145268,0 -77.01099174357069,-12.02897856930656,0 -77.01098780755638,-12.0289684622698,0 -77.01104313475747,-12.02894515318508,0 -77.01110952299882,-12.02891718408336,0 -77.01113521109221,-12.02890636204404,0 -77.01116681620715,-12.02889304699562,0 -77.01117822024861,-12.02888824197817,0 -77.01119407630625,-12.02888156195388,0 -77.01123033243806,-12.02886628789833,0 -77.01124882550528,-12.02885849587,0 -77.01127539960186,-12.02884730082934,0 -77.01129787068356,-12.02883783379491,0 -77.01131563874816,-12.02883034876771,0 -77.01134004383687,-12.0288200667303,0 -77.01136264291904,-12.02881054569571,0 -77.01137887697809,-12.02880370667083,0 -77.01139783704701,-12.02879571864179,0 -77.01140871108652,-12.02882709775588,0 -77.01141841412181,-12.02885509485765,0 -77.01143061416616,-12.02889029898563,0 -77.01143805319322,-12.02891176406365,0 -77.01144147620562,-12.02892164209959,0 -77.01144664622444,-12.02893655915381,0 -77.01145684726151,-12.02896599526082,0 -77.01146176927944,-12.02898019831247,0 -77.01147018631002,-12.02900448540078,0 -77.01147498632747,-12.0290183354511,0 -77.0114859193672,-12.0290498825658,0 -77.01148902437848,-12.02905884259837,0 -77.01140450607124,-12.0290934267241,0 -77.01134900286945,-12.02911613880667,0 -77.0113258547853,-12.02912561084111,0 -77.01126858357708,-12.02914904592632,0 -77.01128785964716,-12.02919303408623,0 -77.01130887072355,-12.02918482105633,0 -77.01139731604508,-12.02915024993069,0 -77.01144500921851,-12.0291316068629,0 -77.01150717444449,-12.02910730777455,0 -77.01151118045902,-12.02912132882551,0 -77.01151543347453,-12.02913621387967,0 -77.01151907848777,-12.02914897292601,0 -77.01152442350718,-12.02916768599408,0 -77.01152852052206,-12.02918202804619,0 -77.0115328205377,-12.0291970811009,0 -77.01153986756333,-12.02922175019063,0 -77.0115440445785,-12.02923540924024,0 -77.01154976759932,-12.0292541243083,0 -77.01155367761356,-12.02926690935476,0 -77.01156461765334,-12.02930268148481,0 -77.01156788766519,-12.02931337252369,0 -77.01158091971257,-12.02935598667864,0 -77.01158692573443,-12.02937562475,0 -77.0114917973886,-12.02941308288621,0 -77.01146734229968,-12.0294227119212,0 -77.01143367417728,-12.02943596896938,0 -77.01138659300614,-12.02945450803679,0 -77.01140579307594,-12.0295053392216,0 -77.01142964316261,-12.02949577618682,0 -77.01145634025966,-12.02948507114792,0 -77.01160136678692,-12.02942691693647,0 -77.01160398179644,-12.02943695797296,0 -77.01161101582198,-12.02946396007116,0 -77.01161558183861,-12.02948148913487,0 -77.01162259186407,-12.02950839823268,0 -77.01163155289663,-12.02954280035777,0 -77.01164052492925,-12.02957724448299,0 -77.01165083296672,-12.02961681362683,0 -77.01166326901193,-12.02966455680041,0 -77.01167156604214,-12.0296964099162,0 -77.01168111907685,-12.02973308304951,0 -77.01165272597365,-12.02974634809777,0 -77.01161846284907,-12.02976235515592,0 -77.01158930374305,-12.02977597720548,0 -77.0115514626055,-12.02979365526971,0 -77.011517489482,-12.02980952732742,0 -77.01148235135423,-12.02982594238711,0 -77.01142241513634,-12.02985394348889,0 -77.01134347484936,-12.02989082162299,0</coordinates></LinearRing></outerBoundaryIs>
+        </Polygon>
+      </MultiGeometry>
+    </Placemark>
+  </Folder>
+  <Style id="PolyStyle00">
+    <LabelStyle>
+      <color>00000000</color>
+      <scale>0.000000</scale>
+    </LabelStyle>
+    <LineStyle>
+      <color>ff00ff55</color>
+      <width>3.500000</width>
+    </LineStyle>
+    <PolyStyle>
+      <color>00f0f0f0</color>
+      <outline>1</outline>
+    </PolyStyle>
+  </Style>
+  <Style id="PolyStyle10">
+    <LabelStyle>
+      <color>00000000</color>
+      <scale>0.000000</scale>
+    </LabelStyle>
+    <LineStyle>
+      <color>ff0000ff</color>
+      <width>3.500000</width>
+    </LineStyle>
+    <PolyStyle>
+      <color>00f0f0f0</color>
+      <outline>1</outline>
+    </PolyStyle>
+  </Style>
+</Document>
+</kml>

@@ -1,6 +1,7 @@
 package com.inei.appcartoinei.fragments;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
@@ -9,7 +10,6 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,8 +24,6 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.Volley;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -33,18 +31,15 @@ import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.JointType;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polygon;
+import com.google.android.gms.maps.model.PolygonOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.maps.android.data.Feature;
-import com.google.maps.android.data.Layer;
-import com.google.maps.android.data.geojson.GeoJsonLayer;
-import com.google.maps.android.data.geojson.GeoJsonLineStringStyle;
-import com.google.maps.android.data.geojson.GeoJsonPointStyle;
-import com.google.maps.android.data.geojson.GeoJsonPolygonStyle;
-import com.google.maps.android.data.kml.KmlLayer;
 import com.inei.appcartoinei.R;
 import com.inei.appcartoinei.modelo.DAO.Data;
 import com.inei.appcartoinei.modelo.DAO.DataBaseHelper;
@@ -52,34 +47,39 @@ import com.inei.appcartoinei.modelo.DAO.DataBaseHelper;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.spatialite.database.SQLiteDatabase;
-import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 
 
-public class MapViviendaFragment extends Fragment implements OnMapReadyCallback,GoogleMap.OnMapClickListener {
+public class MapManzanaPolylineFragment extends Fragment implements OnMapReadyCallback,GoogleMap.OnMapClickListener {
 
     GoogleMap mgoogleMap;
     MapView mapView;
     View view;
     private LocationManager mLocationManager;
     private Location location;
-    private Marker marker;
-    private LatLng punto;
-    private ArrayList<String> datosVivienda = new ArrayList<String>() ;
+    private Polygon poligon;
+    private Polyline linea;
+    private Marker vertice;
+    private ArrayList<Marker> listaMarker = new ArrayList<Marker>();
+    private ArrayList<LatLng> listPoints = new ArrayList<LatLng>() ;
+    private ArrayList<LatLng> newListPoints = new ArrayList<LatLng>();
+    private ArrayList<LatLng> listalatlog= new ArrayList<LatLng>();
+    private ArrayList<String> datosManzana = new ArrayList<String>() ;
     private FloatingActionButton fab1;
     private FloatingActionButton fab2;
     private FloatingActionButton fab3;
+    private FloatingActionButton fab4;
     private SQLiteDatabase db ;
     private DataBaseHelper op;
     Data    data;
     Context context;
+    String  idCapa;
 
     private OnFragmentInteractionListener mListener;
 
-    public MapViviendaFragment() {
+    public MapManzanaPolylineFragment() {
         // Required empty public constructor
     }
 
@@ -87,16 +87,18 @@ public class MapViviendaFragment extends Fragment implements OnMapReadyCallback,
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mLocationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.layout_mapa_principal, container, false);
+        //idCapa = getArguments().getString("idUsuario","0");
         return view;
     }
 
-
+    @SuppressLint("RestrictedApi")
     @Override
     public void onViewCreated(View view,Bundle savedInstanceState){
         super.onViewCreated(view,savedInstanceState);
@@ -104,7 +106,8 @@ public class MapViviendaFragment extends Fragment implements OnMapReadyCallback,
         fab1 =  (FloatingActionButton) view.findViewById(R.id.fab1);
         fab2 =  (FloatingActionButton) view.findViewById(R.id.fab2);
         fab3 =  (FloatingActionButton) view.findViewById(R.id.fab3);
-
+        fab4 =  (FloatingActionButton) view.findViewById(R.id.fab4);
+        fab4.setVisibility(View.VISIBLE);
 
         op = new DataBaseHelper(getContext());
         db = op.getWritableDatabase();
@@ -148,11 +151,9 @@ public class MapViviendaFragment extends Fragment implements OnMapReadyCallback,
         mgoogleMap.getUiSettings().setMyLocationButtonEnabled(true);//GPS
         mgoogleMap.setOnMapClickListener(this);
         LatLng peru = new LatLng(-9, -74);
-        LatLng sanrafael = new LatLng(-11.9759453, -77.0053459);
-        marker =  mgoogleMap.addMarker( new MarkerOptions().position(sanrafael));
 
         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        CameraPosition Liberty = CameraPosition.builder().target(sanrafael).zoom(16).bearing(0).tilt(45).build();
+        CameraPosition Liberty = CameraPosition.builder().target(peru).zoom(16).bearing(0).tilt(45).build();
         googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(Liberty));
 
         if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION)== PackageManager.PERMISSION_GRANTED){
@@ -164,7 +165,7 @@ public class MapViviendaFragment extends Fragment implements OnMapReadyCallback,
                 mgoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(gps,12));
             }
             else{
-                mgoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sanrafael,5));
+                mgoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(peru,5));
             }
         }
         else {
@@ -175,7 +176,7 @@ public class MapViviendaFragment extends Fragment implements OnMapReadyCallback,
             }
         }
 
-        /*SUBIR DATOS SERVIDOR*/
+        /*SUBIR DATOS A SERVIDOR*/
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -187,7 +188,7 @@ public class MapViviendaFragment extends Fragment implements OnMapReadyCallback,
         fab2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                insertarVivienda(punto);
+                insertarManzana(listPoints);
             }
         });
 
@@ -195,158 +196,178 @@ public class MapViviendaFragment extends Fragment implements OnMapReadyCallback,
         fab3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                formVivienda();
+                formManzana();
             }
         });
 
-        /*MOSTRAR PUNTOS*/
+        /*DESHACER ULTIMO PUNTO DE POLIGONO*/
+        fab4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(listPoints.isEmpty())
+                {
+                    Toast.makeText(getContext(),"No ha Dibujado una manzana",Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    listaMarker.get(listaMarker.size()-1).remove();
+                    listaMarker.remove(listaMarker.size()-1);
+                    listPoints.remove(listPoints.size()-1);
+                    linea.remove();
+                    if(listPoints.isEmpty())
+                    {
+                        linea = mgoogleMap.addPolyline(new PolylineOptions()
+                                .add(new LatLng(0, 0), new LatLng(0, 0), new LatLng(0, 0))
+                                .color(Color.GREEN)
+                                .width(5));
+                    }
+                    else{linea = mgoogleMap.addPolyline(new PolylineOptions()
+                            .addAll(listPoints)
+                            .color(Color.GREEN)
+                            .width(5));}
+                }
+            }
+        });
+
+        /*MOSTRAR MANZANAS*/
         if(obtenerListaShape().isEmpty())
-        {Toast.makeText(getContext(),"No se encontraron Puntos",Toast.LENGTH_SHORT).show();}
+        {Toast.makeText(getContext(),"No se encontraron Manzanas",Toast.LENGTH_SHORT).show();}
         else{
             for(int i=0;i<obtenerListaShape().size();i++)
-            {    LatLng punto = null;
-                punto = obtenerLatLngShape(obtenerListaShape().get(i));
-                if(punto!=null)
+            {    ArrayList<LatLng> listados = new ArrayList<LatLng>();
+                 listados = obtenerLatLngShape(obtenerListaShape().get(i));
+                if(listados.size()>0)
                 {
-                    googleMap.addMarker(new MarkerOptions()
-                            .position(punto)
-                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+                    Polygon polygono = googleMap.addPolygon(new PolygonOptions()
+                            .addAll(listados)
+                            .strokeColor(Color.BLUE)
+                            .strokeWidth(3)
+                            .strokeJointType(JointType.ROUND)
+                            .visible(true));
+                    polygono.setClickable(true);
+                    polygono.setStrokeJointType(JointType.ROUND);
                 }
             }
         }
 
-        /*Obtener GeoJson */
-        try {
-            KmlLayer layer = new KmlLayer(mgoogleMap, R.raw.frank, getContext());
-            layer.addLayerToMap();
-        } catch (XmlPullParserException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        /* marker drawable*/
-        mgoogleMap.setOnMarkerDragListener(new GoogleMap.OnMarkerDragListener() {
-            @Override
-            public void onMarkerDragStart(Marker marker) {
-                punto = marker.getPosition();
-            }
-
-            @Override
-            public void onMarkerDrag(Marker marker) {
-                punto = marker.getPosition();
-            }
-
-            @Override
-            public void onMarkerDragEnd(Marker marker) {
-                punto = marker.getPosition();
-            }
-        });
-
-
-
-
-
-
-        /*Obtener kmz*/
-
-//        try {
-//            KmlLayer layer = new KmlLayer(mgoogleMap, R.raw.doc,getContext());
-//            layer.addLayerToMap();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        } catch (XmlPullParserException e) {
-//            e.printStackTrace();
-//        }
+        /*CREAR POLIGONO*/
+//        linea = googleMap.addPolyline(new PolylineOptions()
+//                .add(new LatLng(0, 0), new LatLng(0, 0), new LatLng(0, 0))
+//                .color(Color.RED)
+//                .width(5));
     }
 
     @Override
     public void onMapClick(LatLng latLng) {
-        punto = latLng;
-        if (marker != null) {
-            marker.remove();}
-        marker =  mgoogleMap.addMarker(new MarkerOptions().position(punto).draggable(true).zIndex(1.0f));
+        listPoints.add(latLng);
+        linea = mgoogleMap.addPolyline(new PolylineOptions().addAll(listPoints));
+        if(listPoints.size() > 1){
+            linea.setWidth(4);
+            linea.setClickable(true);
+            linea.setColor(Color.RED);
+        }
+        vertice = mgoogleMap.addMarker(new
+        MarkerOptions().
+        position(latLng).
+        icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_edit_location)));
+        //listaMarker.add(vertice);
     }
 
-    //public map
-
-    /*METODO INSERTAR VIVIENDA A SQLITE INTERNO*/
-    public  void insertarVivienda(LatLng punto){
-        Marker marcadorAdd = mgoogleMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
-        if(datosVivienda.size()>0)
-        { if(punto!=null) {
+    /*METODO INSERTAR MANZANA A SQLITE INTERNO*/
+    public  void insertarManzana(ArrayList<LatLng> poligono){
+        Polygon poligonAdd = mgoogleMap.addPolygon(new PolygonOptions().add(new LatLng(0, 0), new LatLng(0, 0), new LatLng(0, 0)).strokeColor(Color.BLUE).strokeWidth(3).strokeJointType(JointType.ROUND).visible(true));
+        if(datosManzana.size()>0)
+        { if(listPoints.size()>2) {
             try {
-                data = new Data(context);
-                data.open();
-                data.insertVivienda(2,2,"A001","M001",datosVivienda.get(0),"002",datosVivienda.get(2),datosVivienda.get(5)+datosVivienda.get(6)+datosVivienda.get(7),Integer.valueOf(datosVivienda.get(3)),Integer.valueOf(datosVivienda.get(4)),datosVivienda.get(1),"GeomFromText('POINT("+formatGeom(punto)+")')");
-                data.close();
+            data = new Data(context);
+            data.open();
+            data.insertManzana(1,2,"001",datosManzana.get(0),"002",datosManzana.get(1),datosManzana.get(2)+datosManzana.get(3)+datosManzana.get(4),"GeomFromText('POLYGON(("+formatGeom(poligono)+"))',4326)");
+            data.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            Toast.makeText(getContext(),"Se registro Vivienda correctamente!",Toast.LENGTH_SHORT).show();
-            marker.remove();
-            marcadorAdd.setPosition(punto);
-            datosVivienda.clear();
+            Toast.makeText(getContext(),"Se registro Manzana correctamente!",Toast.LENGTH_SHORT).show();
+            poligon.remove();
+            poligon = mgoogleMap.addPolygon(new PolygonOptions()
+                    .add(new LatLng(0, 0), new LatLng(0, 0), new LatLng(0, 0))
+                    .fillColor(Color.GREEN)
+                    .strokeWidth(5));
+            poligonAdd.setPoints(poligono);
+            for(int i=0;i<listaMarker.size();i++)
+            {
+                listaMarker.get(i).remove();
+            }
+            listaMarker.clear();
+            listPoints.clear();
+            datosManzana.clear();
         }
         else
-        {Toast.makeText(getContext(),"Agrege ubicación de la Vivienda",Toast.LENGTH_SHORT).show();}
+        {Toast.makeText(getContext(),"Dibuje una Manzana",Toast.LENGTH_SHORT).show();}
         }
         else{Toast.makeText(getContext(),"Ingrese valores en el Formulario",Toast.LENGTH_SHORT).show();}
     }
 
-    /*METODO OBTENER LISTA(STRING) DE SHAPE VIVIENDA*/
+    /*METODO OBTENER LISTA(STRING) DE SHAPE MANZANA*/
     public ArrayList<String> obtenerListaShape(){
-        ArrayList<String > listashape = new ArrayList<>();
-        try {
-            Data data = new Data(context);
-            data.open();
-            ArrayList<String> query = data.getAllShapeVivienda();
-            for(int i=0;i<query.size();i++){
-                String shape = query.get(i);
-                listashape.add(shape);
-            }
-            data.close();
-        }
-        catch (IOException e){
-            e.printStackTrace();
-        }
-        return listashape;
-    }
-
-    /*METODO CONVERTIR LISTA(STRING) A PUNTO (LATLNG)*/
-    public LatLng obtenerLatLngShape(String shape){
-        LatLng punto = null;
-        String campoGeom = shape;
-        try {
-            JSONObject jsonObject = new JSONObject(campoGeom);
-            String dato = jsonObject.getString("coordinates");
-                String cadena4= dato.substring(1,dato.length()-1);
-                String[] latlog = cadena4.split(",");
-                for(int x=0;x<1;x++){
-                    punto = new LatLng(Double.parseDouble(latlog[0]),Double.parseDouble(latlog[1]));
+        ArrayList<String> listashape = new ArrayList<>();
+            try {
+                Data data = new Data(context);
+                data.open();
+                ArrayList<String> query = data.getAllShapeManzana();
+                for(int i=0;i<query.size();i++){
+                    String shape = query.get(i);
+                    listashape.add(shape);
                 }
-        }
-        catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return punto;
+                data.close();
+            }
+            catch (IOException e){
+                e.printStackTrace();
+            }
+            return listashape;
     }
 
-    /*METODO DE FORMATO A PUNTO*/
-    public String formatGeom(LatLng punto){
+    /*METODO CONVERTIR LISTA(STRING) A LISTA(LATLNG)*/
+    public ArrayList<LatLng> obtenerLatLngShape(String shape){
+           ArrayList<LatLng> listapintado = new ArrayList<LatLng>();
+                    String campoGeom = shape;
+                    try {
+                        JSONObject jsonObject = new JSONObject(campoGeom);
+                        String dato = jsonObject.getString("coordinates");
+                        String ncadena1= dato.substring(1,dato.length()-1);
+                        String ncadena2= ncadena1.substring(1,ncadena1.length()-1);
+                        String ncadena3 = ncadena2.replace("],[", "];[");
+                        String[] parts = ncadena3.split(";");
+                        for(int i =0;i<parts.length;i++)
+                        {
+                            String part1 = parts[i];
+                            String cadena4= part1.substring(1,part1.length()-1);
+                            String[] latlog = cadena4.split(",");
+                            for(int x=0;x<1;x++){
+                                listapintado.add(new LatLng(Double.parseDouble(latlog[0]),Double.parseDouble(latlog[1])));
+                            }
+                        }
+                    }
+                    catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+        return listapintado;
+    }
+
+    /*METODO DE FORMATO A POLYGONO*/
+    public String formatGeom(ArrayList<LatLng> poligono){
         String format ="";
-            if (punto!=null){
-                format = punto.latitude+ " "+punto.longitude;
+        for (int i = 0; i <poligono.size() ; i++) {
+            if (i >0){
+                format = format +"," + poligono.get(i).latitude+ " "+poligono.get(i).longitude;
             }
+            else{
+                format = poligono.get(i).latitude+ " "+poligono.get(i).longitude;
+            }
+        }
         return format;
     }
 
-    /*METODO DE CREACION DE DIALOGO DE VIVIENDA*/
-    public  void formVivienda(){
-        ArrayList<String> manzanas = new ArrayList<>();
-        manzanas.add("M1");
-        manzanas.add("M2");
-        manzanas.add("M3");
-        manzanas.add("M4");
+    /*METODO DE CREACION DE DIALOGO DE MANZANA*/
+    public  void formManzana(){
         ArrayList<String> zonas = new ArrayList<>();
         zonas.add("00100");
         zonas.add("00200");
@@ -376,33 +397,27 @@ public class MapViviendaFragment extends Fragment implements OnMapReadyCallback,
         distritos.add("04");
         distritos.add("05");
         AlertDialog.Builder alert = new AlertDialog.Builder(getActivity(),R.style.ThemeOverlay_MaterialComponents_Dialog);
-        final View dialogView = getActivity().getLayoutInflater().inflate(R.layout.layout_form_vivienda, null);
-        final Spinner  manzana      = (Spinner) dialogView.findViewById(R.id.id_edtViviendaManzana);
-        final EditText descripcion  = (EditText) dialogView.findViewById(R.id.id_edtviviendaDescripcion);
-        final Spinner  zona         = (Spinner) dialogView.findViewById(R.id.id_edtViviendaZona);
-        final EditText nfrente      = (EditText) dialogView.findViewById(R.id.id_edtViviendaFrente);
-        final EditText npuerta      = (EditText) dialogView.findViewById(R.id.id_edtViviendaPuerta);
-        final Spinner  departamento = (Spinner) dialogView.findViewById(R.id.id_edtViviendaDepartamento);
-        final Spinner  provincia    = (Spinner) dialogView.findViewById(R.id.id_edtViviendaProvincia);
-        final Spinner  distrito     = (Spinner) dialogView.findViewById(R.id.id_edtViviendaDistrito);
-        ArrayAdapter<String> adapterManzana         = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item,manzanas);
+        final View dialogView = getActivity().getLayoutInflater().inflate(R.layout.layout_form_manzana, null);
+        final EditText nombre =       (EditText) dialogView.findViewById(R.id.id_edtManzanaNombre);
+        final Spinner zona =         (Spinner) dialogView.findViewById(R.id.id_edtManzanaZona);
+        final Spinner  departamento = (Spinner) dialogView.findViewById(R.id.id_edtManzanaDepartamento);
+        final Spinner  provincia =    (Spinner) dialogView.findViewById(R.id.id_edtManzanaProvincia);
+        final Spinner  distrito =     (Spinner) dialogView.findViewById(R.id.id_edtManzanaDistrito);
         ArrayAdapter<String> adapterZona         = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item,zonas);
         ArrayAdapter<String> adapterDepartamento = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item,departamentos);
         ArrayAdapter<String> adapterProvincia    = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item,provincias);
         ArrayAdapter<String> adapterDistrito     = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item,distritos);
-        adapterManzana.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         adapterZona.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         adapterDepartamento.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         adapterProvincia.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         adapterDistrito.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        manzana.setAdapter(adapterManzana);
         zona.setAdapter(adapterZona);
         departamento.setAdapter(adapterDepartamento);
         provincia.setAdapter(adapterProvincia);
         distrito.setAdapter(adapterDistrito);
-        alert.setTitle("Vivienda");
-        alert.setIcon(R.drawable.ic_home_24);
+        alert.setTitle("Manzana");
+        alert.setIcon(R.drawable.ic_view_module_26);
         alert.setView(dialogView);
         alert.setPositiveButton("OK",null);
         alert.setNegativeButton("Cancelar",null);
@@ -416,18 +431,16 @@ public class MapViviendaFragment extends Fragment implements OnMapReadyCallback,
                 b.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if(!descripcion.getText().toString().equals("")){
-                            datosVivienda.add(manzana.getSelectedItem().toString());
-                            datosVivienda.add(descripcion.getText().toString());
-                            datosVivienda.add(zona.getSelectedItem().toString());
-                            datosVivienda.add(nfrente.getText().toString());
-                            datosVivienda.add(npuerta.getText().toString());
-                            datosVivienda.add(departamento.getSelectedItem().toString());
-                            datosVivienda.add(provincia.getSelectedItem().toString());
-                            datosVivienda.add(distrito.getSelectedItem().toString());
+                        if(!nombre.getText().toString().equals("")){
+                            datosManzana.add(nombre.getText().toString());
+                            datosManzana.add(zona.getSelectedItem().toString());
+                            datosManzana.add(departamento.getSelectedItem().toString());
+                            datosManzana.add(provincia.getSelectedItem().toString());
+                            datosManzana.add(distrito.getSelectedItem().toString());
+                            Toast.makeText(getContext(),"Valores"+datosManzana.get(0)+""+datosManzana.get(1),Toast.LENGTH_SHORT).show();
                             alertDialog.dismiss();
                         }else{
-                            Toast.makeText(getActivity().getApplicationContext(), "DEBE LLENAR DESCRIPCION", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity().getApplicationContext(), "DEBE LLENAR CAMPO NOMBRE", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

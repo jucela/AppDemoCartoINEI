@@ -39,6 +39,15 @@
         android:layout_margin="15dp"
         android:tint="#ffffff"
         app:srcCompat="@drawable/ic_action_add"/>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab5"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|start"
+            android:layout_margin="15dp"
+            android:tint="#ffffff"
+            app:srcCompat="@drawable/ic_action_map"/>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab4"
         android:visibility="gone"

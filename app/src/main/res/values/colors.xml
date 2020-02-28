@@ -6,5 +6,7 @@
     <color name="colorWhite">#ffffff</color>
     <color name="colorBlack">#000000</color>
     <color name="colorGris">#FCFCFC</color>
+    <color name="colorVerde">#088A29</color>
+    <color name="colorHumo">#A4A4A4</color>
 
 </resources>
