@@ -80,7 +80,7 @@ public class DialogFusionManzana extends AppCompatDialogFragment {
         itemFusionSeleccionAdapter = new ItemFusionSeleccionAdapter(datoss, getContext(), new ItemFusionSeleccionAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position,String idmanzana) {
-                Toast.makeText(getContext(),"ID:"+idmanzana,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(),"Se Elimino Manzana Nº"+idmanzana,Toast.LENGTH_SHORT).show();
                 //datos.clear();
                 datoss.remove(position);
                 //recyclerView.removeViewAt(position);

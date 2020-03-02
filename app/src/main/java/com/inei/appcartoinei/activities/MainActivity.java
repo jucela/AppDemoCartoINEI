@@ -8,10 +8,13 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.material.navigation.NavigationView;
 import com.inei.appcartoinei.R;
 import com.inei.appcartoinei.fragments.ListPoligonoFragment;
@@ -27,12 +30,14 @@ import com.inei.appcartoinei.modelo.DAO.DataBaseHelper;
 import org.spatialite.database.SQLiteDatabase;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity  {
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private SQLiteDatabase db ;
     private DataBaseHelper op;
+    private ArrayList<LatLng> listalatlog= new ArrayList<LatLng>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +87,9 @@ public class MainActivity extends AppCompatActivity  {
                 viewFragment5();
                 break;
             case R.id.capa6:
+                cargarMarco();
+                break;
+            case R.id.capa7:
                 resetBD();
                 break;
             default:
@@ -178,6 +186,7 @@ public class MainActivity extends AppCompatActivity  {
                             data.deleteTblVivienda();
                             data.deleteTblManzanaCaptura();
                             data.close();
+                            Toast.makeText(MainActivity.this,"Se Reseteo Base de Datos",Toast.LENGTH_LONG).show();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -185,5 +194,38 @@ public class MainActivity extends AppCompatActivity  {
                 });
         AlertDialog alert = builder.create();
         alert.show();
+    }
+
+    public void cargarMarco(){
+        listalatlog.add(new LatLng(0,0));
+        listalatlog.add(new LatLng(0,0));
+        try {
+            Data data = new Data(MainActivity.this);
+            data.open();
+            data.insertManzanaCaptura(1,1,"15","01","13","001","00","001","",0,0,"GeomFromText('POLYGON(("+formatGeom(listalatlog)+"))',4326)");
+            data.insertManzanaCaptura(1,1,"15","01","13","001","00","041","",0,0,"GeomFromText('POLYGON(("+formatGeom(listalatlog)+"))',4326)");
+            data.insertManzanaCaptura(1,1,"15","01","13","001","00","042","",0,0,"GeomFromText('POLYGON(("+formatGeom(listalatlog)+"))',4326)");
+            data.insertManzanaCaptura(1,1,"15","01","13","001","00","043","",0,0,"GeomFromText('POLYGON(("+formatGeom(listalatlog)+"))',4326)");
+            data.insertManzanaCaptura(1,1,"15","01","13","001","00","044","",0,0,"GeomFromText('POLYGON(("+formatGeom(listalatlog)+"))',4326)");
+            data.insertManzanaCaptura(1,1,"15","01","13","001","00","045","",0,0,"GeomFromText('POLYGON(("+formatGeom(listalatlog)+"))',4326)");
+            data.close();
+            Toast.makeText(MainActivity.this,"Se Cargo Marco",Toast.LENGTH_LONG).show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /*METODO DE FORMATO A POLYGONO*/
+    public String formatGeom(ArrayList<LatLng> poligono){
+        String format ="";
+        for (int i = 0; i <poligono.size() ; i++) {
+            if (i >0){
+                format = format +"," + poligono.get(i).latitude+ " "+poligono.get(i).longitude;
+            }
+            else{
+                format = poligono.get(i).latitude+ " "+poligono.get(i).longitude;
+            }
+        }
+        return format;
     }
 }
