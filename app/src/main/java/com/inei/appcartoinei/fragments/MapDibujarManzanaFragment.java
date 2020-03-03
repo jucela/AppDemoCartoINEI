@@ -280,9 +280,9 @@ public class MapDibujarManzanaFragment extends Fragment implements OnMapReadyCal
 
         /*CREAR POLIGONO*/
         poligon = googleMap.addPolygon(new PolygonOptions()
-                .add(new LatLng(0, 0), new LatLng(0, 0), new LatLng(0, 0))
-                .fillColor(Color.GREEN)
-                .strokeWidth(5));
+                  .add(new LatLng(0, 0), new LatLng(0, 0), new LatLng(0, 0))
+                  .fillColor(Color.GREEN)
+                  .strokeWidth(5));
     }
 
     @Override
