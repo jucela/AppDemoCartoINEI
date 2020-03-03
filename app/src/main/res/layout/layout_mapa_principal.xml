@@ -25,6 +25,8 @@
         app:srcCompat="@drawable/ic_cloud_upload"/>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab2"
+        android:backgroundTint="@color/colorVerde"
+        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="top|start"
@@ -33,21 +35,13 @@
         app:srcCompat="@drawable/ic_action_save"/>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab3"
+        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="top|start"
         android:layout_margin="15dp"
         android:tint="#ffffff"
         app:srcCompat="@drawable/ic_action_add"/>
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab5"
-            android:visibility="gone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top|start"
-            android:layout_margin="15dp"
-            android:tint="#ffffff"
-            app:srcCompat="@drawable/ic_action_map"/>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab4"
         android:visibility="gone"
@@ -57,6 +51,16 @@
         android:layout_margin="15dp"
         android:tint="#ffffff"
         app:srcCompat="@drawable/ic_undo"/>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab5"
+            android:backgroundTint="@color/colorRojo"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|start"
+            android:layout_margin="15dp"
+            app:srcCompat="@drawable/ic_action_cancel"/>
     </LinearLayout>
+
 
 </FrameLayout>

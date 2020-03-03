@@ -14,7 +14,7 @@
           android:visible="false"
           android:icon="@drawable/ic_casino"/>
     <item android:id="@+id/capa4"
-        android:title="Dibujar Manzana"
+        android:title="Actualizar Manzana"
         android:icon="@drawable/ic_action_pin"/>
     <item android:id="@+id/capa5"
           android:title="Reporte Manzana"

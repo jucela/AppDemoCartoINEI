@@ -81,16 +81,13 @@ public class MapDibujarManzanaFragment extends Fragment implements OnMapReadyCal
     private String selectIdManzana = "";
     private String selectIdManzanaTitulo = "";
     private int selectIdAccion = 0;
-    private FloatingActionButton fab1;
     private FloatingActionButton fab2;
-    private FloatingActionButton fab3;
     private FloatingActionButton fab4;
     private FloatingActionButton fab5;
     private SQLiteDatabase db ;
     private DataBaseHelper op;
     Data    data;
     Context context;
-    String  idCapa;
 
     private GeoJsonLayer layer;
 
@@ -120,14 +117,10 @@ public class MapDibujarManzanaFragment extends Fragment implements OnMapReadyCal
     public void onViewCreated(View view,Bundle savedInstanceState){
         super.onViewCreated(view,savedInstanceState);
         mapView = (MapView) view.findViewById(R.id.map);
-        fab1 =  (FloatingActionButton) view.findViewById(R.id.fab1);
         fab2 =  (FloatingActionButton) view.findViewById(R.id.fab2);
-        fab3 =  (FloatingActionButton) view.findViewById(R.id.fab3);
         fab4 =  (FloatingActionButton) view.findViewById(R.id.fab4);
         fab5 =  (FloatingActionButton) view.findViewById(R.id.fab5);
-        fab3.setVisibility(View.GONE);
-        fab4.setVisibility(View.VISIBLE);
-        fab5.setVisibility(View.VISIBLE);
+
 
         op = new DataBaseHelper(getContext());
         db = op.getWritableDatabase();
@@ -196,28 +189,18 @@ public class MapDibujarManzanaFragment extends Fragment implements OnMapReadyCal
             }
         }
 
-        /*SUBIR DATOS A SERVIDOR*/
-        fab1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
 
         /*INSERTAR GEOMETRIA + 3 CAMPOS*/
         fab2.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("RestrictedApi")
             @Override
             public void onClick(View view) {
                 //insertarManzana(listPoints);
                 insertarManzanaCaptura(listPoints);
-            }
-        });
+                fab2.setVisibility(View.GONE);
+                fab4.setVisibility(View.GONE);
+                fab5.setVisibility(View.GONE);
 
-        /*ABRIR DIALOGO E INSERTAR DATOS*/
-        fab3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                formManzana();
             }
         });
 
@@ -249,25 +232,23 @@ public class MapDibujarManzanaFragment extends Fragment implements OnMapReadyCal
             }
         });
 
-        /* MOSTRAR MAPA BASE*/
+        /*ANULAR ACCION*/
         fab5.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("RestrictedApi")
             @Override
             public void onClick(View v) {
-                listalatlog.add(new LatLng(0,0));
-                listalatlog.add(new LatLng(0,0));
-                try {
-                    data = new Data(context);
-                    data.open();
-                    data.insertManzanaCaptura(1,1,"15","01","13","001","00","001","",0,0,"GeomFromText('POLYGON(("+formatGeom(listalatlog)+"))',4326)");
-                    data.insertManzanaCaptura(1,1,"15","01","13","001","00","041","",0,0,"GeomFromText('POLYGON(("+formatGeom(listalatlog)+"))',4326)");
-                    data.insertManzanaCaptura(1,1,"15","01","13","001","00","042","",0,0,"GeomFromText('POLYGON(("+formatGeom(listalatlog)+"))',4326)");
-                    data.insertManzanaCaptura(1,1,"15","01","13","001","00","043","",0,0,"GeomFromText('POLYGON(("+formatGeom(listalatlog)+"))',4326)");
-                    data.insertManzanaCaptura(1,1,"15","01","13","001","00","044","",0,0,"GeomFromText('POLYGON(("+formatGeom(listalatlog)+"))',4326)");
-                    data.insertManzanaCaptura(1,1,"15","01","13","001","00","045","",0,0,"GeomFromText('POLYGON(("+formatGeom(listalatlog)+"))',4326)");
-                    data.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
+                poligon.remove();
+                for(int i=0;i<listaMarker.size();i++)
+                {
+                    listaMarker.get(i).remove();
                 }
+                listaMarker.clear();
+                listPoints.clear();
+                datosManzanaCaptura.clear();
+                addLayerGeojson(true,false);
+                fab2.setVisibility(View.GONE);
+                fab4.setVisibility(View.GONE);
+                fab5.setVisibility(View.GONE);
             }
         });
         /*MOSTRAR CARA DE TRABAJO*/
@@ -306,15 +287,21 @@ public class MapDibujarManzanaFragment extends Fragment implements OnMapReadyCal
 
     @Override
     public void onMapClick(LatLng latLng) {
-        listPoints.add(latLng);
-        newListPoints = new ArrayList<LatLng>(listPoints);
-        newListPoints.add(listPoints.get(0));
-        poligon.setPoints(newListPoints);
-        vertice = mgoogleMap.addMarker(new
-                MarkerOptions().
-                position(latLng).
-                icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_edit_location)));
-        listaMarker.add(vertice);
+        if(datosManzanaCaptura.size()==0)
+        {
+            Toast.makeText(getContext(),"Seleccione una Manzana para Actualizar",Toast.LENGTH_SHORT).show();
+        }
+        else {
+            listPoints.add(latLng);
+            newListPoints = new ArrayList<LatLng>(listPoints);
+            newListPoints.add(listPoints.get(0));
+            poligon.setPoints(newListPoints);
+            vertice = mgoogleMap.addMarker(new
+                    MarkerOptions().
+                    position(latLng).
+                    icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_edit_location)));
+            listaMarker.add(vertice);
+        }
     }
 
     /*METODO INSERTAR MANZANA_CAPTURA A SQLITE INTERNO*/
@@ -418,89 +405,6 @@ public class MapDibujarManzanaFragment extends Fragment implements OnMapReadyCal
         return format;
     }
 
-    /*METODO DE CREACION DE DIALOGO DE MANZANA*/
-    public  void formManzana(){
-        ArrayList<String> zonas = new ArrayList<>();
-        zonas.add("00100");
-        zonas.add("00200");
-        zonas.add("00300");
-        zonas.add("00400");
-        zonas.add("00500");
-        ArrayList<String> depas = new ArrayList<>();
-        depas.add("15");
-        depas.add("01");
-        depas.add("14");
-        depas.add("13");
-        ArrayList<String> departamentos = new ArrayList<>();
-        departamentos.add("15");
-        departamentos.add("01");
-        departamentos.add("14Lambayeque");
-        departamentos.add("13");
-        departamentos.add("12");
-        ArrayList<String> provincias = new ArrayList<>();
-        provincias.add("01");
-        provincias.add("02");
-        provincias.add("03");
-        provincias.add("04");
-        ArrayList<String> distritos = new ArrayList<>();
-        distritos.add("01");
-        distritos.add("02");
-        distritos.add("03");
-        distritos.add("04");
-        distritos.add("05");
-        AlertDialog.Builder alert = new AlertDialog.Builder(getActivity(),R.style.ThemeOverlay_MaterialComponents_Dialog);
-        final View dialogView = getActivity().getLayoutInflater().inflate(R.layout.layout_form_manzana, null);
-        final EditText nombre =       (EditText) dialogView.findViewById(R.id.id_edtManzanaNombre);
-        final Spinner zona =         (Spinner) dialogView.findViewById(R.id.id_edtManzanaZona);
-        final Spinner  departamento = (Spinner) dialogView.findViewById(R.id.id_edtManzanaDepartamento);
-        final Spinner  provincia =    (Spinner) dialogView.findViewById(R.id.id_edtManzanaProvincia);
-        final Spinner  distrito =     (Spinner) dialogView.findViewById(R.id.id_edtManzanaDistrito);
-        ArrayAdapter<String> adapterZona         = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item,zonas);
-        ArrayAdapter<String> adapterDepartamento = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item,departamentos);
-        ArrayAdapter<String> adapterProvincia    = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item,provincias);
-        ArrayAdapter<String> adapterDistrito     = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item,distritos);
-        adapterZona.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        adapterDepartamento.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        adapterProvincia.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        adapterDistrito.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        zona.setAdapter(adapterZona);
-        departamento.setAdapter(adapterDepartamento);
-        provincia.setAdapter(adapterProvincia);
-        distrito.setAdapter(adapterDistrito);
-        alert.setTitle("Manzana");
-        alert.setIcon(R.drawable.ic_view_module_26);
-        alert.setView(dialogView);
-        alert.setPositiveButton("OK",null);
-        alert.setNegativeButton("Cancelar",null);
-
-        final AlertDialog alertDialog = alert.create();
-
-        alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
-            @Override
-            public void onShow(DialogInterface dialogInterface) {
-                Button b = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
-                b.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        if(!nombre.getText().toString().equals("")){
-                            datosManzana.add(nombre.getText().toString());
-                            datosManzana.add(zona.getSelectedItem().toString());
-                            datosManzana.add(departamento.getSelectedItem().toString());
-                            datosManzana.add(provincia.getSelectedItem().toString());
-                            datosManzana.add(distrito.getSelectedItem().toString());
-                            Toast.makeText(getContext(),"Valores"+datosManzana.get(0)+""+datosManzana.get(1),Toast.LENGTH_SHORT).show();
-                            alertDialog.dismiss();
-                        }else{
-                            Toast.makeText(getActivity().getApplicationContext(), "DEBE LLENAR CAMPO NOMBRE", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-            }
-        });
-        alertDialog.show();
-    }
-
     /*METODO DE CREACION DE DIALOGO DE ACCIONES DE MANZANAS*/
     public  void formAccionManzana(final String idmanzana){
         ArrayList<String> acciones= new ArrayList<>();
@@ -573,7 +477,8 @@ public class MapDibujarManzanaFragment extends Fragment implements OnMapReadyCal
     }
 
     /*METODO CARGAR LAYER MARCO DE TRABAJO*/
-    public  void addLayerGeojson(boolean estado,boolean paso)
+    @SuppressLint("RestrictedApi")
+    public  void addLayerGeojson(boolean estado, boolean paso)
     {
         if(estado==true && paso==false)
         {
@@ -629,7 +534,12 @@ public class MapDibujarManzanaFragment extends Fragment implements OnMapReadyCal
                 }
             }
             else
-            {layer.removeLayerFromMap();}
+            {
+                fab2.setVisibility(View.VISIBLE);
+                fab4.setVisibility(View.VISIBLE);
+                fab5.setVisibility(View.VISIBLE);
+                layer.removeLayerFromMap();
+            }
         }
     }
 
