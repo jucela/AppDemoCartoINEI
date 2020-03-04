@@ -39,7 +39,7 @@ public class DialogFusionManzana extends AppCompatDialogFragment {
     public CheckBox checkEstado;
     public TextView txtIdzona,txtIdmanzana;
     private ArrayList<FusionItem> datos = new ArrayList<>();
-    private static ArrayList<FusionItem> datoss = new ArrayList<>();
+    private static ArrayList<FusionItem> manzanaSeleccionada = new ArrayList<>();
     private ArrayList<FusionItem> datosAEnviar = new ArrayList<>();
     ArrayList<FusionItem> listaManzanas = new ArrayList<>();
     ArrayList<FusionItem> listaFiltrada = new ArrayList<>();
@@ -50,11 +50,11 @@ public class DialogFusionManzana extends AppCompatDialogFragment {
     private FloatingActionButton btn_agregar;
 
     /*RECIBE PARAMETROS DEL FRAGMENT*/
-    public static DialogFusionManzana newInstance(String idManzana, int idAcccion,ArrayList<FusionItem> manzanas){
+    public static DialogFusionManzana newInstance(String idManzana,ArrayList<FusionItem> manzanas){
         Bundle arg = new Bundle();
         arg.putString(ID,idManzana);
-        arg.putInt(IDACCION,idAcccion);
-        datoss = manzanas;
+        //arg.putInt(IDACCION,idAcccion);
+        manzanaSeleccionada = manzanas;
         DialogFusionManzana frag = new DialogFusionManzana();
         frag.setArguments(arg);
         return frag;
@@ -62,7 +62,7 @@ public class DialogFusionManzana extends AppCompatDialogFragment {
 
     /*ENVIA PARAMETROS AL FRAGMENT*/
     public interface SendDialogListener {
-        void receiveFusion(boolean estadoLayer, ArrayList<FusionItem> listaManzana, String idManzana, int idAccion,boolean paso);
+        void receiveFusion(int estadoLayer, ArrayList<FusionItem> listaManzana, String idManzana);
     }
 
     @NonNull
@@ -77,15 +77,14 @@ public class DialogFusionManzana extends AppCompatDialogFragment {
 
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
-        itemFusionSeleccionAdapter = new ItemFusionSeleccionAdapter(datoss, getContext(), new ItemFusionSeleccionAdapter.OnItemClickListener() {
+        itemFusionSeleccionAdapter = new ItemFusionSeleccionAdapter(manzanaSeleccionada, getContext(), new ItemFusionSeleccionAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position,String idmanzana) {
                 Toast.makeText(getContext(),"Se Elimino Manzana Nº"+idmanzana,Toast.LENGTH_SHORT).show();
-                //datos.clear();
-                datoss.remove(position);
-                //recyclerView.removeViewAt(position);
-                //itemFusionSeleccionAdapter.notifyItemRemoved(position);
-                //itemFusionSeleccionAdapter.notifyItemRangeChanged(position, datoss.size());
+                manzanaSeleccionada.remove(position);
+                recyclerView.removeViewAt(position);
+                itemFusionSeleccionAdapter.notifyItemRemoved(position);
+                itemFusionSeleccionAdapter.notifyItemRangeChanged(position, manzanaSeleccionada.size());
                 itemFusionSeleccionAdapter.notifyDataSetChanged();
             }
         });
@@ -98,7 +97,7 @@ public class DialogFusionManzana extends AppCompatDialogFragment {
         btn_agregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.receiveFusion(true,datoss,getArguments().getString(ID).trim(),getArguments().getInt(IDACCION),true);
+                listener.receiveFusion(2,manzanaSeleccionada,getArguments().getString(ID).trim());
                 dismiss();
             }
         });
@@ -109,21 +108,19 @@ public class DialogFusionManzana extends AppCompatDialogFragment {
                 .setNegativeButton("Salir", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-
                     }
                 })
                 .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        if (datoss.size()>1)
-                        {listener.receiveFusion(false,datoss,getArguments().getString(ID),getArguments().getInt(IDACCION),false);}
+                        if (manzanaSeleccionada.size()>1)
+                        {listener.receiveFusion(0,manzanaSeleccionada,getArguments().getString(ID).trim());}
                         else{
                             Toast.makeText(getContext(),"Debe seleccionar màs de una manzana",Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
         return builder.create();
-
     }
 
     @Override

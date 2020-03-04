@@ -81,7 +81,7 @@ public class ItemReporteAdapter extends RecyclerView.Adapter<ItemReporteAdapter.
                 newdato="Con Cambios";
                 break;
             case 2:
-                newdato="Fusionado";
+                newdato="Fusionadox";
                 break;
             case 3:
                 newdato="Fragmentado";
