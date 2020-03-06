@@ -17,6 +17,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -31,7 +32,7 @@ import com.inei.appcartoinei.modelo.pojos.ManzanaCaptura;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class DialogFusionManzana extends AppCompatDialogFragment {
+public class DialogFusionManzana extends DialogFragment {
     public static final String TAG = DialogFusionManzana.class.getSimpleName();
     private RecyclerView recyclerView;
     private ItemFusionSeleccionAdapter itemFusionSeleccionAdapter;
@@ -63,6 +64,7 @@ public class DialogFusionManzana extends AppCompatDialogFragment {
     /*ENVIA PARAMETROS AL FRAGMENT*/
     public interface SendDialogListener {
         void receiveFusion(int estadoLayer, ArrayList<FusionItem> listaManzana, String idManzana);
+        //void selectionFusion(boolean estado);
     }
 
     @NonNull
@@ -89,7 +91,6 @@ public class DialogFusionManzana extends AppCompatDialogFragment {
             }
         });
 
-
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(itemFusionSeleccionAdapter);
 
@@ -105,16 +106,19 @@ public class DialogFusionManzana extends AppCompatDialogFragment {
         builder.setView(view)
                 .setTitle("FUSION DE MANZANAS")
                 .setIcon(R.drawable.ic_action_pin)
-                .setNegativeButton("Salir", new DialogInterface.OnClickListener() {
+                .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        //listener.selectionFusion(false);
                     }
                 })
-                .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Terminar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         if (manzanaSeleccionada.size()>1)
-                        {listener.receiveFusion(0,manzanaSeleccionada,getArguments().getString(ID).trim());}
+                        {listener.receiveFusion(0,manzanaSeleccionada,getArguments().getString(ID).trim());
+                         //Toast.makeText(getContext(),"Dibuje la fusiòn de manzanas",Toast.LENGTH_SHORT).show();
+                        }
                         else{
                             Toast.makeText(getContext(),"Debe seleccionar màs de una manzana",Toast.LENGTH_SHORT).show();
                         }

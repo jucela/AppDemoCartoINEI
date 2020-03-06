@@ -10,6 +10,7 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,16 +73,11 @@ public class MapDibujarManzanaFragment extends Fragment implements OnMapReadyCal
     private Marker vertice;
     private ArrayList<Marker> listaMarker = new ArrayList<Marker>();
     private ArrayList<LatLng> listPoints = new ArrayList<LatLng>() ;
-    private ArrayList<LatLng> newListPoints = new ArrayList<LatLng>();
-    private ArrayList<LatLng> listalatlog= new ArrayList<LatLng>();
-    private ArrayList<String> datosManzana = new ArrayList<String>() ;
     private ArrayList<FusionItem> manzanaSeleccionadaEnvio = new ArrayList<FusionItem>();
 
     private int idAccionManzana = 0;
     private String newIdManzana = "";
     private String selectIdManzana = "";
-    private String selectIdManzanaTitulo = "";
-    private int selectIdAccion = 0;
     private FloatingActionButton fab2;
     private FloatingActionButton fab4;
     private FloatingActionButton fab5;
@@ -90,8 +86,8 @@ public class MapDibujarManzanaFragment extends Fragment implements OnMapReadyCal
     Data    data;
     Context context;
 
-    private GeoJsonLayer layer;
-    private GeoJsonPolygonStyle polygonStyle;
+    GeoJsonLayer layer;
+    GeoJsonPolygonStyle polygonStyle;
 
     private OnFragmentInteractionListener mListener;
 
@@ -103,14 +99,12 @@ public class MapDibujarManzanaFragment extends Fragment implements OnMapReadyCal
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mLocationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.layout_mapa_principal, container, false);
-        //idCapa = getArguments().getString("idUsuario","0");
         return view;
     }
 
@@ -122,7 +116,6 @@ public class MapDibujarManzanaFragment extends Fragment implements OnMapReadyCal
         fab2 =  (FloatingActionButton) view.findViewById(R.id.fab2);
         fab4 =  (FloatingActionButton) view.findViewById(R.id.fab4);
         fab5 =  (FloatingActionButton) view.findViewById(R.id.fab5);
-
 
         op = new DataBaseHelper(getContext());
         db = op.getWritableDatabase();
@@ -192,17 +185,12 @@ public class MapDibujarManzanaFragment extends Fragment implements OnMapReadyCal
         }
 
 
-        /*INSERTAR GEOMETRIA + 3 CAMPOS*/
+        /*INSERTAR GEOMETRIA + PARAMETROS*/
         fab2.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("RestrictedApi")
             @Override
             public void onClick(View view) {
-                //insertarManzana(listPoints);
                 insertarManzanaCaptura(listPoints);
-                fab2.setVisibility(View.GONE);
-                fab4.setVisibility(View.GONE);
-                fab5.setVisibility(View.GONE);
-
             }
         });
 
@@ -239,65 +227,37 @@ public class MapDibujarManzanaFragment extends Fragment implements OnMapReadyCal
             @SuppressLint("RestrictedApi")
             @Override
             public void onClick(View v) {
-                estateEdition();
+                estateEdicion();
             }
         });
         /*MOSTRAR CARGA DE TRABAJO*/
         addLayerGeojson(1);
-
-
-        /*MOSTRAR MANZANAS*/
-        if(obtenerListaShapeManzana().isEmpty())
-        {Toast.makeText(getContext(),"No se encontraron Manzanas",Toast.LENGTH_SHORT).show();}
-        else{
-            for(int i=0;i<obtenerListaShapeManzana().size();i++)
-            {
-                ArrayList<LatLng> listados = new ArrayList<LatLng>();
-                listados = obtenerLatLngShapeManzana(obtenerListaShapeManzana().get(i));
-                if(listados.size()>0)
-                {
-                    Polygon polygono = googleMap.addPolygon(new PolygonOptions()
-                            .addAll(listados)
-                            .fillColor(Color.YELLOW)
-                            .strokeColor(Color.BLUE)
-                            .strokeWidth(3)
-                            .strokeJointType(JointType.ROUND)
-                            .visible(true));
-                    polygono.setClickable(true);
-                    polygono.setStrokeJointType(JointType.ROUND);
-                }
-            }
-        }
-
+        /*MOSTRAR MANZANAS INGRESADAS*/
+        loadManzana();
         /*CREAR POLIGONO*/
-        poligon = googleMap.addPolygon(new PolygonOptions()
-                  .add(new LatLng(0, 0), new LatLng(0, 0), new LatLng(0, 0))
-                  .fillColor(Color.GREEN)
-                  .strokeWidth(5));
+        //createPolygon();
+
     }
 
     @Override
     public void onMapClick(LatLng latLng) {
-        if(manzanaSeleccionadaEnvio.size()==0)
+        if(manzanaSeleccionadaEnvio.size()<=1)
         {
             Toast.makeText(getContext(),"Seleccione una Manzana para Actualizar",Toast.LENGTH_SHORT).show();
         }
         else {
-            listPoints.add(latLng);
-            //newListPoints = new ArrayList<LatLng>(listPoints);
-            //newListPoints.add(listPoints.get(0));
-            poligon.setPoints(listPoints);
-            vertice = mgoogleMap.addMarker(new
-                    MarkerOptions().
-                    position(latLng).
-                    icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_edit_location)));
-            listaMarker.add(vertice);
+                listPoints.add(latLng);
+                poligon.setPoints(listPoints);
+                vertice = mgoogleMap.addMarker(new
+                        MarkerOptions().
+                        position(latLng).
+                        icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_edit_location)));
+                listaMarker.add(vertice);
         }
     }
 
     /*METODO INSERTAR MANZANA_CAPTURA A SQLITE INTERNO*/
     public  void insertarManzanaCaptura(ArrayList<LatLng> poligono){
-        Polygon poligonAdd = mgoogleMap.addPolygon(new PolygonOptions().add(new LatLng(0, 0), new LatLng(0, 0), new LatLng(0, 0)).strokeColor(Color.BLUE).strokeWidth(3).strokeJointType(JointType.ROUND).visible(true));
         if(manzanaSeleccionadaEnvio.size()>0)
         { if(listPoints.size()>2) {
             try {
@@ -307,28 +267,13 @@ public class MapDibujarManzanaFragment extends Fragment implements OnMapReadyCal
                 data.updateManzanaCaptura(selectIdManzana,1);
                 for(int i=0;i<manzanaSeleccionadaEnvio.size();i++)
                 {data.updateManzanaCaptura(manzanaSeleccionadaEnvio.get(i).getIdManzana(),1);}
-                //data.updateManzanaCaptura(selectIdManzana,1);
-                data.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            Toast.makeText(getContext(),"Se registro Manzana correctamente!",Toast.LENGTH_SHORT).show();
-            poligon.remove();
-            poligon = mgoogleMap.addPolygon(new PolygonOptions()
-                    .add(new LatLng(0, 0), new LatLng(0, 0), new LatLng(0, 0))
-                    .fillColor(Color.YELLOW)
-                    .strokeColor(Color.BLUE)
-                    .strokeWidth(5)
-                    .visible(true));
-            poligonAdd.setPoints(poligono);
-            for(int i=0;i<listaMarker.size();i++)
-            {
-                listaMarker.get(i).remove();
-            }
-            listaMarker.clear();
-            listPoints.clear();
-            manzanaSeleccionadaEnvio.clear();
             addLayerGeojson(1);
+            estateEdicion();
+            loadManzana();
+            Toast.makeText(getContext(),"Se registro Manzana correctamente!",Toast.LENGTH_SHORT).show();
         }
         else
         {Toast.makeText(getContext(),"Dibuje una Manzana",Toast.LENGTH_SHORT).show();}
@@ -401,7 +346,7 @@ public class MapDibujarManzanaFragment extends Fragment implements OnMapReadyCal
     @SuppressLint("RestrictedApi")
     public  void addLayerGeojson(int estado)
     {
-         try {
+        try {
                 layer = new GeoJsonLayer(mgoogleMap, R.raw.marco_jmaria,getContext());
                 layer.addLayerToMap();
                 polygonStyle = layer.getDefaultPolygonStyle();
@@ -411,6 +356,7 @@ public class MapDibujarManzanaFragment extends Fragment implements OnMapReadyCal
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+
         switch (estado){
             case 0:
                 fab2.setVisibility(View.VISIBLE);
@@ -423,9 +369,7 @@ public class MapDibujarManzanaFragment extends Fragment implements OnMapReadyCal
                 layer.setOnFeatureClickListener(new GeoJsonLayer.GeoJsonOnFeatureClickListener() {
                     @Override
                     public void onFeatureClick(Feature feature) {
-                        manzanaSeleccionadaEnvio.clear();
-                        manzanaSeleccionadaEnvio.add(new FusionItem(1,feature.getProperty("CODZONA"),feature.getProperty("CODMZNA")+""+feature.getProperty("SUFMZNA")));
-                        formAccionManzana(feature.getProperty("CODMZNA")+""+feature.getProperty("SUFMZNA"));
+                        formAccionManzana(feature.getProperty("CODZONA"),feature.getProperty("CODMZNA")+""+feature.getProperty("SUFMZNA"));
                     }
                 });
                 break;
@@ -450,7 +394,7 @@ public class MapDibujarManzanaFragment extends Fragment implements OnMapReadyCal
     }
 
     /*2. METODO DE CREACION DE DIALOGO DE ACCIONES DE MANZANAS (FUSION,REPLANTEAR,ETC)*/
-    public  void formAccionManzana(final String idmanzana){
+    public  void formAccionManzana(final String codzona,final String idmanzana){
         ArrayList<String> acciones= new ArrayList<>();
         acciones.add("Fusionar (Misma Zona)");
         acciones.add("Fusionar (Diferente Zona)");
@@ -480,6 +424,8 @@ public class MapDibujarManzanaFragment extends Fragment implements OnMapReadyCal
                         if(accion.getSelectedItemPosition()==0)
                         {
                             idAccionManzana = 2;
+                            manzanaSeleccionadaEnvio.clear();
+                            manzanaSeleccionadaEnvio.add(new FusionItem(1,codzona,idmanzana));
                             OpenDialogFusion(idmanzana,manzanaSeleccionadaEnvio);
                         }
                         if(accion.getSelectedItemPosition()==1)
@@ -530,16 +476,28 @@ public class MapDibujarManzanaFragment extends Fragment implements OnMapReadyCal
 
     /*5. RECIBE PARAMETROS DE DIALOGO DialogFusionManzana*/
     @Override
-    public void receiveFusion(int estadoLayer,final ArrayList<FusionItem> listaManzana,String idManzana) {
+    public void receiveFusion(final int estadoLayer,final ArrayList<FusionItem> listaManzana,String idManzana) {
+        Log.e("mensaje:",""+estadoLayer);
         layer.removeLayerFromMap();
         addLayerGeojson(estadoLayer);
         newIdManzana = getNewManzana(listaManzana,idManzana);
         selectIdManzana = idManzana;
         manzanaSeleccionadaEnvio = listaManzana;
+        if(estadoLayer==0){
+            createPolygon();
+        }
     }
 
-    public String getNewManzana(ArrayList<FusionItem> datos,String idManzana){
-        ArrayList<FusionItem> listaManzana = new ArrayList<>();
+//    @Override
+//    public void selectionFusion(boolean estado) {
+//        if(estado==false){
+//            estateEdicion();
+//            loadManzana();
+//        }
+//    }
+
+    /*CREACION DE NUEVO ID DE MANZANA*/
+    public String getNewManzana(ArrayList<FusionItem> listaManzana, String idManzana){
         int menor;
         int valorid;
         int newValorId=0;
@@ -578,12 +536,37 @@ public class MapDibujarManzanaFragment extends Fragment implements OnMapReadyCal
         return respuesta;
     }
 
+    /*CARGAR MANZANAS INGRESADAS*/
+    private void loadManzana(){
+        if(obtenerListaShapeManzana().isEmpty())
+        {Toast.makeText(getContext(),"No se encontraron Manzanas",Toast.LENGTH_SHORT).show();}
+        else{
+            for(int i=0;i<obtenerListaShapeManzana().size();i++)
+            {
+                ArrayList<LatLng> listados = new ArrayList<LatLng>();
+                listados = obtenerLatLngShapeManzana(obtenerListaShapeManzana().get(i));
+                if(listados.size()>0)
+                {
+                    Polygon polygono = mgoogleMap.addPolygon(new PolygonOptions()
+                            .addAll(listados)
+                            //.fillColor(Color.YELLOW)
+                            .strokeColor(Color.BLUE)
+                            .strokeWidth(3)
+                            .strokeJointType(JointType.ROUND)
+                            .visible(true));
+                    polygono.setClickable(true);
+                    polygono.setStrokeJointType(JointType.ROUND);
+                }
+            }
+        }
+    }
+
     /*ESTADO EDICION*/
     @SuppressLint("RestrictedApi")
-    public void estateEdition(){
-
+    public void estateEdicion(){
         manzanaSeleccionadaEnvio.clear();
-        poligon.remove();
+        if(poligon!=null)
+        {poligon.remove();}
         addLayerGeojson(1);
         fab2.setVisibility(View.GONE);
         fab4.setVisibility(View.GONE);
@@ -595,7 +578,13 @@ public class MapDibujarManzanaFragment extends Fragment implements OnMapReadyCal
         listaMarker.clear();
         listPoints.clear();
     }
-    /*ESTADO INICIO*/
 
+    /*CREAR POLIGONO*/
+    public void createPolygon(){
+        poligon = mgoogleMap.addPolygon(new PolygonOptions()
+                .add(new LatLng(0, 0), new LatLng(0, 0), new LatLng(0, 0))
+                .fillColor(Color.GREEN)
+                .strokeWidth(5));
+    }
 
 }
