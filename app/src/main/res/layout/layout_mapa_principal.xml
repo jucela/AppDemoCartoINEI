@@ -26,13 +26,15 @@
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab2"
         android:backgroundTint="@color/colorVerde"
+        android:background="@color/colorVerde"
         android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="top|start"
         android:layout_margin="15dp"
         android:tint="#ffffff"
-        app:srcCompat="@drawable/ic_action_save"/>
+        app:srcCompat="@drawable/ic_action_save"
+        app:backgroundTint="@color/colorVerde"/>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab3"
         android:visibility="gone"
@@ -59,7 +61,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="top|start"
             android:layout_margin="15dp"
-            app:srcCompat="@drawable/ic_action_cancel"/>
+            app:srcCompat="@drawable/ic_action_cancel"
+            app:backgroundTint="@color/colorRojo"/>
     </LinearLayout>
 
 

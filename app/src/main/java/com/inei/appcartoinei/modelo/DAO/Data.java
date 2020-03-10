@@ -182,6 +182,21 @@ public class Data {
         return listashape;
     }
 
+    public boolean getEstateManzana(String idzona,String idmanzana){
+        boolean estado = false;
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.rawQuery("SELECT * FROM manzana_captura where codzona = '"+idzona+"' and codmzna = '"+idmanzana.trim()+"' and estado > 0  ",null);
+            if(cursor.getCount()>0){
+                estado=true;
+            }
+        }finally{
+            if(cursor != null) cursor.close();
+        }
+        return estado;
+
+    }
+
     public void insertManzanaCaptura(int id,int iduser,String ccdd,String ccpp,String ccdi,String codzona,String sufzona,String codmzna,String sufmzna,int estado,int frentes,String shape){
         sqLiteDatabase.execSQL("INSERT INTO manzana_captura(id,iduser,ccdd,ccpp,ccdi,codzona,sufzona,codmzna,sufmzna,estado,frentes,shape) VALUES ("+id+","+iduser+",'"+ccdd+"','"+ccpp+"','"+ccdi+"','"+codzona+"','"+sufzona+"','"+codmzna+"','"+sufmzna+"','"+estado+"','"+frentes+"',"+shape+");");
     }

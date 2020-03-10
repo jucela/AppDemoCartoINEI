@@ -109,10 +109,10 @@ public class DialogFusionManzana extends DialogFragment {
                 .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        //listener.selectionFusion(false);
+                        listener.receiveFusion(1,manzanaSeleccionada,getArguments().getString(ID).trim());
                     }
                 })
-                .setPositiveButton("Terminar", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Dibujar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         if (manzanaSeleccionada.size()>1)
