@@ -55,7 +55,6 @@ public class ListPoligonoFragment extends Fragment {
             @Override
             public void onItemClick(View view, int position) {
                 Toast.makeText(getContext(),"posiciòn:"+position,Toast.LENGTH_SHORT).show();
-
             }
         });
         recyclerView.setLayoutManager(layoutManager);

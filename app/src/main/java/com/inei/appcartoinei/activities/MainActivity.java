@@ -18,8 +18,12 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.material.navigation.NavigationView;
 import com.inei.appcartoinei.R;
 import com.inei.appcartoinei.fragments.ListPoligonoFragment;
+import com.inei.appcartoinei.fragments.MapActualizarManzanaFragment;
+import com.inei.appcartoinei.fragments.MapAnadirManzanaFragment;
 import com.inei.appcartoinei.fragments.MapAsignarViviendaFragment;
 import com.inei.appcartoinei.fragments.MapDibujarManzanaFragment;
+import com.inei.appcartoinei.fragments.MapFraccionarManzanaFragment;
+import com.inei.appcartoinei.fragments.MapFusionarManzanaFragment;
 import com.inei.appcartoinei.fragments.MapManzanaFragment;
 import com.inei.appcartoinei.fragments.MapManzanaPolylineFragment;
 import com.inei.appcartoinei.fragments.MapViviendaFragment;
@@ -54,7 +58,7 @@ public class MainActivity extends AppCompatActivity  {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setupDrawerContent(navigationView);
 
-        MapDibujarManzanaFragment newFragment = new MapDibujarManzanaFragment();
+        MapAnadirManzanaFragment newFragment = new MapAnadirManzanaFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.contedor_fragments,newFragment).commit();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer);
@@ -81,15 +85,9 @@ public class MainActivity extends AppCompatActivity  {
                 viewFragment3();
                 break;
             case R.id.capa4:
-                viewFragment4();
-                break;
-            case R.id.capa5:
-                viewFragment5();
-                break;
-            case R.id.capa6:
                 cargarMarco();
                 break;
-            case R.id.capa7:
+            case R.id.capa5:
                 resetBD();
                 break;
             default:
@@ -115,7 +113,7 @@ public class MainActivity extends AppCompatActivity  {
     public void viewFragment1(){
         Bundle args = new Bundle();
         args.putString("idUsuario",""+1);
-        MapManzanaFragment newFragment = new MapManzanaFragment();
+        MapAnadirManzanaFragment newFragment = new MapAnadirManzanaFragment();
         newFragment.setArguments(args);
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.contedor_fragments,newFragment).commit();
@@ -126,7 +124,7 @@ public class MainActivity extends AppCompatActivity  {
     public void viewFragment2(){
         Bundle args = new Bundle();
         args.putString("idUsuario",""+1);
-        MapViviendaFragment newFragment = new MapViviendaFragment();
+        MapActualizarManzanaFragment newFragment = new MapActualizarManzanaFragment();
         newFragment.setArguments(args);
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.contedor_fragments,newFragment).commit();
@@ -135,28 +133,6 @@ public class MainActivity extends AppCompatActivity  {
     }
 
     public void viewFragment3(){
-        Bundle args = new Bundle();
-        args.putString("idUsuario",""+1);
-        MapAsignarViviendaFragment newFragment = new MapAsignarViviendaFragment();
-        newFragment.setArguments(args);
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.contedor_fragments,newFragment).commit();
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer);
-        drawer.closeDrawer(GravityCompat.START);
-    }
-
-    public void viewFragment4(){
-        Bundle args = new Bundle();
-        args.putString("idUsuario",""+1);
-        MapDibujarManzanaFragment newFragment = new MapDibujarManzanaFragment();
-        newFragment.setArguments(args);
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.contedor_fragments,newFragment).commit();
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer);
-        drawer.closeDrawer(GravityCompat.START);
-    }
-
-    public void viewFragment5(){
         Bundle args = new Bundle();
         args.putString("idUsuario",""+1);
         ReporteFragment newFragment = new ReporteFragment();

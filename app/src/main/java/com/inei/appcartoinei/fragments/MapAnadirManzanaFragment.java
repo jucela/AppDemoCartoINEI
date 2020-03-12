@@ -16,7 +16,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,8 +38,6 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polygon;
 import com.google.android.gms.maps.model.PolygonOptions;
-import com.google.android.gms.maps.model.Polyline;
-import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.maps.android.data.Feature;
 import com.google.maps.android.data.geojson.GeoJsonLayer;
@@ -51,8 +48,6 @@ import com.inei.appcartoinei.dialogs.DialogFusionManzana;
 import com.inei.appcartoinei.modelo.DAO.Data;
 import com.inei.appcartoinei.modelo.DAO.DataBaseHelper;
 import com.inei.appcartoinei.modelo.pojos.FusionItem;
-import com.inei.appcartoinei.modelo.pojos.Manzana;
-import com.inei.appcartoinei.modelo.pojos.ManzanaCaptura;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -62,7 +57,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 
-public class MapDibujarManzanaFragment extends Fragment implements OnMapReadyCallback,GoogleMap.OnMapClickListener, DialogFusionManzana.SendDialogListener{
+public class MapAnadirManzanaFragment extends Fragment implements OnMapReadyCallback,GoogleMap.OnMapClickListener{
 
     GoogleMap mgoogleMap;
     MapView mapView;
@@ -79,6 +74,7 @@ public class MapDibujarManzanaFragment extends Fragment implements OnMapReadyCal
     private String newIdManzana = "";
     private String selectIdManzana = "";
     private FloatingActionButton fab2;
+    private FloatingActionButton fab3;
     private FloatingActionButton fab4;
     private FloatingActionButton fab5;
     private SQLiteDatabase db ;
@@ -91,7 +87,7 @@ public class MapDibujarManzanaFragment extends Fragment implements OnMapReadyCal
 
     private OnFragmentInteractionListener mListener;
 
-    public MapDibujarManzanaFragment() {
+    public MapAnadirManzanaFragment() {
         // Required empty public constructor
     }
 
@@ -114,8 +110,11 @@ public class MapDibujarManzanaFragment extends Fragment implements OnMapReadyCal
         super.onViewCreated(view,savedInstanceState);
         mapView = (MapView) view.findViewById(R.id.map);
         fab2 =  (FloatingActionButton) view.findViewById(R.id.fab2);
+        fab3 =  (FloatingActionButton) view.findViewById(R.id.fab3);
         fab4 =  (FloatingActionButton) view.findViewById(R.id.fab4);
         fab5 =  (FloatingActionButton) view.findViewById(R.id.fab5);
+
+        fab3.setVisibility(View.VISIBLE);
 
         op = new DataBaseHelper(getContext());
         db = op.getWritableDatabase();
@@ -194,6 +193,14 @@ public class MapDibujarManzanaFragment extends Fragment implements OnMapReadyCal
             }
         });
 
+        /*MUESTRA DIALOGO DE CREACION DE MANZANA */
+        fab3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                formSeleccionManzana(getNewManzana(obtenerListaManzanas("001")),"001",1);
+            }
+        });
+
         /*DESHACER ULTIMO PUNTO DE POLIGONO*/
         fab4.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -235,37 +242,40 @@ public class MapDibujarManzanaFragment extends Fragment implements OnMapReadyCal
         addLayerGeojson(1);
         /*MOSTRAR MANZANAS INGRESADAS*/
         loadManzana();
+
+        Log.e("mensaje_insertar:",""+obtenerListaManzanas("001").size());
     }
 
     @Override
     public void onMapClick(LatLng latLng) {
-        if(manzanaSeleccionadaEnvio.size()<=1)
-        {
-            Toast.makeText(getContext(),"Seleccione una Manzana para Actualizar",Toast.LENGTH_SHORT).show();
-        }
-        else {
-                listPoints.add(latLng);
-            Log.e("mensaje:","Se agrego a punto->"+latLng);
-                poligon.setPoints(listPoints);
-            Log.e("mensaje:","Se agrego poligono con puntos->"+listPoints.size());
-                vertice = mgoogleMap.addMarker(new MarkerOptions()
-                        .position(latLng)
-                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_edit_location)));
-            Log.e("mensaje","Se agrego vertice"+vertice.getPosition());
-                listaMarker.add(vertice);
-            Log.e("mensaje","Se grego vertices a Arraylist"+listaMarker.size());
-        }
+         if (poligon!=null){
+             if(poligon.getPoints().get(0).equals(new LatLng(0,0)))
+             {
+                 Toast.makeText(getContext(),"Presione el boton '+' para añadir la nueva manzana",Toast.LENGTH_SHORT).show();
+             }
+             else{
+                 listPoints.add(latLng);
+                 poligon.setPoints(listPoints);
+                 vertice = mgoogleMap.addMarker(new MarkerOptions()
+                         .position(latLng)
+                         .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_edit_location)));
+                 listaMarker.add(vertice);
+
+             }
+         }
+         else {
+                    Toast.makeText(getContext(),"Presione el boton '+' para añadir la nueva manzanax",Toast.LENGTH_SHORT).show();
+              }
+
     }
 
     /*METODO INSERTAR MANZANA_CAPTURA A SQLITE INTERNO*/
     public  void insertarManzanaCaptura(ArrayList<LatLng> poligono){
-        if(manzanaSeleccionadaEnvio.size()>0)
-        { if(listPoints.size()>2) {
+        if(listPoints.size()>2) {
             try {
                 data = new Data(context);
                 data.open();
-                data.insertManzanaCaptura(1,2,"15","01","13","001","00",newIdManzana,"",idAccionManzana,0,"GeomFromText('POLYGON(("+formatGeom(poligono)+"))',4326)");
-                //data.updateManzanaCaptura(selectIdManzana,1);
+                data.insertManzanaCaptura(1,2,"15","01","13","001","00",getNewManzana(obtenerListaManzanas("001")),"",idAccionManzana,0,"GeomFromText('POLYGON(("+formatGeom(poligono)+"))',4326)");
                 for(int i=0;i<manzanaSeleccionadaEnvio.size();i++)
                 {   Log.e("mensaje_insertar:",""+manzanaSeleccionadaEnvio.get(i).getIdzona()+"--"+manzanaSeleccionadaEnvio.get(i).getIdManzana());
                     data.updateManzanaCaptura(manzanaSeleccionadaEnvio.get(i).getIdManzana().trim(),1);}
@@ -279,8 +289,7 @@ public class MapDibujarManzanaFragment extends Fragment implements OnMapReadyCal
         }
         else
         {Toast.makeText(getContext(),"Dibuje una Manzana",Toast.LENGTH_SHORT).show();}
-        }
-        else{Toast.makeText(getContext(),"Ingrese Manzanas a Unir",Toast.LENGTH_SHORT).show();}
+
     }
 
     /*METODO OBTENER LISTA(STRING) DE SHAPE MANZANA*/
@@ -343,7 +352,6 @@ public class MapDibujarManzanaFragment extends Fragment implements OnMapReadyCal
         return format;
     }
 
-
     /*1. METODO CARGAR LAYER MARCO DE TRABAJO (/*0=SIN MARCO,1=CAPA MARCO,2=CAPA EDICION)*/
     @SuppressLint("RestrictedApi")
     public  void addLayerGeojson(int estado)
@@ -364,109 +372,30 @@ public class MapDibujarManzanaFragment extends Fragment implements OnMapReadyCal
             case 0:
                 Log.e("mensajes:","0->sin capa, dibujar poligono");
                 fab2.setVisibility(View.VISIBLE);
+                fab3.setVisibility(View.GONE);
                 fab4.setVisibility(View.VISIBLE);
                 fab5.setVisibility(View.VISIBLE);
                 layer.removeLayerFromMap();
                 break;
             case 1:
                 Log.e("mensajes:","1->capa roja,marco de trabajo");
+                fab3.setVisibility(View.VISIBLE);
                 polygonStyle.setStrokeColor(Color.RED);
-                layer.setOnFeatureClickListener(new GeoJsonLayer.GeoJsonOnFeatureClickListener() {
-                    @Override
-                    public void onFeatureClick(Feature feature) {
-                        if(validarPolygon(feature.getProperty("CODZONA"),feature.getProperty("CODMZNA")+""+feature.getProperty("SUFMZNA"))){
-                            Toast.makeText(getContext(),"Poligono ya trabajado",Toast.LENGTH_SHORT).show();
-                        }
-                        else
-                        {formAccionManzana(feature.getProperty("CODZONA"),feature.getProperty("CODMZNA")+""+feature.getProperty("SUFMZNA"));}
-                    }
-                });
-                break;
-            case 2:
-                Log.e("mensajes:","2->capa amarilla,Seleccion de poligonos");
-                polygonStyle.setStrokeColor(Color.YELLOW);
-                layer.setOnFeatureClickListener(new GeoJsonLayer.GeoJsonOnFeatureClickListener() {
-                    @Override
-                    public void onFeatureClick(Feature feature) {
-                        if(listPoints.size()>0){
-                            Log.e("mensajes:","se esta pintado poligono");
-                        }
-                        else {
-                            if (filterManzana(manzanaSeleccionadaEnvio, feature.getProperty("CODMZNA") + "" + feature.getProperty("SUFMZNA"))) {
-                                formSeleccionManzana(feature.getProperty("CODMZNA") + "" + feature.getProperty("SUFMZNA"), feature.getProperty("CODZONA"), 1);
-                            } else {
-                                String idmanzana = feature.getProperty("CODMZNA") + "" + feature.getProperty("SUFMZNA");
-                                OpenDialogFusion(idmanzana.trim(), manzanaSeleccionadaEnvio);
-                                Toast.makeText(getContext(), "Ya Selecciono Manzana", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    }
-                });
                 break;
             default:
         }
     }
 
-    /*2. METODO DE CREACION DE DIALOGO DE ACCIONES DE MANZANAS (FUSION,REPLANTEAR,ETC)*/
-    public  void formAccionManzana(final String codzona,final String idmanzana){
-        ArrayList<String> acciones= new ArrayList<>();
-        acciones.add("Fusionar (Misma Zona)");
-        acciones.add("Fusionar (Diferente Zona)");
-
-        final AlertDialog.Builder alert = new AlertDialog.Builder(getActivity(),R.style.ThemeOverlay_MaterialComponents_Dialog);
-        final View dialogView = getActivity().getLayoutInflater().inflate(R.layout.layout_form_accion, null);
-        final Spinner accion     =  (Spinner) dialogView.findViewById(R.id.id_spnAccionNombre);
-        ArrayAdapter<String> adapterZona         = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item,acciones);
-        adapterZona.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        accion.setAdapter(adapterZona);
-        alert.setTitle("Nro Manzana: "+idmanzana);
-        alert.setIcon(R.drawable.ic_view_module_26);
-        alert.setView(dialogView);
-        alert.setPositiveButton("OK",null);
-        alert.setNegativeButton("Cancelar",null);
-        final AlertDialog alertDialog = alert.create();
-
-        alertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
-            @Override
-            public void onShow(DialogInterface dialogInterface) {
-                Button b = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
-                b.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        alertDialog.dismiss();
-                        if(accion.getSelectedItemPosition()==0)
-                        {
-                            idAccionManzana = 2;
-                            manzanaSeleccionadaEnvio.clear();
-                            manzanaSeleccionadaEnvio.add(new FusionItem(1,codzona,idmanzana));
-                            OpenDialogFusion(idmanzana,manzanaSeleccionadaEnvio);
-                        }
-                        if(accion.getSelectedItemPosition()==1)
-                        {Toast.makeText(getActivity().getApplicationContext(), "Opcion no desarrollada", Toast.LENGTH_SHORT).show();}
-                    }
-                });
-            }
-        });
-        alertDialog.show();
-    }
-
-    /*3. ABRIR DIALOGO DE ACCION (FUSION) Y ENVIAR PARAMETROS*/
-    public void OpenDialogFusion(String idManzanna,ArrayList<FusionItem> manzanas){
-        DialogFusionManzana dialogo = DialogFusionManzana.newInstance(idManzanna,manzanas);
-        dialogo.setTargetFragment(MapDibujarManzanaFragment.this,1);
-        dialogo.show(getFragmentManager(),DialogFusion.TAG);
-    }
-
-    /*4. METODO DE CREACION DIALOGO PARA APROBAR SELECCION DE MANZANA*/
+    /*2. METODO DE CREACION DIALOGO PARA APROBAR SELECCION DE MANZANA*/
     public  void formSeleccionManzana(final String idmanzana,final String zona, final int estado){
         final AlertDialog.Builder alert = new AlertDialog.Builder(getActivity(),R.style.ThemeOverlay_MaterialComponents_Dialog);
         final View dialogView = getActivity().getLayoutInflater().inflate(R.layout.layout_form_selectmanzana, null);
         final TextView text_selection     =  (TextView) dialogView.findViewById(R.id.id_txt_select_manzana);
         text_selection.setText(idmanzana);
-        alert.setTitle("Desea Seleccionar Manzana?");
+        alert.setTitle("Desea Añadir Manzana?");
         alert.setIcon(R.drawable.ic_info_outline);
         alert.setView(dialogView);
-        alert.setPositiveButton("OK",null);
+        alert.setPositiveButton("Dibujar",null);
         alert.setNegativeButton("Cancelar",null);
         final AlertDialog alertDialog = alert.create();
 
@@ -477,8 +406,9 @@ public class MapDibujarManzanaFragment extends Fragment implements OnMapReadyCal
                 b.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        manzanaSeleccionadaEnvio.add(new FusionItem(estado,zona,idmanzana));
-                        OpenDialogFusion(idmanzana,manzanaSeleccionadaEnvio);
+                        removeLayer();
+                        addLayerGeojson(0);
+                        createPolygon();
                         alertDialog.dismiss();
                     }
                 });
@@ -487,50 +417,23 @@ public class MapDibujarManzanaFragment extends Fragment implements OnMapReadyCal
         alertDialog.show();
     }
 
-    /*5. RECIBE PARAMETROS DE DIALOGO DialogFusionManzana*/
-    @Override
-    public void receiveFusion(final int estadoLayer,final ArrayList<FusionItem> listaManzana,String idManzana) {
-        removeLayer();
-        addLayerGeojson(estadoLayer);
-        newIdManzana = getNewManzana(listaManzana,listaManzana.get(0).getIdManzana());
-        selectIdManzana = idManzana;
-        manzanaSeleccionadaEnvio = listaManzana;
-
-        if(estadoLayer==0){
-            createPolygon();
-        }
-        if(estadoLayer==1){
-            cleanPolygon();
-        }
-        if(estadoLayer==2){
-        }
-    }
-
     /*CREACION DE NUEVO ID DE MANZANA*/
-    public String getNewManzana(ArrayList<FusionItem> listaManzana, String idManzana){
-        int menor;
-        int valorid;
-        int newValorId=0;
+    public String getNewManzana(ArrayList<String> listaManzana){
+        int mayor;
         if(listaManzana.size()>0){
-            menor = Integer.parseInt(listaManzana.get(0).getIdManzana().trim());
-            for(FusionItem objeto: listaManzana)
+            mayor = Integer.parseInt(listaManzana.get(0));
+            for(int i=0;i<listaManzana.size();i++)
             {
-                int numero = Integer.parseInt(objeto.getIdManzana().trim());
-                if (numero<menor)
-                {menor =numero;}
-            }
-            valorid = Integer.parseInt(idManzana.trim());
-            if(menor<valorid){
-                newValorId=menor;
-            }
-            else{
-                newValorId=valorid;
+                Log.e("Mensaje:","valor["+i+"]="+listaManzana.get(i));
+                int numero = Integer.parseInt(listaManzana.get(i));
+                if (numero>mayor)
+                {mayor =numero;}
             }
         }
         else {
-            menor=0;
+            mayor=0;
         }
-        return "0"+newValorId+"A";
+        return "0"+(mayor+1);
     }
 
     /*FILTRAR MANZANAS*/
@@ -582,26 +485,39 @@ public class MapDibujarManzanaFragment extends Fragment implements OnMapReadyCal
     /*LIMPIAR POLIGONO*/
     @SuppressLint("RestrictedApi")
     public void cleanPolygon(){
-        manzanaSeleccionadaEnvio.clear();
-        if(poligon!=null)
-        {poligon.remove();}
         fab2.setVisibility(View.GONE);
         fab4.setVisibility(View.GONE);
         fab5.setVisibility(View.GONE);
+
+        if(poligon!=null)
+        {
+            ArrayList<LatLng> nulos = new ArrayList<>();
+            nulos.add(new LatLng(0,0));
+            poligon.remove();
+            poligon.setPoints(nulos);
+            listPoints.clear();
+            Log.e("Mensaje:","poligono removido");
+            Log.e("Mensaje:","poligono->"+poligon.getPoints().size());
+        }
+
         if(listaMarker!=null) {
             for (int i = 0; i < listaMarker.size(); i++) {
                 listaMarker.get(i).remove();
+                Log.e("Mensaje:","listaMarker removido:"+i);
+                Log.e("Mensaje:","listaMarker-"+listaMarker);
             }
+
         }
-            listaMarker.clear();
-            listPoints.clear();
+        listPoints.clear();
+        listaMarker.clear();
+
 
     }
 
     /*CREAR POLIGONO*/
     public void createPolygon(){
         poligon = mgoogleMap.addPolygon(new PolygonOptions()
-                .add(new LatLng(0, 0), new LatLng(0, 0), new LatLng(0, 0))
+                .add(new LatLng(1,1))
                 .fillColor(Color.GREEN)
                 .clickable(false)
                 .zIndex(3f)
@@ -609,25 +525,25 @@ public class MapDibujarManzanaFragment extends Fragment implements OnMapReadyCal
         Log.e("Mensaje:","poligono creado");
     }
 
-    /*VALIDAR POLIGONO SELECCIONADO CON POLIGONO EN SQLITE*/
-    public boolean validarPolygon(String idzona,String idmzna){
-        boolean estado = false;
-        try {
-            Data data = new Data(context);
-            data.open();
-            estado = data.getEstateManzana(idzona,idmzna);
-            data.close();
-            }
-        catch (IOException e){
-            e.printStackTrace();
-        }
-        return estado;
-    }
-
-    /*QUITAR CAPA*/
+        /*QUITAR CAPA*/
     public void removeLayer(){
         layer.removeLayerFromMap();
         Log.e("Mensaje:","Capa removida");
+    }
+
+    /*VALIDAR POLIGONO SELECCIONADO CON POLIGONO EN SQLITE*/
+    public ArrayList<String> obtenerListaManzanas(String idzona){
+        ArrayList<String> lista = new ArrayList<>();
+        try {
+            Data data = new Data(context);
+            data.open();
+            lista = data.getListaManzanas(idzona);
+            data.close();
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+        return lista;
     }
 
 }

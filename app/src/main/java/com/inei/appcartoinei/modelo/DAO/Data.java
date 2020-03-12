@@ -197,6 +197,21 @@ public class Data {
 
     }
 
+    public ArrayList<String> getListaManzanas(String idzona){
+        ArrayList<String> manzanas = new ArrayList<>();
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.rawQuery("SELECT id,iduser,ccdd,ccpp,ccdi,codzona,sufzona,codmzna,sufmzna,estado,frentes,shape FROM manzana_captura where codzona = '"+idzona+"' ",null);
+            while (cursor.moveToNext()){
+                manzanas.add(cursor.getString(7));
+            }
+        }finally{
+            if(cursor != null) cursor.close();
+        }
+        return manzanas;
+
+    }
+
     public void insertManzanaCaptura(int id,int iduser,String ccdd,String ccpp,String ccdi,String codzona,String sufzona,String codmzna,String sufmzna,int estado,int frentes,String shape){
         sqLiteDatabase.execSQL("INSERT INTO manzana_captura(id,iduser,ccdd,ccpp,ccdi,codzona,sufzona,codmzna,sufmzna,estado,frentes,shape) VALUES ("+id+","+iduser+",'"+ccdd+"','"+ccpp+"','"+ccdi+"','"+codzona+"','"+sufzona+"','"+codmzna+"','"+sufmzna+"','"+estado+"','"+frentes+"',"+shape+");");
     }

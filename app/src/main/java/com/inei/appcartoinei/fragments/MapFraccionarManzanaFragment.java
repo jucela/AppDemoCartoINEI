@@ -16,7 +16,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,8 +38,6 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polygon;
 import com.google.android.gms.maps.model.PolygonOptions;
-import com.google.android.gms.maps.model.Polyline;
-import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.maps.android.data.Feature;
 import com.google.maps.android.data.geojson.GeoJsonLayer;
@@ -51,8 +48,6 @@ import com.inei.appcartoinei.dialogs.DialogFusionManzana;
 import com.inei.appcartoinei.modelo.DAO.Data;
 import com.inei.appcartoinei.modelo.DAO.DataBaseHelper;
 import com.inei.appcartoinei.modelo.pojos.FusionItem;
-import com.inei.appcartoinei.modelo.pojos.Manzana;
-import com.inei.appcartoinei.modelo.pojos.ManzanaCaptura;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -62,7 +57,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 
-public class MapDibujarManzanaFragment extends Fragment implements OnMapReadyCallback,GoogleMap.OnMapClickListener, DialogFusionManzana.SendDialogListener{
+public class MapFraccionarManzanaFragment extends Fragment implements OnMapReadyCallback,GoogleMap.OnMapClickListener, DialogFusionManzana.SendDialogListener{
 
     GoogleMap mgoogleMap;
     MapView mapView;
@@ -91,7 +86,7 @@ public class MapDibujarManzanaFragment extends Fragment implements OnMapReadyCal
 
     private OnFragmentInteractionListener mListener;
 
-    public MapDibujarManzanaFragment() {
+    public MapFraccionarManzanaFragment() {
         // Required empty public constructor
     }
 
@@ -453,7 +448,7 @@ public class MapDibujarManzanaFragment extends Fragment implements OnMapReadyCal
     /*3. ABRIR DIALOGO DE ACCION (FUSION) Y ENVIAR PARAMETROS*/
     public void OpenDialogFusion(String idManzanna,ArrayList<FusionItem> manzanas){
         DialogFusionManzana dialogo = DialogFusionManzana.newInstance(idManzanna,manzanas);
-        dialogo.setTargetFragment(MapDibujarManzanaFragment.this,1);
+        dialogo.setTargetFragment(MapFraccionarManzanaFragment.this,1);
         dialogo.show(getFragmentManager(),DialogFusion.TAG);
     }
 
@@ -622,6 +617,7 @@ public class MapDibujarManzanaFragment extends Fragment implements OnMapReadyCal
             e.printStackTrace();
         }
         return estado;
+
     }
 
     /*QUITAR CAPA*/
