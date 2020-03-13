@@ -233,11 +233,12 @@ public class MapActualizarManzanaFragment extends Fragment implements OnMapReady
             }
         });
         /*MOSTRAR CARGA DE TRABAJO*/
-        addLayerGeojson(8);
+        addLayerGeojson(1);
         /*MOSTRAR MANZANAS INGRESADAS*/
-        loadManzana();
-        pruebaPoit();
-        pruebaPolygon();
+        //loadManzana();
+        //pruebaPoit();
+        //pruebaPolygon();
+        loadManzanaConfirmadas();
     }
 
     @Override
@@ -284,6 +285,20 @@ public class MapActualizarManzanaFragment extends Fragment implements OnMapReady
         {Toast.makeText(getContext(),"Dibuje una Manzana",Toast.LENGTH_SHORT).show();}
         }
         else{Toast.makeText(getContext(),"Ingrese Manzanas a Unir",Toast.LENGTH_SHORT).show();}
+    }
+
+    /*METODO ACTUALIZAR MANZANA_CAPTURA A SQLITE INTERNO*/
+    public  void actualizarManzanaCaptura(String idmanzana,int estado){
+            try {
+                data = new Data(context);
+                data.open();
+                data.updateManzanaCaptura(idmanzana,estado);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            loadManzanaConfirmadas();
+            Toast.makeText(getContext(),"Se Confirmo Manzana!",Toast.LENGTH_SHORT).show();
+
     }
 
     /*METODO OBTENER LISTA(STRING) DE SHAPE MANZANA*/
@@ -376,11 +391,12 @@ public class MapActualizarManzanaFragment extends Fragment implements OnMapReady
                 layer.setOnFeatureClickListener(new GeoJsonLayer.GeoJsonOnFeatureClickListener() {
                     @Override
                     public void onFeatureClick(Feature feature) {
-                        if(validarPolygon(feature.getProperty("CODZONA"),feature.getProperty("CODMZNA")+""+feature.getProperty("SUFMZNA"))){
-                            Toast.makeText(getContext(),"Poligono ya trabajado",Toast.LENGTH_SHORT).show();
-                        }
-                        else
-                        {formValidacionManzana(feature.getProperty("CODZONA"),feature.getProperty("CODMZNA")+""+feature.getProperty("SUFMZNA"));}
+//                        if(validarPolygon(feature.getProperty("CODZONA"),feature.getProperty("CODMZNA")+""+feature.getProperty("SUFMZNA"))){
+//                            Toast.makeText(getContext(),"Poligono ya trabajado",Toast.LENGTH_SHORT).show();
+//                        }
+//                        else
+//                        {}
+                        formValidacionManzana(feature.getProperty("CODZONA"),feature.getProperty("CODMZNA")+""+feature.getProperty("SUFMZNA"));
                     }
                 });
                 break;
@@ -451,6 +467,8 @@ public class MapActualizarManzanaFragment extends Fragment implements OnMapReady
                 b1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        alertDialog.dismiss();
+                        actualizarManzanaCaptura(idmanzana.trim(),1);
                     }
                 });
                 b2.setOnClickListener(new View.OnClickListener() {
@@ -635,6 +653,33 @@ public class MapActualizarManzanaFragment extends Fragment implements OnMapReady
         }
     }
 
+    /*CARGAR MANZANAS CONFIRMADAS*/
+    private void loadManzanaConfirmadas(){
+        if(obtenerListaShapeManzana().isEmpty())
+        {Toast.makeText(getContext(),"No se encontraron Manzanas",Toast.LENGTH_SHORT).show();}
+        else{
+            for(int i=0;i<obtenerListaShapeManzana().size();i++)
+            {
+                ArrayList<LatLng> listados = new ArrayList<LatLng>();
+                listados = obtenerLatLngShapeManzana(obtenerListaShapeManzana().get(i));
+                Log.e("valor:",""+listados.size());
+                if(listados.size()>0)
+                {
+                    GeoJsonPolygon polygono = new GeoJsonPolygon(Collections.singletonList(listados));
+                    HashMap<String, String> properties = new HashMap<String, String>();
+                    properties.put("Ocean","South Atlantic");
+                    GeoJsonFeature poligono = new GeoJsonFeature(polygono,"xxx",properties,null);
+
+                    GeoJsonPolygonStyle poligonStyle = new GeoJsonPolygonStyle();
+                    poligonStyle.setFillColor(Color.GREEN);
+                    poligonStyle.setStrokeWidth(3);
+                    poligono.setPolygonStyle(poligonStyle);
+                    layer.addFeature(poligono);
+                }
+            }
+        }
+    }
+
     /*LIMPIAR POLIGONO*/
     @SuppressLint("RestrictedApi")
     public void cleanPolygon(){
@@ -685,6 +730,7 @@ public class MapActualizarManzanaFragment extends Fragment implements OnMapReady
         layer.removeLayerFromMap();
         Log.e("Mensaje:","Capa removida");
     }
+
     public void pruebaPoit(){
         GeoJsonPoint point = new GeoJsonPoint(new LatLng(-12.0664822,-77.0467285));
         HashMap<String, String> properties = new HashMap<String, String>();
@@ -700,6 +746,22 @@ public class MapActualizarManzanaFragment extends Fragment implements OnMapReady
         datos.add(new LatLng(-12.067497371999934,-77.044794291999949));
         datos.add(new LatLng(-12.066297254999938,-77.04449155399999));
         datos.add(new LatLng(-12.066228606999971,-77.044578442999978));
+        GeoJsonPolygon polygono = new GeoJsonPolygon(Collections.singletonList(datos));
+        HashMap<String, String> properties = new HashMap<String, String>();
+        properties.put("Ocean","South Atlantic");
+        GeoJsonFeature poligono = new GeoJsonFeature(polygono,"xxx",properties,null);
+
+
+        GeoJsonPolygonStyle poligonStyle = new GeoJsonPolygonStyle();
+        poligonStyle.setFillColor(Color.CYAN);
+        poligonStyle.setStrokeWidth(3);
+        poligono.setPolygonStyle(poligonStyle);
+        layer.addFeature(poligono);
+    }
+
+    public void pintarPolygon(){
+
+        ArrayList<LatLng> datos = new ArrayList<>();
         GeoJsonPolygon polygono = new GeoJsonPolygon(Collections.singletonList(datos));
         HashMap<String, String> properties = new HashMap<String, String>();
         properties.put("Ocean","South Atlantic");

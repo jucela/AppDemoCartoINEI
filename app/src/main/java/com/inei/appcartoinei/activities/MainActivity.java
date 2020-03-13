@@ -41,7 +41,12 @@ public class MainActivity extends AppCompatActivity  {
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private SQLiteDatabase db ;
     private DataBaseHelper op;
-    private ArrayList<LatLng> listalatlog= new ArrayList<LatLng>();
+    private ArrayList<LatLng> listalatlog1= new ArrayList<LatLng>();
+    private ArrayList<LatLng> listalatlog2= new ArrayList<LatLng>();
+    private ArrayList<LatLng> listalatlog3= new ArrayList<LatLng>();
+    private ArrayList<LatLng> listalatlog4= new ArrayList<LatLng>();
+    private ArrayList<LatLng> listalatlog5= new ArrayList<LatLng>();
+    private ArrayList<LatLng> listalatlog6= new ArrayList<LatLng>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -173,17 +178,36 @@ public class MainActivity extends AppCompatActivity  {
     }
 
     public void cargarMarco(){
-        listalatlog.add(new LatLng(0,0));
-        listalatlog.add(new LatLng(0,0));
+        /*001*/
+        listalatlog1.add(new LatLng(-12.065417885999977,-77.04554404999999));
+        listalatlog1.add(new LatLng(-12.066270790999965,-77.046327907999967));
+        listalatlog1.add(new LatLng(-12.066979834999927,-77.045446862999938));
+        listalatlog1.add(new LatLng(-12.066131906999942,-77.044721458999959));
+        listalatlog1.add(new LatLng(-12.065417885999977,-77.04554404999999));
+        /*043*/
+        listalatlog2.add(new LatLng(-12.066228606999971,-77.044578442999978));
+        listalatlog2.add(new LatLng(-12.067107399999941,-77.045280209999987));
+        listalatlog2.add(new LatLng(-12.067497371999934,-77.044794291999949));
+        listalatlog2.add(new LatLng(-12.066297254999938,-77.04449155399999));
+        listalatlog2.add(new LatLng(-12.066228606999971,-77.044578442999978));
+        /*042*/
+        listalatlog3.add(new LatLng(-12.066228606999971,-77.044578442999978));
+        listalatlog3.add(new LatLng(-12.067107399999941,-77.045280209999987));
+        listalatlog3.add(new LatLng(-12.067497371999934,-77.044794291999949));
+        listalatlog3.add(new LatLng(-12.066297254999938,-77.04449155399999));
+        listalatlog3.add(new LatLng(-12.066228606999971,-77.044578442999978));
+        /*0*/
+        listalatlog4.add(new LatLng(0,0));
+
         try {
             Data data = new Data(MainActivity.this);
             data.open();
-            data.insertManzanaCaptura(1,1,"15","01","13","001","00","001","",0,0,"GeomFromText('POLYGON(("+formatGeom(listalatlog)+"))',4326)");
-            data.insertManzanaCaptura(1,1,"15","01","13","001","00","041","",0,0,"GeomFromText('POLYGON(("+formatGeom(listalatlog)+"))',4326)");
-            data.insertManzanaCaptura(1,1,"15","01","13","001","00","042","",0,0,"GeomFromText('POLYGON(("+formatGeom(listalatlog)+"))',4326)");
-            data.insertManzanaCaptura(1,1,"15","01","13","001","00","043","",0,0,"GeomFromText('POLYGON(("+formatGeom(listalatlog)+"))',4326)");
-            data.insertManzanaCaptura(1,1,"15","01","13","001","00","044","",0,0,"GeomFromText('POLYGON(("+formatGeom(listalatlog)+"))',4326)");
-            data.insertManzanaCaptura(1,1,"15","01","13","001","00","045","",0,0,"GeomFromText('POLYGON(("+formatGeom(listalatlog)+"))',4326)");
+            data.insertManzanaCaptura(1,1,"15","01","13","001","00","001","",0,0,"GeomFromText('POLYGON(("+formatGeom(listalatlog1)+"))',4326)");
+            data.insertManzanaCaptura(1,1,"15","01","13","001","00","041","",0,0,"GeomFromText('POLYGON(("+formatGeom(listalatlog4)+"))',4326)");
+            data.insertManzanaCaptura(1,1,"15","01","13","001","00","042","",0,0,"GeomFromText('POLYGON(("+formatGeom(listalatlog3)+"))',4326)");
+            data.insertManzanaCaptura(1,1,"15","01","13","001","00","043","",0,0,"GeomFromText('POLYGON(("+formatGeom(listalatlog2)+"))',4326)");
+            data.insertManzanaCaptura(1,1,"15","01","13","001","00","044","",0,0,"GeomFromText('POLYGON(("+formatGeom(listalatlog4)+"))',4326)");
+            data.insertManzanaCaptura(1,1,"15","01","13","001","00","045","",0,0,"GeomFromText('POLYGON(("+formatGeom(listalatlog4)+"))',4326)");
             data.close();
             Toast.makeText(MainActivity.this,"Se Cargo Marco",Toast.LENGTH_LONG).show();
         } catch (IOException e) {

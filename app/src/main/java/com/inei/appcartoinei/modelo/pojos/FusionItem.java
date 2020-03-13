@@ -18,6 +18,24 @@ public class FusionItem implements Parcelable {
     public FusionItem() {
     }
 
+    protected FusionItem(Parcel in) {
+        estado = in.readInt();
+        idzona = in.readString();
+        idManzana = in.readString();
+    }
+
+    public static final Creator<FusionItem> CREATOR = new Creator<FusionItem>() {
+        @Override
+        public FusionItem createFromParcel(Parcel in) {
+            return new FusionItem(in);
+        }
+
+        @Override
+        public FusionItem[] newArray(int size) {
+            return new FusionItem[size];
+        }
+    };
+
     public int getEstado() {
         return estado;
     }
@@ -49,6 +67,8 @@ public class FusionItem implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-
+        dest.writeInt(estado);
+        dest.writeString(idzona);
+        dest.writeString(idManzana);
     }
 }

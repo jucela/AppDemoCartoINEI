@@ -171,7 +171,7 @@ public class Data {
         ArrayList<String> listashape = new ArrayList<>();
         Cursor cursor = null;
         try{
-            cursor = sqLiteDatabase.rawQuery("SELECT id,iduser,ccdd,ccpp,ccdi,codzona,sufzona,codmzna,sufmzna,estado,frentes,AsGeoJSON(shape) geom FROM manzana_captura ",null);
+            cursor = sqLiteDatabase.rawQuery("SELECT id,iduser,ccdd,ccpp,ccdi,codzona,sufzona,codmzna,sufmzna,estado,frentes,AsGeoJSON(shape) geom FROM manzana_captura where estado>0 ",null);
             while(cursor.moveToNext()){
                 String shape = cursor.getString(11);
                 listashape.add(shape);
@@ -217,6 +217,10 @@ public class Data {
     }
 
     public void updateManzanaCaptura(String codmzna,int estado){
+        sqLiteDatabase.execSQL("UPDATE manzana_captura SET estado="+estado+" WHERE codmzna='"+codmzna+"';");
+    }
+
+    public void updateEstadoManzanaCaptura(String codmzna,int estado){
         sqLiteDatabase.execSQL("UPDATE manzana_captura SET estado="+estado+" WHERE codmzna='"+codmzna+"';");
     }
 
