@@ -525,7 +525,7 @@ public class MapAnadirManzanaFragment extends Fragment implements OnMapReadyCall
         Log.e("Mensaje:","poligono creado");
     }
 
-        /*QUITAR CAPA*/
+    /*QUITAR CAPA*/
     public void removeLayer(){
         layer.removeLayerFromMap();
         Log.e("Mensaje:","Capa removida");

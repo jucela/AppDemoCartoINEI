@@ -75,6 +75,8 @@ public class MapActualizarManzanaFragment extends Fragment implements OnMapReady
     private ArrayList<LatLng> listPoints = new ArrayList<LatLng>() ;
     private ArrayList<FusionItem> manzanaSeleccionadaEnvio = new ArrayList<FusionItem>();
 
+    private ArrayList<LatLng> listados = new ArrayList<LatLng>();
+
     private int idAccionManzana = 0;
     private String newIdManzana = "";
     private String selectIdManzana = "";
@@ -238,7 +240,10 @@ public class MapActualizarManzanaFragment extends Fragment implements OnMapReady
         //loadManzana();
         //pruebaPoit();
         //pruebaPolygon();
-        loadManzanaConfirmadas();
+        loadAllManzanaConfirmadas();
+
+        /**/
+        //pruebaPolygon();
     }
 
     @Override
@@ -296,7 +301,7 @@ public class MapActualizarManzanaFragment extends Fragment implements OnMapReady
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            loadManzanaConfirmadas();
+            loadOnlyManzanaConfirmadas(idmanzana);
             Toast.makeText(getContext(),"Se Confirmo Manzana!",Toast.LENGTH_SHORT).show();
 
     }
@@ -308,6 +313,7 @@ public class MapActualizarManzanaFragment extends Fragment implements OnMapReady
             Data data = new Data(context);
             data.open();
             ArrayList<String> query = data.getAllShapeManzanaCaptura();
+            Log.e("mensaje:","tamaño Arraylist String de SQLite:"+query.size());
             for(int i=0;i<query.size();i++){
                 String shape = query.get(i);
                 listashape.add(shape);
@@ -320,6 +326,22 @@ public class MapActualizarManzanaFragment extends Fragment implements OnMapReady
         return listashape;
     }
 
+    /*METODO OBTENER UN REGISTRO(STRING) DE SHAPE MANZANA*/
+    public String obtenerShapeManzana(String idmanzana){
+        String registroshape = "";
+        try {
+            Data data = new Data(context);
+            data.open();
+            registroshape = data.getShapeManzanaCaptura(idmanzana);
+            Log.e("mensaje:","tamaño Arraylist String de SQLite:");
+            data.close();
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+        return registroshape;
+    }
+
     /*METODO CONVERTIR LISTA(STRING) A LISTA(LATLNG)*/
     public ArrayList<LatLng> obtenerLatLngShapeManzana(String shape){
         ArrayList<LatLng> listapintado = new ArrayList<LatLng>();
@@ -327,6 +349,7 @@ public class MapActualizarManzanaFragment extends Fragment implements OnMapReady
         try {
             JSONObject jsonObject = new JSONObject(campoGeom);
             String dato = jsonObject.getString("coordinates");
+            Log.e("mensaje:","String de datos->[]:"+dato);
             String ncadena1= dato.substring(1,dato.length()-1);
             String ncadena2= ncadena1.substring(1,ncadena1.length()-1);
             String ncadena3 = ncadena2.replace("],[", "];[");
@@ -343,6 +366,9 @@ public class MapActualizarManzanaFragment extends Fragment implements OnMapReady
         }
         catch (JSONException e) {
             e.printStackTrace();
+        }
+        for(int x=0;x<listapintado.size();x++){
+            Log.e("Mensaje:","Puntos GPS metodo ->["+x+"]:"+listapintado.get(x));
         }
         return listapintado;
     }
@@ -391,12 +417,21 @@ public class MapActualizarManzanaFragment extends Fragment implements OnMapReady
                 layer.setOnFeatureClickListener(new GeoJsonLayer.GeoJsonOnFeatureClickListener() {
                     @Override
                     public void onFeatureClick(Feature feature) {
+//                        if(feature.getProperty("CODZONA")!=null)
+//                        {
+                            formValidacionManzana(feature.getProperty("CODZONA"),feature.getProperty("CODMZNA")+""+feature.getProperty("SUFMZNA"));
+//                        }
+//                        else {
+//                            formValidacionManzana(feature.getProperty("id"),feature.getProperty("id")+""+feature.getProperty("id"));
+//                        }
+
+
 //                        if(validarPolygon(feature.getProperty("CODZONA"),feature.getProperty("CODMZNA")+""+feature.getProperty("SUFMZNA"))){
 //                            Toast.makeText(getContext(),"Poligono ya trabajado",Toast.LENGTH_SHORT).show();
 //                        }
 //                        else
 //                        {}
-                        formValidacionManzana(feature.getProperty("CODZONA"),feature.getProperty("CODMZNA")+""+feature.getProperty("SUFMZNA"));
+
                     }
                 });
                 break;
@@ -467,13 +502,15 @@ public class MapActualizarManzanaFragment extends Fragment implements OnMapReady
                 b1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        alertDialog.dismiss();
-                        actualizarManzanaCaptura(idmanzana.trim(),1);
+
                     }
                 });
                 b2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        alertDialog.dismiss();
+                        actualizarManzanaCaptura(idmanzana.trim(),1);
+
                     }
                 });
             }
@@ -654,29 +691,70 @@ public class MapActualizarManzanaFragment extends Fragment implements OnMapReady
     }
 
     /*CARGAR MANZANAS CONFIRMADAS*/
-    private void loadManzanaConfirmadas(){
+    private void loadAllManzanaConfirmadas(){
         if(obtenerListaShapeManzana().isEmpty())
         {Toast.makeText(getContext(),"No se encontraron Manzanas",Toast.LENGTH_SHORT).show();}
         else{
+            Log.e("mensaje:","Inicio de manzanas confirmadas");
+            Log.e("mensaje:","Tamaño de Array de Strings->"+obtenerListaShapeManzana().size());
             for(int i=0;i<obtenerListaShapeManzana().size();i++)
             {
-                ArrayList<LatLng> listados = new ArrayList<LatLng>();
                 listados = obtenerLatLngShapeManzana(obtenerListaShapeManzana().get(i));
-                Log.e("valor:",""+listados.size());
+                Log.e("mensaje:","Tamaño de puntos GPS->["+i+"]:"+listados.size());
+
+                for(int x=0;x<listados.size();x++){
+                    Log.e("mensaje:","Puntos GPS->["+x+"]:"+listados.get(x));
+                }
                 if(listados.size()>0)
                 {
+                    Log.e("mensaje:","Se pinto polygono");
                     GeoJsonPolygon polygono = new GeoJsonPolygon(Collections.singletonList(listados));
                     HashMap<String, String> properties = new HashMap<String, String>();
-                    properties.put("Ocean","South Atlantic");
+                    properties.put("id","South Atlantic");
                     GeoJsonFeature poligono = new GeoJsonFeature(polygono,"xxx",properties,null);
 
                     GeoJsonPolygonStyle poligonStyle = new GeoJsonPolygonStyle();
                     poligonStyle.setFillColor(Color.GREEN);
+                    poligonStyle.setStrokeColor(Color.GRAY);
                     poligonStyle.setStrokeWidth(3);
+                    poligonStyle.setZIndex(2f);
                     poligono.setPolygonStyle(poligonStyle);
                     layer.addFeature(poligono);
                 }
             }
+            listados.clear();
+        }
+    }
+    /*CARGAR MANZANA CONFIRMADA SELECCIONADA*/
+    private void loadOnlyManzanaConfirmadas(String idmanzana){
+        if(obtenerListaShapeManzana().isEmpty())
+        {Toast.makeText(getContext(),"No se encontraron Manzanas",Toast.LENGTH_SHORT).show();}
+        else{
+            Log.e("mensaje:","Inicio de manzanas confirmadas");
+            Log.e("mensaje:","Tamaño de Array de Strings->"+obtenerShapeManzana(idmanzana));
+            listados = obtenerLatLngShapeManzana(obtenerShapeManzana(idmanzana));
+                //Log.e("mensaje:","Tamaño de puntos GPS->["+i+"]:"+listados.size());
+
+                for(int x=0;x<listados.size();x++){
+                    Log.e("mensaje:","Puntos GPS->["+x+"]:"+listados.get(x));
+                }
+                if(listados.size()>0)
+                {
+                    Log.e("mensaje:","Se pinto polygono");
+                    GeoJsonPolygon polygono = new GeoJsonPolygon(Collections.singletonList(listados));
+                    HashMap<String, String> properties = new HashMap<String, String>();
+                    properties.put("id","South Atlantic");
+                    GeoJsonFeature poligono = new GeoJsonFeature(polygono,"xxx",properties,null);
+
+                    GeoJsonPolygonStyle poligonStyle = new GeoJsonPolygonStyle();
+                    poligonStyle.setFillColor(Color.GREEN);
+                    poligonStyle.setStrokeColor(Color.BLACK);
+                    poligonStyle.setStrokeWidth(3);
+                    poligonStyle.setZIndex(3f);
+                    poligono.setPolygonStyle(poligonStyle);
+                    layer.addFeature(poligono);
+                }
+
         }
     }
 
@@ -740,13 +818,31 @@ public class MapActualizarManzanaFragment extends Fragment implements OnMapReady
     }
 
     public void pruebaPolygon(){
-        ArrayList<LatLng> datos = new ArrayList<>();
-        datos.add(new LatLng(-12.066228606999971,-77.044578442999978));
-        datos.add(new LatLng(-12.067107399999941,-77.045280209999987));
-        datos.add(new LatLng(-12.067497371999934,-77.044794291999949));
-        datos.add(new LatLng(-12.066297254999938,-77.04449155399999));
-        datos.add(new LatLng(-12.066228606999971,-77.044578442999978));
-        GeoJsonPolygon polygono = new GeoJsonPolygon(Collections.singletonList(datos));
+        ArrayList<LatLng> listalatlog1 = new ArrayList<>();
+//        datos.add(new LatLng(-12.066228606999971,-77.044578442999978));
+//        datos.add(new LatLng(-12.067107399999941,-77.045280209999987));
+//        datos.add(new LatLng(-12.067497371999934,-77.044794291999949));
+//        datos.add(new LatLng(-12.066297254999938,-77.04449155399999));
+//        datos.add(new LatLng(-12.066228606999971,-77.044578442999978));
+        /*001*/
+        listalatlog1.add(new LatLng(-12.065417885999977,-77.04554404999999));
+        listalatlog1.add(new LatLng(-12.066270790999965,-77.046327907999967));
+        listalatlog1.add(new LatLng(-12.066979834999927,-77.045446862999938));
+        listalatlog1.add(new LatLng(-12.066131906999942,-77.044721458999959));
+        listalatlog1.add(new LatLng(-12.065417885999977,-77.04554404999999));
+        /*043*/
+//        listalatlog2.add(new LatLng(-12.066228606999971,-77.044578442999978));
+//        listalatlog2.add(new LatLng(-12.067107399999941,-77.045280209999987));
+//        listalatlog2.add(new LatLng(-12.067497371999934,-77.044794291999949));
+//        listalatlog2.add(new LatLng(-12.066297254999938,-77.04449155399999));
+//        listalatlog2.add(new LatLng(-12.066228606999971,-77.044578442999978));
+//        /*042*/
+//        listalatlog3.add(new LatLng(-12.066228606999971,-77.044578442999978));
+//        listalatlog3.add(new LatLng(-12.067107399999941,-77.045280209999987));
+//        listalatlog3.add(new LatLng(-12.067497371999934,-77.044794291999949));
+//        listalatlog3.add(new LatLng(-12.066297254999938,-77.04449155399999));
+//        listalatlog3.add(new LatLng(-12.066228606999971,-77.044578442999978));
+        GeoJsonPolygon polygono = new GeoJsonPolygon(Collections.singletonList(listalatlog1));
         HashMap<String, String> properties = new HashMap<String, String>();
         properties.put("Ocean","South Atlantic");
         GeoJsonFeature poligono = new GeoJsonFeature(polygono,"xxx",properties,null);

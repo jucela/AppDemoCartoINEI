@@ -182,6 +182,21 @@ public class Data {
         return listashape;
     }
 
+    public String getShapeManzanaCaptura(String idmanzana){
+        String regitroshape = "";
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.rawQuery("SELECT id,iduser,ccdd,ccpp,ccdi,codzona,sufzona,codmzna,sufmzna,estado,frentes,AsGeoJSON(shape) geom FROM manzana_captura where codmzna = '"+idmanzana.trim()+"' and estado > 0 ",null);
+            while(cursor.moveToNext()){
+                String shape = cursor.getString(11);
+                regitroshape = shape;
+            }
+        }finally{
+            if(cursor != null) cursor.close();
+        }
+        return regitroshape;
+    }
+
     public boolean getEstateManzana(String idzona,String idmanzana){
         boolean estado = false;
         Cursor cursor = null;
