@@ -259,11 +259,11 @@ public class MapFraccionarManzanaFragment extends Fragment implements OnMapReady
             try {
                 data = new Data(context);
                 data.open();
-                data.insertManzanaCaptura(1,2,"15","01","13","001","00",newIdManzana,"",idAccionManzana,0,"GeomFromText('POLYGON(("+formatGeom(poligono)+"))',4326)");
+                data.insertManzanaCaptura(1,2,"15","01","13","001","00",newIdManzana,"","",idAccionManzana,0,"GeomFromText('POLYGON(("+formatGeom(poligono)+"))',4326)");
                 //data.updateManzanaCaptura(selectIdManzana,1);
                 for(int i=0;i<manzanaSeleccionadaEnvio.size();i++)
                 {   Log.e("mensaje_insertar:",""+manzanaSeleccionadaEnvio.get(i).getIdzona()+"--"+manzanaSeleccionadaEnvio.get(i).getIdManzana());
-                    data.updateManzanaCaptura(manzanaSeleccionadaEnvio.get(i).getIdManzana().trim(),1);}
+                    data.updateManzanaCapturaXEstado(manzanaSeleccionadaEnvio.get(i).getIdManzana().trim(),1);}
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -410,7 +410,7 @@ public class MapFraccionarManzanaFragment extends Fragment implements OnMapReady
 
         final AlertDialog.Builder alert = new AlertDialog.Builder(getActivity(),R.style.ThemeOverlay_MaterialComponents_Dialog);
         final View dialogView = getActivity().getLayoutInflater().inflate(R.layout.layout_form_accion, null);
-        final Spinner accion     =  (Spinner) dialogView.findViewById(R.id.id_spnAccionNombre);
+        final Spinner accion     =  (Spinner) dialogView.findViewById(R.id.id_accion_sp_accion);
         ArrayAdapter<String> adapterZona         = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item,acciones);
         adapterZona.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         accion.setAdapter(adapterZona);

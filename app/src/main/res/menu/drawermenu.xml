@@ -29,12 +29,17 @@
 <!--        android:title="Eliminar Manzana"-->
 <!--        android:icon="@drawable/ic_border_clear_24black"/>-->
     <item android:id="@+id/capa3"
-        android:title="Reportes"
-        android:icon="@drawable/ic_format_list_bulleted"/>
+        android:title="Sincronizar Datos"
+        android:icon="@drawable/ic_loop_24_black"/>
     <item android:id="@+id/capa4"
           android:title="Cargar Marco"
           android:icon="@drawable/ic_cloud_download_24black"/>
     <item android:id="@+id/capa5"
         android:title="Reset BD"
-        android:icon="@drawable/ic_action_turn_right"/>
+        android:icon="@drawable/ic_delete_forever_24"/>
+    <item android:id="@+id/capa6"
+        android:title="Salir"
+
+        android:iconTint="@color/colorBlack"
+        android:icon="@drawable/ic_action_cancel"/>
 </menu>

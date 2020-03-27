@@ -34,7 +34,7 @@
                     android:gravity="left"
                     android:textColor="@color/colorWhite"
                     android:textSize="14dp"
-                    android:text="manzana"
+                    android:text="Manzana"
                     android:textAlignment="center"
                     android:padding="5dp"/>
                 <TextView
@@ -45,7 +45,7 @@
                     android:gravity="left"
                     android:textColor="@color/colorWhite"
                     android:textSize="14dp"
-                    android:text="estado"
+                    android:text="Estado"
                     android:textAlignment="center"
                     android:padding="5dp"/>
                 <TextView
@@ -56,7 +56,7 @@
                     android:gravity="left"
                     android:textColor="@color/colorWhite"
                     android:textSize="14dp"
-                    android:text="frente"
+                    android:text="Estado Envio"
                     android:textAlignment="center"
                     android:padding="5dp"/>
             </LinearLayout>>

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -46,7 +47,7 @@ public class ItemReporteAdapter extends RecyclerView.Adapter<ItemReporteAdapter.
         viewHolder.txtItem1.setText(""+manzana.getCodzona());
         viewHolder.txtItem2.setText(""+manzana.getCodmzna());
         viewHolder.txtItem3.setText(convertAccion(manzana.getEstado()));
-        viewHolder.txtItem4.setText(""+manzana.getFrentes());
+        viewHolder.checkViewItem.setImageResource(R.drawable.ic_add_circle_36_white);
     }
 
     @Override
@@ -58,7 +59,7 @@ public class ItemReporteAdapter extends RecyclerView.Adapter<ItemReporteAdapter.
         TextView txtItem1;
         TextView txtItem2;
         TextView txtItem3;
-        TextView txtItem4;
+        ImageView checkViewItem;
         CardView cv;
         public ViewHolderItem(@NonNull View itemView) {
             super(itemView);
@@ -66,7 +67,7 @@ public class ItemReporteAdapter extends RecyclerView.Adapter<ItemReporteAdapter.
             txtItem1 = itemView.findViewById(R.id.txt_item_rp_zona);
             txtItem2 = itemView.findViewById(R.id.txt_item_rp_manzana);
             txtItem3 = itemView.findViewById(R.id.txt_item_rp_estado);
-            txtItem4 = itemView.findViewById(R.id.txt_item_rp_frentes);
+            checkViewItem = (ImageView) itemView.findViewById(R.id.check_item_rp_estado);
 
         }
     }
@@ -75,16 +76,34 @@ public class ItemReporteAdapter extends RecyclerView.Adapter<ItemReporteAdapter.
         String newdato="";
         switch (dato){
             case 0:
-                newdato="Activo";
+                newdato="Sin Cambios";
                 break;
             case 1:
-                newdato="Con Cambios";
+                newdato="Añadida";
                 break;
             case 2:
-                newdato="Fusionado";
+                newdato="Confirmada";
                 break;
             case 3:
-                newdato="Fragmentado";
+                newdato="Fusionada";
+                break;
+            case 4:
+                newdato="Fraccionada";
+                break;
+            case 5:
+                newdato="Replanteada";
+                break;
+            case 6:
+                newdato="Eliminada";
+                break;
+            case 7:
+                newdato="Con Cambios";
+                break;
+            case 8:
+                newdato="Con Cambios";
+                break;
+            case 9:
+                newdato="Con Cambios";
                 break;
             default:
 

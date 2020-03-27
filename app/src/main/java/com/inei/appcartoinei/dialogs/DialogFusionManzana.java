@@ -109,14 +109,14 @@ public class DialogFusionManzana extends DialogFragment {
                 .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        listener.receiveFusion(1,manzanaSeleccionada,getArguments().getString(ID).trim());
+                        listener.receiveFusion(0,manzanaSeleccionada,getArguments().getString(ID).trim());
                     }
                 })
                 .setPositiveButton("Dibujar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         if (manzanaSeleccionada.size()>1)
-                        {listener.receiveFusion(0,manzanaSeleccionada,getArguments().getString(ID).trim());
+                        {listener.receiveFusion(1,manzanaSeleccionada,getArguments().getString(ID).trim());
                          //Toast.makeText(getContext(),"Dibuje la fusiòn de manzanas",Toast.LENGTH_SHORT).show();
                         }
                         else{
