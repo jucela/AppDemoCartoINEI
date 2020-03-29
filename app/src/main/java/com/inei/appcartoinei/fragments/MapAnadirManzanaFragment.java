@@ -14,10 +14,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,7 +31,6 @@ import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
-import com.google.android.gms.maps.model.JointType;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -41,17 +38,13 @@ import com.google.android.gms.maps.model.Polygon;
 import com.google.android.gms.maps.model.PolygonOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.maps.android.data.Feature;
-import com.google.maps.android.data.Layer;
 import com.google.maps.android.data.geojson.GeoJsonFeature;
 import com.google.maps.android.data.geojson.GeoJsonLayer;
 import com.google.maps.android.data.geojson.GeoJsonPolygon;
 import com.google.maps.android.data.geojson.GeoJsonPolygonStyle;
 import com.inei.appcartoinei.R;
-import com.inei.appcartoinei.dialogs.DialogFusion;
-import com.inei.appcartoinei.dialogs.DialogFusionManzana;
 import com.inei.appcartoinei.modelo.DAO.Data;
 import com.inei.appcartoinei.modelo.DAO.DataBaseHelper;
-import com.inei.appcartoinei.modelo.pojos.FusionItem;
 import com.inei.appcartoinei.modelo.pojos.ManzanaCaptura;
 
 import org.json.JSONException;
@@ -200,7 +193,7 @@ public class MapAnadirManzanaFragment extends Fragment implements OnMapReadyCall
         fab3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                visualizeSeleccionManzana(getNewManzana(getListaManzanas("001")));
+                visualizeSeleccionManzana(getNewManzanaAnadida(getListaManzanas("001")));
             }
         });
 
@@ -429,7 +422,7 @@ public class MapAnadirManzanaFragment extends Fragment implements OnMapReadyCall
     }
 
     /*************AÑADIR**********/
-    /*3. MOSTRAR DIALOGO DE INFORMACION DE MANZANA*/
+    /*1. MOSTRAR DIALOGO DE INFORMACION DE MANZANA*/
     public  void visualizeMensajeManzana(final String idmanzana){
         final AlertDialog.Builder alert = new AlertDialog.Builder(getActivity(),R.style.ThemeOverlay_MaterialComponents_Dialog);
         final View dialogView = getActivity().getLayoutInflater().inflate(R.layout.layout_form_poligono, null);
@@ -457,7 +450,7 @@ public class MapAnadirManzanaFragment extends Fragment implements OnMapReadyCall
         alertDialog.show();
     }
 
-    /*4. MOSTRAR DIALOGO PARA AÑADIR O DIBUJAR MANZANA*/
+    /*2. MOSTRAR DIALOGO PARA AÑADIR O DIBUJAR MANZANA*/
     public  void visualizeSeleccionManzana(final String idmanzana){
         final AlertDialog.Builder alert = new AlertDialog.Builder(getActivity(),R.style.ThemeOverlay_MaterialComponents_Dialog);
         final View dialogView = getActivity().getLayoutInflater().inflate(R.layout.layout_form_poligono, null);
@@ -489,9 +482,9 @@ public class MapAnadirManzanaFragment extends Fragment implements OnMapReadyCall
         alertDialog.show();
     }
 
-    /*5. INSERTAR MANZANA_CAPTURA A SQLITE INTERNO*/
+    /*3. INSERTAR MANZANA_CAPTURA A SQLITE INTERNO*/
     public  void saveManzanaCapturaAnadida(){
-        final String numero = getNewManzana(getListaManzanas("001"));
+        final String numero = getNewManzanaAnadida(getListaManzanas("001"));
         if(listPoints.size()>2) {
             if (listPoints.size() == 3) {
                 LatLng dato = listPoints.get(0);
@@ -537,6 +530,7 @@ public class MapAnadirManzanaFragment extends Fragment implements OnMapReadyCall
         }
     }
 
+    /*******METODOS DE EDICION DE POLIGONOS Y MAPA***********/
     /*LIMPIAR POLIGONO*/
     @SuppressLint("RestrictedApi")
     public void cleanPolygon(){
@@ -617,7 +611,7 @@ public class MapAnadirManzanaFragment extends Fragment implements OnMapReadyCall
     }
 
     /*CREACION DE ID DE MANZANA AÑADIDA*/
-    public String getNewManzana(ArrayList<String> lista){
+    public String getNewManzanaAnadida(ArrayList<String> lista){
         ArrayList<String> listaManzana = new ArrayList<>();
         listaManzana = filtrarNumero(lista);
         int mayor;

@@ -8,7 +8,6 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,16 +17,8 @@ import android.widget.Toast;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.material.navigation.NavigationView;
 import com.inei.appcartoinei.R;
-import com.inei.appcartoinei.fragments.ListPoligonoFragment;
 import com.inei.appcartoinei.fragments.MapActualizarManzanaFragment;
 import com.inei.appcartoinei.fragments.MapAnadirManzanaFragment;
-import com.inei.appcartoinei.fragments.MapAsignarViviendaFragment;
-import com.inei.appcartoinei.fragments.MapDibujarManzanaFragment;
-import com.inei.appcartoinei.fragments.MapFraccionarManzanaFragment;
-import com.inei.appcartoinei.fragments.MapFusionarManzanaFragment;
-import com.inei.appcartoinei.fragments.MapManzanaFragment;
-import com.inei.appcartoinei.fragments.MapManzanaPolylineFragment;
-import com.inei.appcartoinei.fragments.MapViviendaFragment;
 import com.inei.appcartoinei.fragments.ReporteFragment;
 import com.inei.appcartoinei.modelo.DAO.Data;
 import com.inei.appcartoinei.modelo.DAO.DataBaseHelper;
@@ -147,17 +138,6 @@ public class MainActivity extends AppCompatActivity  {
         drawer.closeDrawer(GravityCompat.START);
     }
 
-    public void viewFragment4(){
-        Bundle args = new Bundle();
-        args.putString("idUsuario",""+1);
-        MapFusionarManzanaFragment newFragment = new MapFusionarManzanaFragment();
-        newFragment.setArguments(args);
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.contedor_fragments,newFragment).commit();
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer);
-        drawer.closeDrawer(GravityCompat.START);
-    }
-
     public void resetBD(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("¿Está seguro que desea borrar los datos?")
@@ -173,8 +153,6 @@ public class MainActivity extends AppCompatActivity  {
                         try {
                             Data data = new Data(MainActivity.this);
                             data.open();
-                            data.deleteTblManzana();
-                            data.deleteTblVivienda();
                             data.deleteTblManzanaCaptura();
                             data.close();
                             Toast.makeText(MainActivity.this,"Se Reseteo Base de Datos",Toast.LENGTH_LONG).show();

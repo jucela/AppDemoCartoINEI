@@ -12,7 +12,6 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.inei.appcartoinei.R;
-import com.inei.appcartoinei.modelo.pojos.Manzana;
 import com.inei.appcartoinei.modelo.pojos.ManzanaCaptura;
 
 import java.util.ArrayList;

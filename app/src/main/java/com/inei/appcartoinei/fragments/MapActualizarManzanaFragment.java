@@ -45,11 +45,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.maps.android.data.Feature;
 import com.google.maps.android.data.geojson.GeoJsonFeature;
 import com.google.maps.android.data.geojson.GeoJsonLayer;
-import com.google.maps.android.data.geojson.GeoJsonPoint;
 import com.google.maps.android.data.geojson.GeoJsonPolygon;
 import com.google.maps.android.data.geojson.GeoJsonPolygonStyle;
 import com.inei.appcartoinei.R;
-import com.inei.appcartoinei.dialogs.DialogFusion;
 import com.inei.appcartoinei.dialogs.DialogFusionManzana;
 import com.inei.appcartoinei.modelo.DAO.Data;
 import com.inei.appcartoinei.modelo.DAO.DataBaseHelper;
@@ -777,7 +775,7 @@ public class MapActualizarManzanaFragment extends Fragment implements OnMapReady
     public void OpenDialogFusion(String idManzanna, ArrayList<FusionItem> manzanas) {
         DialogFusionManzana dialogo = DialogFusionManzana.newInstance(idManzanna, manzanas);
         dialogo.setTargetFragment(MapActualizarManzanaFragment.this, 1);
-        dialogo.show(getFragmentManager(), DialogFusion.TAG);
+        dialogo.show(getFragmentManager(), DialogFusionManzana.TAG);
     }
 
     /*2. VISUALIZAR DIALOGO PARA APROBAR SELECCION DE MANZANA*/

@@ -13,10 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.inei.appcartoinei.R;
-import com.inei.appcartoinei.adapters.ItemPoligonoAdapter;
 import com.inei.appcartoinei.adapters.ItemReporteAdapter;
 import com.inei.appcartoinei.modelo.DAO.Data;
-import com.inei.appcartoinei.modelo.pojos.Manzana;
 import com.inei.appcartoinei.modelo.pojos.ManzanaCaptura;
 
 import java.io.IOException;

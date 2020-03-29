@@ -17,18 +17,14 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL(SQLConstantes.SQL_CREATE_TABLA_MANZANA);
-        sqLiteDatabase.execSQL(SQLConstantes.SQL_CREATE_TABLA_VIVIENDA);
         sqLiteDatabase.execSQL(SQLConstantes.SQL_CREATE_TABLA_MANZANA_CAPTURA);
-
-
+        sqLiteDatabase.execSQL(SQLConstantes.SQL_CREATE_TABLA_MANZANA_MARCO);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+SQLConstantes.tb_manzana);
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+SQLConstantes.tb_vivienda);
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+SQLConstantes.tb_manzana_captura);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+SQLConstantes.tb_manzana_marco);
         onCreate(sqLiteDatabase);
     }
 }

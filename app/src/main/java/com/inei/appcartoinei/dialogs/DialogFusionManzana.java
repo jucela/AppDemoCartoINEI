@@ -23,7 +23,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.inei.appcartoinei.R;
-import com.inei.appcartoinei.adapters.ItemFusionAdapter;
 import com.inei.appcartoinei.adapters.ItemFusionSeleccionAdapter;
 import com.inei.appcartoinei.modelo.DAO.Data;
 import com.inei.appcartoinei.modelo.pojos.FusionItem;
@@ -141,41 +140,4 @@ public class DialogFusionManzana extends DialogFragment {
 //            throw new ClassCastException("must implement ExampleDialogListener");
         }
     }
-
-    public ArrayList<FusionItem> obtenerManzanaCaptura(){
-        ArrayList<ManzanaCaptura> manzanas = new ArrayList<>();
-        try {
-            Data data = new Data(getContext());
-            data.open();
-            manzanas = data.getAllManzanaCapturaEstado();
-            data.close();
-            for(int i=0;i<manzanas.size();i++)
-            {
-              listaManzanas.add(new FusionItem(manzanas.get(i).getEstado(),manzanas.get(i).getCodzona(),manzanas.get(i).getCodmzna()));
-            }
-        }
-        catch (IOException e){
-            e.printStackTrace();
-        }
-        return listaManzanas;
-    }
-
-    private ArrayList<FusionItem> filter(ArrayList<FusionItem> notas, String texto){
-
-        texto = texto.toLowerCase().trim();
-            for(FusionItem nota: notas){
-                String nota2= nota.getIdManzana().toLowerCase();
-                if(nota2.contains(texto)==false){
-                    listaFiltrada.add(new FusionItem(nota.getEstado(),nota.getIdzona(),nota.getIdManzana()));
-                }
-            }
-
-
-        return listaFiltrada;
-    }
-
-
-
-
-
 }
