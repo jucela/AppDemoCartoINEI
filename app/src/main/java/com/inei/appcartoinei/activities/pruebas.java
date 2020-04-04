@@ -14,6 +14,13 @@ public class pruebas {
         return valor;
     }
 
+    public static int castCaracter(char caracter){
+        int numero = (int) caracter;
+        return numero;
+    }
+
+
+
     public static ArrayList<String> replantear(int cantidad, String idmanzana){
         ArrayList<String> lista = new ArrayList<>();
         char valor='0';
@@ -120,7 +127,7 @@ public class pruebas {
         return "0" + newValorId + "A";
     }
 
-    public static String countDigitos(int numero){
+    public static String setDigitos(int numero){
         int digitos =Integer.toString(numero).length();
         String newIdNumero="";
         if(digitos==1){
@@ -153,24 +160,100 @@ public class pruebas {
          return newlista;
     }
 
+    public static String getDigito(String cadena){
+        //String ultimo = cadena.substring(cadena.length() - 1);
+        String ultimo = cadena.substring(0, cadena.length() - 1);
+        return  ultimo;
+    }
+
+    public static ArrayList<String>  cleanLista(ArrayList<String> lista){
+        ArrayList<String> newlista = new ArrayList<>();
+        for(int i=0;i<lista.size();i++){
+            if (lista.get(i).length()>3)
+            {newlista.add(getDigito(lista.get(i)));}
+            else{
+                newlista.add(lista.get(i));
+            }
+        }
+        return newlista;
+    }
+
+    public static String cleanCadena(String cadena){
+        String resultado="";
+            if (cadena.length()>3)
+            {resultado=getDigito(cadena);}
+            else{
+                resultado=cadena;
+            }
+
+        return resultado;
+    }
+
+    public static String getNewManzanaAnadida(ArrayList<String> listaManzana1){
+
+        ArrayList<String> listaManzana2 = new ArrayList<>();
+        int mayor;
+        listaManzana2 = cleanLista(listaManzana1);
+        if(listaManzana2.size()>0){
+            mayor = Integer.parseInt(listaManzana2.get(0));
+            for(int i=0;i<listaManzana2.size();i++)
+            {
+                int numero = Integer.parseInt(listaManzana2.get(i));
+                if (numero>mayor)
+                {mayor =numero;}
+            }
+        }
+        else {
+            mayor=0;
+        }
+        return setDigitos(mayor+1);
+    }
+
+    public static String getLetra(ArrayList<String> listaManzana,String idmanzana){
+        String resultado1 ="";
+        String resultado2 ="";
+            for(int i=0;i<listaManzana.size();i++)
+            {
+                if(cleanCadena(listaManzana.get(i)).equals(idmanzana))
+                {resultado1=listaManzana.get(i);}
+
+            }
+
+            if(resultado1.length()>3)
+            {
+                char ultimocaracter = resultado1.charAt(resultado1.length()-1);
+                int dato1 = castCaracter(ultimocaracter);
+                char dato2 = castNumero(dato1+1);
+
+                resultado2 = ""+dato2;
+            }
+            else{
+               resultado2="A";
+            }
+        return resultado2;
+    }
+
+
 
 
 
 
     public static void main(String[] args) {
         System.out.println ("Empezamos la ejecución del programa");
-        countDigitos(0);
-        //System.out.println ("resultado:"+countDigitos(99));
+        //countDigitos(0);
+        System.out.println ("resultado casteo:"+castCaracter('C'));
         ArrayList<String> lista = new ArrayList<>();
-        lista.add("001");
         lista.add("041");
-        lista.add("041A");
-        lista.add("042B");
-        lista.add("043");
-        lista.add("044");
-        for(int i=0;i<filtrarNumero(lista).size();i++){
-            System.out.println ("resultado:"+filtrarNumero(lista).get(i));
-        }
+        lista.add("042");
+//        lista.add("043");
+//        lista.add("043");
+        System.out.println ("resultado letra:"+getLetra(lista,"041"));
+//        for(int i=0;i<cleanLista(lista).size();i++){
+//            System.out.println ("resultadosss:"+cleanLista(lista).get(i));
+//        }
+//        for(int i=0;i<filtrarNumero(lista).size();i++){
+//            System.out.println ("resultado:"+filtrarNumero(lista).get(i));
+//        }
 
 //        for (int i=0;i<pruebaReplanteo2().size();i++)
 //        {

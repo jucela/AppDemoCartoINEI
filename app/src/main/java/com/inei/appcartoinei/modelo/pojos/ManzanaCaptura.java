@@ -13,12 +13,13 @@ public class ManzanaCaptura {
     private String mznabelong;
     private int estado;
     private int frentes;
+    private int cargado;
     private String shape;
 
     public ManzanaCaptura() {
     }
 
-    public ManzanaCaptura(int id, int iduser, String ccdd, String ccpp, String ccdi, String codzona, String sufzona, String codmzna, String sufmzna, String mznabelong, int estado, int frentes, String shape) {
+    public ManzanaCaptura(int id, int iduser, String ccdd, String ccpp, String ccdi, String codzona, String sufzona, String codmzna, String sufmzna, String mznabelong, int estado, int frentes, int cargado, String shape) {
         this.id = id;
         this.iduser = iduser;
         this.ccdd = ccdd;
@@ -31,6 +32,7 @@ public class ManzanaCaptura {
         this.mznabelong = mznabelong;
         this.estado = estado;
         this.frentes = frentes;
+        this.cargado = cargado;
         this.shape = shape;
     }
 
@@ -128,6 +130,14 @@ public class ManzanaCaptura {
 
     public void setFrentes(int frentes) {
         this.frentes = frentes;
+    }
+
+    public int getCargado() {
+        return cargado;
+    }
+
+    public void setCargado(int cargado) {
+        this.cargado = cargado;
     }
 
     public String getShape() {

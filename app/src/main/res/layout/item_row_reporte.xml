@@ -67,8 +67,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="left"
                     android:padding="5dp"
-                    android:tint="@color/colorRojo"
-                    android:rotation="45"
+                    android:tint="@color/colorGrisFuerte"
                     android:src="@drawable/ic_add_circle_36_white"/>
             </LinearLayout>
         </LinearLayout>

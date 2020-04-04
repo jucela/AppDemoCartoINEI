@@ -19,8 +19,8 @@ public class SQLConstantes {
     public static final String manzana_cp_MZNABELONG = "mznabelong";
     public static final String manzana_cp_ESTADO     = "estado";
     public static final String manzana_cp_FRENTES    = "frentes";
+    public static final String manzana_cp_CARGADO    = "cargado";
     public static final String manzana_cp_shape      = "shape";
-
 
     public static final String SQL_CREATE_TABLA_MANZANA_CAPTURA =
             "CREATE TABLE " + tb_manzana_captura + "(" +
@@ -36,6 +36,7 @@ public class SQLConstantes {
                     manzana_cp_MZNABELONG + " TEXT," +
                     manzana_cp_ESTADO     + " INTEGER," +
                     manzana_cp_FRENTES    + " INTEGER," +
+                    manzana_cp_CARGADO    + " INTEGER," +
                     manzana_cp_shape      + " POLYGON"+");"
             ;
 

@@ -1,6 +1,7 @@
 package com.inei.appcartoinei.adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,9 +45,17 @@ public class ItemReporteAdapter extends RecyclerView.Adapter<ItemReporteAdapter.
     public void onBindViewHolder(@NonNull ViewHolderItem viewHolder, final int position) {
         final ManzanaCaptura manzana = manzanas.get(position);
         viewHolder.txtItem1.setText(""+manzana.getCodzona());
-        viewHolder.txtItem2.setText(""+manzana.getCodmzna());
+        viewHolder.txtItem2.setText(""+manzana.getCodmzna()+""+manzana.getSufmzna());
         viewHolder.txtItem3.setText(convertAccion(manzana.getEstado()));
-        viewHolder.checkViewItem.setImageResource(R.drawable.ic_add_circle_36_white);
+        if(manzana.getCargado()==3){
+            viewHolder.checkViewItem.setImageResource(R.drawable.ic_done_all_24_white);
+            viewHolder.checkViewItem.setColorFilter(Color.rgb(79, 195, 247));
+        }
+        else{
+            viewHolder.checkViewItem.setImageResource(R.drawable.ic_query_builder_24_white);
+            viewHolder.checkViewItem.setColorFilter(Color.rgb(171,171,171));
+        }
+
     }
 
     @Override

@@ -9,9 +9,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.maps.model.LatLng;
 import com.inei.appcartoinei.R;
 import com.inei.appcartoinei.modelo.DAO.Data;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,11 +29,15 @@ import java.util.ArrayList;
 public class CargarMarcoActivity extends AppCompatActivity {
     Button btn_cargar;
     Button btn_salir;
+    private RequestQueue mQueue;
+    Data data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cargar_marco);
+
+        mQueue = Volley.newRequestQueue(CargarMarcoActivity.this);
 
         btn_cargar = (Button) findViewById(R.id.btn_cargar);
         btn_salir = (Button) findViewById(R.id.btn_salir);
@@ -31,14 +45,7 @@ public class CargarMarcoActivity extends AppCompatActivity {
         btn_cargar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(validateTable("manzana_captura")){
-                    insertManzanaCaptura();
-                    Toast.makeText(CargarMarcoActivity.this,"Se Cargo Marco",Toast.LENGTH_LONG).show();
-                }
-                else{
-                    Toast.makeText(CargarMarcoActivity.this,"El marco ya fue cargado",Toast.LENGTH_LONG).show();
-                }
-
+                loadDatos();
             }
         });
 
@@ -51,18 +58,42 @@ public class CargarMarcoActivity extends AppCompatActivity {
 
     }
 
+    public void loadDatos(){
+        if(validateTable("manzana_marco") && validateTable("manzana_captura")  ){
+            downloadMarcoDistrito();
+            copyTable();
+            Toast.makeText(CargarMarcoActivity.this,"Se Cargo Marco",Toast.LENGTH_LONG).show();
+        }
+        else{
+            Toast.makeText(CargarMarcoActivity.this,"El marco ya fue cargado",Toast.LENGTH_LONG).show();
+        }
+    }
+
+
     public boolean validateTable(String tabla){
         boolean estado = false;
         try {
             Data data = new Data(CargarMarcoActivity.this);
             data.open();
-            estado = data.getValidacionTabla("manzana_captura");
+            estado = data.getValidacionTabla(tabla);
             data.close();
         }
         catch (IOException e){
             e.printStackTrace();
         }
         return estado;
+    }
+
+    public void copyTable(){
+        try {
+            Data data = new Data(CargarMarcoActivity.this);
+            data.open();
+            data.copyTableMarco();
+            data.close();
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
     }
 
     public void insertManzanaCaptura(){
@@ -114,19 +145,19 @@ public class CargarMarcoActivity extends AppCompatActivity {
         try {
             Data data = new Data(CargarMarcoActivity.this);
             data.open();
-            data.insertManzanaCaptura(1,1,"15","01","13","001","00","001","","",0,0,"GeomFromText('POLYGON(("+formatGeom(listalatlog1)+"))',4326)");
-            data.insertManzanaCaptura(1,1,"15","01","13","001","00","041","","",0,0,"GeomFromText('POLYGON(("+formatGeom(listalatlog41)+"))',4326)");
-            data.insertManzanaCaptura(1,1,"15","01","13","001","00","042","","",0,0,"GeomFromText('POLYGON(("+formatGeom(listalatlog42)+"))',4326)");
-            data.insertManzanaCaptura(1,1,"15","01","13","001","00","043","","",0,0,"GeomFromText('POLYGON(("+formatGeom(listalatlog43)+"))',4326)");
-            data.insertManzanaCaptura(1,1,"15","01","13","001","00","044","","",0,0,"GeomFromText('POLYGON(("+formatGeom(listalatlog44)+"))',4326)");
-            data.insertManzanaCaptura(1,1,"15","01","13","001","00","045","","",0,0,"GeomFromText('POLYGON(("+formatGeom(listalatlog45)+"))',4326)");
+            data.insertManzanaMarco(1,1,"15","01","13","001","00","001","","GeomFromText('POLYGON(("+formatGeom(listalatlog1)+"))',4326)");
+            data.insertManzanaMarco(1,1,"15","01","13","001","00","041","","GeomFromText('POLYGON(("+formatGeom(listalatlog41)+"))',4326)");
+            data.insertManzanaMarco(1,1,"15","01","13","001","00","042","","GeomFromText('POLYGON(("+formatGeom(listalatlog42)+"))',4326)");
+            data.insertManzanaMarco(1,1,"15","01","13","001","00","043","","GeomFromText('POLYGON(("+formatGeom(listalatlog43)+"))',4326)");
+            data.insertManzanaMarco(1,1,"15","01","13","001","00","044","","GeomFromText('POLYGON(("+formatGeom(listalatlog44)+"))',4326)");
+            data.insertManzanaMarco(1,1,"15","01","13","001","00","045","","GeomFromText('POLYGON(("+formatGeom(listalatlog45)+"))',4326)");
+
             data.close();
             Toast.makeText(CargarMarcoActivity.this,"Se Cargo Marco",Toast.LENGTH_LONG).show();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
     public String formatGeom(ArrayList<LatLng> poligono){
         String format ="";
         for (int i = 0; i <poligono.size() ; i++) {
@@ -139,4 +170,56 @@ public class CargarMarcoActivity extends AppCompatActivity {
         }
         return format;
     }
+
+    private void downloadMarcoDistrito() {
+        Toast.makeText(CargarMarcoActivity.this, "Descargando...", Toast.LENGTH_LONG).show();
+        String DjangoAPI_PROD_352 = "https://api.npoint.io/6e22a17095ca1c654675";
+
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
+                Request.Method.GET,
+                DjangoAPI_PROD_352,
+                null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try{
+                            for(int i=0;i<response.length();i++){
+
+                                JSONObject jsonObject = response.getJSONObject(i);
+                                String valor = (String) jsonObject.get("codmzna");
+                                Log.i("dato","["+i+"]="+valor);
+
+                                String codigoCCDD = (String) jsonObject.get("ccdd");
+                                String codigoCCPP = (String) jsonObject.get("ccpp");
+                                String codigoDIST = (String) jsonObject.get("ccdi");
+                                String codigoZONA = (String) jsonObject.get("codzona");
+                                String sufZONA = (String) jsonObject.get("sufzona");
+                                String codigoMANZANA = (String) jsonObject.get("codmzna");
+                                String sufMANZANA = (String) jsonObject.get("sufmzna");
+                                String polygon = (String) jsonObject.get("polygon");
+                                data = new Data(CargarMarcoActivity.this);
+                                data.open();
+                                data.insertManzanaMarco(1, 1, codigoCCDD, codigoCCPP, codigoDIST, codigoZONA, sufZONA, codigoMANZANA, sufMANZANA, polygon);
+                                data.close();
+                                if(i==response.length()-1)
+                                {
+                                    copyTable();
+                                    Toast.makeText(CargarMarcoActivity.this, "Se Descargo Marco", Toast.LENGTH_LONG).show();
+                                }
+
+                            }
+                        }catch (JSONException | IOException e){
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                Toast.makeText(CargarMarcoActivity.this,"No se pudo Sincronizar, Vuelva a intentarlo en unos minutos.",Toast.LENGTH_LONG).show();
+            }
+        });
+        mQueue.add(jsonArrayRequest);
+    }
+
 }

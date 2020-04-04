@@ -21,7 +21,7 @@
         </androidx.recyclerview.widget.RecyclerView>
     </LinearLayout>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab1"
+        android:id="@+id/fab_subir"
         android:visibility="visible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -98,6 +98,7 @@ public class DialogFusionManzana extends DialogFragment {
             @Override
             public void onClick(View v) {
                 listener.receiveFusion(2,manzanaSeleccionada,getArguments().getString(ID).trim());
+                Toast.makeText(getContext(),"Seleccione una manzana",Toast.LENGTH_SHORT).show();
                 dismiss();
             }
         });
@@ -109,6 +110,7 @@ public class DialogFusionManzana extends DialogFragment {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         listener.receiveFusion(0,manzanaSeleccionada,getArguments().getString(ID).trim());
+                        //Toast.makeText(getContext(),"Dibuje la fusiòn de manzanas",Toast.LENGTH_SHORT).show();
                     }
                 })
                 .setPositiveButton("Dibujar", new DialogInterface.OnClickListener() {
@@ -116,7 +118,7 @@ public class DialogFusionManzana extends DialogFragment {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         if (manzanaSeleccionada.size()>1)
                         {listener.receiveFusion(1,manzanaSeleccionada,getArguments().getString(ID).trim());
-                         //Toast.makeText(getContext(),"Dibuje la fusiòn de manzanas",Toast.LENGTH_SHORT).show();
+                         Toast.makeText(getContext(),"Dibuje la fusiòn de manzanas",Toast.LENGTH_SHORT).show();
                         }
                         else{
                             Toast.makeText(getContext(),"Debe seleccionar màs de una manzana",Toast.LENGTH_SHORT).show();
