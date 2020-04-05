@@ -1,7 +1,7 @@
 package com.inei.appcartoinei.modelo.pojos;
 
 public class ManzanaCaptura {
-    private int id;
+    private String idmanzana;
     private int iduser;
     private String ccdd;
     private String ccpp;
@@ -19,8 +19,8 @@ public class ManzanaCaptura {
     public ManzanaCaptura() {
     }
 
-    public ManzanaCaptura(int id, int iduser, String ccdd, String ccpp, String ccdi, String codzona, String sufzona, String codmzna, String sufmzna, String mznabelong, int estado, int frentes, int cargado, String shape) {
-        this.id = id;
+    public ManzanaCaptura(String idmanzana, int iduser, String ccdd, String ccpp, String ccdi, String codzona, String sufzona, String codmzna, String sufmzna, String mznabelong, int estado, int frentes, int cargado, String shape) {
+        this.idmanzana = idmanzana;
         this.iduser = iduser;
         this.ccdd = ccdd;
         this.ccpp = ccpp;
@@ -36,12 +36,12 @@ public class ManzanaCaptura {
         this.shape = shape;
     }
 
-    public int getId() {
-        return id;
+    public String getIdmanzana() {
+        return idmanzana;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdmanzana(String idmanzana) {
+        this.idmanzana = idmanzana;
     }
 
     public int getIduser() {

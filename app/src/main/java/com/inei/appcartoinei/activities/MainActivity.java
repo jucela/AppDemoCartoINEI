@@ -47,6 +47,10 @@ public class MainActivity extends AppCompatActivity  {
     Data data;
     private static final String TAG_DETAIL_FRAGMENT = "TAG_DETAIL_FRAGMENT";
 
+    final String ubigeo     = "150113";
+    final String codigoZona = "001";
+    final String sufijoZona = "00";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +67,7 @@ public class MainActivity extends AppCompatActivity  {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setupDrawerContent(navigationView);
 
-        MapActualizarManzanaFragment newFragment = new MapActualizarManzanaFragment("001",MainActivity.this);
+        MapActualizarManzanaFragment newFragment = new MapActualizarManzanaFragment(ubigeo,codigoZona,sufijoZona,MainActivity.this);
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.contedor_fragments,newFragment).commit();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer);
@@ -132,7 +136,7 @@ public class MainActivity extends AppCompatActivity  {
     public void viewFragment2(){
         Bundle args = new Bundle();
         args.putString("idUsuario",""+1);
-        MapActualizarManzanaFragment newFragment = new MapActualizarManzanaFragment("001",MainActivity.this);
+        MapActualizarManzanaFragment newFragment = new MapActualizarManzanaFragment(ubigeo,codigoZona,sufijoZona,MainActivity.this);
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.contedor_fragments,newFragment).commit();
 
@@ -276,12 +280,12 @@ public class MainActivity extends AppCompatActivity  {
         try {
             Data data = new Data(MainActivity.this);
             data.open();
-            data.insertManzanaMarco(1,1,"15","01","13","001","00","001","","GeomFromText('POLYGON(("+formatGeom(listalatlog1)+"))',4326)");
-            data.insertManzanaMarco(1,1,"15","01","13","001","00","041","","GeomFromText('POLYGON(("+formatGeom(listalatlog41)+"))',4326)");
-            data.insertManzanaMarco(1,1,"15","01","13","001","00","042","","GeomFromText('POLYGON(("+formatGeom(listalatlog42)+"))',4326)");
-            data.insertManzanaMarco(1,1,"15","01","13","001","00","043","","GeomFromText('POLYGON(("+formatGeom(listalatlog43)+"))',4326)");
-            data.insertManzanaMarco(1,1,"15","01","13","001","00","044","","GeomFromText('POLYGON(("+formatGeom(listalatlog44)+"))',4326)");
-            data.insertManzanaMarco(1,1,"15","01","13","001","00","045","","GeomFromText('POLYGON(("+formatGeom(listalatlog45)+"))',4326)");
+//            data.insertManzanaMarco(1,1,"15","01","13","001","00","001","","GeomFromText('POLYGON(("+formatGeom(listalatlog1)+"))',4326)");
+//            data.insertManzanaMarco(1,1,"15","01","13","001","00","041","","GeomFromText('POLYGON(("+formatGeom(listalatlog41)+"))',4326)");
+//            data.insertManzanaMarco(1,1,"15","01","13","001","00","042","","GeomFromText('POLYGON(("+formatGeom(listalatlog42)+"))',4326)");
+//            data.insertManzanaMarco(1,1,"15","01","13","001","00","043","","GeomFromText('POLYGON(("+formatGeom(listalatlog43)+"))',4326)");
+//            data.insertManzanaMarco(1,1,"15","01","13","001","00","044","","GeomFromText('POLYGON(("+formatGeom(listalatlog44)+"))',4326)");
+//            data.insertManzanaMarco(1,1,"15","01","13","001","00","045","","GeomFromText('POLYGON(("+formatGeom(listalatlog45)+"))',4326)");
 
             data.close();
             Toast.makeText(MainActivity.this,"Se Cargo Marco",Toast.LENGTH_LONG).show();
@@ -318,25 +322,27 @@ public class MainActivity extends AppCompatActivity  {
                     public void onResponse(JSONArray response) {
                         try{
                             for(int i=0;i<response.length();i++){
-
                                 JSONObject jsonObject = response.getJSONObject(i);
-                                String valor = (String) jsonObject.get("codmzna");
-                                Log.i("dato","["+i+"]="+valor);
-
-                                String codigoCCDD = (String) jsonObject.get("ccdd");
-                                String codigoCCPP = (String) jsonObject.get("ccpp");
-                                String codigoDIST = (String) jsonObject.get("ccdi");
-                                String codigoZONA = (String) jsonObject.get("codzona");
-                                String sufZONA = (String) jsonObject.get("sufzona");
-                                String codigoMANZANA = (String) jsonObject.get("codmzna");
-                                String sufMANZANA = (String) jsonObject.get("sufmzna");
-                                String polygon = (String) jsonObject.get("polygon");
+                                String idManzana = (String) jsonObject.get("idmanzana");
+                                String idUser    = "1";
+                                String ccdd      = (String) jsonObject.get("ccdd");
+                                String ccpp      = (String) jsonObject.get("ccpp");
+                                String ccdi      = (String) jsonObject.get("ccdi");
+                                String codZona   = (String) jsonObject.get("codzona");
+                                String sufZona   = (String) jsonObject.get("sufzona");
+                                String codMzna   = (String) jsonObject.get("codmzna");
+                                String sufMzna   = (String) jsonObject.get("sufmzna");
+                                String shape     = (String) jsonObject.get("polygon");
+                                Log.i("Contador:",""+i);
                                 data = new Data(MainActivity.this);
                                 data.open();
-                                data.insertManzanaMarco(1, 1, codigoCCDD, codigoCCPP, codigoDIST, codigoZONA, sufZONA, codigoMANZANA, sufMANZANA, polygon);
+                                data.insertManzanaMarco(idManzana,Integer.parseInt(idUser),ccdd,ccpp,ccdi,codZona,sufZona,codMzna,sufMzna,shape);
                                 data.close();
                                 if(i==response.length()-1)
-                                {Toast.makeText(MainActivity.this, "Se Descargo Marco", Toast.LENGTH_LONG).show();}
+                                {
+                                    copyTable();
+                                    Toast.makeText(MainActivity.this, "Se Descargo Marco", Toast.LENGTH_LONG).show();
+                                }
 
                             }
                         }catch (JSONException | IOException e){

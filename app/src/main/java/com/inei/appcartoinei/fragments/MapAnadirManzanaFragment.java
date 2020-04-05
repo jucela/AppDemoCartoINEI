@@ -523,7 +523,7 @@ public class MapAnadirManzanaFragment extends Fragment implements OnMapReadyCall
         try {
             data = new Data(context);
             data.open();
-            data.insertManzanaCaptura(1, 2, "15", "01", "13", "001", "00", idManzana, "", mznaBelong, estado, 0, 2,"GeomFromText('POLYGON((" + formatGeom(puntos) + "))',4326)");
+            data.insertManzanaCaptura("1", 2, "15", "01", "13", "001", "00", idManzana, "", mznaBelong, estado, 0, 2,"GeomFromText('POLYGON((" + formatGeom(puntos) + "))',4326)");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -534,7 +534,7 @@ public class MapAnadirManzanaFragment extends Fragment implements OnMapReadyCall
         try {
             data = new Data(context);
             data.open();
-            data.deleteManzanaCaptura(codZona,codMzna,sufMzna);
+            data.deleteManzanaCaptura("",codZona,codMzna,sufMzna);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -732,7 +732,7 @@ public class MapAnadirManzanaFragment extends Fragment implements OnMapReadyCall
         try {
             Data data = new Data(context);
             data.open();
-            manzanaCaptura = data.getManzanaCapturaXZonaMznaEstado(codZona,codMzna,sufMzna,estado);
+            manzanaCaptura = data.getManzanaCapturaXEstado(codZona,"",codMzna,sufMzna,estado);
             data.close();
         } catch (IOException e) {
             e.printStackTrace();

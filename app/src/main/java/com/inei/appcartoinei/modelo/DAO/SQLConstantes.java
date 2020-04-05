@@ -7,7 +7,7 @@ public class SQLConstantes {
     public static String tb_manzana_captura ="manzana_captura";
     public static String tb_manzana_marco   ="manzana_marco";
 
-    public static final String manzana_cp_id         = "id";
+    public static final String manzana_cp_idmanzana  = "idmanzana";
     public static final String manzana_cp_iduser     = "iduser";
     public static final String manzana_cp_CCDD       = "ccdd";
     public static final String manzana_cp_CCPP       = "ccpp";
@@ -24,7 +24,7 @@ public class SQLConstantes {
 
     public static final String SQL_CREATE_TABLA_MANZANA_CAPTURA =
             "CREATE TABLE " + tb_manzana_captura + "(" +
-                    manzana_cp_id         + " INTEGER," +
+                    manzana_cp_idmanzana         + " TEXT," +
                     manzana_cp_iduser     + " INTEGER," +
                     manzana_cp_CCDD       + " TEXT," +
                     manzana_cp_CCPP       + " TEXT," +
@@ -42,7 +42,7 @@ public class SQLConstantes {
 
     public static final String SQL_CREATE_TABLA_MANZANA_MARCO =
             "CREATE TABLE " + tb_manzana_marco + "(" +
-                    manzana_cp_id         + " INTEGER," +
+                    manzana_cp_idmanzana         + " TEXT," +
                     manzana_cp_iduser     + " INTEGER," +
                     manzana_cp_CCDD       + " TEXT," +
                     manzana_cp_CCPP       + " TEXT," +

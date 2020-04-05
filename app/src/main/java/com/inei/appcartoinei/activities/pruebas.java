@@ -160,7 +160,7 @@ public class pruebas {
          return newlista;
     }
 
-    public static String getDigito(String cadena){
+    public static String getDigitos(String cadena){
         //String ultimo = cadena.substring(cadena.length() - 1);
         String ultimo = cadena.substring(0, cadena.length() - 1);
         return  ultimo;
@@ -170,7 +170,7 @@ public class pruebas {
         ArrayList<String> newlista = new ArrayList<>();
         for(int i=0;i<lista.size();i++){
             if (lista.get(i).length()>3)
-            {newlista.add(getDigito(lista.get(i)));}
+            {newlista.add(getDigitos(lista.get(i)));}
             else{
                 newlista.add(lista.get(i));
             }
@@ -181,7 +181,7 @@ public class pruebas {
     public static String cleanCadena(String cadena){
         String resultado="";
             if (cadena.length()>3)
-            {resultado=getDigito(cadena);}
+            {resultado=getDigitos(cadena);}
             else{
                 resultado=cadena;
             }
@@ -234,40 +234,55 @@ public class pruebas {
     }
 
 
+    public static String getUltimoDigito(String cadena){
+        String ultimo = cadena.substring(cadena.length() - 1);
+        return  ultimo;
+    }
+
+    public static ArrayList<String> generateNewIdManzana(int cantidad, String idmanzana){
+        ArrayList<String> lista = new ArrayList<>();
+        char valor='0';
+        char letraObtenida='0';
+        int  letraCastInt;
+        int a = 65;
+        String codmzna;
+
+        if(idmanzana.trim().length()==4){
+            letraObtenida = getUltimoDigito(idmanzana).charAt(0);
+            letraCastInt = (int) letraObtenida;
+            a = letraCastInt+1;
+            codmzna = getDigitos(idmanzana).trim();
+        }
+        else{
+            a = 65;
+            codmzna=idmanzana.trim();
+        }
+
+
+        for (int i=0;i<cantidad;i++)
+        {
+
+            valor = (char) a;
+            lista.add(codmzna+String.valueOf(valor));
+            a++;
+        }
+        return lista;
+    }
+
 
 
 
 
     public static void main(String[] args) {
-        System.out.println ("Empezamos la ejecución del programa");
-        //countDigitos(0);
-        System.out.println ("resultado casteo:"+castCaracter('C'));
-        ArrayList<String> lista = new ArrayList<>();
-        lista.add("041");
-        lista.add("042");
-//        lista.add("043");
-//        lista.add("043");
-        System.out.println ("resultado letra:"+getLetra(lista,"041"));
-//        for(int i=0;i<cleanLista(lista).size();i++){
-//            System.out.println ("resultadosss:"+cleanLista(lista).get(i));
-//        }
-//        for(int i=0;i<filtrarNumero(lista).size();i++){
-//            System.out.println ("resultado:"+filtrarNumero(lista).get(i));
-//        }
+        System.out.println ("Empezamos la ejecución del programax:");
+//        //countDigitos(0);
+//        System.out.println ("resultado casteo:"+castCaracter('C'));
+//        ArrayList<String> lista = new ArrayList<>();
+//        lista.add("041");
+//        lista.add("042");
+        for(int i=0;i<generateNewIdManzana(4,"041").size();i++){
+            System.out.println ("resultadoss:"+generateNewIdManzana(4,"041").get(i));
+        }
 
-//        for (int i=0;i<pruebaReplanteo2().size();i++)
-//        {
-//            System.out.println("Valor1:" +pruebaReplanteo2().get(i).getIdManzana());
-//            System.out.println("Valor2:" +pruebaReplanteo2().get(i).getLista());
-//            for (int x=0;x<pruebaReplanteo2().get(i).getLista().size();x++)
-//            {
-//                System.out.println("Valor3:" +(pruebaReplanteo2().get(i).getLista().get(x)));
-//            }
-//        }
-
-//        for (int i=0;i<replantear(2,"044").size();i++)
-//        {
-//            System.out.println("Valor:" +replantear(2, "044").get(i));
-//        }
     }
 }
