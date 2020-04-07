@@ -47,12 +47,14 @@ public class ReporteFragment extends Fragment {
     private RequestQueue mQueue;
     Data data;
     final String codigoZona;
+    final String sufijoZona;
 
 
     private OnFragmentInteractionListener mListener;
 
-    public ReporteFragment(String codigoZona,Context context) {
+    public ReporteFragment(String codigoZona,String sufijoZona, Context context) {
         this.codigoZona = codigoZona;
+        this.sufijoZona = sufijoZona;
         this.context = context;
     }
 
@@ -76,7 +78,7 @@ public class ReporteFragment extends Fragment {
         super.onViewCreated(view,savedInstanceState);
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context);
-        itemReporteAdapter = new ItemReporteAdapter(getAllManzanaCaptura(),new ItemReporteAdapter.OnItemClickListener(){
+        itemReporteAdapter = new ItemReporteAdapter(getAllManzanaCapturaTrabajadas(),new ItemReporteAdapter.OnItemClickListener(){
             @Override
             public void onItemClick(View view, int position) {
                 Toast.makeText(getContext(),"posiciòn:"+position,Toast.LENGTH_SHORT).show();
@@ -95,6 +97,7 @@ public class ReporteFragment extends Fragment {
                 //Toast.makeText(getContext(),"xxx",Toast.LENGTH_SHORT).show();
             }
         });
+        Toast.makeText(getContext(),""+getAllManzanaCapturaXCargado().size(),Toast.LENGTH_SHORT).show();
     }
 
     public void onButtonPressed(Uri uri) {
@@ -120,12 +123,14 @@ public class ReporteFragment extends Fragment {
     }
 
     public void uploadDatos(){
+
         ArrayList<ManzanaCaptura> lista = new ArrayList<>();
         String stringJsonFinal = "";
         lista = getAllManzanaCapturaXCargado();
         String dato="xxx";
 
         if(lista.size()>0){
+            Toast.makeText(getContext(),"Conectando con el servidor...",Toast.LENGTH_SHORT).show();
             for (int i=0;i<lista.size();i++){
 
                 try {
@@ -136,7 +141,7 @@ public class ReporteFragment extends Fragment {
                     JSONArray arrayGeom = new JSONArray();
                     JSONObject obj = new JSONObject(stringJsonFinal);
                     arrayGeom.put(obj);
-                    insertarServicio(arrayGeom);
+                    insertarServicio(arrayGeom,lista.get(i).getCodzona(),lista.get(i).getSufzona(),lista.get(i).getCodmzna(),lista.get(i).getSufmzna(),lista.size(),i);
                 } catch (Throwable tx) {
                     Log.e("My App", "Could not parse malformed JSON: \"" + stringJsonFinal + "\"");
                 }
@@ -148,21 +153,22 @@ public class ReporteFragment extends Fragment {
     }
 
 
-    public void insertarServicio( final JSONArray arrayGeom){
+    public void insertarServicio( final JSONArray arrayGeom,final String codZona,final String sufZona,final String codMzna,final String sufMzna,final int listaSize,final int position){
         String url = "http://arcgis4.inei.gob.pe:6080/arcgis/rest/services/DESARROLLO/servicio_prueba_captura/FeatureServer/0/addFeatures";
         StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.i("SUCCESS", response);
-                ArrayList<ManzanaCaptura> lista = new ArrayList<>();
-                lista = getAllManzanaCapturaXCargado();
-                for (int i=0;i<lista.size();i++){
-                    setUpdateManzanaCaptura(lista.get(i).getCodzona(),lista.get(i).getCodmzna(),lista.get(i).getSufmzna(),3);
+                Log.i("mensaje1:", response);
+                setUpdateManzanaCaptura(codZona,sufZona,codMzna,sufMzna,3);
+                Log.i("mensaje2",""+listaSize+""+position);
+                if(listaSize==position+1)
+                {
+                    itemReporteAdapter.notifyDataSetChanged();
+                    itemReporteAdapter = new ItemReporteAdapter(getAllManzanaCapturaTrabajadas(),null);
+                    recyclerView.setAdapter(itemReporteAdapter);
+                    Toast.makeText(getContext(),"Se Inserto "+listaSize+" registros en el servidor",Toast.LENGTH_SHORT).show();
                 }
-                itemReporteAdapter.notifyDataSetChanged();
-                itemReporteAdapter = new ItemReporteAdapter(getAllManzanaCaptura(),null);
-                recyclerView.setAdapter(itemReporteAdapter);
-                Toast.makeText(getContext(),"Se Inserto en el Servidor Correctamente!",Toast.LENGTH_SHORT).show();
+
             }
         }, new Response.ErrorListener() {
             @Override
@@ -176,8 +182,6 @@ public class ReporteFragment extends Fragment {
             public String getBodyContentType() {
                 return "application/x-www-form-urlencoded; charset=utf-8";
             }
-
-
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
@@ -191,12 +195,12 @@ public class ReporteFragment extends Fragment {
     }
 
 
-    public ArrayList<ManzanaCaptura> getAllManzanaCaptura()
+    public ArrayList<ManzanaCaptura> getAllManzanaCapturaTrabajadas()
     { ArrayList<ManzanaCaptura> manzanas = new ArrayList<>();
         try {
             Data data = new Data(context);
             data.open();
-            manzanas = data.getAllManzanaCapturaXZona(codigoZona);
+            manzanas = data.getAllManzanaCapturaTrabajadas(codigoZona,sufijoZona);
             data.close();
         }
         catch (IOException e){
@@ -210,7 +214,7 @@ public class ReporteFragment extends Fragment {
         try {
             Data data = new Data(context);
             data.open();
-            manzanas = data.getAllManzanaCapturaXZona(codigoZona);
+            manzanas = data.getAllManzanaCapturaXZonaCargado(codigoZona,sufijoZona);
             data.close();
         }
         catch (IOException e){
@@ -219,11 +223,11 @@ public class ReporteFragment extends Fragment {
         return manzanas;
     }
 
-    public void setUpdateManzanaCaptura(String codZona,String codMzna,String sufMzna,int cargado)
+    public void setUpdateManzanaCaptura(String codZona,String sufZona,String codMzna,String sufMzna,int cargado)
     { try {
         data = new Data(context);
         data.open();
-        data.updateManzanaCapturaXCargado(codZona,codMzna,sufMzna,cargado);
+        data.updateManzanaCapturaXCargado(codZona,sufZona,codMzna,sufMzna,cargado);
     } catch (IOException e) {
         e.printStackTrace();
     }

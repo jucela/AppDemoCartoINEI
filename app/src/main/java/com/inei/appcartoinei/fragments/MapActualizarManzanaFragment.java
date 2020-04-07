@@ -183,9 +183,10 @@ public class MapActualizarManzanaFragment extends Fragment implements OnMapReady
         mgoogleMap.getUiSettings().setMyLocationButtonEnabled(true);//GPS
         mgoogleMap.setOnMapClickListener(this);
         final LatLng peru = new LatLng(-9, -74);
+        final LatLng jmaria = new LatLng(-12.065256655999974, -77.044274425999959);
 
         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        CameraPosition Liberty = CameraPosition.builder().target(peru).zoom(16).bearing(0).tilt(45).build();
+        CameraPosition Liberty = CameraPosition.builder().target(jmaria).zoom(16).bearing(0).tilt(45).build();
         googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(Liberty));
 
         if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
@@ -194,9 +195,9 @@ public class MapActualizarManzanaFragment extends Fragment implements OnMapReady
 
             if (location != null) {
                 LatLng gps = new LatLng(location.getLatitude(), location.getLongitude());
-                mgoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(gps, 12));
+                mgoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(jmaria, 16));
             } else {
-                mgoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(peru, 5));
+                mgoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(jmaria, 16));
             }
         } else {
             if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)) {
@@ -292,15 +293,13 @@ public class MapActualizarManzanaFragment extends Fragment implements OnMapReady
             Toast.makeText(getContext(), "No se encontraron Manzanas", Toast.LENGTH_SHORT).show();
         }
         else {
-            for(int i=0;i<getListaManzanaCapturaXZona().size();i++){
-
-                codZona = getListaManzanaCapturaXZona().get(i).getCodzona();
-                sufZona = getListaManzanaCapturaXZona().get(i).getSufzona();
-                codMzna = getListaManzanaCapturaXZona().get(i).getCodmzna();
-                sufMzna = getListaManzanaCapturaXZona().get(i).getSufmzna();
-                estado = Integer.toString(getListaManzanaCapturaXZona().get(i).getEstado());
-                Log.i("valor:",""+codZona+"/"+estado);
-                listaVertices = getLatLngShapeManzana(getListaManzanaCapturaXZona().get(i).getShape());
+              for(ManzanaCaptura manzana : getListaManzanaCapturaXZona() ){
+                codZona = manzana.getCodzona();
+                sufZona = manzana.getSufzona();
+                codMzna = manzana.getCodmzna();
+                sufMzna = manzana.getSufmzna();
+                estado = Integer.toString(manzana.getEstado());
+                listaVertices = getLatLngShapeManzana(manzana.getShape());
 
                 setNumeroManzanaText(getContext(),codMzna+""+sufMzna,listaVertices);
 
@@ -314,84 +313,64 @@ public class MapActualizarManzanaFragment extends Fragment implements OnMapReady
                 GeoJsonFeature geoJsonFeature = new GeoJsonFeature(geoJsonPolygon, codMzna, properties, null);
                 GeoJsonPolygonStyle geoJsonPolygonStyle = new GeoJsonPolygonStyle();
                 geoJsonPolygonStyle.setStrokeWidth(3);
-                geoJsonFeature.setPolygonStyle(geoJsonPolygonStyle);
-                layer.isLayerOnMap();
 
                 if(estado.equals("0"))
                 {
                     geoJsonPolygonStyle.setZIndex(0f);
                     geoJsonPolygonStyle.setStrokeColor(Color.RED);
-                    geoJsonFeature.setPolygonStyle(geoJsonPolygonStyle);
-                    layer.addFeature(geoJsonFeature);
                 }
                 if(estado.equals("1"))
                 {
                     geoJsonPolygonStyle.setZIndex(0f);
                     geoJsonPolygonStyle.setStrokeColor(Color.MAGENTA);
-                    geoJsonFeature.setPolygonStyle(geoJsonPolygonStyle);
-                    layer.addFeature(geoJsonFeature);
                 }
                 if(estado.equals("2"))
                 {
                     geoJsonPolygonStyle.setZIndex(2f);
                     geoJsonPolygonStyle.setFillColor(Color.GREEN);
                     geoJsonPolygonStyle.setStrokeColor(Color.GRAY);
-                    geoJsonFeature.setPolygonStyle(geoJsonPolygonStyle);
-                    layer.addFeature(geoJsonFeature);
                 }
                 if(estado.equals("3"))
                 {
                     geoJsonPolygonStyle.setZIndex(2f);
                     geoJsonPolygonStyle.setFillColor(Color.CYAN);
                     geoJsonPolygonStyle.setStrokeColor(Color.GRAY);
-                    geoJsonFeature.setPolygonStyle(geoJsonPolygonStyle);
-                    layer.addFeature(geoJsonFeature);
                 }
                 if(estado.equals("4"))
                 {
                     geoJsonPolygonStyle.setZIndex(3f);
                     geoJsonPolygonStyle.setFillColor(Color.YELLOW);
                     geoJsonPolygonStyle.setStrokeColor(Color.GRAY);
-                    geoJsonFeature.setPolygonStyle(geoJsonPolygonStyle);
-                    layer.addFeature(geoJsonFeature);
                 }
                 if(estado.equals("5"))
                 {
                     geoJsonPolygonStyle.setZIndex(3f);
                     geoJsonPolygonStyle.setFillColor(Color.BLUE);
                     geoJsonPolygonStyle.setStrokeColor(Color.GRAY);
-                    geoJsonFeature.setPolygonStyle(geoJsonPolygonStyle);
-                    layer.addFeature(geoJsonFeature);
                 }
                 if(estado.equals("6"))
                 {
                     geoJsonPolygonStyle.setZIndex(3f);
                     geoJsonPolygonStyle.setFillColor(Color.RED);
                     geoJsonPolygonStyle.setStrokeColor(Color.GRAY);
-                    geoJsonFeature.setPolygonStyle(geoJsonPolygonStyle);
-                    layer.addFeature(geoJsonFeature);
                 }
                 if(estado.equals("7"))
                 {
                     geoJsonPolygonStyle.setZIndex(0f);
                     geoJsonPolygonStyle.setStrokeColor(Color.RED);
-                    geoJsonFeature.setPolygonStyle(geoJsonPolygonStyle);
-                    layer.addFeature(geoJsonFeature);
                 }
                 if(estado.equals("8"))
                 {
                     geoJsonPolygonStyle.setZIndex(0f);
                     geoJsonPolygonStyle.setStrokeColor(Color.RED);
-                    geoJsonFeature.setPolygonStyle(geoJsonPolygonStyle);
-                    layer.addFeature(geoJsonFeature);
                 }
                 if(estado.equals("9"))
                 {
                     geoJsonPolygonStyle.setZIndex(0f);
                     geoJsonPolygonStyle.setStrokeColor(Color.RED);
-                    geoJsonFeature.setPolygonStyle(geoJsonPolygonStyle);
-                    layer.addFeature(geoJsonFeature);
                 }
+                geoJsonFeature.setPolygonStyle(geoJsonPolygonStyle);
+                layer.addFeature(geoJsonFeature);
             }
         }
     }
@@ -450,40 +429,36 @@ public class MapActualizarManzanaFragment extends Fragment implements OnMapReady
             GeoJsonPolygonStyle geoJsonPolygonStyle = new GeoJsonPolygonStyle();
             geoJsonPolygonStyle.setStrokeWidth(3);
             geoJsonPolygonStyle.setZIndex(3f);
-            geoJsonFeature.setPolygonStyle(geoJsonPolygonStyle);
+
             Log.i("valores:",""+codMzna+"/"+estado);
             switch (estado) {
                 case 0:
                     geoJsonPolygonStyle.setStrokeColor(Color.RED);
-                    layer.addFeature(geoJsonFeature);
                     break;
                 case 2:
                     geoJsonPolygonStyle.setFillColor(Color.GREEN);
                     geoJsonPolygonStyle.setStrokeColor(Color.GRAY);
-                    layer.addFeature(geoJsonFeature);
                     break;
                 case 3:
                     geoJsonPolygonStyle.setFillColor(Color.CYAN);
                     geoJsonPolygonStyle.setStrokeColor(Color.GRAY);
-                    layer.addFeature(geoJsonFeature);
                     break;
                 case 4:
                     geoJsonPolygonStyle.setFillColor(Color.YELLOW);
                     geoJsonPolygonStyle.setStrokeColor(Color.GRAY);
-                    layer.addFeature(geoJsonFeature);
                     break;
                 case 5:
                     geoJsonPolygonStyle.setFillColor(Color.BLUE);
                     geoJsonPolygonStyle.setStrokeColor(Color.GRAY);
-                    layer.addFeature(geoJsonFeature);
                     break;
                 case 6:
                     geoJsonPolygonStyle.setFillColor(Color.RED);
                     geoJsonPolygonStyle.setStrokeColor(Color.GRAY);
-                    layer.addFeature(geoJsonFeature);
                     break;
                 default:
             }
+            geoJsonFeature.setPolygonStyle(geoJsonPolygonStyle);
+            layer.addFeature(geoJsonFeature);
         } else {
             Toast.makeText(getContext(), "No se cargo manzana en el marco", Toast.LENGTH_SHORT).show();
         }
@@ -748,7 +723,7 @@ public class MapActualizarManzanaFragment extends Fragment implements OnMapReady
                                 accionManzana = 3;
                                 estadoDibujado = 1;
                                 listaManzanasSeleccionas.clear();
-                                listaManzanasSeleccionas.add(new FusionItem(1, codZona+""+sufijoZona,codMzna+""+sufMzna));
+                                listaManzanasSeleccionas.add(new FusionItem(1, codZona,codMzna+""+sufMzna));
                                 OpenDialogFusion(codMzna, listaManzanasSeleccionas);
                                 break;
                             case 1://Fraccionar
@@ -853,6 +828,7 @@ public class MapActualizarManzanaFragment extends Fragment implements OnMapReady
             for (int i = 0; i < listaManzanasSeleccionas.size(); i++) {
                 updateManzanaCaptura(codigoZona,sufijoZona,getDigitos(listaManzanasSeleccionas.get(i).getIdManzana()),getUltimoDigito(listaManzanasSeleccionas.get(i).getIdManzana()), newIdManzana.trim(), 7,1);
             }
+            cleanMapa();
             cleanPolygon();
             removeLayer();
             createLayerGeojsonMain();
@@ -971,8 +947,9 @@ public class MapActualizarManzanaFragment extends Fragment implements OnMapReady
                 listPointsDibujados = listPoints;
             }
             String idManzanaNueva = generateNewIdManzana(1, idManzanaSeleccionada).get(0);
-            updateManzanaCaptura(codigoZona,sufijoZona,idManzanaSeleccionada," ", "", 9,1);
+            updateManzanaCaptura(codigoZona,sufijoZona,getDigitos(idManzanaSeleccionada),getUltimoDigito(idManzanaSeleccionada), null, 9,1);
             insertManzanaCaptura(getDigitos(idManzanaNueva),getUltimoDigito(idManzanaNueva), idManzanaSeleccionada, 5, listPointsDibujados);
+            cleanMapa();
             cleanPolygon();
             removeLayer();
             createLayerGeojsonMain();

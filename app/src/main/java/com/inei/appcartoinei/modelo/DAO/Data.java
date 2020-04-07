@@ -338,11 +338,11 @@ public class Data {
         return manzanas;
     }
 
-    public ArrayList<ManzanaCaptura> getAllManzanaCapturaXZonaCargado(String codZona){
+    public ArrayList<ManzanaCaptura> getAllManzanaCapturaXZonaCargado(String codZona,String sufZona){
         ArrayList<ManzanaCaptura> manzanas = new ArrayList<>();
         Cursor cursor = null;
         try{
-            cursor = sqLiteDatabase.rawQuery("SELECT idmanzana,iduser,ccdd,ccpp,ccdi,codzona,sufzona,codmzna,sufmzna,mznabelong,estado,frentes,cargado,AsGeoJSON(shape) geom FROM manzana_captura WHERE codzona='"+codZona+"' and cargado Between 1 And 2",null);
+            cursor = sqLiteDatabase.rawQuery("SELECT idmanzana,iduser,ccdd,ccpp,ccdi,codzona,sufzona,codmzna,sufmzna,mznabelong,estado,frentes,cargado,AsGeoJSON(shape) geom FROM manzana_captura WHERE codzona='"+codZona+"' and sufzona='"+sufZona+"' and cargado Between 1 And 2",null);
             while(cursor.moveToNext()){
                 ManzanaCaptura manzana = new ManzanaCaptura();
                 manzana.setIdmanzana(cursor.getString(0));
@@ -353,7 +353,36 @@ public class Data {
                 manzana.setCodzona(cursor.getString(5));
                 manzana.setSufzona(cursor.getString(6));
                 manzana.setCodmzna(cursor.getString(7));
-                manzana.setSufzona(cursor.getString(8));
+                manzana.setSufmzna(cursor.getString(8));
+                manzana.setMznabelong(cursor.getString(9));
+                manzana.setEstado(cursor.getInt(10));
+                manzana.setFrentes(cursor.getInt(11));
+                manzana.setCargado(cursor.getInt(12));
+                manzana.setShape(cursor.getString(13));
+                manzanas.add(manzana);
+            }
+        }finally{
+            if(cursor != null) cursor.close();
+        }
+        return manzanas;
+    }
+
+    public ArrayList<ManzanaCaptura> getAllManzanaCapturaTrabajadas(String codZona,String sufZona){
+        ArrayList<ManzanaCaptura> manzanas = new ArrayList<>();
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.rawQuery("SELECT idmanzana,iduser,ccdd,ccpp,ccdi,codzona,sufzona,codmzna,sufmzna,mznabelong,estado,frentes,cargado,AsGeoJSON(shape) geom FROM manzana_captura WHERE codzona='"+codZona+"' and sufzona='"+sufZona+"' and cargado Between 1 And 3",null);
+            while(cursor.moveToNext()){
+                ManzanaCaptura manzana = new ManzanaCaptura();
+                manzana.setIdmanzana(cursor.getString(0));
+                manzana.setIduser(cursor.getInt(1));
+                manzana.setCcdd(cursor.getString(2));
+                manzana.setCcpp(cursor.getString(3));
+                manzana.setCcdi(cursor.getString(4));
+                manzana.setCodzona(cursor.getString(5));
+                manzana.setSufzona(cursor.getString(6));
+                manzana.setCodmzna(cursor.getString(7));
+                manzana.setSufmzna(cursor.getString(8));
                 manzana.setMznabelong(cursor.getString(9));
                 manzana.setEstado(cursor.getInt(10));
                 manzana.setFrentes(cursor.getInt(11));
@@ -437,8 +466,8 @@ public class Data {
         sqLiteDatabase.execSQL("UPDATE manzana_captura SET mznabelong='"+mznaBelong+"',estado="+estado+",cargado="+cargado+" WHERE codzona='"+codZona+"' and sufzona='"+sufZona+"' and codmzna='"+codMzna+"' and sufmzna='"+sufMzna+"';");
     }
 
-    public void updateManzanaCapturaXCargado(String codzona,String codmzna,String sufmzna,int cargado){
-        sqLiteDatabase.execSQL("UPDATE manzana_captura SET cargado="+cargado+" WHERE codzona='"+codzona+"' and codmzna='"+codmzna+"' and sufmzna='"+sufmzna+"';");
+    public void updateManzanaCapturaXCargado(String codZona,String sufZona,String codMzna,String sufMzna,int cargado){
+        sqLiteDatabase.execSQL("UPDATE manzana_captura SET cargado="+cargado+" WHERE codzona='"+codZona+"' and sufzona='"+sufZona+"' and codmzna='"+codMzna+"' and sufmzna='"+sufMzna+"';");
     }
 
     public void deleteTblManzanaCaptura(){

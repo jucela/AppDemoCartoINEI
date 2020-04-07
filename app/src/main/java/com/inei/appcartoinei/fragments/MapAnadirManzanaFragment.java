@@ -85,15 +85,19 @@ public class MapAnadirManzanaFragment extends Fragment implements OnMapReadyCall
     private DataBaseHelper op;
     Data    data;
     Context context;
+    final String ubigeo;
     final String codigoZona;
+    final String sufijoZona;
 
     GeoJsonLayer layer;
     GeoJsonPolygonStyle polygonStyle;
 
     private OnFragmentInteractionListener mListener;
 
-    public MapAnadirManzanaFragment(String codigoZona,Context context) {
+    public MapAnadirManzanaFragment(String ubigeo,String codigoZona,String sufijoZona,Context context) {
+        this.ubigeo = ubigeo;
         this.codigoZona = codigoZona;
+        this.sufijoZona = sufijoZona;
         this.context = context;
     }
 
@@ -164,9 +168,10 @@ public class MapAnadirManzanaFragment extends Fragment implements OnMapReadyCall
         mgoogleMap.getUiSettings().setMyLocationButtonEnabled(true);//GPS
         mgoogleMap.setOnMapClickListener(this);
         final LatLng peru = new LatLng(-9, -74);
+        final LatLng jmaria = new LatLng(-12.065256655999974, -77.044274425999959);
 
         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        CameraPosition Liberty = CameraPosition.builder().target(peru).zoom(16).bearing(0).tilt(45).build();
+        CameraPosition Liberty = CameraPosition.builder().target(jmaria).zoom(16).bearing(0).tilt(45).build();
         googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(Liberty));
 
         if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION)== PackageManager.PERMISSION_GRANTED){
@@ -175,10 +180,10 @@ public class MapAnadirManzanaFragment extends Fragment implements OnMapReadyCall
 
             if (location!=null){
                 LatLng gps=new LatLng(location.getLatitude(),location.getLongitude());
-                mgoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(gps,12));
+                mgoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(jmaria,16));
             }
             else{
-                mgoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(peru,5));
+                mgoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(peru,16));
             }
         }
         else {
@@ -279,6 +284,7 @@ public class MapAnadirManzanaFragment extends Fragment implements OnMapReadyCall
     private void loadFeatureAllManzanas() {
         ArrayList<LatLng> listaVertices = new ArrayList<>();
         String codZona = "";
+        String sufZona = "";
         String codMzna = "";
         String sufMzna = "";
         String estado = "";
@@ -286,19 +292,21 @@ public class MapAnadirManzanaFragment extends Fragment implements OnMapReadyCall
             Toast.makeText(getContext(), "No se encontraron Manzanas Captura", Toast.LENGTH_SHORT).show();
         }
         else {
-            for(int i=0;i<getListaManzanaCapturaXZona().size();i++){
+            for(ManzanaCaptura manzana : getListaManzanaCapturaXZona()){
 
-                codZona = getListaManzanaCapturaXZona().get(i).getCodzona();
-                codMzna = getListaManzanaCapturaXZona().get(i).getCodmzna();
-                sufMzna = getListaManzanaCapturaXZona().get(i).getSufmzna();
-                estado = Integer.toString(getListaManzanaCapturaXZona().get(i).getEstado());
-                listaVertices = getLatLngShapeManzana(getListaManzanaCapturaXZona().get(i).getShape());
+                codZona = manzana.getCodzona();
+                sufZona = manzana.getSufzona();
+                codMzna = manzana.getCodmzna();
+                sufMzna = manzana.getSufmzna();
+                estado = Integer.toString(manzana.getEstado());
+                listaVertices = getLatLngShapeManzana(manzana.getShape());
 
                 setNumeroManzanaText(getContext(),codMzna+""+sufMzna,listaVertices);
 
                 GeoJsonPolygon geoJsonPolygon = new GeoJsonPolygon(Collections.singletonList(listaVertices));
                 HashMap<String, String> properties = new HashMap<String, String>();
                 properties.put("CODZONA", codZona);
+                properties.put("SUFZONA", sufZona);
                 properties.put("CODMZNA", codMzna);
                 properties.put("SUFMZNA", sufMzna);
                 properties.put("ESTADO", estado);
@@ -331,7 +339,7 @@ public class MapAnadirManzanaFragment extends Fragment implements OnMapReadyCall
             @Override
             public void onFeatureClick(Feature feature) {
                 if(feature!=null){
-                    int idManzana = getObjectManzanaCapturaXID(feature.getProperty("CODZONA"),feature.getProperty("CODMZNA"),feature.getProperty("SUFMZNA")).getEstado();
+                    int idManzana = getObjectManzanaCapturaXMzna(feature.getProperty("CODZONA"),feature.getProperty("SUFZONA"),feature.getProperty("CODMZNA"),feature.getProperty("SUFMZNA")).getEstado();
                     final int EVENTO = idManzana;
                         switch (EVENTO) {
                         case 0:
@@ -349,17 +357,19 @@ public class MapAnadirManzanaFragment extends Fragment implements OnMapReadyCall
         });
     }
 
-    /*4. CARGAR MANZANA MODIFICADA(CONFIRMADA,FUSION,FRACCIONAR,REPLANTEAR,ELIMINAR)*/
-    public void loadOnlyManzanaModificada(String codZona,String codMzna,String sufMzna, int estado) {
-        if (getObjectManzanaCapturaXZonaMznaEstado(codZona,codMzna,sufMzna, estado) != null) {
-            String codzona = getObjectManzanaCapturaXZonaMznaEstado(codZona,codMzna,sufMzna, estado).getCodzona();
-            String codmzna = getObjectManzanaCapturaXZonaMznaEstado(codZona,codMzna,sufMzna, estado).getCodmzna();
-            String sufmzna = getObjectManzanaCapturaXZonaMznaEstado(codZona,codMzna,sufMzna, estado).getSufmzna();
-            ArrayList<LatLng> listaVertices = getLatLngShapeManzana(getObjectManzanaCapturaXZonaMznaEstado(codZona,codMzna,sufMzna, estado).getShape());
+    /*4. CARGAR MANZANA MODIFICADA(AÑADIDA)*/
+    public void loadOnlyManzanaModificada(String codZona,String sufZona,String codMzna,String sufMzna, int estado) {
+        if (getObjectManzanaCaptura(codZona,sufZona,codMzna,sufMzna) != null) {
+            String codzona = getObjectManzanaCaptura(codZona,sufZona,codMzna,sufMzna).getCodzona();
+            String sufzona = getObjectManzanaCaptura(codZona,sufZona,codMzna,sufMzna).getSufzona();
+            String codmzna = getObjectManzanaCaptura(codZona,sufZona,codMzna,sufMzna).getCodmzna();
+            String sufmzna = getObjectManzanaCaptura(codZona,sufZona,codMzna,sufMzna).getSufmzna();
+            ArrayList<LatLng> listaVertices = getLatLngShapeManzana(getObjectManzanaCaptura(codZona,sufZona,codMzna,sufMzna).getShape());
 
             GeoJsonPolygon geoJsonPolygon = new GeoJsonPolygon(Collections.singletonList(listaVertices));
             HashMap<String, String> properties = new HashMap<String, String>();
             properties.put("CODZONA", codzona);
+            properties.put("SUFZONA", sufzona);
             properties.put("CODMZNA", codmzna);
             properties.put("SUFMZNA", sufmzna);
             properties.put("ESTADO", Integer.toString(estado));
@@ -500,14 +510,14 @@ public class MapAnadirManzanaFragment extends Fragment implements OnMapReadyCall
                 LatLng dato = listPoints.get(0);
                 listPoints.add(dato);
                 insertManzanaCaptura(numero, "", idAccionManzana,listPoints);
-                loadOnlyManzanaModificada(codigoZona,numero,"", 1);
+                loadOnlyManzanaModificada(codigoZona,sufijoZona,numero," ", 1);
                 cleanPolygon();
                 setEstadoAnadir();
                 Toast.makeText(getContext(), "Se registro Manzana correctamente!", Toast.LENGTH_SHORT).show();
             }
             else{
                 insertManzanaCaptura(numero, "", idAccionManzana,listPoints);
-                loadOnlyManzanaModificada(codigoZona,numero,"", 1);
+                loadOnlyManzanaModificada(codigoZona,sufijoZona,numero,"", 1);
                 cleanPolygon();
                 setEstadoAnadir();
                 Toast.makeText(getContext(), "Se registro Manzana correctamente!", Toast.LENGTH_SHORT).show();
@@ -727,12 +737,12 @@ public class MapAnadirManzanaFragment extends Fragment implements OnMapReadyCall
         return manzanaCaptura;
     }
 
-    public ManzanaCaptura getObjectManzanaCapturaXZonaMznaEstado(String codZona,String codMzna,String sufMzna, int estado) {
+    public ManzanaCaptura getObjectManzanaCaptura(String codZona,String sufZona,String codMzna,String sufMzna) {
         ManzanaCaptura manzanaCaptura = null;
         try {
             Data data = new Data(context);
             data.open();
-            manzanaCaptura = data.getManzanaCapturaXEstado(codZona,"",codMzna,sufMzna,estado);
+            manzanaCaptura = data.getManzanaCaptura(codZona,sufZona,codMzna,sufMzna);
             data.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -744,12 +754,12 @@ public class MapAnadirManzanaFragment extends Fragment implements OnMapReadyCall
 
 
     /*OBTENER UN REGISTRO DEL OBJETO CAPTURA MANZANA X ID*/
-    public ManzanaCaptura getObjectManzanaCapturaXID(String codZona,String codMzna,String sufMzna) {
+    public ManzanaCaptura getObjectManzanaCapturaXMzna(String codZona,String sufZona,String codMzna,String sufMzna) {
         ManzanaCaptura manzanaCaptura = null;
         try {
             Data data = new Data(context);
             data.open();
-            manzanaCaptura = data.getManzanaCapturaXZonaIdSuf(codZona,codMzna,sufMzna);
+            manzanaCaptura = data.getManzanaCapturaXMzna(codZona,sufZona,codMzna,sufMzna);
             data.close();
         } catch (IOException e) {
             e.printStackTrace();
