@@ -57,26 +57,23 @@ import org.spatialite.database.SQLiteDatabase;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.BitSet;
 import java.util.Collections;
 import java.util.HashMap;
-
 
 public class MapAnadirManzanaFragment extends Fragment implements OnMapReadyCallback,GoogleMap.OnMapClickListener{
 
     GoogleMap mgoogleMap;
     MapView mapView;
     View view;
+    GeoJsonLayer layer;
     private LocationManager mLocationManager;
     private Location location;
     private Polygon poligon;
     private Marker vertice;
-
     private ArrayList<Marker> listaMarker = new ArrayList<Marker>();
     private ArrayList<LatLng> listPoints = new ArrayList<LatLng>() ;
 
-    private int idAccionManzana = 1;
-    private String codigozona="001";
+    private int accionManzana = 1;
     private FloatingActionButton fab2;
     private FloatingActionButton fab3;
     private FloatingActionButton fab4;
@@ -85,12 +82,10 @@ public class MapAnadirManzanaFragment extends Fragment implements OnMapReadyCall
     private DataBaseHelper op;
     Data    data;
     Context context;
+
     final String ubigeo;
     final String codigoZona;
     final String sufijoZona;
-
-    GeoJsonLayer layer;
-    GeoJsonPolygonStyle polygonStyle;
 
     private OnFragmentInteractionListener mListener;
 
@@ -167,7 +162,6 @@ public class MapAnadirManzanaFragment extends Fragment implements OnMapReadyCall
         mgoogleMap.getUiSettings().setZoomControlsEnabled(true);//Zoom
         mgoogleMap.getUiSettings().setMyLocationButtonEnabled(true);//GPS
         mgoogleMap.setOnMapClickListener(this);
-        final LatLng peru = new LatLng(-9, -74);
         final LatLng jmaria = new LatLng(-12.065256655999974, -77.044274425999959);
 
         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
@@ -183,7 +177,7 @@ public class MapAnadirManzanaFragment extends Fragment implements OnMapReadyCall
                 mgoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(jmaria,16));
             }
             else{
-                mgoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(peru,16));
+                mgoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(jmaria,16));
             }
         }
         else {
@@ -207,7 +201,7 @@ public class MapAnadirManzanaFragment extends Fragment implements OnMapReadyCall
         fab3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                visualizeSeleccionManzana(getNewManzanaAnadida(codigoZona));
+                visualizeAnadirManzana(getNewManzanaAnadida(codigoZona));
             }
         });
 
@@ -227,19 +221,14 @@ public class MapAnadirManzanaFragment extends Fragment implements OnMapReadyCall
                 removeLayer();
                 createLayerGeojsonMain();
                 loadFeatureAllManzanas();
-                setEventoLayer();
+                setEventoEstado();
+                setEstadoAnadir(true);
             }
         });
-
-//        mgoogleMap.addMarker(new MarkerOptions()
-//                .position(getCenterOfPolygon())
-//                .title("Hello world"));
-
         /*MOSTRAR CARGA DE TRABAJO*/
         createLayerGeojsonMain();
         loadFeatureAllManzanas();
-        setEventoLayer();
-        //addText(getContext(),mgoogleMap,new LatLng(-12.065256655999974,-77.044274425999959),"050",12,12);
+        setEventoEstado();
     }
 
     @Override
@@ -293,7 +282,6 @@ public class MapAnadirManzanaFragment extends Fragment implements OnMapReadyCall
         }
         else {
             for(ManzanaCaptura manzana : getListaManzanaCapturaXZona()){
-
                 codZona = manzana.getCodzona();
                 sufZona = manzana.getSufzona();
                 codMzna = manzana.getCodmzna();
@@ -313,28 +301,25 @@ public class MapAnadirManzanaFragment extends Fragment implements OnMapReadyCall
                 GeoJsonFeature geoJsonFeature = new GeoJsonFeature(geoJsonPolygon, codMzna, properties, null);
                 GeoJsonPolygonStyle geoJsonPolygonStyle = new GeoJsonPolygonStyle();
                 geoJsonPolygonStyle.setStrokeWidth(3);
-                geoJsonFeature.setPolygonStyle(geoJsonPolygonStyle);
                 if(!estado.equals("1"))
                 {
                     geoJsonPolygonStyle.setZIndex(0f);
                     geoJsonPolygonStyle.setStrokeColor(Color.RED);
-                    geoJsonFeature.setPolygonStyle(geoJsonPolygonStyle);
-                    layer.addFeature(geoJsonFeature);
                 }
                 if(estado.equals("1"))
                 {
                     geoJsonPolygonStyle.setZIndex(1f);
                     geoJsonPolygonStyle.setStrokeColor(Color.MAGENTA);
-                    geoJsonFeature.setPolygonStyle(geoJsonPolygonStyle);
-                    layer.addFeature(geoJsonFeature);
                 }
+                geoJsonFeature.setPolygonStyle(geoJsonPolygonStyle);
+                layer.addFeature(geoJsonFeature);
             }
         }
     }
 
     /*3 EJECUTAR EVENTO DEPENDIENDO DEL ESTADO DEL POLIGONO*/
     @SuppressLint("RestrictedApi")
-    public void setEventoLayer() {
+    public void setEventoEstado() {
         layer.setOnFeatureClickListener(new GeoJsonLayer.GeoJsonOnFeatureClickListener() {
             @Override
             public void onFeatureClick(Feature feature) {
@@ -344,11 +329,11 @@ public class MapAnadirManzanaFragment extends Fragment implements OnMapReadyCall
                         switch (EVENTO) {
                         case 0:
                             Log.e("mensajes:", "0");
-                            visualizeMensajeManzana(feature.getProperty("CODZONA"),feature.getProperty("CODMZNA"),feature.getProperty("SUFMZNA"));
+                            visualizeMensajeManzana(feature.getProperty("CODZONA"),feature.getProperty("SUFZONA"),feature.getProperty("CODMZNA"),feature.getProperty("SUFMZNA"));
                             break;
                         case 1:
                             Log.e("mensajes:", "1");
-                            visualizeEliminarManzana(feature.getProperty("CODZONA"),feature.getProperty("CODMZNA"),feature.getProperty("SUFMZNA"), feature.getProperty("ESTADO"), (GeoJsonFeature) feature);
+                            visualizeEliminarManzana(feature.getProperty("CODZONA"),feature.getProperty("SUFZONA"),feature.getProperty("CODMZNA"),feature.getProperty("SUFMZNA"), feature.getProperty("ESTADO"), (GeoJsonFeature) feature);
                             break;
                         default:
                     }
@@ -377,18 +362,17 @@ public class MapAnadirManzanaFragment extends Fragment implements OnMapReadyCall
             GeoJsonPolygonStyle geoJsonPolygonStyle = new GeoJsonPolygonStyle();
             geoJsonPolygonStyle.setStrokeWidth(3);
             geoJsonPolygonStyle.setZIndex(3f);
-            geoJsonFeature.setPolygonStyle(geoJsonPolygonStyle);
             switch (estado) {
                 case 0:
                     geoJsonPolygonStyle.setStrokeColor(Color.RED);
-                    layer.addFeature(geoJsonFeature);
                     break;
                 case 1:
                     geoJsonPolygonStyle.setStrokeColor(Color.MAGENTA);
-                    layer.addFeature(geoJsonFeature);
                     break;
                 default:
             }
+            geoJsonFeature.setPolygonStyle(geoJsonPolygonStyle);
+            layer.addFeature(geoJsonFeature);
         } else {
             Toast.makeText(getContext(), "No se cargo manzana en el marco", Toast.LENGTH_SHORT).show();
         }
@@ -400,7 +384,7 @@ public class MapAnadirManzanaFragment extends Fragment implements OnMapReadyCall
     }
 
     /*6. VISUALIZAR DIALOGO RESTAURAR MANZANA*/
-    public void visualizeEliminarManzana(final String codZona,final String codMzna,final String sufMzna, final String estado, final GeoJsonFeature feature) {
+    public void visualizeEliminarManzana(final String codZona,final String sufZona,final String codMzna,final String sufMzna, final String estado, final GeoJsonFeature feature) {
         final AlertDialog.Builder alert = new AlertDialog.Builder(getActivity(), R.style.ThemeOverlay_MaterialComponents_Dialog);
         final View dialogView = getActivity().getLayoutInflater().inflate(R.layout.layout_form_poligono, null);
         final TextView mensaje = (TextView) dialogView.findViewById(R.id.id_form_mensaje);
@@ -423,9 +407,9 @@ public class MapAnadirManzanaFragment extends Fragment implements OnMapReadyCall
                     @Override
                     public void onClick(View view) {
                         if (estado.equals("1")) {
+                            deleteManzanaCaptura(codZona,sufZona,codMzna,sufMzna);
                             removeFeature(feature);
-                            deleteManzanaCaptura(codZona,codMzna,sufMzna);
-                            Toast.makeText(getActivity().getApplicationContext(), "Manzana Restaurada", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity().getApplicationContext(), "Manzana Eliminada", Toast.LENGTH_SHORT).show();
                         }
                         alertDialog.dismiss();
                     }
@@ -443,12 +427,16 @@ public class MapAnadirManzanaFragment extends Fragment implements OnMapReadyCall
 
     /*************AÑADIR**********/
     /*1. MOSTRAR DIALOGO DE INFORMACION DE MANZANA*/
-    public  void visualizeMensajeManzana(String codZona,final String codMzna,final String sufMzna){
+    public  void visualizeMensajeManzana(final String codZona,final String sufZona,final String codMzna,final String sufMzna){
         final AlertDialog.Builder alert = new AlertDialog.Builder(getActivity(),R.style.ThemeOverlay_MaterialComponents_Dialog);
         final View dialogView = getActivity().getLayoutInflater().inflate(R.layout.layout_form_poligono, null);
+        final TextView ubigeos  = (TextView) dialogView.findViewById(R.id.id_form_ubigeo);
+        final TextView zona    = (TextView) dialogView.findViewById(R.id.id_form_zona);
         final TextView manzana = (TextView) dialogView.findViewById(R.id.id_form_manzana);
         final LinearLayout ly = (LinearLayout) dialogView.findViewById(R.id.id_form_ly_datos);
         ly.setVisibility(View.VISIBLE);
+        ubigeos.setText(""+ubigeo);
+        zona.setText(""+codZona);
         manzana.setText(""+codMzna+""+sufMzna);
         alert.setTitle("Información de Manzana");
         alert.setIcon(R.drawable.ic_info_outline);
@@ -471,7 +459,7 @@ public class MapAnadirManzanaFragment extends Fragment implements OnMapReadyCall
     }
 
     /*2. MOSTRAR DIALOGO PARA AÑADIR O DIBUJAR MANZANA*/
-    public  void visualizeSeleccionManzana(final String idmanzana){
+    public  void visualizeAnadirManzana(final String idmanzana){
         final AlertDialog.Builder alert = new AlertDialog.Builder(getActivity(),R.style.ThemeOverlay_MaterialComponents_Dialog);
         final View dialogView = getActivity().getLayoutInflater().inflate(R.layout.layout_form_poligono, null);
         final TextView mensaje = (TextView) dialogView.findViewById(R.id.id_form_mensaje);
@@ -505,23 +493,20 @@ public class MapAnadirManzanaFragment extends Fragment implements OnMapReadyCall
     /*3. INSERTAR MANZANA_CAPTURA A SQLITE INTERNO*/
     public  void saveManzanaCapturaAnadida(){
         final String numero = getNewManzanaAnadida(codigoZona);
+        ArrayList<LatLng> listPointsDibujados = new ArrayList<>();
         if(listPoints.size()>2) {
             if (listPoints.size() == 3) {
-                LatLng dato = listPoints.get(0);
-                listPoints.add(dato);
-                insertManzanaCaptura(numero, "", idAccionManzana,listPoints);
-                loadOnlyManzanaModificada(codigoZona,sufijoZona,numero," ", 1);
-                cleanPolygon();
-                setEstadoAnadir();
-                Toast.makeText(getContext(), "Se registro Manzana correctamente!", Toast.LENGTH_SHORT).show();
+                listPointsDibujados = listPoints;
+                LatLng dato = listPointsDibujados.get(0);
+                listPointsDibujados.add(dato);
+            } else {
+                listPointsDibujados = listPoints;
             }
-            else{
-                insertManzanaCaptura(numero, "", idAccionManzana,listPoints);
-                loadOnlyManzanaModificada(codigoZona,sufijoZona,numero,"", 1);
-                cleanPolygon();
-                setEstadoAnadir();
-                Toast.makeText(getContext(), "Se registro Manzana correctamente!", Toast.LENGTH_SHORT).show();
-            }
+            insertManzanaCaptura(numero," " ," ", accionManzana,listPointsDibujados);
+            loadOnlyManzanaModificada(codigoZona,sufijoZona,numero," ", 1);
+            cleanPolygon();
+            setEstadoAnadir(true);
+            Toast.makeText(getContext(), "Se registro Manzana correctamente!", Toast.LENGTH_SHORT).show();
         }
         else
         {Toast.makeText(getContext(),"Dibuje una Manzana",Toast.LENGTH_SHORT).show();}
@@ -529,22 +514,22 @@ public class MapAnadirManzanaFragment extends Fragment implements OnMapReadyCall
 
     /*******METODOS DE INTERACCION CON SQLITE***********/
     /*1. ELIMINAR MANZANA_CAPTURA EN SQLITE INTERNO*/
-    public void insertManzanaCaptura(String idManzana,String mznaBelong,int estado,ArrayList<LatLng> puntos) {
+    public void insertManzanaCaptura(String codMzna,String sufMzna,String mznaBelong,int estado,ArrayList<LatLng> puntos) {
         try {
             data = new Data(context);
             data.open();
-            data.insertManzanaCaptura("1", 2, "15", "01", "13", "001", "00", idManzana, "", mznaBelong, estado, 0, 2,"GeomFromText('POLYGON((" + formatGeom(puntos) + "))',4326)");
+            data.insertManzanaCaptura("1", 2, "15", "01", "13", "001", "00", codMzna, sufMzna, mznaBelong, estado, 0, 2,"GeomFromText('POLYGON((" + formatGeom(puntos) + "))',4326)");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     /*2. ELIMINAR MANZANA_CAPTURA EN SQLITE INTERNO*/
-    public  void deleteManzanaCaptura(String codZona,String codMzna,String sufMzna){
+    public  void deleteManzanaCaptura(String codZona,String sufZona,String codMzna,String sufMzna){
         try {
             data = new Data(context);
             data.open();
-            data.deleteManzanaCaptura("",codZona,codMzna,sufMzna);
+            data.deleteManzanaCaptura(codZona,sufZona,codMzna,sufMzna);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -626,8 +611,13 @@ public class MapAnadirManzanaFragment extends Fragment implements OnMapReadyCall
     }
 
     @SuppressLint("RestrictedApi")
-    public void setEstadoAnadir() {
-        fab3.setVisibility(View.VISIBLE);
+    public void setEstadoAnadir(boolean estado) {
+        if(estado){
+            fab3.setVisibility(View.VISIBLE);
+        }
+        else{
+            fab3.setVisibility(View.GONE);
+        }
     }
 
     /*******METODOS DE FLUJOS***********/
@@ -721,22 +711,6 @@ public class MapAnadirManzanaFragment extends Fragment implements OnMapReadyCall
         return listaManzana;
     }
 
-    /*OBTENER UN REGISTRO DEL OBJETO CAPTURA MANZANA*/
-    public ManzanaCaptura getObjectManzanaCapturaXIDEstado(String idmzna, int estado) {
-        ManzanaCaptura manzanaCaptura = null;
-        try {
-            Data data = new Data(context);
-            data.open();
-            manzanaCaptura = data.getManzanaCapturaXIdEstado(idmzna, estado);
-            data.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (NullPointerException e) {
-            e.getCause();
-        }
-        return manzanaCaptura;
-    }
-
     public ManzanaCaptura getObjectManzanaCaptura(String codZona,String sufZona,String codMzna,String sufMzna) {
         ManzanaCaptura manzanaCaptura = null;
         try {
@@ -751,7 +725,6 @@ public class MapAnadirManzanaFragment extends Fragment implements OnMapReadyCall
         }
         return manzanaCaptura;
     }
-
 
     /*OBTENER UN REGISTRO DEL OBJETO CAPTURA MANZANA X ID*/
     public ManzanaCaptura getObjectManzanaCapturaXMzna(String codZona,String sufZona,String codMzna,String sufMzna) {

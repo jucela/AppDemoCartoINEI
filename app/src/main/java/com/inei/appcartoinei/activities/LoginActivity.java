@@ -31,22 +31,17 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(usuario.getText().toString().equals("marco") && clave.getText().toString().equals("1234")){
-                    //Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                     Intent intent = new Intent(LoginActivity.this,CargarMarcoActivity.class);
                     startActivity(intent);
-
                 }
                 else {
                     if(usuario.getText().toString().equals("user") && clave.getText().toString().equals("1234")){
-                        //Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                         Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                         startActivity(intent);
-
                     }
                     else {
                     Toast.makeText(LoginActivity.this, "USUARIO O CONTRASEÑA INCORRECTA", Toast.LENGTH_SHORT).show();}
                 }
-                //finish();
             }
         });
     }

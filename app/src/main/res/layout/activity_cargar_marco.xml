@@ -35,8 +35,5 @@
             app:backgroundTint="#ef9a9a"
             android:text="Salir"
             android:layout_gravity="center_vertical" />
-
     </LinearLayout>
-
-
 </LinearLayout>

@@ -25,8 +25,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:padding="10dp">
+            android:layout_gravity="center">
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
                     android:id="@+id/fab_add_manzana"
                     android:clickable="true"
@@ -36,6 +35,4 @@
                     app:srcCompat="@drawable/ic_action_add"
                     android:tint="@color/colorWhite" />
         </LinearLayout>
-
-
 </LinearLayout>

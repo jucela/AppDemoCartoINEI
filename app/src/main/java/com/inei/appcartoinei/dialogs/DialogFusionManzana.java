@@ -4,19 +4,13 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatDialogFragment;
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,36 +18,22 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.inei.appcartoinei.R;
 import com.inei.appcartoinei.adapters.ItemFusionSeleccionAdapter;
-import com.inei.appcartoinei.modelo.DAO.Data;
 import com.inei.appcartoinei.modelo.pojos.FusionItem;
-import com.inei.appcartoinei.modelo.pojos.ManzanaCaptura;
-
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class DialogFusionManzana extends DialogFragment {
     public static final String TAG = DialogFusionManzana.class.getSimpleName();
     private RecyclerView recyclerView;
     private ItemFusionSeleccionAdapter itemFusionSeleccionAdapter;
-    public CardView cardView;
-    public CheckBox checkEstado;
-    public TextView txtIdzona,txtIdmanzana;
-    private ArrayList<FusionItem> datos = new ArrayList<>();
     private static ArrayList<FusionItem> manzanaSeleccionada = new ArrayList<>();
-    private ArrayList<FusionItem> datosAEnviar = new ArrayList<>();
-    ArrayList<FusionItem> listaManzanas = new ArrayList<>();
-    ArrayList<FusionItem> listaFiltrada = new ArrayList<>();
     private SendDialogListener listener;
     private static final String ID = "ID";
-    private static final String IDACCION = "IDACCION";
-    private static final String LISTAMANZANAS = "IDACCION";
     private FloatingActionButton btn_agregar;
 
     /*RECIBE PARAMETROS DEL FRAGMENT*/
     public static DialogFusionManzana newInstance(String idManzana,ArrayList<FusionItem> manzanas){
         Bundle arg = new Bundle();
         arg.putString(ID,idManzana);
-        //arg.putInt(IDACCION,idAcccion);
         manzanaSeleccionada = manzanas;
         DialogFusionManzana frag = new DialogFusionManzana();
         frag.setArguments(arg);
@@ -63,7 +43,6 @@ public class DialogFusionManzana extends DialogFragment {
     /*ENVIA PARAMETROS AL FRAGMENT*/
     public interface SendDialogListener {
         void receiveFusion(int estadoLayer, ArrayList<FusionItem> listaManzana, String idManzana);
-        //void selectionFusion(boolean estado);
     }
 
     @NonNull
@@ -110,7 +89,6 @@ public class DialogFusionManzana extends DialogFragment {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         listener.receiveFusion(0,manzanaSeleccionada,getArguments().getString(ID).trim());
-                        //Toast.makeText(getContext(),"Dibuje la fusiòn de manzanas",Toast.LENGTH_SHORT).show();
                     }
                 })
                 .setPositiveButton("Dibujar", new DialogInterface.OnClickListener() {

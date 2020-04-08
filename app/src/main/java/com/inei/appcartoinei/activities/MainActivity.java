@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -21,7 +20,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.android.gms.maps.model.LatLng;
 import com.google.android.material.navigation.NavigationView;
 import com.inei.appcartoinei.R;
 import com.inei.appcartoinei.fragments.MapActualizarManzanaFragment;
@@ -36,7 +34,6 @@ import org.json.JSONObject;
 import org.spatialite.database.SQLiteDatabase;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity  {
     private DrawerLayout drawerLayout;
@@ -45,8 +42,6 @@ public class MainActivity extends AppCompatActivity  {
     private DataBaseHelper op;
     private RequestQueue mQueue;
     Data data;
-    private static final String TAG_DETAIL_FRAGMENT = "TAG_DETAIL_FRAGMENT";
-
     final String ubigeo     = "150113";
     final String codigoZona = "001";
     final String sufijoZona = "00";
@@ -123,10 +118,7 @@ public class MainActivity extends AppCompatActivity  {
     }
 
     public void viewFragment1(){
-        Bundle args = new Bundle();
-        args.putString("idUsuario",""+1);
         MapAnadirManzanaFragment newFragment = new MapAnadirManzanaFragment(ubigeo,codigoZona,sufijoZona,MainActivity.this);
-        //newFragment.setArguments(args);
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.contedor_fragments,newFragment).commit();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer);
@@ -134,21 +126,15 @@ public class MainActivity extends AppCompatActivity  {
     }
 
     public void viewFragment2(){
-        Bundle args = new Bundle();
-        args.putString("idUsuario",""+1);
         MapActualizarManzanaFragment newFragment = new MapActualizarManzanaFragment(ubigeo,codigoZona,sufijoZona,MainActivity.this);
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.contedor_fragments,newFragment).commit();
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer);
         drawer.closeDrawer(GravityCompat.START);
     }
 
     public void viewFragment3(){
-        Bundle args = new Bundle();
-        args.putString("idUsuario",""+1);
-        ReporteFragment newFragment = new ReporteFragment(codigoZona,sufijoZona,MainActivity.this);
-        newFragment.setArguments(args);
+        ReporteFragment newFragment = new ReporteFragment(ubigeo,codigoZona,sufijoZona,MainActivity.this);
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.contedor_fragments,newFragment).commit();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer);
@@ -187,7 +173,6 @@ public class MainActivity extends AppCompatActivity  {
         if(validateTable("manzana_marco") && validateTable("manzana_captura")  ){
             downloadMarcoDistrito();
             copyTable();
-            Toast.makeText(MainActivity.this,"Se Cargo Marco",Toast.LENGTH_LONG).show();
         }
         else{
             Toast.makeText(MainActivity.this,"El marco ya fue cargado",Toast.LENGTH_LONG).show();
@@ -252,9 +237,8 @@ public class MainActivity extends AppCompatActivity  {
                                 if(i==response.length()-1)
                                 {
                                     copyTable();
-                                    Toast.makeText(MainActivity.this, "Se Descargo Marco", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(MainActivity.this, "Se Descargo Marco: "+(i+1)+" Registros", Toast.LENGTH_LONG).show();
                                 }
-
                             }
                         }catch (JSONException | IOException e){
                             e.printStackTrace();

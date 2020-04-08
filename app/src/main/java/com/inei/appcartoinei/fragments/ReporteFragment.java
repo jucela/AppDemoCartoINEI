@@ -1,7 +1,6 @@
 package com.inei.appcartoinei.fragments;
 
 import android.content.Context;
-import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,7 +22,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.inei.appcartoinei.R;
-import com.inei.appcartoinei.activities.MainActivity;
 import com.inei.appcartoinei.adapters.ItemReporteAdapter;
 import com.inei.appcartoinei.modelo.DAO.Data;
 import com.inei.appcartoinei.modelo.pojos.ManzanaCaptura;
@@ -46,13 +44,15 @@ public class ReporteFragment extends Fragment {
     FloatingActionButton btn_cargar;
     private RequestQueue mQueue;
     Data data;
+    final String ubigeo;
     final String codigoZona;
     final String sufijoZona;
 
 
     private OnFragmentInteractionListener mListener;
 
-    public ReporteFragment(String codigoZona,String sufijoZona, Context context) {
+    public ReporteFragment(String ubigeo,String codigoZona,String sufijoZona, Context context) {
+        this.ubigeo = ubigeo;
         this.codigoZona = codigoZona;
         this.sufijoZona = sufijoZona;
         this.context = context;
@@ -61,7 +61,6 @@ public class ReporteFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -82,22 +81,19 @@ public class ReporteFragment extends Fragment {
             @Override
             public void onItemClick(View view, int position) {
                 Toast.makeText(getContext(),"posiciòn:"+position,Toast.LENGTH_SHORT).show();
-
             }
         });
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(itemReporteAdapter);
-
         mQueue = Volley.newRequestQueue(getContext());
 
         btn_cargar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 uploadDatos();
-                //Toast.makeText(getContext(),"xxx",Toast.LENGTH_SHORT).show();
             }
         });
-        Toast.makeText(getContext(),""+getAllManzanaCapturaXCargado().size(),Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(),""+getAllManzanaCapturaXCargado().size()+" Manzanas Trabajadas",Toast.LENGTH_SHORT).show();
     }
 
     public void onButtonPressed(Uri uri) {
@@ -123,11 +119,9 @@ public class ReporteFragment extends Fragment {
     }
 
     public void uploadDatos(){
-
         ArrayList<ManzanaCaptura> lista = new ArrayList<>();
         String stringJsonFinal = "";
         lista = getAllManzanaCapturaXCargado();
-        String dato="xxx";
 
         if(lista.size()>0){
             Toast.makeText(getContext(),"Conectando con el servidor...",Toast.LENGTH_SHORT).show();
@@ -151,7 +145,6 @@ public class ReporteFragment extends Fragment {
             Toast.makeText(getContext(),"No Existe Registros para Subir",Toast.LENGTH_SHORT).show();
         }
     }
-
 
     public void insertarServicio( final JSONArray arrayGeom,final String codZona,final String sufZona,final String codMzna,final String sufMzna,final int listaSize,final int position){
         String url = "http://arcgis4.inei.gob.pe:6080/arcgis/rest/services/DESARROLLO/servicio_prueba_captura/FeatureServer/0/addFeatures";
@@ -194,9 +187,8 @@ public class ReporteFragment extends Fragment {
 
     }
 
-
-    public ArrayList<ManzanaCaptura> getAllManzanaCapturaTrabajadas()
-    { ArrayList<ManzanaCaptura> manzanas = new ArrayList<>();
+    public ArrayList<ManzanaCaptura> getAllManzanaCapturaTrabajadas(){
+        ArrayList<ManzanaCaptura> manzanas = new ArrayList<>();
         try {
             Data data = new Data(context);
             data.open();
@@ -209,8 +201,8 @@ public class ReporteFragment extends Fragment {
         return manzanas;
     }
 
-    public ArrayList<ManzanaCaptura> getAllManzanaCapturaXCargado()
-    { ArrayList<ManzanaCaptura> manzanas = new ArrayList<>();
+    public ArrayList<ManzanaCaptura> getAllManzanaCapturaXCargado() {
+        ArrayList<ManzanaCaptura> manzanas = new ArrayList<>();
         try {
             Data data = new Data(context);
             data.open();
@@ -223,8 +215,8 @@ public class ReporteFragment extends Fragment {
         return manzanas;
     }
 
-    public void setUpdateManzanaCaptura(String codZona,String sufZona,String codMzna,String sufMzna,int cargado)
-    { try {
+    public void setUpdateManzanaCaptura(String codZona,String sufZona,String codMzna,String sufMzna,int cargado){
+        try {
         data = new Data(context);
         data.open();
         data.updateManzanaCapturaXCargado(codZona,sufZona,codMzna,sufMzna,cargado);
