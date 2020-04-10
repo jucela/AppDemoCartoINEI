@@ -52,13 +52,17 @@ import com.inei.appcartoinei.modelo.DAO.DataBaseHelper;
 import com.inei.appcartoinei.modelo.pojos.ManzanaCaptura;
 
 import org.json.JSONException;
-import org.json.JSONObject;
 import org.spatialite.database.SQLiteDatabase;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+
+import static com.inei.appcartoinei.utils.CreateNewManzana.getNewManzanaAnadida;
+import static com.inei.appcartoinei.utils.UtilsPoligonos.formatGeom;
+import static com.inei.appcartoinei.utils.UtilsPoligonos.getCenterOfPolygon;
+import static com.inei.appcartoinei.utils.UtilsPoligonos.getLatLngShapeManzana;
 
 public class MapAnadirManzanaFragment extends Fragment implements OnMapReadyCallback,GoogleMap.OnMapClickListener{
 
@@ -201,7 +205,7 @@ public class MapAnadirManzanaFragment extends Fragment implements OnMapReadyCall
         fab3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                visualizeAnadirManzana(getNewManzanaAnadida(codigoZona));
+                visualizeAnadirManzana(getNewManzanaAnadida(getListaManzanasXZona(codigoZona)));
             }
         });
 
@@ -249,7 +253,7 @@ public class MapAnadirManzanaFragment extends Fragment implements OnMapReadyCall
              }
          }
          else {
-                    Toast.makeText(getContext(),"Presione el boton '+' para añadir la nueva manzana2",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(),"Presione el boton '+' para añadir la nueva manzana",Toast.LENGTH_SHORT).show();
               }
 
     }
@@ -492,7 +496,7 @@ public class MapAnadirManzanaFragment extends Fragment implements OnMapReadyCall
 
     /*3. INSERTAR MANZANA_CAPTURA A SQLITE INTERNO*/
     public  void saveManzanaCapturaAnadida(){
-        final String numero = getNewManzanaAnadida(codigoZona);
+        final String numero = getNewManzanaAnadida(getListaManzanasXZona(codigoZona));
         ArrayList<LatLng> listPointsDibujados = new ArrayList<>();
         if(listPoints.size()>2) {
             if (listPoints.size() == 3) {
@@ -621,30 +625,6 @@ public class MapAnadirManzanaFragment extends Fragment implements OnMapReadyCall
     }
 
     /*******METODOS DE FLUJOS***********/
-
-    /*******CREACION DE ID DE NUEVA MANZANA********/
-    /*OBTENER ID DE MANZANA AÑADIDA*/
-    public String getNewManzanaAnadida(String idzona){
-        ArrayList<String> listaManzana1 = new ArrayList<>();
-        ArrayList<String> listaManzana2 = new ArrayList<>();
-        int mayor;
-        listaManzana1 = getListaManzanasXZona(idzona);
-        listaManzana2 = cleanLista(listaManzana1);
-        if(listaManzana2.size()>0){
-            mayor = Integer.parseInt(listaManzana2.get(0));
-            for(int i=0;i<listaManzana2.size();i++)
-            {
-                int numero = Integer.parseInt(listaManzana2.get(i));
-                if (numero>mayor)
-                {mayor =numero;}
-            }
-        }
-        else {
-            mayor=0;
-        }
-        return setDigitos(mayor+1);
-    }
-
     /*OBTENER LISTA(CODIGOMANZANA)DE STRING POR ZONA DE SQLITE*/
     public ArrayList<String> getListaManzanasXZona(String idzona){
         ArrayList<String> lista = new ArrayList<>();
@@ -659,42 +639,6 @@ public class MapAnadirManzanaFragment extends Fragment implements OnMapReadyCall
         }
         return lista;
     }
-
-    /*ASIGNAR DE DIGITOS*/
-    public static String setDigitos(int numero){
-        int digitos =Integer.toString(numero).length();
-        String newIdNumero="";
-        if(digitos==1){
-            newIdNumero = "00"+numero;
-        }
-        if(digitos==2){
-            newIdNumero = "0"+numero;
-        }
-        if(digitos>2){
-            newIdNumero = String.valueOf(numero);
-        }
-        return newIdNumero;
-    }
-
-    /*LIMPIAR DIGITOS*/
-    public static ArrayList<String>  cleanLista(ArrayList<String> lista){
-        ArrayList<String> newlista = new ArrayList<>();
-        for(int i=0;i<lista.size();i++){
-            if (lista.get(i).length()>3)
-            {newlista.add(getDigito(lista.get(i)));}
-            else{
-                newlista.add(lista.get(i));
-            }
-        }
-        return newlista;
-    }
-    /*OBTENER CADENA SIN ULTIMO DIGITO*/
-    public static String getDigito(String cadena){
-        String ultimo = cadena.substring(0, cadena.length() - 1);
-        return  ultimo;
-    }
-
-    /**************MANZANA CAPTURA************/
 
     /*OBTENER LISTA(MANZANACAPTURA)DE OBJETO POR ESTADO DE SQLITE*/
     public ArrayList<ManzanaCaptura> getListaManzanaCapturaXZona(){
@@ -742,47 +686,6 @@ public class MapAnadirManzanaFragment extends Fragment implements OnMapReadyCall
         return manzanaCaptura;
     }
 
-    /*METODO CONVERTIR LISTA(STRING) DE SQLITE A LISTA(LATLNG)*/
-    public ArrayList<LatLng> getLatLngShapeManzana(String shape){
-        ArrayList<LatLng> listapintado = new ArrayList<LatLng>();
-        String campoGeom = shape;
-        try {
-            JSONObject jsonObject = new JSONObject(campoGeom);
-            String dato = jsonObject.getString("coordinates");
-            String ncadena1= dato.substring(1,dato.length()-1);
-            String ncadena2= ncadena1.substring(1,ncadena1.length()-1);
-            String ncadena3 = ncadena2.replace("],[", "];[");
-            String[] parts = ncadena3.split(";");
-            for(int i =0;i<parts.length;i++)
-            {
-                String part1 = parts[i];
-                String cadena4= part1.substring(1,part1.length()-1);
-                String[] latlog = cadena4.split(",");
-                for(int x=0;x<1;x++){
-                    listapintado.add(new LatLng(Double.parseDouble(latlog[0]),Double.parseDouble(latlog[1])));
-                }
-            }
-        }
-        catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return listapintado;
-    }
-
-    /*METODO DE FORMATO POLIGONO PARA INSERCION A SQLITE (SPATIALITE) */
-    public String formatGeom(ArrayList<LatLng> poligono){
-        String format ="";
-        for (int i = 0; i <poligono.size() ; i++) {
-            if (i >0){
-                format = format +"," + poligono.get(i).latitude+ " "+poligono.get(i).longitude;
-            }
-            else{
-                format = poligono.get(i).latitude+ " "+poligono.get(i).longitude;
-            }
-        }
-        return format;
-    }
-
     /*ASIGNAR NUMERO DE MANZANA POLIGONO*/
     public Marker setNumeroManzanaText(final Context context,String codmanzana,ArrayList<LatLng> latLngList) {
         Marker marker = null;
@@ -816,18 +719,6 @@ public class MapAnadirManzanaFragment extends Fragment implements OnMapReadyCall
         marker = mgoogleMap.addMarker(markerOptions);
 
         return marker;
-    }
-
-    /*OBTENER CENTRO DE POLIGONO*/
-    public LatLng getCenterOfPolygon(ArrayList<LatLng> latLngList) {
-        double[] centroid = {0.0, 0.0};
-        for (int i = 0; i < latLngList.size(); i++) {
-            centroid[0] += latLngList.get(i).latitude;
-            centroid[1] += latLngList.get(i).longitude;
-        }
-        int totalPoints = latLngList.size();
-
-        return new LatLng(centroid[0] / totalPoints, centroid[1] / totalPoints);
     }
 
 }

@@ -201,7 +201,7 @@ public class ReporteFragment extends Fragment {
         return manzanas;
     }
 
-    public ArrayList<ManzanaCaptura> getAllManzanaCapturaXCargado() {
+    public ArrayList<ManzanaCaptura> getAllManzanaCapturaXCargado(){
         ArrayList<ManzanaCaptura> manzanas = new ArrayList<>();
         try {
             Data data = new Data(context);
@@ -220,8 +220,8 @@ public class ReporteFragment extends Fragment {
         data = new Data(context);
         data.open();
         data.updateManzanaCapturaXCargado(codZona,sufZona,codMzna,sufMzna,cargado);
-    } catch (IOException e) {
+        }catch (IOException e) {
         e.printStackTrace();
-    }
+        }
     }
 }

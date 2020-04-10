@@ -1,0 +1,331 @@
+{
+    "type": "FeatureCollection",
+    "crs": {
+        "type": "name",
+        "properties": {
+            "name": "EPSG:4326"
+        }
+    },
+    "features": [
+        {
+            "type": "Feature",
+            "id": 308,
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            -77.044274425999959,
+                            -12.065256655999974
+                        ],
+                        [
+                            -77.045384263999949,
+                            -12.065391485999953
+                        ],
+                        [
+                            -77.044634876999964,
+                            -12.066001731999961
+                        ],
+                        [
+                            -77.044383404999962,
+                            -12.06571310299995
+                        ],
+                        [
+                            -77.046327907999967,
+                            -12.066270790999965
+                        ],
+                        [
+                            -77.045446862999938,
+                            -12.066979834999927
+                        ],
+                        [
+                            -77.044721458999959,
+                            -12.066131906999942
+                        ],
+                        [
+                            -77.04554404999999,
+                            -12.065417885999977
+                        ],
+                        [
+                            -77.044274425999959,
+                            -12.065256655999974
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "FID": 308,
+                "OBJECTID": 429503,
+                "IDMANZANA": "15011300100001",
+                "CCDD": "15",
+                "CCPP": "01",
+                "CCDI": "13",
+                "CODZONA": "001",
+                "SUFZONA": "00",
+                "CODMZNA": "001",
+                "SUFMZNA": " ",
+                "UBIGEO": "150113",
+                "CODCCPP": "0001",
+                "NOMBDEP": "LIMA",
+                "NOMBPROV": "LIMA",
+                "NOMBDIST": "JESUS MARIA",
+                "NOMBCCCPP": "JESUS MARIA",
+                "FUENTE": "INEI - CPV RESULTADOS",
+                "Shape_Leng": 0.00293651308061,
+                "Shape_Area": 4.3082159476499998e-007
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 309,
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            -12.04554404999999,
+                            -77.065417885999977
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "FID": 309,
+                "OBJECTID": 429504,
+                "IDMANZANA": "15011300100043",
+                "CCDD": "15",
+                "CCPP": "01",
+                "CCDI": "13",
+                "CODZONA": "001",
+                "SUFZONA": "00",
+                "CODMZNA": "043",
+                "SUFMZNA": " ",
+                "UBIGEO": "150113",
+                "CODCCPP": "0001",
+                "NOMBDEP": "LIMA",
+                "NOMBPROV": "LIMA",
+                "NOMBDIST": "JESUS MARIA",
+                "NOMBCCCPP": "JESUS MARIA",
+                "FUENTE": "INEI - CPV RESULTADOS",
+                "Shape_Leng": 0.0044944567983499998,
+                "Shape_Area": 1.2613445641699999e-006
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 310,
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            -77.044578442999978,
+                            -12.066228606999971
+                        ],
+                        [
+                            -77.045280209999987,
+                            -12.067107399999941
+                        ],
+                        [
+                            -77.044794291999949,
+                            -12.067497371999934
+                        ],
+                        [
+                            -77.04449155399999,
+                            -12.066297254999938
+                        ],
+                        [
+                            -77.044578442999978,
+                            -12.066228606999971
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "FID": 310,
+                "OBJECTID": 429505,
+                "IDMANZANA": "15011300100042",
+                "CCDD": "15",
+                "CCPP": "01",
+                "CCDI": "13",
+                "CODZONA": "001",
+                "SUFZONA": "00",
+                "CODMZNA": "042",
+                "SUFMZNA": " ",
+                "UBIGEO": "150113",
+                "CODCCPP": "0001",
+                "NOMBDEP": "LIMA",
+                "NOMBPROV": "LIMA",
+                "NOMBDIST": "JESUS MARIA",
+                "NOMBCCCPP": "JESUS MARIA",
+                "FUENTE": "INEI - CPV RESULTADOS",
+                "Shape_Leng": 0.00309611245894,
+                "Shape_Area": 4.1287507086299998e-007
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 311,
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            -77.044391233999988,
+                            -12.066394786999979
+                        ],
+                        [
+                            -77.044703653999989,
+                            -12.067573683999967
+                        ],
+                        [
+                            -77.044226561999949,
+                            -12.067914064999968
+                        ],
+                        [
+                            -77.043547487999945,
+                            -12.067080448999945
+                        ],
+                        [
+                            -77.044391233999988,
+                            -12.066394786999979
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "FID": 311,
+                "OBJECTID": 429506,
+                "IDMANZANA": "15011300100041",
+                "CCDD": "15",
+                "CCPP": "01",
+                "CCDI": "13",
+                "CODZONA": "001",
+                "SUFZONA": "00",
+                "CODMZNA": "041",
+                "SUFMZNA": " ",
+                "UBIGEO": "150113",
+                "CODCCPP": "0001",
+                "NOMBDEP": "LIMA",
+                "NOMBPROV": "LIMA",
+                "NOMBDIST": "JESUS MARIA",
+                "NOMBCCCPP": "JESUS MARIA",
+                "FUENTE": "INEI - CPV RESULTADOS",
+                "Shape_Leng": 0.00396807761375,
+                "Shape_Area": 9.1887978107299998e-007
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 312,
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            -77.046393858999977,
+                            -12.066392049999934
+                        ],
+                        [
+                            -77.04712865099998,
+                            -12.067275332999941
+                        ],
+                        [
+                            -77.046234584999979,
+                            -12.067978914999969
+                        ],
+                        [
+                            -77.04552433799995,
+                            -12.067104585999971
+                        ],
+                        [
+                            -77.046393858999977,
+                            -12.066392049999934
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "FID": 312,
+                "OBJECTID": 429507,
+                "IDMANZANA": "15011300100044",
+                "CCDD": "15",
+                "CCPP": "01",
+                "CCDI": "13",
+                "CODZONA": "001",
+                "SUFZONA": "00",
+                "CODMZNA": "044",
+                "SUFMZNA": " ",
+                "UBIGEO": "150113",
+                "CODCCPP": "0001",
+                "NOMBDEP": "LIMA",
+                "NOMBPROV": "LIMA",
+                "NOMBDIST": "JESUS MARIA",
+                "NOMBCCCPP": "JESUS MARIA",
+                "FUENTE": "INEI - CPV RESULTADOS",
+                "Shape_Leng": 0.0045373012141399997,
+                "Shape_Area": 1.2865118532599999e-006
+            }
+        },
+        {
+            "type": "Feature",
+            "id": 313,
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            -77.045396516999972,
+                            -12.06722861999998
+                        ],
+                        [
+                            -77.04610396299995,
+                            -12.068081307999933
+                        ],
+                        [
+                            -77.045423454999934,
+                            -12.068618938999975
+                        ],
+                        [
+                            -77.045057299999939,
+                            -12.068171483999947
+                        ],
+                        [
+                            -77.044941336999955,
+                            -12.067933634999974
+                        ],
+                        [
+                            -77.044855764999966,
+                            -12.067660431999968
+                        ],
+                        [
+                            -77.045396516999972,
+                            -12.06722861999998
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "FID": 313,
+                "OBJECTID": 429508,
+                "IDMANZANA": "15011300100045",
+                "CCDD": "15",
+                "CCPP": "01",
+                "CCDI": "13",
+                "CODZONA": "001",
+                "SUFZONA": "00",
+                "CODMZNA": "045",
+                "SUFMZNA": " ",
+                "UBIGEO": "150113",
+                "CODCCPP": "0001",
+                "NOMBDEP": "LIMA",
+                "NOMBPROV": "LIMA",
+                "NOMBDIST": "JESUS MARIA",
+                "NOMBCCCPP": "JESUS MARIA",
+                "FUENTE": "INEI - CPV RESULTADOS",
+                "Shape_Leng": 0.0037962952516100001,
+                "Shape_Area": 9.1616523197800001e-007
+            }
+        }
+    ]
+}}

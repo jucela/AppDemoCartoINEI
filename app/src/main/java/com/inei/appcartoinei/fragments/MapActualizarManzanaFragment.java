@@ -11,7 +11,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.graphics.drawable.ColorDrawable;
 import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
@@ -53,7 +52,6 @@ import com.google.maps.android.data.geojson.GeoJsonLayer;
 import com.google.maps.android.data.geojson.GeoJsonPolygon;
 import com.google.maps.android.data.geojson.GeoJsonPolygonStyle;
 import com.inei.appcartoinei.R;
-import com.inei.appcartoinei.activities.MainActivity;
 import com.inei.appcartoinei.dialogs.DialogFusionManzana;
 import com.inei.appcartoinei.modelo.DAO.Data;
 import com.inei.appcartoinei.modelo.DAO.DataBaseHelper;
@@ -62,13 +60,21 @@ import com.inei.appcartoinei.modelo.pojos.ManzanaCaptura;
 import com.inei.appcartoinei.modelo.pojos.ManzanaReplanteo;
 
 import org.json.JSONException;
-import org.json.JSONObject;
 import org.spatialite.database.SQLiteDatabase;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+
+import static com.inei.appcartoinei.utils.CreateNewManzana.getNewIdManzanaFraccionada;
+import static com.inei.appcartoinei.utils.CreateNewManzana.getNewIdManzanaReplanteada;
+import static com.inei.appcartoinei.utils.CreateNewManzana.getNewManzanaFusionada;
+import static com.inei.appcartoinei.utils.CreateNewManzana.getTresDigitos;
+import static com.inei.appcartoinei.utils.CreateNewManzana.getUltimoDigito;
+import static com.inei.appcartoinei.utils.UtilsPoligonos.formatGeom;
+import static com.inei.appcartoinei.utils.UtilsPoligonos.getCenterOfPolygon;
+import static com.inei.appcartoinei.utils.UtilsPoligonos.getLatLngShapeManzana;
 
 public class MapActualizarManzanaFragment extends Fragment implements OnMapReadyCallback,GoogleMap.OnMapClickListener, DialogFusionManzana.SendDialogListener {
 
@@ -121,8 +127,6 @@ public class MapActualizarManzanaFragment extends Fragment implements OnMapReady
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        Log.e("mensaje1 oncreate",""+context);
-        Log.e("mensaje2 oncreate",""+getContext());
         super.onCreate(savedInstanceState);
         mLocationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
     }
@@ -130,8 +134,6 @@ public class MapActualizarManzanaFragment extends Fragment implements OnMapReady
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Log.e("mensaje1 oncreateview",""+context);
-        Log.e("mensaje2 oncreateview",""+getContext());
         view = inflater.inflate(R.layout.layout_mapa_principal, container, false);
         return view;
     }
@@ -140,8 +142,6 @@ public class MapActualizarManzanaFragment extends Fragment implements OnMapReady
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Log.e("mensaje1 onviewcreate",""+context);
-        Log.e("mensaje2 onviewcreate",""+getContext());
         mapView = (MapView) view.findViewById(R.id.map);
         fab2 = (FloatingActionButton) view.findViewById(R.id.fab2);
         fab4 = (FloatingActionButton) view.findViewById(R.id.fab4);
@@ -150,7 +150,6 @@ public class MapActualizarManzanaFragment extends Fragment implements OnMapReady
         op = new DataBaseHelper(getContext());
         db = op.getWritableDatabase();
 
-        MapsInitializer.initialize(getContext());
         if (mapView != null) {
             mapView.onCreate(null);
             mapView.onResume();
@@ -183,10 +182,7 @@ public class MapActualizarManzanaFragment extends Fragment implements OnMapReady
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        Log.e("mensaje1",""+context);
-        Log.e("mensaje2",""+getContext());
-        Log.e("mensaje3",""+getActivity());
-        //MapsInitializer.initialize(getContext());
+        MapsInitializer.initialize(getContext());
         mgoogleMap = googleMap;
         mgoogleMap.getUiSettings().setCompassEnabled(false);//Brujula
         mgoogleMap.getUiSettings().setZoomControlsEnabled(true);//Zoom
@@ -197,8 +193,6 @@ public class MapActualizarManzanaFragment extends Fragment implements OnMapReady
         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         CameraPosition Liberty = CameraPosition.builder().target(jmaria).zoom(16).bearing(0).tilt(45).build();
         googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(Liberty));
-
-
 
         if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             mgoogleMap.setMyLocationEnabled(true);
@@ -444,7 +438,6 @@ public class MapActualizarManzanaFragment extends Fragment implements OnMapReady
                         default:
                     }
                 }
-
             }
         });
     }
@@ -453,7 +446,7 @@ public class MapActualizarManzanaFragment extends Fragment implements OnMapReady
     public void loadPolygonsEdicionManzanas() {
         if (listaManzanasSeleccionas.size()>0) {
             for(int i=0;i<listaManzanasSeleccionas.size();i++){
-                ArrayList<LatLng> listaVertices = getLatLngShapeManzana(getObjectManzanaCapturaXZonaMzna(codigoZona,sufijoZona,getDigitos(listaManzanasSeleccionas.get(i).getIdManzana()),getUltimoDigito(listaManzanasSeleccionas.get(i).getIdManzana())).getShape());
+                ArrayList<LatLng> listaVertices = getLatLngShapeManzana(getObjectManzanaCapturaXZonaMzna(codigoZona,sufijoZona,getTresDigitos(listaManzanasSeleccionas.get(i).getIdManzana()),getUltimoDigito(listaManzanasSeleccionas.get(i).getIdManzana())).getShape());
                 Polygon polygono = mgoogleMap.addPolygon(new PolygonOptions().addAll(listaVertices));
                 polygono.setStrokeJointType(JointType.ROUND);
                 polygono.setStrokeWidth(3f);
@@ -609,8 +602,10 @@ public class MapActualizarManzanaFragment extends Fragment implements OnMapReady
                                 Log.i("mensaje",""+i+":"+lista.get(i).getCodzona()+"/"+lista.get(i).getSufzona()+"/"+lista.get(i).getCodmzna()+"/"+lista.get(i).getSufmzna());
                                 deleteManzanaCaptura(lista.get(i).getCodzona(),lista.get(i).getSufzona(),lista.get(i).getCodmzna(),lista.get(i).getSufmzna());
                             }
-                            //removeFeature(feature);
                             updateManzanaCaptura(codZona,sufZona,codMzna,sufMzna,null,0,0);
+                            removeLayer();
+                            createLayerGeojsonMain();
+                            loadFeatureAllManzanas();
                         }
                         if (estado.equals("9")) {
                             updateManzanaCaptura(codZona,sufZona,codMzna,sufMzna,getManzanaCapturaXMznabelong(codMzna+""+sufMzna).getCodmzna(),  0,0);
@@ -820,7 +815,7 @@ public class MapActualizarManzanaFragment extends Fragment implements OnMapReady
     /*3. RECIBE PARAMETROS DE DIALOGO (DialogFusionManzana)*/
     @Override
     public void receiveFusion(final int estadoEdicion, final ArrayList<FusionItem> listaManzana, String idManzana) {
-        newIdManzana = getNewManzanaFusion(listaManzana, listaManzana.get(0).getIdManzana());
+        newIdManzana = getNewManzanaFusionada(listaManzana, listaManzana.get(0).getIdManzana());
         listaManzanasSeleccionas = listaManzana;
         //Cancelar
         if(estadoEdicion==0){
@@ -847,9 +842,9 @@ public class MapActualizarManzanaFragment extends Fragment implements OnMapReady
             } else {
                 listPointsDibujados = listPoints;
             }
-            insertManzanaCaptura(getDigitos(newIdManzana),getUltimoDigito(newIdManzana),"",3,listPointsDibujados);
+            insertManzanaCaptura(getTresDigitos(newIdManzana),getUltimoDigito(newIdManzana),"",3,listPointsDibujados);
             for (int i = 0; i < listaManzanasSeleccionas.size(); i++) {
-                updateManzanaCaptura(codigoZona,sufijoZona,getDigitos(listaManzanasSeleccionas.get(i).getIdManzana()),getUltimoDigito(listaManzanasSeleccionas.get(i).getIdManzana()), newIdManzana.trim(), 7,1);
+                updateManzanaCaptura(codigoZona,sufijoZona,getTresDigitos(listaManzanasSeleccionas.get(i).getIdManzana()),getUltimoDigito(listaManzanasSeleccionas.get(i).getIdManzana()), newIdManzana.trim(), 7,1);
             }
             cleanMapa();
             cleanPolygon();
@@ -872,7 +867,7 @@ public class MapActualizarManzanaFragment extends Fragment implements OnMapReady
     @SuppressLint("RestrictedApi")
     public void saveManzanaCapturaFraccionada(){
         ArrayList<LatLng> listPointsDibujados = new ArrayList<>();
-        ArrayList<String> listaManzanasNuevas = generateNewIdManzana(cantidad,idManzanaSeleccionada);
+        ArrayList<String> listaManzanasNuevas = getNewIdManzanaFraccionada(cantidad,idManzanaSeleccionada);
         String idManzanaNueva="";
         final int CANTIDAD= cantidad;
             if (listPoints.size() == 3) {
@@ -901,13 +896,13 @@ public class MapActualizarManzanaFragment extends Fragment implements OnMapReady
                 }
 
             } else {
-                updateManzanaCaptura(codigoZona,sufijoZona,getDigitos(idManzanaSeleccionada),getUltimoDigito(idManzanaSeleccionada), "", 8,1);
+                updateManzanaCaptura(codigoZona,sufijoZona,getTresDigitos(idManzanaSeleccionada),getUltimoDigito(idManzanaSeleccionada), "", 8,1);
                 for (int i = 0; i < listaManzanasMemoria.size(); i++) {
                     ArrayList<LatLng> listafinal = new ArrayList<>();
                     for (int x = 0; x < listaManzanasMemoria.get(i).getLista().size(); x++) {
                         listafinal.add(listaManzanasMemoria.get(i).getLista().get(x));
                     }
-                    insertManzanaCaptura(getDigitos(listaManzanasMemoria.get(i).getIdManzana()),getUltimoDigito(listaManzanasMemoria.get(i).getIdManzana()), idManzanaSeleccionada, 4, listafinal);
+                    insertManzanaCaptura(getTresDigitos(listaManzanasMemoria.get(i).getIdManzana()),getUltimoDigito(listaManzanasMemoria.get(i).getIdManzana()), idManzanaSeleccionada, 4, listafinal);
                     Toast.makeText(getContext(), "Se registro Manzana correctamente!", Toast.LENGTH_SHORT).show();
                 }
                 listaManzanasMemoria.clear();
@@ -975,9 +970,9 @@ public class MapActualizarManzanaFragment extends Fragment implements OnMapReady
             } else {
                 listPointsDibujados = listPoints;
             }
-            String idManzanaNueva = generateNewIdManzana(1, idManzanaSeleccionada).get(0);
-            updateManzanaCaptura(codigoZona,sufijoZona,getDigitos(idManzanaSeleccionada),getUltimoDigito(idManzanaSeleccionada),idManzanaNueva, 9,1);
-            insertManzanaCaptura(getDigitos(idManzanaNueva),getUltimoDigito(idManzanaNueva),idManzanaSeleccionada,5,listPointsDibujados);
+            String idManzanaNueva = getNewIdManzanaReplanteada(idManzanaSeleccionada);
+            updateManzanaCaptura(codigoZona,sufijoZona,getTresDigitos(idManzanaSeleccionada),getUltimoDigito(idManzanaSeleccionada),idManzanaNueva, 9,1);
+            insertManzanaCaptura(getTresDigitos(idManzanaNueva),getUltimoDigito(idManzanaNueva),idManzanaSeleccionada,5,listPointsDibujados);
             cleanMapa();
             cleanPolygon();
             removeLayer();
@@ -1168,107 +1163,6 @@ public class MapActualizarManzanaFragment extends Fragment implements OnMapReady
 
     /*************METODOS DE FLUJOS*************************/
 
-    /*CREACION DE NUEVO ID DE MANZANA*/
-    public String getNewManzanaFusion(ArrayList<FusionItem> listaManzana,String idManzana) {
-        int menor;
-        int valorid;
-        int newValorId = 0;
-        if (listaManzana.size() > 0) {
-            if(listaManzana.get(0).getIdManzana().trim().length()==4){
-
-                menor = Integer.parseInt(getDigitos(listaManzana.get(0).getIdManzana().trim()));
-            }
-            else {
-                menor = Integer.parseInt(listaManzana.get(0).getIdManzana().trim());
-            }
-            for (FusionItem objeto : listaManzana) {
-                    int numero = Integer.parseInt(cleanCadena(objeto.getIdManzana().trim()));
-                    if (numero < menor) {
-                        menor = numero;
-                    }
-            }
-            valorid = Integer.parseInt(cleanCadena(idManzana.trim()));
-            if (menor < valorid) {
-                newValorId = menor;
-            } else {
-                newValorId = valorid;
-            }
-        }
-        return setDigitos(newValorId) + ""+getLetra(listaManzana,setDigitos(newValorId));
-    }
-
-    /*ASIGNAR DIGITOS*/
-    public static String setDigitos(int numero){
-        int digitos =Integer.toString(numero).length();
-        String newIdNumero="";
-        if(digitos==1){
-            newIdNumero = "00"+numero;
-        }
-        if(digitos==2){
-            newIdNumero = "0"+numero;
-        }
-        if(digitos>2){
-            newIdNumero = String.valueOf(numero);
-        }
-        return newIdNumero;
-    }
-
-    /*LIMPIAR CADENA*/
-    public static String cleanCadena(String cadena){
-        String resultado="";
-        if (cadena.length()>3)
-        {resultado=getDigitos(cadena);}
-        else{
-            resultado=cadena;
-        }
-
-        return resultado;
-    }
-    /*OBTENER CADENA SIN ULTIMO DIGITO*/
-    public static String getDigitos(String cadena){
-        String ultimo = cadena.substring(0, cadena.length() - 1);
-        return  ultimo;
-    }
-    /*OBTENER ULTIMO DIGITO*/
-    public static String getUltimoDigito(String cadena){
-        String ultimo = cadena.substring(cadena.length() - 1);
-        return  ultimo;
-    }
-
-    public static String getLetra(ArrayList<FusionItem> listaManzana,String idmanzana){
-        String resultado1 ="";
-        String resultado2 ="";
-        for(FusionItem objeto :listaManzana)
-        {
-            if(cleanCadena(objeto.getIdManzana().trim()).equals(idmanzana))
-            {resultado1=objeto.getIdManzana().trim();}
-
-        }
-
-        if(resultado1.length()>3)
-        {
-            char ultimocaracter = resultado1.charAt(resultado1.length()-1);
-            int dato1 = castCaracter(ultimocaracter);
-            char dato2 = castNumero(dato1+1);
-
-            resultado2 = ""+dato2;
-        }
-        else{
-            resultado2="A";
-        }
-        return resultado2;
-    }
-
-    public static char castNumero(int numero){
-        char valor = (char) numero;
-        return valor;
-    }
-
-    public static int castCaracter(char caracter){
-        int numero = (int) caracter;
-        return numero;
-    }
-
     /*FILTRAR MANZANAS*/
     private boolean filterManzana(ArrayList<FusionItem> manzanas, String manzana) {
         boolean respuesta = true;
@@ -1369,76 +1263,6 @@ public class MapActualizarManzanaFragment extends Fragment implements OnMapReady
         return manzana;
     }
 
-    /*GENERAR NUEVO ID DE MANZANA*/
-    public static ArrayList<String> generateNewIdManzana(int cantidad, String idmanzana){
-        ArrayList<String> lista = new ArrayList<>();
-        char valor='0';
-        char letraObtenida='0';
-        int  letraCastInt;
-        int a = 65;
-        String codmzna;
-
-        if(idmanzana.trim().length()==4){
-            letraObtenida = getUltimoDigito(idmanzana).charAt(0);
-            letraCastInt = (int) letraObtenida;
-            a = letraCastInt+1;
-            codmzna = getDigitos(idmanzana).trim();
-        }
-        else{
-            a = 65;
-            codmzna=idmanzana.trim();
-        }
-
-
-        for (int i=0;i<cantidad;i++)
-        {
-
-            valor = (char) a;
-            lista.add(codmzna+String.valueOf(valor));
-            a++;
-        }
-        return lista;
-    }
-
-    /*METODO CONVERTIR LISTA(STRING) A LISTA(LATLNG)*/
-    public ArrayList<LatLng> getLatLngShapeManzana(String shape) {
-        ArrayList<LatLng> listapintado = new ArrayList<LatLng>();
-        String campoGeom = shape;
-        try {
-            JSONObject jsonObject = new JSONObject(campoGeom);
-            String dato = jsonObject.getString("coordinates");
-            //Log.e("mensaje:","String de datos->[]:"+dato);
-            String ncadena1 = dato.substring(1, dato.length() - 1);
-            String ncadena2 = ncadena1.substring(1, ncadena1.length() - 1);
-            String ncadena3 = ncadena2.replace("],[", "];[");
-            String[] parts = ncadena3.split(";");
-            for (int i = 0; i < parts.length; i++) {
-                String part1 = parts[i];
-                String cadena4 = part1.substring(1, part1.length() - 1);
-                String[] latlog = cadena4.split(",");
-                for (int x = 0; x < 1; x++) {
-                    listapintado.add(new LatLng(Double.parseDouble(latlog[0]), Double.parseDouble(latlog[1])));
-                }
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return listapintado;
-    }
-
-    /*METODO DE FORMATO A POLYGONO*/
-    public String formatGeom(ArrayList<LatLng> poligono) {
-        String format = "";
-        for (int i = 0; i < poligono.size(); i++) {
-            if (i > 0) {
-                format = format + "," + poligono.get(i).latitude + " " + poligono.get(i).longitude;
-            } else {
-                format = poligono.get(i).latitude + " " + poligono.get(i).longitude;
-            }
-        }
-        return format;
-    }
-
     /*ASIGNAR NUMERO DE MANZANA POLIGONO*/
     public Marker setNumeroManzanaText(final Context context,String codmanzana,ArrayList<LatLng> latLngList) {
         Marker marker = null;
@@ -1472,18 +1296,6 @@ public class MapActualizarManzanaFragment extends Fragment implements OnMapReady
         marker = mgoogleMap.addMarker(markerOptions);
 
         return marker;
-    }
-
-    /*OBTENER CENTRO DE POLIGONO*/
-    public LatLng getCenterOfPolygon(ArrayList<LatLng> latLngList) {
-        double[] centroid = {0.0, 0.0};
-        for (int i = 0; i < latLngList.size(); i++) {
-            centroid[0] += latLngList.get(i).latitude;
-            centroid[1] += latLngList.get(i).longitude;
-        }
-        int totalPoints = latLngList.size();
-
-        return new LatLng(centroid[0] / totalPoints, centroid[1] / totalPoints);
     }
 
 }

@@ -237,7 +237,7 @@ public class MainActivity extends AppCompatActivity  {
                                 if(i==response.length()-1)
                                 {
                                     copyTable();
-                                    Toast.makeText(MainActivity.this, "Se Descargo Marco: "+(i+1)+" Registros", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(MainActivity.this, "Se Descargo "+(i+1)+" Manzanas", Toast.LENGTH_LONG).show();
                                 }
                             }
                         }catch (JSONException | IOException e){
