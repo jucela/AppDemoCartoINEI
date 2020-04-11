@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -47,6 +48,15 @@ public class ReporteFragment extends Fragment {
     final String ubigeo;
     final String codigoZona;
     final String sufijoZona;
+    TextView txt_zona;
+    TextView txt_manzana;
+    TextView txt_estado;
+    TextView txt_estadoEnvio;
+    int estadoZona=0;
+    int estadoManzana=0;
+    int estadoEstado=0;
+    int estadoEstadoEnvio=0;
+
 
 
     private OnFragmentInteractionListener mListener;
@@ -67,9 +77,13 @@ public class ReporteFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_reporte, container, false);
-        recyclerView = (RecyclerView) view.findViewById(R.id.rv_lista_reporte);
-        btn_cargar = (FloatingActionButton) view.findViewById(R.id.fab_subir);
+        view            = inflater.inflate(R.layout.fragment_reporte, container, false);
+        recyclerView    = (RecyclerView) view.findViewById(R.id.rv_lista_reporte);
+        btn_cargar      = (FloatingActionButton) view.findViewById(R.id.fab_subir);
+        txt_zona        = (TextView) view.findViewById(R.id.txt_reporte_idZona);
+        txt_manzana     = (TextView) view.findViewById(R.id.txt_reporte_idManzana);
+        txt_estado      = (TextView) view.findViewById(R.id.txt_reporte_idEstado);
+        txt_estadoEnvio = (TextView) view.findViewById(R.id.txt_reporte_idEstadoEnvio);
         return view;
     }
 
@@ -93,6 +107,71 @@ public class ReporteFragment extends Fragment {
                 uploadDatos();
             }
         });
+
+        txt_zona.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(estadoZona==0){
+                    updateLista("codzona",0);
+                    txt_zona.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_drop_up_24_white, 0);
+                    estadoZona=1;
+                }
+                else{
+                    updateLista("codzona",1);
+                    txt_zona.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_drop_down_24_white, 0);
+                    estadoZona=0;
+                }
+
+            }
+        });
+        txt_manzana.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(estadoManzana==0){
+                    updateLista("codmzna",0);
+                    txt_manzana.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_drop_up_24_white, 0);
+                    estadoManzana=1;
+                }
+                else{
+                    updateLista("codmzna",1);
+                    txt_manzana.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_drop_down_24_white, 0);
+                    estadoManzana=0;
+                }
+
+            }
+        });
+        txt_estado.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(estadoEstado==0){
+                    updateLista("estado",0);
+                    txt_estado.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_drop_up_24_white, 0);
+                    estadoEstado=1;
+                }
+                else{
+                    updateLista("estado",1);
+                    txt_estado.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_drop_down_24_white, 0);
+                    estadoEstado=0;
+                }
+            }
+        });
+        txt_estadoEnvio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(estadoEstadoEnvio==0){
+                    updateLista("cargado",0);
+                    txt_estadoEnvio.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_drop_up_24_white, 0);
+                    estadoEstadoEnvio=1;
+                }
+                else{
+                    updateLista("cargado",1);
+                    txt_estadoEnvio.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_arrow_drop_down_24_white, 0);
+                    estadoEstadoEnvio=0;
+                }
+            }
+        });
+
+
         Toast.makeText(getContext(),""+getAllManzanaCapturaXCargado().size()+" Manzanas Trabajadas",Toast.LENGTH_SHORT).show();
     }
 
@@ -224,4 +303,26 @@ public class ReporteFragment extends Fragment {
         e.printStackTrace();
         }
     }
+
+    public ArrayList<ManzanaCaptura> getAllManzanaCapturaTrabajadasXCampo(String campo,int tipo){
+        ArrayList<ManzanaCaptura> manzanas = new ArrayList<>();
+        try {
+            Data data = new Data(context);
+            data.open();
+            manzanas = data.getAllManzanaCapturaTrabajadasXCampo(codigoZona,sufijoZona,campo,tipo);
+            data.close();
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+        return manzanas;
+    }
+
+    public void updateLista(String campo,int tipo){
+        itemReporteAdapter.notifyDataSetChanged();
+        itemReporteAdapter = new ItemReporteAdapter(getAllManzanaCapturaTrabajadasXCampo(campo,tipo),null);
+        recyclerView.setAdapter(itemReporteAdapter);
+    }
+
+
 }

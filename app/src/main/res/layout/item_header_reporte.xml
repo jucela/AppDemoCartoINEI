@@ -2,62 +2,77 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cardview_item_poligono"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
     android:foreground="?android:attr/selectableItemBackground"
-    android:clickable="true"
     card_view:cardCornerRadius="6dp"
     card_view:cardElevation="2dp"
-    android:background="@color/colorAccent">
+    card_view:cardBackgroundColor="@color/colorAccent">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical">
-                <TextView
-                    android:background="@color/colorAccent"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="left"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="14dp"
-                    android:text="Zona"
-                    android:textAlignment="center"
-                    android:padding="5dp"/>
-                <TextView
-                    android:background="@color/colorAccent"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_reporte_idZona"
+                    android:background="@drawable/text_border"
                     android:layout_weight="1.5"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/txt_reporte_idZona"
+                        android:background="@drawable/text_border"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="14dp"
+                        android:text="Zona"
+                        android:textAlignment="center"
+                        android:padding="5dp"
+                        android:drawableRight="@drawable/ic_arrow_drop_down_24_white"/>
+                </androidx.cardview.widget.CardView>
+                <TextView
+                    android:id="@+id/txt_reporte_idManzana"
+                    android:background="@drawable/text_border"
+                    android:layout_weight="2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
                     android:gravity="left"
                     android:textColor="@color/colorWhite"
                     android:textSize="14dp"
                     android:text="Manzana"
                     android:textAlignment="center"
-                    android:padding="5dp"/>
+                    android:padding="5dp"
+                    android:drawableRight="@drawable/ic_arrow_drop_down_24_white"/>
                 <TextView
-                    android:background="@color/colorAccent"
+                    android:id="@+id/txt_reporte_idEstado"
+                    android:background="@drawable/text_border"
                     android:layout_weight="2"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:gravity="left"
                     android:textColor="@color/colorWhite"
                     android:textSize="14dp"
                     android:text="Estado"
                     android:textAlignment="center"
-                    android:padding="5dp"/>
+                    android:padding="5dp"
+                    android:drawableRight="@drawable/ic_arrow_drop_down_24_white"/>
                 <TextView
-                    android:background="@color/colorAccent"
+                    android:id="@+id/txt_reporte_idEstadoEnvio"
+                    android:background="@drawable/text_border"
                     android:layout_weight="2"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:gravity="left"
                     android:textColor="@color/colorWhite"
                     android:textSize="14dp"
                     android:text="Estado Envio"
                     android:textAlignment="center"
-                    android:padding="5dp"/>
+                    android:padding="5dp"
+                    android:drawableRight="@drawable/ic_arrow_drop_down_24_white"/>
             </LinearLayout>>
 </androidx.cardview.widget.CardView>

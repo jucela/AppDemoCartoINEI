@@ -274,6 +274,42 @@ public class Data {
         return manzanas;
     }
 
+    public ArrayList<ManzanaCaptura> getAllManzanaCapturaTrabajadasXCampo(String codZona,String sufZona,String campo,int tipo){
+        ArrayList<ManzanaCaptura> manzanas = new ArrayList<>();
+        String estado="";
+        if(tipo==0){
+            estado="ASC";
+        }
+        else{
+            estado="DESC";
+        }
+        Cursor cursor = null;
+        try{
+            cursor = sqLiteDatabase.rawQuery("SELECT idmanzana,iduser,ccdd,ccpp,ccdi,codzona,sufzona,codmzna,sufmzna,mznabelong,estado,frentes,cargado,AsGeoJSON(shape) geom FROM manzana_captura WHERE codzona='"+codZona+"' and sufzona='"+sufZona+"' and cargado Between 1 And 3 ORDER BY "+campo+" "+estado+"",null);
+            while(cursor.moveToNext()){
+                ManzanaCaptura manzana = new ManzanaCaptura();
+                manzana.setIdmanzana(cursor.getString(0));
+                manzana.setIduser(cursor.getInt(1));
+                manzana.setCcdd(cursor.getString(2));
+                manzana.setCcpp(cursor.getString(3));
+                manzana.setCcdi(cursor.getString(4));
+                manzana.setCodzona(cursor.getString(5));
+                manzana.setSufzona(cursor.getString(6));
+                manzana.setCodmzna(cursor.getString(7));
+                manzana.setSufmzna(cursor.getString(8));
+                manzana.setMznabelong(cursor.getString(9));
+                manzana.setEstado(cursor.getInt(10));
+                manzana.setFrentes(cursor.getInt(11));
+                manzana.setCargado(cursor.getInt(12));
+                manzana.setShape(cursor.getString(13));
+                manzanas.add(manzana);
+            }
+        }finally{
+            if(cursor != null) cursor.close();
+        }
+        return manzanas;
+    }
+
     public ArrayList<ManzanaCaptura> getAllManzanaCapturaXZona(String codZona){
         ArrayList<ManzanaCaptura> manzanas = new ArrayList<>();
         Cursor cursor = null;
