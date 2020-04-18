@@ -1,13 +1,21 @@
 package com.inei.appcartoinei.activities;
 
+import android.content.Context;
+
+import androidx.core.content.ContextCompat;
+
 import com.google.android.gms.maps.model.LatLng;
+import com.inei.appcartoinei.modelo.DAO.Data;
 import com.inei.appcartoinei.modelo.pojos.FusionItem;
+import com.inei.appcartoinei.modelo.pojos.ManzanaCaptura;
 import com.inei.appcartoinei.modelo.pojos.ManzanaReplanteo;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class pruebas {
+    Context context;
 
     public static char castNumero(int numero){
         char valor = (char) numero;
@@ -18,8 +26,6 @@ public class pruebas {
         int numero = (int) caracter;
         return numero;
     }
-
-
 
     public static ArrayList<String> replantear(int cantidad, String idmanzana){
         ArrayList<String> lista = new ArrayList<>();
@@ -269,20 +275,37 @@ public class pruebas {
         return lista;
     }
 
+    public static ArrayList<ManzanaCaptura> getListaManzanaCapturaXMznabelong() {
+        ArrayList<ManzanaCaptura> listaManzana = new ArrayList<>();
+        try {
+            Data data = new Data(null);
+            data.open();
+            listaManzana = data.getAllManzanaCaptura();
+            data.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return listaManzana;
+    }
 
+    public static String getUltimoTresDigito(String cadena){
+        String ultimo = cadena.substring(cadena.length() - 5);
+        return  ultimo;
+    }
 
 
 
     public static void main(String[] args) {
-        System.out.println ("Empezamos la ejecución del programax:");
+        System.out.println ("Empezamos la ejecución del programa:");
+        System.out.println ("Respuesta:"+getUltimoTresDigito("a1b2c34d5e"));
 //        //countDigitos(0);
 //        System.out.println ("resultado casteo:"+castCaracter('C'));
 //        ArrayList<String> lista = new ArrayList<>();
 //        lista.add("041");
 //        lista.add("042");
-        for(int i=0;i<generateNewIdManzana(4,"041").size();i++){
-            System.out.println ("resultadoss:"+generateNewIdManzana(4,"041").get(i));
-        }
+//        for(int i=0;i<generateNewIdManzana(4,"041").size();i++){
+//            System.out.println ("resultadoss:"+generateNewIdManzana(4,"041").get(i));
+//        }
 
     }
 }

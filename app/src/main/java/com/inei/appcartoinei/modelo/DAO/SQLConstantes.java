@@ -4,8 +4,36 @@ public class SQLConstantes {
     public static String DB_PATH = "/data/data/com.inei.appcartoinei/databases/";
     public static String DB_NAME = "cartoinei.sqlite";
     public static int DATABASE_VERSION = 5;
+    public static String tb_permiso        ="permiso";
+    public static String tb_rol_permiso    ="rol_permiso";
+    public static String tb_rol             ="rol";
+    public static String tb_usuario_rol     ="usuario_rol";
+    public static String tb_usuario         ="usuario";
     public static String tb_manzana_captura ="manzana_captura";
     public static String tb_manzana_marco   ="manzana_marco";
+
+    public static final String permiso_cp_idpermiso   = "idpermiso";
+    public static final String permiso_cp_descripcion = "descripcion";
+    public static final String permiso_cp_creado      = "creado ";
+    public static final String permiso_cp_modificado  = "modificado";
+
+    public static final String rol_permiso_cp_idrol     = "idrol";
+    public static final String rol_permiso_cp_idpermiso = "idpermiso";
+
+    public static final String rol_cp_idrol       = "idrol";
+    public static final String rol_cp_descripcion = "descripcion";
+    public static final String rol_cp_creado      = "creado ";
+    public static final String rol_cp_modificado  = "modificado";
+
+    public static final String usuario_rol_cp_idusuario = "idusuario";
+    public static final String usuario_rol_cp_idrol     = "idrol";
+
+    public static final String usuario_cp_idusuario  = "idusuario";
+    public static final String usuario_cp_usuario    = "usuario";
+    public static final String usuario_cp_clave      = "clave";
+    public static final String usuario_cp_creado     = "creado ";
+    public static final String usuario_cp_modificado = "modificado";
+
 
     public static final String manzana_cp_idmanzana  = "idmanzana";
     public static final String manzana_cp_iduser     = "iduser";

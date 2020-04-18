@@ -52,10 +52,10 @@ public class ReporteFragment extends Fragment {
     TextView txt_manzana;
     TextView txt_estado;
     TextView txt_estadoEnvio;
-    int estadoZona=0;
-    int estadoManzana=0;
-    int estadoEstado=0;
-    int estadoEstadoEnvio=0;
+    int estadoZona = 0;
+    int estadoManzana = 0;
+    int estadoEstado = 0;
+    int estadoEstadoEnvio = 0;
 
 
 

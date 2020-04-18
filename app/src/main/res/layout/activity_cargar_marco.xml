@@ -9,31 +9,105 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
+        android:orientation="vertical"
+        android:paddingVertical="100dp"
         android:paddingLeft="40dp"
         android:paddingRight="40dp">
-        <androidx.appcompat.widget.AppCompatButton
-            android:layout_width="0dp"
+        <TextView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:drawableLeft="@drawable/ic_cloud_download_24black"
-            android:drawablePadding="8dp"
-            android:id="@+id/btn_cargar"
-            android:textColor="@android:color/white"
-            app:backgroundTint="#75C195"
-            android:text="Cargar Marco"
-            android:layout_gravity="center_vertical"/>
-        <androidx.appcompat.widget.AppCompatButton
-            android:layout_width="0dp"
+            android:text="ONLINE"
+            android:textStyle="bold"/>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            app:cardCornerRadius="6dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="@color/colorGris"
+            android:padding="100dp"
+            android:layout_gravity="center">
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_cloud_download_24black"
+                android:drawablePadding="8dp"
+                android:id="@+id/btn_cargar"
+                android:textColor="@android:color/white"
+                app:backgroundTint="#75C195"
+                android:text="Cargar Marco"
+                android:layout_gravity="center_horizontal"/>
+
+        </androidx.cardview.widget.CardView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="OFFLINE"
+            android:textStyle="bold"/>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="6dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="@color/colorGris"
+            android:padding="100dp"
+            android:layout_gravity="center">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center_horizontal">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <EditText
+                        android:id="@+id/edt_ruta"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text=""
+                        android:enabled="false"
+                        android:paddingVertical="15dp"/>
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:backgroundTint="@color/colorBlack"
+                        android:drawableLeft="@drawable/ic_create_new_folder_24_white"
+                        android:drawablePadding="8dp"
+                        android:id="@+id/btn_seleccionar"
+                        android:visibility="visible"
+                        android:textColor="@android:color/white"
+                        app:backgroundTint="@color/colorAccent"
+                        android:text="Seleccionar"
+                        android:layout_gravity="center_horizontal"/>
+                </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:backgroundTint="@color/colorBlack"
+                    android:drawableLeft="@drawable/ic_loop_24_black"
+                    android:drawablePadding="8dp"
+                    android:id="@+id/btn_importar"
+                    android:textColor="@android:color/white"
+                    app:backgroundTint="#75C195"
+                    android:text="Importar" />
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:backgroundTint="@color/colorBlack"
             android:drawableLeft="@drawable/ic_action_cancel"
             android:drawablePadding="8dp"
             android:id="@+id/btn_salir"
             android:textColor="@android:color/white"
             app:backgroundTint="#ef9a9a"
-            android:text="Salir"
-            android:layout_gravity="center_vertical" />
+            android:text="Salir" />
+
+
     </LinearLayout>
 </LinearLayout>

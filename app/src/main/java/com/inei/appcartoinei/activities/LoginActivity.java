@@ -25,7 +25,7 @@ public class LoginActivity extends AppCompatActivity {
         clave        = (EditText)findViewById(R.id.login_edtClave);
         btn_ingresar = (Button) findViewById(R.id.login_btnIngresar);
 
-        usuario.setText("user");
+        usuario.setText("marco");
         clave.setText("1234");
         btn_ingresar.setOnClickListener(new View.OnClickListener() {
             @Override

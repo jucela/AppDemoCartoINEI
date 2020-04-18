@@ -4,6 +4,7 @@ package com.inei.appcartoinei.modelo.DAO;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
+import android.util.Log;
 
 import com.inei.appcartoinei.modelo.pojos.ManzanaCaptura;
 
@@ -11,6 +12,7 @@ import org.spatialite.database.SQLiteDatabase;
 import org.spatialite.database.SQLiteOpenHelper;
 
 import java.io.IOException;
+import java.sql.Blob;
 import java.util.ArrayList;
 
 public class Data {
@@ -399,6 +401,92 @@ public class Data {
 
     public void deleteTblManzanaMarco(){
         sqLiteDatabase.execSQL("delete from "+ SQLConstantes.tb_manzana_marco);
+    }
+
+    /*PRUEBA*/
+    public String getPrueba(){
+        String manzanas = "";
+        Cursor cursor = null;
+        try{
+            //cursor = sqLiteDatabase.rawQuery("SELECT idmanzana,iduser,ccdd,ccpp,ccdi,codzona,sufzona,codmzna,sufmzna,mznabelong,estado,frentes,cargado,AsText(ST_Centroid(shape)) FROM manzana_captura where codzona='001' and codmzna='001' ",null);
+            cursor = sqLiteDatabase.rawQuery("SELECT idmanzana,iduser,ccdd,ccpp,ccdi,codzona,sufzona,codmzna,sufmzna,mznabelong,estado,frentes,cargado,AsText(shape) FROM manzana_captura where codzona='001' and codmzna='001' ",null);
+            while(cursor.moveToNext()){
+                manzanas=cursor.getString(13);
+            }
+        }finally{
+            if(cursor != null) cursor.close();
+        }
+        return manzanas;
+    }
+    public String getPruebaBlob(){
+        String manzanas = "";
+        Cursor cursor = null;
+        try{
+            //cursor = sqLiteDatabase.rawQuery("SELECT idmanzana,iduser,ccdd,ccpp,ccdi,codzona,sufzona,codmzna,sufmzna,mznabelong,estado,frentes,cargado,AsText(ST_Centroid(shape)) FROM manzana_captura where codzona='001' and codmzna='001' ",null);
+            cursor = sqLiteDatabase.rawQuery("SELECT idmanzana,iduser,ccdd,ccpp,ccdi,codzona,sufzona,codmzna,sufmzna,mznabelong,estado,frentes,cargado,AsText(ST_Union(shape)) FROM manzana_captura where codzona='001' and codmzna='002' ",null);
+            while(cursor.moveToNext()){
+                manzanas= cursor.getString(13);
+            }
+        }finally{
+            if(cursor != null) cursor.close();
+        }
+        return manzanas;
+    }
+
+    public ArrayList<ManzanaCaptura> getPolygonGeometria(String codmzna){
+        ArrayList<ManzanaCaptura> manzanas = new ArrayList<>();
+        Cursor cursor = null;
+        try{
+            //cursor = sqLiteDatabase.rawQuery("SELECT idmanzana,iduser,ccdd,ccpp,ccdi,codzona,sufzona,codmzna,sufmzna,mznabelong,estado,frentes,cargado,ST_Union(AsText("+getGeometria("048")+"),AsText("+getGeometria("051")+")) FROM manzana_captura where codzona='001' and codmzna='"+codmzna+"' ",null);
+            cursor = sqLiteDatabase.rawQuery("SELECT idmanzana,iduser,ccdd,ccpp,ccdi,codzona,sufzona,codmzna,sufmzna,mznabelong,estado,frentes,cargado,AsText(shape) FROM manzana_captura where codzona='001' and codmzna='"+codmzna+"' ",null);
+            while(cursor.moveToNext()){
+                ManzanaCaptura manzana = new ManzanaCaptura();
+                manzana.setIdmanzana(cursor.getString(0));
+                manzana.setIduser(cursor.getInt(1));
+                manzana.setCcdd(cursor.getString(2));
+                manzana.setCcpp(cursor.getString(3));
+                manzana.setCcdi(cursor.getString(4));
+                manzana.setCodzona(cursor.getString(5));
+                manzana.setSufzona(cursor.getString(6));
+                manzana.setCodmzna(cursor.getString(7));
+                manzana.setSufmzna(cursor.getString(8));
+                manzana.setMznabelong(cursor.getString(9));
+                manzana.setEstado(cursor.getInt(10));
+                manzana.setFrentes(cursor.getInt(11));
+                manzana.setCargado(cursor.getInt(12));
+                manzana.setShape(cursor.getString(13));
+                manzanas.add(manzana);
+            }
+        }finally{
+            if(cursor != null) cursor.close();
+        }
+        return manzanas;
+    }
+
+    public String getDato(){
+        String manzana = null;
+        Cursor cursor = null;
+        try{
+            //"GeomFromText('POLYGON((" + formatGeom(puntos) + "))',4326)"
+            //cursor = sqLiteDatabase.rawQuery("SELECT ST_AsText(ST_Union(ST_GeomFromText('POINT(1 2)'),ST_GeomFromText('POINT(1 2)') ) );",null);
+            String query1 = "SELECT AsText(GUnion(CastToLinestring(GeomFromText('"+getPolygonGeometria("048").get(0).getShape()+"',4326)),CastToLinestring(GeomFromText('"+getPolygonGeometria("051").get(0).getShape()+"',4326))));";
+            String query11 ="SELECT AsText(GUnion(GeomFromText('POLYGON((-12.069939 -77.047833, -12.069079 -77.047143, -12.068399 -77.048017, -12.069252 -77.048717, -12.069939 -77.047833))',4326),GeomFromText('POLYGON((-12.070917 -77.048675, -12.070056 -77.047948, -12.069369 -77.048816, -12.07025 -77.049553, -12.070917 -77.048675))',4326)));";
+            String query12 ="SELECT ST_AsText(ST_Union(ST_GeomFromText('POLYGON((-12.069939 -77.047833, -12.069079 -77.047143, -12.068399 -77.048017, -12.069252 -77.048717, -12.069939 -77.047833))'),ST_GeomFromText('POLYGON((-12.070917 -77.048675, -12.070056 -77.047948, -12.069369 -77.048816, -12.07025 -77.049553, -12.070917 -77.048675))')));";
+            String query2 = "SELECT AsText(GUnion(GeomFromText('POLYGON((-12.069939 -77.047833, -12.069079 -77.047143, -12.068399 -77.048017, -12.069252 -77.048717, -12.069939 -77.047833, -12.070917 -77.048675, -12.070056 -77.047948, -12.069369 -77.048816, -12.07025 -77.049553, -12.070917 -77.048675))',4326)));";
+            String query3 = "SELECT AsText(GUnion(GeomFromText('MULTIPOINT(-12.069939 -77.047833, -12.069079 -77.047143, -12.068399 -77.048017, -12.069252 -77.048717, -12.069939 -77.047833, -12.070917 -77.048675, -12.070056 -77.047948, -12.069369 -77.048816, -12.07025 -77.049553, -12.070917 -77.048675)',4326)));";
+            String query4 = "SELECT ST_AsText(ST_Union(ST_GeomFromText( 'POLYGON (( 320 320, 320 400, 380 400, 380 320, 320 320 ))'),ST_GeomFromText(' POLYGON (( 340 280, 340 360, 400 360, 400 280, 340 280 ))')))";
+            //String query3 = "SELECT AsText(GUnion(POLYGON((-12.069939 -77.047833, -12.069079 -77.047143, -12.068399 -77.048017, -12.069252 -77.048717, -12.069939 -77.047833, -12.070917 -77.048675, -12.070056 -77.047948, -12.069369 -77.048816, -12.07025 -77.049553, -12.070917 -77.048675))));";
+            Log.e("prueba_query:",""+query4);
+            cursor = sqLiteDatabase.rawQuery(query4,null);
+            //cursor = sqLiteDatabase.rawQuery("SELECT AsText(ST_Union(GeomFromText('"+getPolygonGeometria("048").get(0).getShape()+"',4326)));",null);
+            Log.e("prueba_data:",""+(String) cursor.toString());
+            while(cursor.moveToNext()) {
+                 manzana =  cursor.getString(0);
+            }
+        }finally{
+            if(cursor != null) cursor.close();
+        }
+        return manzana;
     }
 
 

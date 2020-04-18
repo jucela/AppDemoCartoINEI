@@ -250,6 +250,34 @@ public class MapActualizarManzanaFragment extends Fragment implements OnMapReady
         createLayerGeojsonMain();
         loadFeatureAllManzanas();
         setEventoEstado();
+
+        //Log.i("prueba1:",""+getPrueba("048").get(0).getCodzona()+"/"+getPrueba("048").get(0).getCodmzna()+"/"+getPrueba("048").get(0).getShape());
+//        Log.e("prueba1:",""+getPrueba());
+//        Log.e("prueba2:",""+getManzana());
+//
+//        ArrayList<LatLng>  lista = new ArrayList<>();
+//        lista.add(new LatLng(-12.069939 ,-77.047833));
+//        lista.add(new LatLng(-12.069079 ,-77.047143));
+//        lista.add(new LatLng(-12.068399 ,-77.048017));
+//        lista.add(new LatLng(-12.069252 ,-77.048717));
+//        lista.add(new LatLng(-12.069939 ,-77.047833));
+//        lista.add(new LatLng(-12.070917 ,-77.048675));
+//        lista.add(new LatLng(-12.070056 ,-77.047948));
+//        lista.add(new LatLng(-12.069369 ,-77.048816));
+//        lista.add(new LatLng(-12.07025 ,-77.049553));
+//        lista.add(new LatLng(-12.070917 ,-77.048675));
+//        lista.add(new LatLng(-12.069939 ,-77.047833));
+//
+//        poligon = mgoogleMap.addPolygon(new PolygonOptions()
+//                .addAll(lista)
+//                .fillColor(Color.GREEN)
+//                .clickable(false)
+//                .zIndex(2f)
+//                .strokeWidth(5));
+
+//        vertice = mgoogleMap.addMarker(new MarkerOptions()
+//                .position(new LatLng());
+
     }
 
 
@@ -1296,6 +1324,45 @@ public class MapActualizarManzanaFragment extends Fragment implements OnMapReady
         marker = mgoogleMap.addMarker(markerOptions);
 
         return marker;
+    }
+
+    public static ArrayList<ManzanaCaptura> getPrueba(String codmzna) {
+        ArrayList<ManzanaCaptura> listaManzana = new ArrayList<>();
+        try {
+            Data data = new Data(null);
+            data.open();
+            listaManzana = data.getPolygonGeometria(codmzna);
+            data.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return listaManzana;
+    }
+
+    public static String getManzana() {
+        String manzana = "";
+        try {
+            Data data = new Data(null);
+            data.open();
+            manzana = data.getDato();
+            data.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return manzana;
+    }
+
+    public String getPrueba() {
+        String manzana = "";
+        try {
+            Data data = new Data(null);
+            data.open();
+            manzana = data.getPruebaBlob();
+            data.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return manzana;
     }
 
 }

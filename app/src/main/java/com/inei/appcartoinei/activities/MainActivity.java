@@ -50,10 +50,12 @@ public class MainActivity extends AppCompatActivity  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        drawerLayout =(DrawerLayout)findViewById(R.id.drawer);
+
         createDB();
         mQueue = Volley.newRequestQueue(MainActivity.this);
+
+        setContentView(R.layout.activity_main);
+        drawerLayout =(DrawerLayout)findViewById(R.id.drawer);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,R.string.open,R.string.close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
