@@ -1,0 +1,9 @@
+
+‰
+java:S1319""sThe type of the "manzanas" object should be an interface such as "List" rather than the implementation "ArrayList".(¢Æ‚ì
+u
+java:S1450"ZRemove the "btn_agregar" field and declare it as a local variable in the relevant methods.(ú°Ã¦ÿÿÿÿÿ
+p	java:S116"VRename this field "btn_agregar" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ú°Ã¦ÿÿÿÿÿ
+=
+java:S1185n"(Remove this method to simply inherit it.(¥Ë©
+Q	java:S125x"<This block of commented-out lines of code should be removed.(›•ú‘

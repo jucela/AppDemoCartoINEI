@@ -1,0 +1,62 @@
+
+‹
+java:S1319"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(”Îİˆøÿÿÿÿ
+†
+java:S13197"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(­§±´
+
+java:S1319p"wThe type of the "listaManzana" object should be an interface such as "List" rather than the implementation "ArrayList".(Áç™¡
+Œ
+java:S1319 "pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(æá¬ƒøÿÿÿÿ
+Œ
+java:S1319 "pThe type of the "lista" object should be an interface such as "List" rather than the implementation "ArrayList".(æá¬ƒøÿÿÿÿ
+Œ
+java:S1319¯"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(›ØøÂşÿÿÿÿ
+Œ
+java:S1319¯"pThe type of the "lista" object should be an interface such as "List" rather than the implementation "ArrayList".(›ØøÂşÿÿÿÿ
+
+java:S1319Æ"xThe type of the "listaManzana1" object should be an interface such as "List" rather than the implementation "ArrayList".(ÖöŞG
+“
+java:S1319Ú"wThe type of the "listaManzana" object should be an interface such as "List" rather than the implementation "ArrayList".(şœãƒùÿÿÿÿ
+Œ
+java:S1319ø"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(ƒ…œùÿÿÿÿ
+Œ
+java:S1319–"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(üŒ®Êúÿÿÿÿ
+b	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(Øª¼
+Y
+java:S1155u">Use isEmpty() to check whether the collection is empty or not.(Ê¼Âşşÿÿÿÿ
+Z
+java:S1155Ë">Use isEmpty() to check whether the collection is empty or not.(íô×ÿÿÿÿÿ
+?
+java:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+s
+java:S1488"]Immediately return this expression instead of assigning it to the temporary variable "valor".(šºÖü
+y
+java:S1488"^Immediately return this expression instead of assigning it to the temporary variable "numero".(…»ßúÿÿÿÿ
+z
+java:S1488«"^Immediately return this expression instead of assigning it to the temporary variable "ultimo".(¾˜®Îûÿÿÿÿ
+z
+java:S1488ô"^Immediately return this expression instead of assigning it to the temporary variable "ultimo".(ğ±Õ‚úÿÿÿÿ
+u
+java:S1488¤"^Immediately return this expression instead of assigning it to the temporary variable "ultimo".(„ÛÓ˜
+[
+java:S1128"@Remove this unused import 'androidx.core.content.ContextCompat'.(üäÂùÿÿÿÿ
+M
+java:S1128"2Remove this unused import 'java.util.Collections'.(¢³ïÓşÿÿÿÿ
+T
+java:S1854 "9Remove this useless assignment to local variable "valor".(Œ”Ïêüÿÿÿÿ
+Y
+java:S1854a"CRemove this useless assignment to local variable "contadorManzana".(×şÏŞ
+N	java:S106h"9Replace this use of System.out or System.err by a logger.(İ°©
+N	java:S106i"9Replace this use of System.out or System.err by a logger.(ÚÔ×
+]
+java:S1854È"ARemove this useless assignment to local variable "listaManzana2".(­·Îúÿÿÿÿÿ
+Q
+java:S1854ı"5Remove this useless assignment to local variable "a".(çŒç¢üÿÿÿÿ
+]
+java:S1854û"ARemove this useless assignment to local variable "letraObtenida".(¨Æ´³ÿÿÿÿÿ
+U
+java:S1854ú"9Remove this useless assignment to local variable "valor".(Œ”Ïêüÿÿÿÿ
+O	java:S106«"9Replace this use of System.out or System.err by a logger.(à¡ÿ
+T	java:S106¬"9Replace this use of System.out or System.err by a logger.(¶“Ì¯üÿÿÿÿ
+R	java:S125ª"<This block of commented-out lines of code should be removed.(¢ˆ¡ó
+R	java:S125­"<This block of commented-out lines of code should be removed.(éÜÅ³

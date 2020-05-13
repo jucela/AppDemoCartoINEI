@@ -1,0 +1,40 @@
+
+‡
+java:S1319"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(ì²ì‚
+Œ
+java:S1319›"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(Ëÿ¾•úÿÿÿÿ
+Œ
+java:S1319³"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(§ŒïÁüÿÿÿÿ
+U
+java:S1155Í">Use isEmpty() to check whether the collection is empty or not.(ñšÓ±
+?
+java:S1148–"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+?
+java:S1148¤"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+?
+java:S1148¯"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+?
+java:S1148¼"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+j	java:S116-"URename this field "btn_cargar" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(„õà­
+m	java:S1163"SRename this field "txt_zona" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–»äÒüÿÿÿÿ
+k	java:S1164"VRename this field "txt_manzana" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¿™ 
+j	java:S1165"URename this field "txt_estado" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(öœ¨á
+t	java:S1166"ZRename this field "txt_estadoEnvio" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‹ˆÔ»şÿÿÿÿ
+>
+java:S1185H"(Remove this method to simply inherit it.(ßìê¯
+?
+java:S1185¹"(Remove this method to simply inherit it.(ˆÏ€¶
+I
+java:S1135Ä"2Complete the task associated to this TODO comment.(‡‚ùˆ
+U
+java:S1854É"9Remove this useless assignment to local variable "lista".(ßØğ‘øÿÿÿÿ
+A
+java:S1181Ú"%Catch Exception instead of Throwable.(µìúÅøÿÿÿÿ
+u
+java:S2293ƒ"YReplace the type specification in this constructor call with the diamond operator ("<>").(ô›Óíüÿÿÿÿ
+O
+java:S1117"8Rename "data" which hides the field declared at line 47.(œñıÑ
+O
+java:S1117"8Rename "data" which hides the field declared at line 47.(œñıÑ
+O
+java:S1117¶"8Rename "data" which hides the field declared at line 47.(œñıÑ

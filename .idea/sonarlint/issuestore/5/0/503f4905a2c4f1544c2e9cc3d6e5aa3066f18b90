@@ -1,0 +1,9 @@
+
+‰
+java:S1319"sThe type of the "manzanas" object should be an interface such as "List" rather than the implementation "ArrayList".(±ÉÑ”
+€
+java:S4165 "eRemove this useless assignment; "context" already holds the assigned value along all execution paths.(ÕÜŽ–ýÿÿÿÿ
+g
+java:S1192l"LDefine a constant instead of duplicating this literal "Con Cambios" 3 times.(“§’¶øÿÿÿÿ
+x
+java:S1488("bImmediately return this expression instead of assigning it to the temporary variable "viewHolder".(·Ë«™

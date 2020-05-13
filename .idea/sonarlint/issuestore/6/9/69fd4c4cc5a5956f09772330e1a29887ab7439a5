@@ -1,0 +1,34 @@
+
+<
+java:S1170/"!Make this final field static too.(äÛ©»úÿÿÿÿ
+?
+java:S1148Á"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+l
+java:S1450)"QRemove the "db" field and declare it as a local variable in the relevant methods.(õ›Ë¤ùÿÿÿÿ
+l	java:S117Ô"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÄëÝ§øÿÿÿÿ
+9
+java:S1148ü"#Use a logger to log this exception.(ˆñA
+7
+java:S1170."!Make this final field static too.(öëÌü
+g
+java:S1450*"QRemove the "op" field and declare it as a local variable in the relevant methods.(ž¿Ð
+6
+java:S1170-"!Make this final field static too.(š‘ç	
+@
+java:S1172˜")Remove this unused method parameter "id".(ý§„Ô
+O
+java:S1117»"8Rename "data" which hides the field declared at line 44.(ô£ ¿
+=
+java:S1172"&Remove these unused method parameters.(ý§„Ô
+?
+java:S1148Î"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+O
+java:S1117È"8Rename "data" which hides the field declared at line 44.(ô£ ¿
+A
+java:S1068)"&Remove this unused "db" private field.(õ›Ë¤ùÿÿÿÿ
+O
+java:S1117Ÿ"8Rename "data" which hides the field declared at line 44.(ô£ ¿
+?
+java:S1148¦"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ
+p
+java:S1450'"[Remove the "drawerLayout" field and declare it as a local variable in the relevant methods.(Æë‰n

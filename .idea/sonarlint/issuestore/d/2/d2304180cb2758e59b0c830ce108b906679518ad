@@ -1,0 +1,60 @@
+
+m
+java:S11923"RDefine a constant instead of duplicating this literal "' and codmzna = '" 3 times.(×â©Áÿÿÿÿÿ
+Œ
+java:S1130"qRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from constructor's body.(Ìþˆ™ÿÿÿÿÿ
+g
+java:S1192þ"PDefine a constant instead of duplicating this literal "' and codmzna='" 3 times.(ÃÆÿ‚
+F
+java:S1066Þ"/Merge this if statement with the enclosing one.(äºÖ´
+B
+java:S1481Ø"+Remove this unused "query1" local variable.(ï–¤Ÿ
+‡
+java:S1319»"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(¢¢ ‹
+W	java:S125©"<This block of commented-out lines of code should be removed.(øË‘Žúÿÿÿÿ
+g
+java:S1192þ"PDefine a constant instead of duplicating this literal "' and sufmzna='" 3 times.(ÃÆÿ‚
+Q	java:S125×"<This block of commented-out lines of code should be removed.(ßø™U
+Œ
+java:S1319´"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(õÌž¸úÿÿÿÿ
+m
+java:S11923"RDefine a constant instead of duplicating this literal "' and sufzona = '" 4 times.(×â©Áÿÿÿÿÿ
+‡
+java:S1319£"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(ƒ÷ºë
+‡
+java:S1319ú"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(‡Î¦Æ
+@
+java:S1128"*Remove this unused import 'java.sql.Blob'.(ïÚ¶ã
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(®ò´Šøÿÿÿÿ
+Œ
+java:S1319ë"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(‹‰åõùÿÿÿÿ
+B
+java:S1481Û"+Remove this unused "query2" local variable.(Ñà’ü
+G
+java:S1481Ü"+Remove this unused "query3" local variable.(û§“ªúÿÿÿÿ
+W	java:S125›"<This block of commented-out lines of code should be removed.(øË‘Žúÿÿÿÿ
+W	java:S125á"<This block of commented-out lines of code should be removed.(”÷¦Öýÿÿÿÿ
+g
+java:S1192á"PDefine a constant instead of duplicating this literal "' and sufzona='" 6 times.(“úˆ©
+d
+java:S1192†"MDefine a constant instead of duplicating this literal "delete from " 3 times.(¿ìÀÑ
+‡
+java:S1319À"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(´˜ÇÌ
+W
+java:S1126å"AReplace this if-then-else statement by a single return statement.(ïÐ“a
+X	java:S107Ž"=Method has 10 parameters, which is greater than 7 authorized.(ß‹¸ýÿÿÿÿ
+C
+java:S1481Ù",Remove this unused "query11" local variable.(‡¸Íô
+C
+java:S1481Ú",Remove this unused "query12" local variable.(ÍÑü
+R	java:S125¸"<This block of commented-out lines of code should be removed.(£‡‘ 
+S	java:S107ù"=Method has 14 parameters, which is greater than 7 authorized.(µËÈ¡
+Œ
+java:S1319—"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(Â±É•ùÿÿÿÿ
+W	java:S125Þ"<This block of commented-out lines of code should be removed.(ØÖì–þÿÿÿÿ
+Œ
+java:S1319Ý"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(ïÔ±Œýÿÿÿÿ
+ü
+java:S1192á"äDefine a constant instead of duplicating this literal "SELECT idmanzana,iduser,ccdd,ccpp,ccdi,codzona,sufzona,codmzna,sufmzna,mznabelong,estado,frentes,cargado,AsGeoJSON(shape) geom FROM manzana_captura WHERE codzona='" 4 times.(“úˆ©
+m
+java:S11923"RDefine a constant instead of duplicating this literal "' and sufmzna = '" 3 times.(×â©Áÿÿÿÿÿ

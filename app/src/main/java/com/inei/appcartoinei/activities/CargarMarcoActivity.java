@@ -130,7 +130,7 @@ public class CargarMarcoActivity extends AppCompatActivity {
             case 2:
                 if(edt_ruta.getText().toString().length()>1)
                 {
-                    downloadMarcoOffline();
+                    downloadMarcoOffline2();
                     copyTable();
                 }
                 else {
@@ -258,6 +258,45 @@ public class CargarMarcoActivity extends AppCompatActivity {
             }
             Log.i("mensaje1:",""+fileUri+"->"+filePath);
             Log.i("mensaje2:",""+fileContent);
+    }
+
+    private void downloadMarcoOffline2() {
+        Toast.makeText(CargarMarcoActivity.this, "Copiando...", Toast.LENGTH_LONG).show();
+        String fileContent = readTextFile(fileUri);
+        try {
+            JSONObject jsonObject1 = new JSONObject(fileContent);
+            JSONArray jsonArray = jsonObject1.getJSONArray("marco");
+            for(int i=0;i<jsonArray.length();i++){
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                String idManzana = (String) jsonObject.get("idmanzana");
+                String idUser    = "1";
+                String ccdd      = (String) jsonObject.get("ccdd");
+                String ccpp      = (String) jsonObject.get("ccpp");
+                String ccdi      = (String) jsonObject.get("ccdi");
+                String codZona   = (String) jsonObject.get("codzona");
+                String sufZona   = (String) jsonObject.get("sufzona");
+                String codMzna   = (String) jsonObject.get("codmzna");
+                String sufMzna   = (String) jsonObject.get("sufmzna");
+                String shape     = (String) jsonObject.get("polygon");
+                Log.i("mensajex:",""+codMzna);
+                data = new Data(CargarMarcoActivity.this);
+                data.open();
+                data.insertManzanaMarco(idManzana,Integer.parseInt(idUser),ccdd,ccpp,ccdi,codZona,sufZona,codMzna,sufMzna,shape);
+                data.close();
+                if(i==jsonArray.length()-1)
+                {
+                    edt_ruta.setText("");
+                    copyTable();
+                    Toast.makeText(CargarMarcoActivity.this, "Se Copiaron "+(i+1)+" Manzanas", Toast.LENGTH_LONG).show();
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Log.i("mensaje1:",""+fileUri+"->"+filePath);
+        Log.i("mensaje2:",""+fileContent);
     }
 
     private String readTextFile(Uri uri){

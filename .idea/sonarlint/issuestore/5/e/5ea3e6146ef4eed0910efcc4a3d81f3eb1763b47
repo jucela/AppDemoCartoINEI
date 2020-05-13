@@ -1,0 +1,153 @@
+
+Š
+java:S1319§"sThe type of the "manzanas" object should be an interface such as "List" rather than the implementation "ArrayList".(”Ú¹
+
+java:S1319¨"qThe type of the "puntos" object should be an interface such as "List" rather than the implementation "ArrayList".(Â¯Œ…øÿÿÿÿ
+‡
+java:S1319å	"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(çĞ•å
+‡
+java:S1319ó	"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(•á›
+‘
+java:S1319
+"uThe type of the "latLngList" object should be an interface such as "List" rather than the implementation "ArrayList".(¾¹Ç—ıÿÿÿÿ
+Œ
+java:S1319±
+"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(”¿’Ìıÿÿÿÿ
+z
+java:S1192ö"cDefine a constant instead of duplicating this literal "Se registro Manzana correctamente!" 3 times.(¶¸–š
+_
+java:S1192Ù"HDefine a constant instead of duplicating this literal "mensaje" 4 times.(íïàà
+c
+java:S1192Õ"GDefine a constant instead of duplicating this literal "ESTADO" 7 times.(Í¹›ƒıÿÿÿÿ
+`
+java:S1192Ó"IDefine a constant instead of duplicating this literal "CODMZNA" 14 times.(Ğà­Ö
+e
+java:S1192ô"IDefine a constant instead of duplicating this literal "Cancelar" 3 times.(¾æã·úÿÿÿÿ
+j
+java:S1192¾"NDefine a constant instead of duplicating this literal "Nro Manzana: " 4 times.(½¥˜Ìúÿÿÿÿ
+f
+java:S1192´"JDefine a constant instead of duplicating this literal "mensajes:" 6 times.(€İ£êÿÿÿÿÿ
+`
+java:S1192Ô"IDefine a constant instead of duplicating this literal "SUFMZNA" 14 times.(Ÿ¼¹¡
+e
+java:S1192Ò"IDefine a constant instead of duplicating this literal "SUFZONA" 11 times.(—áåüÿÿÿÿ
+`
+java:S1192Ñ"IDefine a constant instead of duplicating this literal "CODZONA" 12 times.(ï»ìĞ
+K
+java:S1066§"/Merge this if statement with the enclosing one.(À…±ùÿÿÿÿ
+Z
+java:S1155§">Use isEmpty() to check whether the collection is empty or not.(À…±ùÿÿÿÿ
+Z
+java:S1155Û">Use isEmpty() to check whether the collection is empty or not.(Ë¼ƒøÿÿÿÿ
+f	java:S117Â"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(øÒâ~
+g	java:S117±"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ç£¾¿
+?
+java:S1148³"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+?
+java:S1148®"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+?
+java:S1148¹"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+?
+java:S1148Ä"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+?
+java:S1148¿	"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+?
+java:S1148Î	"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+?
+java:S1148Ş	"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+?
+java:S1148í	"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+?
+java:S1148û	"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+?
+java:S1148‰
+"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+?
+java:S1148¹
+"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+?
+java:S1148Æ
+"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+?
+java:S1148Ó
+"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+l
+java:S1450`"QRemove the "db" field and declare it as a local variable in the relevant methods.(õ›Ë¤ùÿÿÿÿ
+r
+java:S1450V"WRemove the "location" field and declare it as a local variable in the relevant methods.(¹¿É‚ÿÿÿÿÿ
+g
+java:S1450a"QRemove the "op" field and declare it as a local variable in the relevant methods.(¿Ğ
+q
+java:S1450X"VRemove the "vertice" field and declare it as a local variable in the relevant methods.(å¨½Çşÿÿÿÿ
+
+java:S1186Ù"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ÚÍÏûÿÿÿÿ
+o
+java:S2293Y"YReplace the type specification in this constructor call with the diamond operator ("<>").(ş«¹›
+o
+java:S2293Z"YReplace the type specification in this constructor call with the diamond operator ("<>").(ÄıÁ¤
+o
+java:S2293["YReplace the type specification in this constructor call with the diamond operator ("<>").(‘¼é˜
+o
+java:S2293p"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ş´Ã¡
+I
+java:S1135 "2Complete the task associated to this TODO comment.(åµÈ¶
+?
+java:S1185¨"(Remove this method to simply inherit it.(ˆÏ€¶
+I
+java:S1135³"2Complete the task associated to this TODO comment.(‡‚ùˆ
+S
+java:S1854Ê"7Remove this useless assignment to local variable "gps".(å­ˆ“ÿÿÿÿÿ
+D	java:S108Ğ")Either remove or fill this block of code.(¬é¸’ÿÿÿÿÿ
+a
+java:S2147´"ECombine this catch with the one at line 306, which has the same body.(÷¿­¹ÿÿÿÿÿ
+]
+java:S1854»"ARemove this useless assignment to local variable "listaVertices".(Ñô¾©úÿÿÿÿ
+n
+java:S3776º"RRefactor this method to reduce its Cognitive Complexity from 34 to the 15 allowed.(š¹ªøıÿÿÿÿ
+u
+java:S2293Ğ"YReplace the type specification in this constructor call with the diamond operator ("<>").(™ßü²øÿÿÿÿ
+i
+java:S3776™"RRefactor this method to reduce its Cognitive Complexity from 25 to the 15 allowed.(äææ
+u
+java:S2293ƒ"YReplace the type specification in this constructor call with the diamond operator ("<>").(™ßü²øÿÿÿÿ
+n
+java:S3776·"RRefactor this method to reduce its Cognitive Complexity from 30 to the 15 allowed.(èÎÚáÿÿÿÿÿ
+p
+java:S2293Ñ"YReplace the type specification in this constructor call with the diamond operator ("<>").(ªÖß
+
+java:S1186è"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¹Æº×şÿÿÿÿ
+p
+java:S2293ì"YReplace the type specification in this constructor call with the diamond operator ("<>").(ôùç
+d	java:S100§"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(”Ú¹
+c
+java:S1854à"GRemove this useless assignment to local variable "listPointsDibujados".(±’·æúÿÿÿÿ
+c
+java:S1854"GRemove this useless assignment to local variable "listPointsDibujados".(±’·æúÿÿÿÿ
+=
+java:S1172·"&Remove these unused method parameters.(Ê×ëŸ
+c
+java:S1854à"GRemove this useless assignment to local variable "listPointsDibujados".(±’·æúÿÿÿÿ
+O
+java:S1117º	"8Rename "data" which hides the field declared at line 98.(œñıÑ
+O
+java:S1117É	"8Rename "data" which hides the field declared at line 98.(œñıÑ
+O
+java:S1117Ù	"8Rename "data" which hides the field declared at line 98.(œñıÑ
+O
+java:S1117è	"8Rename "data" which hides the field declared at line 98.(œñıÑ
+O
+java:S1117ö	"8Rename "data" which hides the field declared at line 98.(œñıÑ
+O
+java:S1117„
+"8Rename "data" which hides the field declared at line 98.(œñıÑ
+T
+java:S1117Î
+"8Rename "data" which hides the field declared at line 98.(¸úÿÿÿÿÿ
+D
+java:S1481Ê"(Remove this unused "gps" local variable.(å­ˆ“ÿÿÿÿÿ
+A
+java:S1068`"&Remove this unused "db" private field.(õ›Ë¤ùÿÿÿÿ
+W	java:S125ş"<This block of commented-out lines of code should be removed.(ßõİûşÿÿÿÿ
+W	java:S125‚"<This block of commented-out lines of code should be removed.(äÎïÁıÿÿÿÿ
+W	java:S125”"<This block of commented-out lines of code should be removed.(¾Éığûÿÿÿÿ
+Q	java:S125—"<This block of commented-out lines of code should be removed.(Ğë­t

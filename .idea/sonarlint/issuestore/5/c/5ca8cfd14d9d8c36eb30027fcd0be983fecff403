@@ -1,0 +1,42 @@
+
+
+java:S1319"wThe type of the "listaManzana" object should be an interface such as "List" rather than the implementation "ArrayList".(“Š“’
+’
+java:S1319"wThe type of the "listaManzana" object should be an interface such as "List" rather than the implementation "ArrayList".(Û„ôùüÿÿÿÿ
+†
+java:S1319:"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(ÊÇ²ı
+†
+java:S1319r"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(®®“å
+
+java:S1319r"wThe type of the "listaManzana" object should be an interface such as "List" rather than the implementation "ArrayList".(®®“å
+“
+java:S1319Š"wThe type of the "listaManzana" object should be an interface such as "List" rather than the implementation "ArrayList".(ãÙĞÄúÿÿÿÿ
+Y
+java:S1155">Use isEmpty() to check whether the collection is empty or not.(íô×ÿÿÿÿÿ
+Y
+java:S1155!">Use isEmpty() to check whether the collection is empty or not.(Ê¼Âşşÿÿÿÿ
+t
+java:S1488£"]Immediately return this expression instead of assigning it to the temporary variable "valor".(šºÖü
+z
+java:S1488©"^Immediately return this expression instead of assigning it to the temporary variable "numero".(…»ßúÿÿÿÿ
+z
+java:S1488¿"^Immediately return this expression instead of assigning it to the temporary variable "ultimo".(¾˜®Îûÿÿÿÿ
+z
+java:S1488Å"^Immediately return this expression instead of assigning it to the temporary variable "ultimo".(ğ±Õ‚úÿÿÿÿ
+U
+java:S1118":Add a private constructor to hide the implicit public one.(à±Ø«ÿÿÿÿÿ
+\
+java:S1854
+"ARemove this useless assignment to local variable "listaManzana2".(­·Îúÿÿÿÿÿ
+P
+java:S1854?"5Remove this useless assignment to local variable "a".(çŒç¢üÿÿÿÿ
+\
+java:S1854="ARemove this useless assignment to local variable "letraObtenida".(¨Æ´³ÿÿÿÿÿ
+T
+java:S1854<"9Remove this useless assignment to local variable "valor".(Œ”Ïêüÿÿÿÿ
+P
+java:S1854^"5Remove this useless assignment to local variable "a".(çŒç¢üÿÿÿÿ
+\
+java:S1854\"ARemove this useless assignment to local variable "letraObtenida".(¨Æ´³ÿÿÿÿÿ
+T
+java:S1854["9Remove this useless assignment to local variable "valor".(Œ”Ïêüÿÿÿÿ

@@ -1,0 +1,106 @@
+
+o	java:S115("ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(Œ±ş
+p
+java:S3008"URename this field "tb_permiso" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ì‰Êõüÿÿÿÿ
+t	java:S1150"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(®šŠìüÿÿÿÿ
+t	java:S115""ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(â•ìÍÿÿÿÿÿ
+W
+java:S1075"ARefactor your code to get this URI from a customizable parameter.(Ò×Õ
+i
+java:S1104"SMake DB_NAME a static final constant or non-public and provide accessors if needed.(÷È‰À
+L
+java:S1444"6Make this "public static DATABASE_VERSION" field final(¨·¹°
+O
+java:S1444
+"4Make this "public static tb_usuario_rol" field final(ÿ £ıúÿÿÿÿ
+t
+java:S1104"^Make tb_manzana_captura a static final constant or non-public and provide accessors if needed.(¦‹¿›
+C
+java:S1444"-Make this "public static DB_NAME" field final(÷È‰À
+h
+java:S3008"RRename this field "DB_PATH" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ò×Õ
+t	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(«£æŸùÿÿÿÿ
+q
+java:S3008"[Rename this field "tb_manzana_marco" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¾Û
+n	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(‘¸Ğ
+n	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(Û†(
+o	java:S115#"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(¸±¥±
+N
+java:S1444"8Make this "public static tb_manzana_captura" field final(¦‹¿›
+r
+java:S1104"\Make tb_manzana_marco a static final constant or non-public and provide accessors if needed.(¾Û
+o	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(±Ã©
+t	java:S115*"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(Ğû±ıÿÿÿÿ
+o	java:S1151"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(±ÜÆ«
+o	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(úğğ÷
+t	java:S115!"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ÓÛ…üÿÿÿÿ
+o	java:S1153"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(â„±
+C
+java:S1444"-Make this "public static DB_PATH" field final(Ò×Õ
+t	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(õª–ªøÿÿÿÿ
+t	java:S115)"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(€ÉóÇıÿÿÿÿ
+U
+java:S1118":Add a private constructor to hide the implicit public one.(ÌÀ¯“şÿÿÿÿ
+]
+java:S11927"HDefine a constant instead of duplicating this literal " TEXT," 17 times.(¨¦šQ
+e
+java:S11928"JDefine a constant instead of duplicating this literal " INTEGER," 5 times.(®ğîˆüÿÿÿÿ
+h
+java:S3008"RRename this field "DB_NAME" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(÷È‰À
+o	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(‹–€Æ
+o	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(‘é–
+q
+java:S1104"VMake tb_permiso a static final constant or non-public and provide accessors if needed.(Ì‰Êõüÿÿÿÿ
+i
+java:S1104"SMake DB_PATH a static final constant or non-public and provide accessors if needed.(Ò×Õ
+h
+java:S1104	"RMake tb_rol a static final constant or non-public and provide accessors if needed.(ÏŸôË
+g
+java:S3008	"QRename this field "tb_rol" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÏŸôË
+o	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(â…ŒÌ
+u
+java:S1104
+"ZMake tb_usuario_rol a static final constant or non-public and provide accessors if needed.(ÿ £ıúÿÿÿÿ
+t	java:S115,"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ÃşÓºşÿÿÿÿ
+q
+java:S3008"[Rename this field "DATABASE_VERSION" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¨·¹°
+K
+java:S1444"0Make this "public static tb_permiso" field final(Ì‰Êõüÿÿÿÿ
+I
+java:S1444"4Make this "public static tb_rol_permiso" field final( ¢È7
+t	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(û‹ô–øÿÿÿÿ
+r
+java:S1104"\Make DATABASE_VERSION a static final constant or non-public and provide accessors if needed.(¨·¹°
+s
+java:S1192"XUse already-defined constant 'usuario_cp_usuario' instead of duplicating its value here.(ÍĞ¸Ôúÿÿÿÿ
+t	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(Ô‰ı¼úÿÿÿÿ
+o	java:S1152"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(¦³óì
+t	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(›²ßŞşÿÿÿÿ
+q
+java:S1104"VMake tb_usuario a static final constant or non-public and provide accessors if needed.(ÍĞ¸Ôúÿÿÿÿ
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(®ò´Šøÿÿÿÿ
+n
+java:S3008"YRename this field "tb_rol_permiso" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.( ¢È7
+o	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ˆ·‡”
+t	java:S115+"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(æëê»úÿÿÿÿ
+o	java:S115&"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ïîÙÙ
+K
+java:S1444"0Make this "public static tb_usuario" field final(ÍĞ¸Ôúÿÿÿÿ
+o	java:S115."ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(¢šò»
+p
+java:S3008"URename this field "tb_usuario" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÍĞ¸Ôúÿÿÿÿ
+s
+java:S3008"]Rename this field "tb_manzana_captura" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¦‹¿›
+L
+java:S1444"6Make this "public static tb_manzana_marco" field final(¾Û
+t
+java:S3008
+"YRename this field "tb_usuario_rol" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÿ £ıúÿÿÿÿ
+o	java:S115 "ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(Ã¬ïÑ
+B
+java:S1444	",Make this "public static tb_rol" field final(ÏŸôË
+t	java:S115'"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ğÄâôøÿÿÿÿ
+o	java:S115/"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(Ğû¿é
+o	java:S115-"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(Ø£¼
+o
+java:S1104"ZMake tb_rol_permiso a static final constant or non-public and provide accessors if needed.( ¢È7

@@ -1,0 +1,61 @@
+
+?
+java:S1148«"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+F
+java:S2093±"*Change this "try" to a try-with-resources.(¡»¢üùÿÿÿÿ
+j	java:S116%"URename this field "btn_cargar" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(“øÿŸ
+c
+java:S2147§"ECombine this catch with the one at line 293, which has the same body.(ï­£Ä8 şéš.
+g
+java:S1450-"QRemove the "op" field and declare it as a local variable in the relevant methods.(¿Ğ
+F
+java:S1148¨"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8 şéš.
+<	java:S131c""Add a default case to this switch.(×ö³–úÿÿÿÿ
+W
+java:S1144á"9Remove this unused private "downloadMarcoOffline" method.(ÇÚµ8şĞ¤éš.
+g
+java:S1192s"JDefine a constant instead of duplicating this literal "mensaje2:" 3 times.(ÿµ„æ8 şéš.
+h
+java:S1192½"JDefine a constant instead of duplicating this literal "idmanzana" 3 times.(ãö»É8 şéš.
+V
+java:S1117¥"8Rename "data" which hides the field declared at line 43.(ä°¥¿8ıÓ‘êš.
+A
+java:S1068,"&Remove this unused "db" private field.(õ›Ë¤ùÿÿÿÿ
+9
+java:S1148Ú"#Use a logger to log this exception.(ˆñA
+o	java:S116("ZRename this field "btn_seleccionar" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ŸÆ»
+k
+java:S1192Â"HDefine a constant instead of duplicating this literal "codzona" 3 times.(¸¶¤ûÿÿÿÿ8 şéš.
+F
+java:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ8¢ô±Üš.
+h
+java:S1192Ï"JDefine a constant instead of duplicating this literal " Manzanas" 3 times.(Ğä¤«8 şéš.
+V
+java:S1117˜"8Rename "data" which hides the field declared at line 43.(ä°¥¿8ıÓ‘êš.
+h	java:S116)"SRename this field "edt_ruta" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ËÁ‚ƒ
+l	java:S117±"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Äëİ§øÿÿÿÿ
+f
+java:S1301c"KReplace this "switch" statement by "if" statements to increase readability.(×ö³–úÿÿÿÿ
+?
+java:S1148º"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+l
+java:S1450,"QRemove the "db" field and declare it as a local variable in the relevant methods.(õ›Ë¤ùÿÿÿÿ
+n	java:S116&"TRename this field "btn_salir" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(æ•’ùÿÿÿÿ
+c
+java:S2147€"ECombine this catch with the one at line 254, which has the same body.(ï­£Ä8¢ô±Üš.
+?
+java:S1148À"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+k
+java:S1192Ã"HDefine a constant instead of duplicating this literal "sufzona" 3 times.(²ışÒúÿÿÿÿ8 şéš.
+f
+java:S1192Æ"HDefine a constant instead of duplicating this literal "polygon" 3 times.(ôş›ã8 şéš.
+V	java:S125b"<This block of commented-out lines of code should be removed.(ö™·‚şÿÿÿÿ
+f
+java:S1192Å"HDefine a constant instead of duplicating this literal "sufmzna" 3 times.(Ñóõó8 şéš.
+f
+java:S1192Ä"HDefine a constant instead of duplicating this literal "codmzna" 3 times.(ùœâŒ8 şéš.
+l	java:S116'"WRename this field "btn_importar" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¾­‘…
+?
+java:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+Y
+java:S2259f"CA "NullPointerException" could be thrown; "datos" is nullable here.(–ü›

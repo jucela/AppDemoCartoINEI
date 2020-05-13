@@ -1,0 +1,22 @@
+
+‹
+java:S1319 "pThe type of the "datos" object should be an interface such as "List" rather than the implementation "ArrayList".(÷ÛÒúÿÿÿÿ
+x
+java:S1488*"bImmediately return this expression instead of assigning it to the temporary variable "viewHolder".(·Ë«™
+P
+java:S1128
+":Remove this unused import 'android.widget.CompoundButton'.(®½¤Þ
+U
+java:S1128"?Remove this unused import 'android.content.res.ColorStateList'.(Ç¦µ·
+N
+java:S1128"3Remove this unused import 'android.graphics.Color'.(øãíòþÿÿÿÿ
+I
+java:S1128	"4Remove this unused import 'android.widget.CheckBox'.(Ùáb
+Y
+java:S18582"C"getIdzona" returns a string, there's no need to call "toString()".(óØ¤÷
+a
+java:S18583"F"getIdManzana" returns a string, there's no need to call "toString()".(Ñè—òþÿÿÿÿ
+Y
+java:S1858="C"getIdzona" returns a string, there's no need to call "toString()".(óØ¤÷
+a
+java:S1858>"F"getIdManzana" returns a string, there's no need to call "toString()".(Ñè—òþÿÿÿÿ
